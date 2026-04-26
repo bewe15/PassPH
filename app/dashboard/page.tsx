@@ -150,7 +150,9 @@ export default async function DashboardPage() {
                 color: "border-blue-200 hover:border-blue-400",
                 accent: "bg-blue-50 text-blue-700",
                 tests: [
-                  { label: "Reading Full", sub: "40 questions • 60 min", id: "ielts-reading-1", free: true },
+                  { label: "Reading Test 1", sub: "40 questions • 60 min", id: "ielts-reading-1", free: true },
+                  { label: "Reading Test 2", sub: "40 questions • 60 min", id: "ielts-reading-2", free: true },
+                  { label: "Reading Test 3", sub: "40 questions • 60 min", id: "ielts-reading-3", free: true },
                 ],
               },
               {
@@ -158,7 +160,9 @@ export default async function DashboardPage() {
                 color: "border-purple-200 hover:border-purple-400",
                 accent: "bg-purple-50 text-purple-700",
                 tests: [
-                  { label: "Reading Full", sub: "5 tasks • 30 min", id: "pte-reading-1", free: true },
+                  { label: "Reading Test 1", sub: "5 tasks • 30 min", id: "pte-reading-1", free: true },
+                  { label: "Reading Test 2", sub: "5 tasks • 30 min", id: "pte-reading-2", free: true },
+                  { label: "Reading Test 3", sub: "5 tasks • 30 min", id: "pte-reading-3", free: true },
                 ],
               },
             ].map((section) => (

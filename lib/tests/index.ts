@@ -1,10 +1,18 @@
 import type { AnyTest, AnswerMap, IELTSTest, PTETest, QuestionResult, TestResult } from "./types";
 import { ieltsReading1 } from "./ielts-reading-1";
+import { ieltsReading2 } from "./ielts-reading-2";
+import { ieltsReading3 } from "./ielts-reading-3";
 import { pteReading1 } from "./pte-reading-1";
+import { pteReading2 } from "./pte-reading-2";
+import { pteReading3 } from "./pte-reading-3";
 
 export const TEST_REGISTRY: Record<string, AnyTest> = {
   "ielts-reading-1": ieltsReading1,
+  "ielts-reading-2": ieltsReading2,
+  "ielts-reading-3": ieltsReading3,
   "pte-reading-1": pteReading1,
+  "pte-reading-2": pteReading2,
+  "pte-reading-3": pteReading3,
 };
 
 export function getTest(id: string): AnyTest | null {
