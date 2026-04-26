@@ -1,0 +1,124 @@
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
+import { ChevronRight } from "lucide-react";
+
+export default function SettingsPage() {
+  return (
+    <div className="min-h-screen bg-slate-50">
+      {/* Header */}
+      <header className="bg-white border-b border-slate-200 px-6 py-4">
+        <div className="max-w-4xl mx-auto flex items-center justify-between">
+          <span className="text-xl font-extrabold text-cyan-500">PassPH</span>
+          <nav className="hidden md:flex items-center gap-6 text-sm text-slate-500">
+            <Link href="/dashboard" className="hover:text-slate-900 transition">Dashboard</Link>
+            <Link href="/settings" className="text-slate-900 font-medium">Settings</Link>
+          </nav>
+          <div className="flex items-center gap-3">
+            <Badge variant="free">Free plan</Badge>
+            <div className="w-8 h-8 rounded-full bg-cyan-500 flex items-center justify-center text-white text-sm font-bold">M</div>
+          </div>
+        </div>
+      </header>
+
+      <main className="max-w-4xl mx-auto px-6 py-10">
+        <h1 className="text-2xl font-extrabold text-slate-900 mb-8">Settings</h1>
+
+        <div className="space-y-6">
+          {/* Profile */}
+          <section className="bg-white border border-slate-200 rounded-xl p-6">
+            <h2 className="text-base font-bold text-slate-900 mb-5">Profile</h2>
+            <div className="space-y-4 max-w-md">
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1.5">Full name</label>
+                <Input type="text" defaultValue="Maria Santos" className="border-slate-300" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1.5">Email</label>
+                <Input type="email" defaultValue="maria@email.com" className="border-slate-300" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1.5">Country</label>
+                <select className="w-full px-4 py-2.5 text-sm border border-slate-300 rounded-lg bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                  <option value="PH">Philippines 🇵🇭</option>
+                  <option value="AU">Australia 🇦🇺</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <Button size="sm">Save changes</Button>
+            </div>
+          </section>
+
+          {/* Change password */}
+          <section className="bg-white border border-slate-200 rounded-xl p-6">
+            <h2 className="text-base font-bold text-slate-900 mb-5">Change Password</h2>
+            <div className="space-y-4 max-w-md">
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1.5">Current password</label>
+                <Input type="password" placeholder="••••••••" className="border-slate-300" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1.5">New password</label>
+                <Input type="password" placeholder="At least 8 characters" className="border-slate-300" />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-slate-700 mb-1.5">Confirm new password</label>
+                <Input type="password" placeholder="••••••••" className="border-slate-300" />
+              </div>
+              <Button size="sm">Update password</Button>
+            </div>
+          </section>
+
+          {/* Subscription */}
+          <section className="bg-white border border-slate-200 rounded-xl p-6">
+            <h2 className="text-base font-bold text-slate-900 mb-1">Subscription</h2>
+            <p className="text-sm text-slate-500 mb-5">Manage your plan and billing.</p>
+            <div className="flex items-center justify-between p-4 bg-slate-50 rounded-lg mb-4">
+              <div>
+                <p className="font-semibold text-slate-900 text-sm">Free Plan</p>
+                <p className="text-xs text-slate-500 mt-0.5">3 practice tests per month</p>
+              </div>
+              <Badge variant="free">Active</Badge>
+            </div>
+            <Link href="/pricing">
+              <Button>
+                Upgrade to Pro <ChevronRight className="w-4 h-4 ml-1" />
+              </Button>
+            </Link>
+          </section>
+
+          {/* Notifications */}
+          <section className="bg-white border border-slate-200 rounded-xl p-6">
+            <h2 className="text-base font-bold text-slate-900 mb-5">Notifications</h2>
+            <div className="space-y-4">
+              {[
+                { label: "Weekly progress report", sub: "Get a summary of your practice activity every week" },
+                { label: "Exam tips & reminders", sub: "Receive tips and study reminders via email" },
+                { label: "Product updates", sub: "Be the first to know about new features" },
+              ].map((item) => (
+                <div key={item.label} className="flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-medium text-slate-900">{item.label}</p>
+                    <p className="text-xs text-slate-500">{item.sub}</p>
+                  </div>
+                  <label className="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" defaultChecked className="sr-only peer" />
+                    <div className="w-10 h-5 bg-slate-200 rounded-full peer peer-checked:bg-cyan-500 transition-colors after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-5" />
+                  </label>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* Danger zone */}
+          <section className="bg-white border border-red-100 rounded-xl p-6">
+            <h2 className="text-base font-bold text-red-500 mb-1">Danger Zone</h2>
+            <p className="text-sm text-slate-500 mb-5">These actions are permanent and cannot be undone.</p>
+            <Button variant="danger" size="sm">Delete my account</Button>
+          </section>
+        </div>
+      </main>
+    </div>
+  );
+}

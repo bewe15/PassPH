@@ -1,0 +1,227 @@
+import type { AnyTest, AnswerMap, IELTSTest, PTETest, QuestionResult, TestResult } from "./types";
+import { ieltsReading1 } from "./ielts-reading-1";
+import { pteReading1 } from "./pte-reading-1";
+
+export const TEST_REGISTRY: Record<string, AnyTest> = {
+  "ielts-reading-1": ieltsReading1,
+  "pte-reading-1": pteReading1,
+};
+
+export function getTest(id: string): AnyTest | null {
+  return TEST_REGISTRY[id] ?? null;
+}
+
+// ── IELTS Band Score (Cambridge Academic Reading table) ───────────────────────
+export function ieltsBand(raw: number): number {
+  if (raw >= 39) return 9.0;
+  if (raw >= 37) return 8.5;
+  if (raw >= 35) return 8.0;
+  if (raw >= 33) return 7.5;
+  if (raw >= 30) return 7.0;
+  if (raw >= 27) return 6.5;
+  if (raw >= 23) return 6.0;
+  if (raw >= 19) return 5.5;
+  if (raw >= 15) return 5.0;
+  if (raw >= 13) return 4.5;
+  if (raw >= 10) return 4.0;
+  if (raw >= 8)  return 3.5;
+  return 3.0;
+}
+
+// ── PTE approximate IELTS equivalent ─────────────────────────────────────────
+export function pteBand(correct: number, total: number): number {
+  const pct = correct / total;
+  if (pct >= 0.90) return 8.5;
+  if (pct >= 0.80) return 8.0;
+  if (pct >= 0.70) return 7.5;
+  if (pct >= 0.60) return 7.0;
+  if (pct >= 0.50) return 6.5;
+  if (pct >= 0.40) return 6.0;
+  return 5.5;
+}
+
+// ── Flatten IELTS answers into QuestionResult[] ───────────────────────────────
+export function flattenIELTS(test: IELTSTest, answers: AnswerMap): QuestionResult[] {
+  const results: QuestionResult[] = [];
+
+  for (const passage of test.passages) {
+    for (const section of passage.sections) {
+      for (const q of section.questions) {
+        const given = answers[q.id] ?? "";
+
+        let isCorrect = false;
+        let correctStr = "";
+        let givenStr = given;
+        let questionText = "";
+
+        if (section.type === "tfng" || section.type === "ynng") {
+          questionText = q.statement ?? "";
+          correctStr = Array.isArray(q.correct) ? q.correct[0] : q.correct;
+          isCorrect = given.toLowerCase() === correctStr.toLowerCase();
+        } else if (section.type === "mc_single") {
+          questionText = q.stem ?? "";
+          correctStr = Array.isArray(q.correct) ? q.correct[0] : q.correct;
+          isCorrect = given === correctStr;
+        } else if (section.type === "mc_multiple") {
+          questionText = q.stem ?? "";
+          const correctArr = Array.isArray(q.correct) ? q.correct : [q.correct];
+          correctStr = correctArr.join(", ");
+          try {
+            const givenArr: string[] = JSON.parse(given || "[]");
+            givenStr = givenArr.join(", ");
+            isCorrect = correctArr.length === givenArr.length &&
+              correctArr.every((c) => givenArr.includes(c));
+          } catch { isCorrect = false; }
+        } else if (section.type === "match_headings") {
+          questionText = `Paragraph ${q.paragraph}`;
+          correctStr = Array.isArray(q.correct) ? q.correct[0] : q.correct;
+          isCorrect = given === correctStr;
+        } else if (section.type === "match_info") {
+          questionText = q.text ?? "";
+          correctStr = Array.isArray(q.correct) ? q.correct[0] : q.correct;
+          isCorrect = given.toUpperCase() === correctStr.toUpperCase();
+        } else if (section.type === "sentence_completion") {
+          questionText = `${q.before ?? ""}___${q.after ?? ""}`;
+          correctStr = Array.isArray(q.correct) ? q.correct[0] : q.correct;
+          isCorrect = given.trim().toLowerCase() === correctStr.toLowerCase();
+        } else if (section.type === "summary_completion") {
+          questionText = `Summary blank ${q.blankId}`;
+          correctStr = Array.isArray(q.correct) ? q.correct[0] : q.correct;
+          isCorrect = given.trim().toLowerCase() === correctStr.toLowerCase();
+        } else if (section.type === "short_answer") {
+          questionText = q.before ?? "";
+          correctStr = Array.isArray(q.correct) ? q.correct[0] : q.correct;
+          isCorrect = given.trim().toLowerCase().includes(correctStr.toLowerCase());
+        }
+
+        results.push({
+          id: q.id,
+          text: questionText,
+          correct: correctStr,
+          given: givenStr || "—",
+          isCorrect,
+          explanation: q.explanation,
+        });
+      }
+    }
+  }
+
+  return results;
+}
+
+// ── Flatten PTE answers into QuestionResult[] ─────────────────────────────────
+export function flattenPTE(test: PTETest, answers: AnswerMap): QuestionResult[] {
+  const results: QuestionResult[] = [];
+
+  for (const task of test.tasks) {
+    if (task.type === "mc_single") {
+      const given = answers[task.id] ?? "";
+      const correct = Array.isArray(task.correct) ? task.correct[0] : (task.correct ?? "");
+      results.push({
+        id: task.id,
+        text: task.stem ?? "",
+        correct,
+        given: given || "—",
+        isCorrect: given === correct,
+        explanation: task.explanation ?? "",
+      });
+    } else if (task.type === "mc_multiple") {
+      const correctArr = Array.isArray(task.correct) ? task.correct : [task.correct ?? ""];
+      const correctStr = correctArr.join(", ");
+      const givenRaw = answers[task.id] ?? "[]";
+      let givenArr: string[] = [];
+      try { givenArr = JSON.parse(givenRaw); } catch { /* empty */ }
+      const isCorrect = correctArr.length === givenArr.length && correctArr.every((c) => givenArr.includes(c as string));
+      results.push({
+        id: task.id,
+        text: task.stem ?? "",
+        correct: correctStr,
+        given: givenArr.join(", ") || "—",
+        isCorrect,
+        explanation: task.explanation ?? "",
+      });
+    } else if (task.type === "reorder") {
+      const correctOrder = task.correctOrder ?? [];
+      const givenRaw = answers[task.id] ?? "[]";
+      let givenOrder: string[] = [];
+      try { givenOrder = JSON.parse(givenRaw); } catch { /* empty */ }
+      // Score by adjacent pairs correct
+      let pairsCorrect = 0;
+      for (let i = 0; i < correctOrder.length - 1; i++) {
+        const givenIdx = givenOrder.indexOf(correctOrder[i]);
+        if (givenIdx !== -1 && givenOrder[givenIdx + 1] === correctOrder[i + 1]) pairsCorrect++;
+      }
+      const isCorrect = pairsCorrect === correctOrder.length - 1;
+      results.push({
+        id: task.id,
+        text: "Re-order Paragraphs",
+        correct: correctOrder.join(" → "),
+        given: givenOrder.length ? givenOrder.join(" → ") : "—",
+        isCorrect,
+        explanation: task.reorderExplanation ?? "",
+      });
+    } else if (task.type === "rfib") {
+      for (const blank of task.blanks ?? []) {
+        const givenRaw = answers[task.id] ?? "{}";
+        let givenMap: Record<number, string> = {};
+        try { givenMap = JSON.parse(givenRaw); } catch { /* empty */ }
+        const given = givenMap[blank.id] ?? "";
+        results.push({
+          id: task.id * 100 + blank.id,
+          text: `Reading Fill in Blank ${blank.id}`,
+          correct: blank.correct,
+          given: given || "—",
+          isCorrect: given.toLowerCase() === blank.correct.toLowerCase(),
+          explanation: blank.explanation,
+        });
+      }
+    } else if (task.type === "rwfib") {
+      for (const blank of task.rwfibBlanks ?? []) {
+        const givenRaw = answers[task.id] ?? "{}";
+        let givenMap: Record<number, string> = {};
+        try { givenMap = JSON.parse(givenRaw); } catch { /* empty */ }
+        const given = givenMap[blank.id] ?? "";
+        results.push({
+          id: task.id * 100 + blank.id,
+          text: `Reading & Writing Fill in Blank ${blank.id}`,
+          correct: blank.correct,
+          given: given || "—",
+          isCorrect: given === blank.correct,
+          explanation: blank.explanation,
+        });
+      }
+    }
+  }
+
+  return results;
+}
+
+export function buildResult(
+  test: AnyTest,
+  answers: AnswerMap,
+  timeTakenSeconds: number
+): TestResult {
+  const mm = Math.floor(timeTakenSeconds / 60).toString().padStart(2, "0");
+  const ss = (timeTakenSeconds % 60).toString().padStart(2, "0");
+
+  const questions =
+    test.exam === "IELTS"
+      ? flattenIELTS(test as IELTSTest, answers)
+      : flattenPTE(test as PTETest, answers);
+
+  const score = questions.filter((q) => q.isCorrect).length;
+  const total = questions.length;
+  const band =
+    test.exam === "IELTS" ? ieltsBand(score) : pteBand(score, total);
+
+  return {
+    exam: test.exam,
+    type: test.exam === "IELTS" ? "Academic Reading" : "Reading",
+    score,
+    total,
+    band,
+    date: new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }),
+    timeTaken: `${mm} min ${ss} sec`,
+    questions,
+  };
+}

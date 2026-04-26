@@ -1,0 +1,169 @@
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { CheckCircle, ChevronLeft } from "lucide-react";
+
+const plans = [
+  {
+    name: "Free",
+    price: "₱0",
+    period: "forever",
+    desc: "Try before you commit",
+    features: [
+      "3 practice tests/month",
+      "Reading section only",
+      "Basic score report",
+      "Answer explanations",
+    ],
+    cta: "Get started free",
+    href: "/signup",
+    highlight: false,
+  },
+  {
+    name: "Basic",
+    price: "₱199",
+    period: "/month",
+    desc: "For regular practice",
+    features: [
+      "Unlimited Reading tests",
+      "Unlimited Listening tests",
+      "Detailed score report",
+      "Progress tracking",
+      "Band score estimates",
+    ],
+    cta: "Start Basic",
+    href: "/signup",
+    highlight: false,
+  },
+  {
+    name: "Pro",
+    price: "₱399",
+    period: "/month",
+    desc: "Everything you need to pass",
+    features: [
+      "Everything in Basic",
+      "AI Writing feedback",
+      "AI Speaking scoring",
+      "Band score estimates",
+      "Priority support",
+      "Downloadable score reports",
+    ],
+    cta: "Start Pro",
+    href: "/signup",
+    highlight: true,
+  },
+];
+
+const faqs = [
+  { q: "Can I switch plans anytime?", a: "Yes, upgrade or downgrade at any time from your account settings. Changes take effect immediately." },
+  { q: "What payment methods are accepted?", a: "Philippine users can pay via GCash, Maya, or credit/debit card through PayMongo. Australian users pay in AUD via Stripe." },
+  { q: "Is there a one-time payment option?", a: "Yes — ₱999 gives you 3 months of Pro access as a one-time payment. Great if you have a fixed exam date." },
+  { q: "Can I cancel anytime?", a: "Absolutely. No lock-in contracts. Cancel anytime from your settings and you keep access until the end of your billing period." },
+];
+
+export default function PricingPage() {
+  return (
+    <div className="min-h-screen bg-slate-50">
+      {/* Header */}
+      <header className="bg-white border-b border-slate-200 px-6 py-4">
+        <div className="max-w-5xl mx-auto flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <Link href="/" className="text-slate-400 hover:text-slate-600 transition">
+              <ChevronLeft className="w-5 h-5" />
+            </Link>
+            <Link href="/" className="text-xl font-extrabold text-cyan-500">PassPH</Link>
+          </div>
+          <div className="flex items-center gap-4 text-sm">
+            <Link href="/login" className="text-slate-500 hover:text-slate-900 transition">Log in</Link>
+            <Link href="/signup">
+              <Button size="sm">Sign up free</Button>
+            </Link>
+          </div>
+        </div>
+      </header>
+
+      <main className="max-w-5xl mx-auto px-6 py-16">
+        {/* Hero */}
+        <div className="text-center mb-14">
+          <h1 className="text-4xl font-extrabold text-slate-900 mb-3">Simple, affordable pricing</h1>
+          <p className="text-slate-500 text-lg">Start free. Upgrade when you are ready. No hidden fees.</p>
+          <p className="text-sm text-slate-400 mt-2">Also available: ₱999 one-time for 3 months Pro</p>
+        </div>
+
+        {/* Plans */}
+        <div className="grid md:grid-cols-3 gap-6 mb-16">
+          {plans.map((plan) => (
+            <div
+              key={plan.name}
+              className={`rounded-xl p-6 border flex flex-col ${
+                plan.highlight
+                  ? "border-cyan-400 bg-white shadow-lg shadow-cyan-100 relative"
+                  : "border-slate-200 bg-white"
+              }`}
+            >
+              {plan.highlight && (
+                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
+                  <span className="bg-cyan-500 text-white text-xs font-normal px-3 py-1 rounded-full uppercase tracking-widest">
+                    Most Popular
+                  </span>
+                </div>
+              )}
+              <h3 className="text-xl font-extrabold text-slate-900 mb-1">{plan.name}</h3>
+              <div className="flex items-end gap-1 mb-1">
+                <span className="text-3xl font-normal text-cyan-500">{plan.price}</span>
+                <span className="text-slate-400 text-sm mb-1">{plan.period}</span>
+              </div>
+              <p className="text-sm text-slate-500 mb-6">{plan.desc}</p>
+              <ul className="space-y-2.5 mb-8 flex-1">
+                {plan.features.map((f) => (
+                  <li key={f} className="flex items-start gap-2 text-sm text-slate-700">
+                    <CheckCircle className="w-4 h-4 text-cyan-500 mt-0.5 shrink-0" />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <Link href={plan.href}>
+                <Button
+                  className={`w-full ${
+                    !plan.highlight
+                      ? "bg-transparent border border-slate-300 text-slate-700 hover:bg-slate-50"
+                      : ""
+                  }`}
+                >
+                  {plan.cta}
+                </Button>
+              </Link>
+            </div>
+          ))}
+        </div>
+
+        {/* One-time option */}
+        <div className="bg-white border border-slate-200 rounded-xl p-6 flex flex-col md:flex-row items-center justify-between gap-4 mb-16">
+          <div>
+            <h3 className="font-bold text-slate-900 mb-1">One-time payment option</h3>
+            <p className="text-sm text-slate-500">Pay ₱999 once and get 3 months of Pro access. Best for exam prep with a fixed date.</p>
+          </div>
+          <Link href="/signup" className="shrink-0">
+            <Button variant="outline">Get 3 months for ₱999</Button>
+          </Link>
+        </div>
+
+        {/* FAQ */}
+        <div className="max-w-2xl mx-auto">
+          <h2 className="text-2xl font-extrabold text-slate-900 text-center mb-8">Pricing FAQ</h2>
+          <div className="space-y-6">
+            {faqs.map((item) => (
+              <div key={item.q} className="border-b border-slate-200 pb-6">
+                <h4 className="font-semibold text-slate-900 mb-2">{item.q}</h4>
+                <p className="text-sm text-slate-500">{item.a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </main>
+
+      <footer className="border-t border-slate-200 bg-white py-6 px-6 mt-16 text-center text-sm text-slate-400">
+        © 2026 PassPH. Practice IELTS &amp; PTE with confidence.
+      </footer>
+    </div>
+  );
+}
