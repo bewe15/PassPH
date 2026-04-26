@@ -1,15 +1,20 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { CheckCircle } from "lucide-react";
+import { createClient } from "@/lib/supabase/client";
 
 export default function SignupPage() {
+  const router = useRouter();
   const [form, setForm] = useState({ name: "", email: "", password: "", country: "PH" });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(false);
+  const [serverError, setServerError] = useState("");
+  const [confirmed, setConfirmed] = useState(false);
 
   function set(field: string, value: string) {
     setForm((p) => ({ ...p, [field]: value }));
@@ -26,13 +31,53 @@ export default function SignupPage() {
     return e;
   }
 
-  function handleSubmit(ev: React.FormEvent) {
+  async function handleSubmit(ev: React.FormEvent) {
     ev.preventDefault();
     const e = validate();
     if (Object.keys(e).length) { setErrors(e); return; }
     setErrors({});
+    setServerError("");
     setLoading(true);
-    setTimeout(() => setLoading(false), 1500);
+    const supabase = createClient();
+    const { error } = await supabase.auth.signUp({
+      email: form.email,
+      password: form.password,
+      options: {
+        data: { full_name: form.name, country: form.country },
+      },
+    });
+    setLoading(false);
+    if (error) { setServerError(error.message); return; }
+    // Supabase returns a session immediately if email confirmation is off,
+    // otherwise data.session is null and the user must confirm their email first.
+    const { data: { session } } = await supabase.auth.getSession();
+    if (session) {
+      router.push("/dashboard");
+    } else {
+      setConfirmed(true);
+    }
+  }
+
+  if (confirmed) {
+    return (
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center px-4">
+        <div className="w-full max-w-sm text-center">
+          <Link href="/" className="text-2xl font-extrabold text-cyan-500">PassPH</Link>
+          <div className="bg-white border border-slate-200 rounded-xl p-8 shadow-sm mt-8">
+            <div className="w-14 h-14 bg-cyan-50 rounded-full flex items-center justify-center mx-auto mb-4">
+              <CheckCircle className="w-8 h-8 text-cyan-500" />
+            </div>
+            <h1 className="text-xl font-bold text-slate-900 mb-2">Check your email</h1>
+            <p className="text-sm text-slate-500 mb-6">
+              We sent a confirmation link to <strong>{form.email}</strong>. Click it to activate your account, then log in.
+            </p>
+            <Link href="/login">
+              <Button className="w-full">Go to Login</Button>
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -91,6 +136,9 @@ export default function SignupPage() {
                 <option value="other">Other</option>
               </select>
             </div>
+            {serverError && (
+              <p className="text-xs text-red-500 text-center">{serverError}</p>
+            )}
             <Button className="w-full mt-2" size="md" disabled={loading}>
               {loading ? "Creating account…" : "Create free account"}
             </Button>

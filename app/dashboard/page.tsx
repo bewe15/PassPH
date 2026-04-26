@@ -1,19 +1,69 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { BookOpen, TrendingUp, Clock, ChevronRight, Lock, ArrowUpRight } from "lucide-react";
+import { createClient } from "@/lib/supabase/server";
+import LogoutButton from "@/components/LogoutButton";
 
-const recentAttempts = [
-  { id: "1", exam: "IELTS", type: "Reading Mini", score: 10, total: 13, band: 6.5, date: "Apr 25, 2026" },
-  { id: "2", exam: "PTE", type: "Reading Mini", score: 8, total: 10, band: 6.0, date: "Apr 23, 2026" },
-  { id: "3", exam: "IELTS", type: "Reading Full", score: 28, total: 40, band: 6.5, date: "Apr 20, 2026" },
-];
+function getGreeting() {
+  const h = new Date().getHours();
+  if (h < 12) return "Good morning";
+  if (h < 18) return "Good afternoon";
+  return "Good evening";
+}
 
-export default function DashboardPage() {
-  const plan = "free";
-  const testsUsed = 2;
-  const testsLimit = 3;
+function getBandColor(band: number) {
+  if (band >= 7.5) return "text-green-500";
+  if (band >= 6.5) return "text-cyan-500";
+  if (band >= 5.5) return "text-yellow-500";
+  return "text-red-400";
+}
+
+export default async function DashboardPage() {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
+  if (!user) redirect("/login");
+
+  // Fetch profile + recent attempts in parallel
+  const [profileRes, attemptsRes] = await Promise.all([
+    supabase.from("profiles").select("*").eq("id", user.id).single(),
+    supabase
+      .from("test_attempts")
+      .select("*")
+      .eq("user_id", user.id)
+      .order("created_at", { ascending: false })
+      .limit(10),
+  ]);
+
+  const profile = profileRes.data;
+  const attempts = attemptsRes.data ?? [];
+
+  const plan = profile?.plan ?? "free";
+  const testsUsed = profile?.tests_used_this_month ?? 0;
+  const testsLimit = plan === "free" ? 3 : Infinity;
+  const firstName = (profile?.full_name ?? user.email ?? "there").split(" ")[0];
+  const initials = firstName.slice(0, 2).toUpperCase();
+
+  // Compute stats from real attempts
+  const totalTests = attempts.length;
+  const avgBand = totalTests
+    ? Math.round((attempts.reduce((s, a) => s + (a.band ?? 0), 0) / totalTests) * 10) / 10
+    : null;
+  const avgScore =
+    totalTests && attempts[0]
+      ? `${Math.round(attempts.reduce((s, a) => s + (a.score ?? 0), 0) / totalTests)}/${attempts[0].total}`
+      : null;
+
+  function formatDate(iso: string) {
+    return new Date(iso).toLocaleDateString("en-PH", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    });
+  }
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -26,8 +76,11 @@ export default function DashboardPage() {
             <Link href="/settings" className="hover:text-slate-900 transition">Settings</Link>
           </nav>
           <div className="flex items-center gap-3">
-            <Badge variant="free">Free plan</Badge>
-            <div className="w-8 h-8 rounded-full bg-cyan-500 flex items-center justify-center text-white text-sm font-bold">M</div>
+            <Badge variant={plan === "free" ? "free" : "pro"}>{plan === "free" ? "Free plan" : "Pro"}</Badge>
+            <div className="w-8 h-8 rounded-full bg-cyan-500 flex items-center justify-center text-white text-sm font-bold">
+              {initials}
+            </div>
+            <LogoutButton />
           </div>
         </div>
       </header>
@@ -35,7 +88,7 @@ export default function DashboardPage() {
       <main className="max-w-6xl mx-auto px-6 py-8">
         {/* Welcome */}
         <div className="mb-8">
-          <h1 className="text-2xl font-extrabold text-slate-900">Good morning, Maria!</h1>
+          <h1 className="text-2xl font-extrabold text-slate-900">{getGreeting()}, {firstName}!</h1>
           <p className="text-slate-500 text-sm mt-1">Keep practicing — consistency is the key to a higher band score.</p>
         </div>
 
@@ -43,7 +96,9 @@ export default function DashboardPage() {
         {plan === "free" && (
           <div className="bg-gradient-to-r from-cyan-500/10 to-cyan-600/5 border border-cyan-500/20 rounded-xl p-4 mb-8 flex items-center justify-between gap-4">
             <div>
-              <p className="font-semibold text-slate-900 text-sm">You&apos;ve used {testsUsed} of {testsLimit} free tests this month</p>
+              <p className="font-semibold text-slate-900 text-sm">
+                You&apos;ve used {testsUsed} of {testsLimit} free tests this month
+              </p>
               <p className="text-xs text-slate-500 mt-0.5">Upgrade to Pro for unlimited tests + AI feedback</p>
             </div>
             <Link href="/pricing" className="shrink-0">
@@ -55,10 +110,10 @@ export default function DashboardPage() {
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
           {[
-            { label: "Tests Taken", value: "3", icon: BookOpen, color: "text-cyan-500" },
-            { label: "Avg Band Score", value: "6.5", icon: TrendingUp, color: "text-green-500" },
-            { label: "Avg Score", value: "28/40", icon: TrendingUp, color: "text-blue-500" },
-            { label: "This Month", value: `${testsUsed}/${testsLimit}`, icon: Clock, color: "text-orange-500" },
+            { label: "Tests Taken", value: String(totalTests), icon: BookOpen, color: "text-cyan-500" },
+            { label: "Avg Band Score", value: avgBand != null ? String(avgBand) : "—", icon: TrendingUp, color: "text-green-500" },
+            { label: "Avg Score", value: avgScore ?? "—", icon: TrendingUp, color: "text-blue-500" },
+            { label: "This Month", value: `${testsUsed}/${plan === "free" ? testsLimit : "∞"}`, icon: Clock, color: "text-orange-500" },
           ].map((stat) => (
             <Card key={stat.label}>
               <CardContent className="py-5">
@@ -133,18 +188,28 @@ export default function DashboardPage() {
               View all <ArrowUpRight className="w-3 h-3" />
             </button>
           </div>
-          <Card>
-            <div className="divide-y divide-slate-100">
-              {recentAttempts.map((attempt) => (
-                <Link key={attempt.id} href={`/results/${attempt.id}`}>
-                  <div className="flex items-center justify-between px-6 py-4 hover:bg-slate-50 transition cursor-pointer">
+
+          {attempts.length === 0 ? (
+            <Card>
+              <CardContent className="py-12 text-center">
+                <BookOpen className="w-10 h-10 text-slate-300 mx-auto mb-3" />
+                <p className="text-slate-500 text-sm">No tests taken yet — start your first practice test above!</p>
+              </CardContent>
+            </Card>
+          ) : (
+            <Card>
+              <div className="divide-y divide-slate-100">
+                {attempts.map((attempt) => (
+                  <div key={attempt.id} className="flex items-center justify-between px-6 py-4 hover:bg-slate-50 transition">
                     <div className="flex items-center gap-4">
                       <div className="w-10 h-10 rounded-lg bg-cyan-50 flex items-center justify-center">
                         <BookOpen className="w-5 h-5 text-cyan-500" />
                       </div>
                       <div>
-                        <p className="text-sm font-semibold text-slate-900">{attempt.exam} — {attempt.type}</p>
-                        <p className="text-xs text-slate-500">{attempt.date}</p>
+                        <p className="text-sm font-semibold text-slate-900">
+                          {attempt.exam} — {attempt.test_id?.replace(/-/g, " ").replace(/\b\w/g, (c: string) => c.toUpperCase())}
+                        </p>
+                        <p className="text-xs text-slate-500">{formatDate(attempt.created_at)}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-6">
@@ -153,16 +218,16 @@ export default function DashboardPage() {
                         <p className="text-xs text-slate-500">Score</p>
                       </div>
                       <div className="text-right">
-                        <p className="text-sm font-bold text-cyan-500">Band {attempt.band}</p>
+                        <p className={`text-sm font-bold ${getBandColor(attempt.band)}`}>Band {attempt.band}</p>
                         <p className="text-xs text-slate-500">Estimate</p>
                       </div>
                       <ChevronRight className="w-4 h-4 text-slate-400" />
                     </div>
                   </div>
-                </Link>
-              ))}
-            </div>
-          </Card>
+                ))}
+              </div>
+            </Card>
+          )}
         </div>
       </main>
     </div>

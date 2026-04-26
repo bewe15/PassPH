@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ChevronLeft, ChevronRight, Clock, Flag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getTest, buildResult } from "@/lib/tests/index";
+import { createClient } from "@/lib/supabase/client";
 import type {
   AnyTest, IELTSTest, PTETest, IELTSPassage, Section, QuestionItem,
   PTETask, AnswerMap,
@@ -963,12 +964,33 @@ export default function TestPage() {
   const router = useRouter();
   const test = getTest(params.id);
 
-  const handleSubmit = useCallback((answers: AnswerMap, elapsed: number) => {
+  const handleSubmit = useCallback(async (answers: AnswerMap, elapsed: number) => {
     if (!test) return;
     const result = buildResult(test, answers, elapsed);
     sessionStorage.setItem("passph_result", JSON.stringify(result));
+
+    // Save to Supabase (best-effort — don't block navigation on failure)
+    try {
+      const supabase = createClient();
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        await supabase.from("test_attempts").insert({
+          user_id: user.id,
+          exam: result.exam,
+          test_id: params.id,
+          score: result.score,
+          total: result.total,
+          band: result.band,
+          time_taken: result.timeTaken,
+          result_json: result,
+        });
+        // Increment tests_used_this_month
+        await supabase.rpc("increment_tests_used", { uid: user.id });
+      }
+    } catch { /* ignore */ }
+
     router.push("/results/1");
-  }, [test, router]);
+  }, [test, router, params.id]);
 
   if (!test) {
     return (
