@@ -1,0 +1,171 @@
+import type { IELTSTest } from "./types";
+
+export const ieltsReading13: IELTSTest = {
+  id: "ielts-reading-13",
+  exam: "IELTS",
+  title: "IELTS Academic Reading — Test 13",
+  totalSeconds: 3600,
+  passages: [
+    {
+      number: 1,
+      title: "Quantum Computing: From Theory to Technology",
+      paragraphs: [
+        { letter: "A", text: "Quantum computing exploits the principles of quantum mechanics — the physics governing subatomic particles — to perform certain types of computation dramatically faster than any classical computer. Where a classical computer stores information as bits representing either 0 or 1, a quantum computer uses quantum bits or qubits, which can exist in a superposition of 0 and 1 simultaneously. This property, combined with entanglement — the phenomenon by which the quantum states of two particles become correlated — allows quantum computers to process vast numbers of possible states in parallel, offering theoretical exponential speedups for specific problem types." },
+        { letter: "B", text: "The theoretical foundations of quantum computing were laid in the early 1980s, when physicist Richard Feynman proposed that a quantum system could be most efficiently simulated by a quantum computer. Peter Shor's 1994 algorithm demonstrated that a quantum computer could factor large integers exponentially faster than any known classical algorithm — a result of profound importance because the security of widely used public-key cryptographic systems, including RSA, rests on the difficulty of this factoring problem. Lov Grover's 1996 algorithm showed that quantum computers could search unsorted databases quadratically faster than classical computers, suggesting broader algorithmic advantages." },
+        { letter: "C", text: "Building a practical quantum computer faces formidable engineering challenges. Qubits are extraordinarily fragile: quantum states are disrupted by the slightest interaction with the external environment — a process called decoherence. Current quantum processors must be operated at temperatures near absolute zero to minimise thermal interference, and even then qubit error rates remain far higher than those achievable in classical computing. Error correction in quantum systems requires significant overhead: protecting a single logical qubit may require hundreds or thousands of physical qubits. Most current quantum processors have tens to hundreds of qubits, and achieving the thousands or millions of error-corrected logical qubits needed for practically significant quantum advantage remains a major unsolved challenge." },
+        { letter: "D", text: "Despite these limitations, quantum computing is advancing rapidly. In 2019, Google announced that its Sycamore processor had achieved quantum supremacy — performing a calculation in 200 seconds that would take the world's best supercomputer thousands of years. IBM, IonQ, Rigetti, and a growing ecosystem of startups are developing competing approaches using different qubit technologies, including superconducting circuits, trapped ions, and photonic systems. Governments around the world have committed substantial public funding to quantum research, recognising both the transformative potential and the national security implications of leadership in the field." },
+        { letter: "E", text: "The anticipated applications of quantum computing span multiple domains. Drug discovery and materials science stand to benefit from quantum simulation of molecular and chemical interactions at scales intractable to classical computers. Quantum optimisation algorithms may improve logistics, financial portfolio management, and supply chain planning. The threat to current cryptographic systems has driven urgent investment in post-quantum cryptography — developing encryption algorithms resistant to quantum attack — and quantum key distribution, which uses quantum mechanical properties to create theoretically unbreakable communication channels." },
+        { letter: "F", text: "Significant uncertainties surround the timeline and ultimate impact of quantum computing. Critics of quantum supremacy claims argue that the comparison with classical computers was misleading — that classical algorithms were not optimally tuned — and that the practical problems quantum computers are claimed to solve near-term are largely contrived. The field has a history of inflated commercial predictions. Many researchers caution that fault-tolerant, large-scale quantum computers capable of breaking current encryption or revolutionising drug discovery remain decades away, and that the near-term advantage of 'noisy intermediate-scale quantum' (NISQ) devices is highly uncertain." },
+        { letter: "G", text: "The geopolitical dimension of quantum computing is significant. The United States, China, and the European Union have all identified quantum computing as a strategic technology and made substantial investments in domestic capabilities. Export controls on quantum computing hardware and technology have been introduced, and the race to achieve quantum supremacy is widely compared to the space race of the twentieth century. The outcome of this competition may have profound implications not only for scientific leadership but for military cryptography, intelligence gathering, and economic competitiveness in sectors dependent on advanced simulation and optimisation." },
+      ],
+      sections: [
+        {
+          type: "match_headings",
+          questionRange: "Questions 1–6",
+          instructions: "The reading passage has seven paragraphs, A–G. Choose the correct heading for paragraphs B–G from the list of headings below.",
+          headings: [
+            { label: "i",    text: "Early theoretical milestones and their significance" },
+            { label: "ii",   text: "The technical obstacles to building working quantum computers" },
+            { label: "iii",  text: "Recent progress and the competitive landscape" },
+            { label: "iv",   text: "Potential uses across scientific and commercial fields" },
+            { label: "v",    text: "Doubts about timelines and the reality of current claims" },
+            { label: "vi",   text: "National competition and strategic investment" },
+            { label: "vii",  text: "The basic principles that distinguish quantum from classical computing" },
+            { label: "viii", text: "How quantum computers are used in artificial intelligence" },
+            { label: "ix",   text: "The environmental impact of cooling quantum systems" },
+          ],
+          questions: [
+            { id: 1, paragraph: "B", correct: "i",    explanation: "Paragraph B covers Feynman's proposal, Shor's algorithm, and Grover's algorithm — early theoretical milestones." },
+            { id: 2, paragraph: "C", correct: "ii",   explanation: "Paragraph C discusses decoherence, error rates, and the engineering challenges of building quantum hardware." },
+            { id: 3, paragraph: "D", correct: "iii",  explanation: "Paragraph D describes Google's 2019 quantum supremacy claim and the growing ecosystem of companies and governments." },
+            { id: 4, paragraph: "E", correct: "iv",   explanation: "Paragraph E covers applications: drug discovery, optimisation, cryptography, and quantum key distribution." },
+            { id: 5, paragraph: "F", correct: "v",    explanation: "Paragraph F presents scepticism about supremacy claims and cautions about timelines." },
+            { id: 6, paragraph: "G", correct: "vi",   explanation: "Paragraph G discusses the US, China, EU competition and strategic/geopolitical implications." },
+          ],
+        },
+        {
+          type: "tfng",
+          questionRange: "Questions 7–10",
+          instructions: "Do the following statements agree with the information given in the reading passage? Write TRUE, FALSE, or NOT GIVEN.",
+          questions: [
+            { id: 7,  statement: "Richard Feynman first proposed the idea of using a quantum system to simulate quantum physics in the 1980s.", correct: "True", explanation: "Paragraph B: 'physicist Richard Feynman proposed that a quantum system could be most efficiently simulated by a quantum computer' in 'the early 1980s.'" },
+            { id: 8,  statement: "Google's Sycamore processor used trapped ion qubits to achieve quantum supremacy.", correct: "Not Given", explanation: "Paragraph D mentions Google's Sycamore result but does not specify which qubit technology it used." },
+            { id: 9,  statement: "Protecting a single logical qubit may require hundreds or thousands of physical qubits.", correct: "True", explanation: "Paragraph C: 'protecting a single logical qubit may require hundreds or thousands of physical qubits.'" },
+            { id: 10, statement: "Post-quantum cryptography involves using quantum computers to encrypt data.", correct: "False", explanation: "Paragraph E: post-quantum cryptography involves 'developing encryption algorithms resistant to quantum attack' — classical algorithms that resist quantum attacks, not quantum encryption." },
+          ],
+        },
+        {
+          type: "sentence_completion",
+          questionRange: "Questions 11–13",
+          instructions: "Complete the sentences below. Choose NO MORE THAN TWO WORDS from the passage for each answer.",
+          questions: [
+            { id: 11, before: "The security of RSA cryptography depends on the computational difficulty of the ", after: " problem.", correct: "factoring", explanation: "Paragraph B: 'the security of widely used public-key cryptographic systems, including RSA, rests on the difficulty of this factoring problem.'" },
+            { id: 12, before: "The disruption of a quantum state by interaction with the environment is called ", after: ".", correct: "decoherence", explanation: "Paragraph C: 'quantum states are disrupted by the slightest interaction with the external environment — a process called decoherence.'" },
+            { id: 13, before: "Near-term quantum devices that have high error rates are referred to as ", after: " devices.", correct: "NISQ", explanation: "Paragraph F: 'noisy intermediate-scale quantum' (NISQ) devices.'" },
+          ],
+        },
+      ],
+    },
+    {
+      number: 2,
+      title: "Global Food Security: Challenges and Strategies",
+      paragraphs: [
+        { letter: "A", text: "Food security — defined by the United Nations as existing 'when all people, at all times, have physical and economic access to sufficient, safe and nutritious food that meets their dietary needs and food preferences for an active and healthy life' — remains one of the most pressing challenges facing humanity. Despite remarkable progress in agricultural productivity over the twentieth century, an estimated 735 million people were chronically hungry in 2022, with progress toward the UN's Sustainable Development Goal of Zero Hunger having stalled or reversed following the COVID-19 pandemic, extreme weather events, and supply chain disruptions caused by the conflict in Ukraine." },
+        { letter: "B", text: "The geography of food insecurity is uneven. Sub-Saharan Africa and South Asia account for the majority of the world's hungry population, reflecting the compounding effects of poverty, weak agricultural infrastructure, conflict, and climate vulnerability. However, food insecurity is not confined to low-income countries: in the United States, food bank usage surged to record levels during the COVID-19 pandemic, and hidden hunger — micronutrient deficiency that may coexist with adequate caloric intake — affects populations across all income levels. Hidden hunger, caused by diets deficient in vitamins and minerals including iron, zinc, and vitamin A, impairs immune function, cognitive development, and productivity." },
+        { letter: "C", text: "Agricultural productivity must continue to increase to meet the demands of a projected world population of approximately 9.7 billion by 2050, against the backdrop of shrinking arable land, increasing water scarcity, and accelerating climate disruption. Climate change is expected to reduce yields of key staple crops — wheat, maize, and rice — in tropical regions by up to 25 percent by mid-century under high-emission scenarios, even as it opens new agricultural land at higher latitudes. The challenge is not only producing sufficient food but ensuring that production is sustainable: agriculture currently accounts for approximately 70 percent of freshwater withdrawals and 25 percent of global greenhouse gas emissions." },
+        { letter: "D", text: "Reducing food waste offers one of the most cost-effective pathways to improving food security without expanding production. Approximately one-third of all food produced globally — around 1.3 billion tonnes per year — is lost or wasted across the supply chain from field to fork. In high-income countries, waste is concentrated at the consumer and retail stages, driven by aesthetic standards, over-purchasing, and confusion about date labelling. In low-income countries, losses are concentrated at earlier stages — harvest, storage, and transport — due to inadequate infrastructure including cold chains. Eliminating this waste would theoretically feed an additional 2 billion people." },
+        { letter: "E", text: "Dietary shifts offer another lever. The food system's environmental footprint varies enormously by dietary composition: beef production requires approximately 20 times more land and generates roughly 20 times more greenhouse gas emissions per gram of protein than plant-based legumes. Research suggests that a global shift toward diets richer in plant foods and lower in animal products — particularly ruminant meat and dairy — would significantly reduce the land, water, and emissions demands of feeding the global population, while delivering health co-benefits in populations currently consuming excess red meat. Achieving such a transition requires changes at the level of consumer behaviour, food environment, agricultural subsidy structures, and cultural norms around food." },
+        { letter: "F", text: "Technological innovation offers additional avenues. Precision agriculture — using sensor networks, satellite imagery, artificial intelligence, and precision application of inputs — can significantly improve yields and resource efficiency on existing farmland. Biofortification — the development of crop varieties with enhanced micronutrient content through conventional plant breeding or genetic modification — addresses hidden hunger by increasing the nutritional density of staple crops. Cellular agriculture — the production of meat, fish, and dairy products from cell cultures rather than whole animals — promises to deliver animal-sourced nutrition at dramatically lower environmental cost, though scaling these technologies to commercial viability at price parity with conventional products remains challenging." },
+      ],
+      sections: [
+        {
+          type: "match_info",
+          questionRange: "Questions 14–19",
+          instructions: "The reading passage has six paragraphs, A–F. Which paragraph contains the following information? Write the correct letter A–F.",
+          paragraphLetters: ["A", "B", "C", "D", "E", "F"],
+          questions: [
+            { id: 14, text: "A comparison of the environmental impact of producing beef versus plant-based protein", correct: "E", explanation: "Paragraph E: 'beef production requires approximately 20 times more land and generates roughly 20 times more greenhouse gas emissions per gram of protein than plant-based legumes.'" },
+            { id: 15, text: "A description of a technology that increases the nutritional content of staple crops", correct: "F", explanation: "Paragraph F: 'Biofortification — the development of crop varieties with enhanced micronutrient content.'" },
+            { id: 16, text: "Information about where in the supply chain food waste occurs in wealthy versus poor countries", correct: "D", explanation: "Paragraph D: 'In high-income countries, waste is concentrated at the consumer and retail stages… In low-income countries, losses are concentrated at earlier stages.'" },
+            { id: 17, text: "The UN's definition of food security", correct: "A", explanation: "Paragraph A: 'Food security — defined by the United Nations as existing \"when all people, at all times, have physical and economic access…\"'" },
+            { id: 18, text: "Evidence that food insecurity is not limited to developing countries", correct: "B", explanation: "Paragraph B: 'food insecurity is not confined to low-income countries: in the United States, food bank usage surged to record levels.'" },
+            { id: 19, text: "An estimate of how much crop yields in tropical regions may fall by mid-century", correct: "C", explanation: "Paragraph C: 'Climate change is expected to reduce yields of key staple crops… in tropical regions by up to 25 percent by mid-century.'" },
+          ],
+        },
+        {
+          type: "mc_single",
+          questionRange: "Questions 20–23",
+          instructions: "Choose the correct letter, A, B, C, or D.",
+          questions: [
+            { id: 20, stem: "What is 'hidden hunger' as described in the passage?", options: [{ label: "A", text: "Hunger experienced by people who conceal their food insecurity" }, { label: "B", text: "Micronutrient deficiency that can exist alongside sufficient caloric intake" }, { label: "C", text: "Hunger caused by hidden food waste in supermarkets" }, { label: "D", text: "A type of hunger affecting only children" }], correct: "B", explanation: "Paragraph B: 'hidden hunger — micronutrient deficiency that may coexist with adequate caloric intake.'" },
+            { id: 21, stem: "According to the passage, how much food is lost or wasted globally each year?", options: [{ label: "A", text: "About one-quarter of all food produced" }, { label: "B", text: "Approximately two-thirds of food produced in high-income countries" }, { label: "C", text: "Around one-third of all food produced globally" }, { label: "D", text: "Less than 10 percent of food produced in low-income countries" }], correct: "C", explanation: "Paragraph D: 'approximately one-third of all food produced globally — around 1.3 billion tonnes per year — is lost or wasted.'" },
+            { id: 22, stem: "What does the passage say about climate change and agriculture at higher latitudes?", options: [{ label: "A", text: "It will reduce crop yields in northern regions as temperatures fall" }, { label: "B", text: "It may open new agricultural land in areas that were previously too cold" }, { label: "C", text: "It will have no effect on farming in temperate regions" }, { label: "D", text: "It is expected to cause permanent flooding of agricultural land" }], correct: "B", explanation: "Paragraph C: climate change 'opens new agricultural land at higher latitudes.'" },
+            { id: 23, stem: "What challenge does cellular agriculture still face, according to the passage?", options: [{ label: "A", text: "Producing food that consumers find acceptable to eat" }, { label: "B", text: "Obtaining regulatory approval in most countries" }, { label: "C", text: "Scaling to commercial viability at price parity with conventional products" }, { label: "D", text: "Finding suitable animal cell lines to begin production" }], correct: "C", explanation: "Paragraph F: 'scaling these technologies to commercial viability at price parity with conventional products remains challenging.'" },
+          ],
+        },
+        {
+          type: "summary_completion",
+          questionRange: "Questions 24–26",
+          instructions: "Complete the summary below. Choose NO MORE THAN TWO WORDS from the passage for each answer.",
+          summaryTitle: "Precision Agriculture and Biofortification",
+          summaryText: "Technology offers important tools for improving food security. {{24}} uses sensors, satellite imagery, and artificial intelligence to increase yields while reducing the use of inputs. {{25}} addresses nutritional deficiencies by developing crop varieties with higher micronutrient content, tackling hidden hunger in populations that rely on staple crops. A further innovation, {{26}}, aims to produce animal proteins from cell cultures at a much lower environmental cost than conventional livestock farming.",
+          wordBank: ["Precision agriculture", "Biofortification", "Cellular agriculture", "Genetic modification", "Vertical farming", "Crop rotation"],
+          questions: [
+            { id: 24, blankId: 24, correct: "Precision agriculture", explanation: "Paragraph F: 'Precision agriculture — using sensor networks, satellite imagery, artificial intelligence… can significantly improve yields.'" },
+            { id: 25, blankId: 25, correct: "Biofortification", explanation: "Paragraph F: 'Biofortification — the development of crop varieties with enhanced micronutrient content… addresses hidden hunger.'" },
+            { id: 26, blankId: 26, correct: "Cellular agriculture", explanation: "Paragraph F: 'Cellular agriculture — the production of meat, fish, and dairy products from cell cultures.'" },
+          ],
+        },
+      ],
+    },
+    {
+      number: 3,
+      title: "Ocean Plastics: Sources, Impacts, and Solutions",
+      paragraphs: [
+        { letter: "A", text: "Plastic pollution in the world's oceans has become one of the defining environmental crises of the twenty-first century. An estimated 8 million tonnes of plastic enter the ocean each year, adding to an accumulated stock now estimated at over 150 million tonnes. Plastic is found in every ocean basin, from the Arctic to the deep ocean floor, and in virtually every marine ecosystem. The most visible manifestation — the Great Pacific Garbage Patch, a region of the North Pacific where ocean gyres concentrate floating debris — covers an area estimated at 1.6 million square kilometres, though most of the plastic in this region is not a coherent 'patch' but diffuse microplastic particles." },
+        { letter: "B", text: "Marine plastics originate from both land-based and ocean-based sources. Land-based sources — primarily inadequate waste management, littering, and stormwater runoff — account for the vast majority, estimated at 70–80 percent of ocean plastic. Rivers are the principal transport mechanism: a 2017 study estimated that just 10 rivers, mostly in Asia and Africa, carry the majority of riverine plastic load to the ocean. Ocean-based sources include discarded or lost fishing gear — so-called 'ghost gear' — which accounts for a significant proportion of macro-plastic in ocean gyres and causes entanglement of marine megafauna including turtles, seals, and whales." },
+        { letter: "C", text: "Large plastic items in the ocean do not remain intact indefinitely. UV radiation, wave action, and thermal cycling fragment them progressively into smaller and smaller particles, ultimately producing microplastics — particles smaller than 5mm — and nanoplastics smaller than 1 micrometre. Primary microplastics — those manufactured at small size, including microbeads in cosmetics and pellets used as feedstock in plastic manufacturing — also enter the ocean directly. Microplastics have been detected in fish tissue, zooplankton, seabirds, and deep-sea sediments, as well as in human blood, lung tissue, and the placentas of unborn foetuses, raising concerns about potential health effects that remain under investigation." },
+        { letter: "D", text: "The ecological impacts of marine plastic are multiple and well-documented. Entanglement in fishing gear and larger plastic items kills an estimated 100,000 marine mammals and one million seabirds annually. Ingestion of plastic by marine animals — including sea turtles that mistake plastic bags for jellyfish, and seabirds that feed plastic to their chicks — causes internal injuries, blockages, and false satiety, impeding reproduction and survival. The chemical hazards of plastics are compounded by their tendency to adsorb and concentrate persistent organic pollutants from seawater, transferring these contaminants to the animals that ingest them." },
+        { letter: "E", text: "Addressing ocean plastic pollution requires action across the entire plastic lifecycle. At source, reducing unnecessary single-use plastic through regulation, taxes, and product design changes — as demonstrated by the significant reduction in plastic bag usage following the introduction of charges in the UK and Ireland — can substantially reduce inputs. Improving waste management infrastructure in rapidly developing economies, which currently account for the majority of ocean plastic leakage, is essential. Extended producer responsibility — policies that require manufacturers to finance the end-of-life management of their products — have shown promise in shifting the cost of waste management from municipalities to producers and incentivising product redesign." },
+        { letter: "F", text: "Cleanup operations face fundamental limitations. The diffuse, three-dimensional nature of ocean plastic — particularly microplastics — means that surface collection systems can recover only a small fraction of the total stock. The energy and cost involved in large-scale ocean cleanup would be enormous, and some researchers argue that resources would be better directed toward preventing further inputs. Technology-based solutions including biodegradable plastics and chemical recycling — breaking polymers back to monomer feedstocks for reuse — offer partial solutions but face challenges of scalability, cost, and the risk that claims of biodegradability encourage rather than reduce disposal. A legally binding global plastics treaty, under negotiation since 2022, represents the most ambitious attempt to coordinate international action across the plastic value chain." },
+      ],
+      sections: [
+        {
+          type: "ynng",
+          questionRange: "Questions 27–31",
+          instructions: "Do the following statements agree with the claims of the writer in the reading passage? Write YES, NO, or NOT GIVEN.",
+          questions: [
+            { id: 27, statement: "The Great Pacific Garbage Patch is primarily a concentrated island of solid plastic debris.", correct: "No", explanation: "Paragraph A: 'most of the plastic in this region is not a coherent \"patch\" but diffuse microplastic particles.'" },
+            { id: 28, statement: "Rivers are identified as the main route by which land-based plastic reaches the ocean.", correct: "Yes", explanation: "Paragraph B: 'Rivers are the principal transport mechanism.'" },
+            { id: 29, statement: "The writer believes that ocean cleanup operations are the most effective long-term solution to marine plastic pollution.", correct: "No", explanation: "Paragraph F: 'some researchers argue that resources would be better directed toward preventing further inputs' — the writer does not advocate cleanup as the most effective solution." },
+            { id: 30, statement: "Microplastics have been detected in human blood and placental tissue.", correct: "Yes", explanation: "Paragraph C: 'detected… in human blood, lung tissue, and the placentas of unborn foetuses.'" },
+            { id: 31, statement: "The global plastics treaty was finalised and signed by all major nations in 2023.", correct: "Not Given", explanation: "Paragraph F describes the treaty as 'under negotiation since 2022' but gives no information about it being finalised." },
+          ],
+        },
+        {
+          type: "mc_multiple",
+          questionRange: "Questions 32–34",
+          instructions: "Choose TWO letters, A–E.",
+          questions: [
+            { id: 32, stem: "Which TWO sources of marine plastic are described in the passage?", options: [{ label: "A", text: "Plastics washed from agricultural land during irrigation" }, { label: "B", text: "Discarded or lost fishing equipment" }, { label: "C", text: "Plastic packaging dumped directly into the sea by fishing vessels" }, { label: "D", text: "Stormwater runoff carrying litter into waterways" }, { label: "E", text: "Plastics released from melting Arctic ice" }], pickCount: 2, correct: ["B", "D"], explanation: "Paragraph B: 'ghost gear' (B) and 'stormwater runoff' (D) are both identified as sources." },
+            { id: 33, stem: "Which TWO harms caused by plastic to marine animals are mentioned in the passage?", options: [{ label: "A", text: "Disruption of migratory patterns caused by floating debris" }, { label: "B", text: "Chemical contamination from pollutants concentrated on plastic surfaces" }, { label: "C", text: "Internal injuries and blockages from ingesting plastic items" }, { label: "D", text: "Reduced oxygen levels in water surrounding plastic debris" }, { label: "E", text: "Noise pollution from plastic collision during tidal movement" }], pickCount: 2, correct: ["B", "C"], explanation: "Paragraph D: plastic adsorbs pollutants that transfer to animals (B) and ingestion causes 'internal injuries, blockages' (C)." },
+            { id: 34, stem: "Which TWO policy measures to reduce plastic at source are described in the passage?", options: [{ label: "A", text: "International bans on all plastic manufacturing" }, { label: "B", text: "Charges on single-use plastic bags" }, { label: "C", text: "Extended producer responsibility schemes" }, { label: "D", text: "Mandatory ocean cleanup contributions by plastic companies" }, { label: "E", text: "Restrictions on the import of foreign-made plastic products" }], pickCount: 2, correct: ["B", "C"], explanation: "Paragraph E: plastic bag charges (B) and 'extended producer responsibility' (C) are both described as promising policy approaches." },
+          ],
+        },
+        {
+          type: "short_answer",
+          questionRange: "Questions 35–40",
+          instructions: "Answer the questions below. Choose NO MORE THAN THREE WORDS from the passage for each answer.",
+          questions: [
+            { id: 35, before: "How much plastic enters the ocean each year, according to estimates cited in the passage?", correct: "8 million tonnes", explanation: "Paragraph A: 'An estimated 8 million tonnes of plastic enter the ocean each year.'" },
+            { id: 36, before: "What term is used for fishing gear that has been lost or abandoned at sea?", correct: "ghost gear", explanation: "Paragraph B: 'discarded or lost fishing gear — so-called \"ghost gear\".'" },
+            { id: 37, before: "What is the maximum size of a particle classified as a microplastic?", correct: "5mm", explanation: "Paragraph C: 'microplastics — particles smaller than 5mm.'" },
+            { id: 38, before: "Why do sea turtles sometimes ingest plastic bags?", correct: "mistake them for jellyfish", explanation: "Paragraph D: 'sea turtles that mistake plastic bags for jellyfish.'" },
+            { id: 39, before: "What type of recycling involves breaking polymers back into their basic building blocks?", correct: "chemical recycling", explanation: "Paragraph F: 'chemical recycling — breaking polymers back to monomer feedstocks for reuse.'" },
+            { id: 40, before: "What international agreement has been under negotiation since 2022 to coordinate action on plastics?", correct: "global plastics treaty", explanation: "Paragraph F: 'A legally binding global plastics treaty, under negotiation since 2022.'" },
+          ],
+        },
+      ],
+    },
+  ],
+};

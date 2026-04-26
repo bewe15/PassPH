@@ -2,17 +2,85 @@ import type { AnyTest, AnswerMap, IELTSTest, PTETest, QuestionResult, TestResult
 import { ieltsReading1 } from "./ielts-reading-1";
 import { ieltsReading2 } from "./ielts-reading-2";
 import { ieltsReading3 } from "./ielts-reading-3";
+import { ieltsReading4 } from "./ielts-reading-4";
+import { ieltsReading5 } from "./ielts-reading-5";
+import { ieltsReading6 } from "./ielts-reading-6";
+import { ieltsReading7 } from "./ielts-reading-7";
+import { ieltsReading8 } from "./ielts-reading-8";
+import { ieltsReading9 } from "./ielts-reading-9";
+import { ieltsReading10 } from "./ielts-reading-10";
+import { ieltsReading11 } from "./ielts-reading-11";
+import { ieltsReading12 } from "./ielts-reading-12";
+import { ieltsReading13 } from "./ielts-reading-13";
+import { ieltsReading14 } from "./ielts-reading-14";
+import { ieltsReading15 } from "./ielts-reading-15";
+import { ieltsReading16 } from "./ielts-reading-16";
+import { ieltsReading17 } from "./ielts-reading-17";
+import { ieltsReading18 } from "./ielts-reading-18";
+import { ieltsReading19 } from "./ielts-reading-19";
+import { ieltsReading20 } from "./ielts-reading-20";
 import { pteReading1 } from "./pte-reading-1";
 import { pteReading2 } from "./pte-reading-2";
 import { pteReading3 } from "./pte-reading-3";
+import { pteReading4 } from "./pte-reading-4";
+import { pteReading5 } from "./pte-reading-5";
+import { pteReading6 } from "./pte-reading-6";
+import { pteReading7 } from "./pte-reading-7";
+import { pteReading8 } from "./pte-reading-8";
+import { pteReading9 } from "./pte-reading-9";
+import { pteReading10 } from "./pte-reading-10";
+import { pteReading11 } from "./pte-reading-11";
+import { pteReading12 } from "./pte-reading-12";
+import { pteReading13 } from "./pte-reading-13";
+import { pteReading14 } from "./pte-reading-14";
+import { pteReading15 } from "./pte-reading-15";
+import { pteReading16 } from "./pte-reading-16";
+import { pteReading17 } from "./pte-reading-17";
+import { pteReading18 } from "./pte-reading-18";
+import { pteReading19 } from "./pte-reading-19";
+import { pteReading20 } from "./pte-reading-20";
 
 export const TEST_REGISTRY: Record<string, AnyTest> = {
   "ielts-reading-1": ieltsReading1,
   "ielts-reading-2": ieltsReading2,
   "ielts-reading-3": ieltsReading3,
+  "ielts-reading-4": ieltsReading4,
+  "ielts-reading-5": ieltsReading5,
+  "ielts-reading-6": ieltsReading6,
+  "ielts-reading-7": ieltsReading7,
+  "ielts-reading-8": ieltsReading8,
+  "ielts-reading-9": ieltsReading9,
+  "ielts-reading-10": ieltsReading10,
+  "ielts-reading-11": ieltsReading11,
+  "ielts-reading-12": ieltsReading12,
+  "ielts-reading-13": ieltsReading13,
+  "ielts-reading-14": ieltsReading14,
+  "ielts-reading-15": ieltsReading15,
+  "ielts-reading-16": ieltsReading16,
+  "ielts-reading-17": ieltsReading17,
+  "ielts-reading-18": ieltsReading18,
+  "ielts-reading-19": ieltsReading19,
+  "ielts-reading-20": ieltsReading20,
   "pte-reading-1": pteReading1,
   "pte-reading-2": pteReading2,
   "pte-reading-3": pteReading3,
+  "pte-reading-4": pteReading4,
+  "pte-reading-5": pteReading5,
+  "pte-reading-6": pteReading6,
+  "pte-reading-7": pteReading7,
+  "pte-reading-8": pteReading8,
+  "pte-reading-9": pteReading9,
+  "pte-reading-10": pteReading10,
+  "pte-reading-11": pteReading11,
+  "pte-reading-12": pteReading12,
+  "pte-reading-13": pteReading13,
+  "pte-reading-14": pteReading14,
+  "pte-reading-15": pteReading15,
+  "pte-reading-16": pteReading16,
+  "pte-reading-17": pteReading17,
+  "pte-reading-18": pteReading18,
+  "pte-reading-19": pteReading19,
+  "pte-reading-20": pteReading20,
 };
 
 export function getTest(id: string): AnyTest | null {

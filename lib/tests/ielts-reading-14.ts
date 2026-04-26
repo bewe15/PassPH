@@ -1,0 +1,171 @@
+import type { IELTSTest } from "./types";
+
+export const ieltsReading14: IELTSTest = {
+  id: "ielts-reading-14",
+  exam: "IELTS",
+  title: "IELTS Academic Reading — Test 14",
+  totalSeconds: 3600,
+  passages: [
+    {
+      number: 1,
+      title: "The Urbanisation of the World",
+      paragraphs: [
+        { letter: "A", text: "For the first time in human history, more than half of the world's population now lives in urban areas — a threshold crossed in 2008 and one that will continue to rise toward an estimated 70 percent by 2050. This urbanisation is not a single global process but a collection of highly varied regional transitions. In high-income countries, urbanisation is largely complete, and the dynamics of change involve suburban sprawl, inner-city regeneration, and the decline of deindustrialised cities. The most dramatic growth is occurring in sub-Saharan Africa and South Asia, where cities are absorbing millions of new residents annually — many arriving as rural-urban migrants — and where urban infrastructure and governance structures are severely stretched." },
+        { letter: "B", text: "Cities concentrate economic activity in ways that generate productivity benefits not available to rural populations. The agglomeration effect — the economic gains that arise from the density of workers, firms, and knowledge in close proximity — is well-documented: wages, innovation rates, and productivity in large cities consistently exceed those in smaller settlements and rural areas. The productivity premium of large cities tends to increase with city size in high-income countries, though the relationship is more complex in low-income settings, where a large proportion of urban employment is in the informal sector and where the benefits of agglomeration are unevenly distributed." },
+        { letter: "C", text: "Rapid and unplanned urban growth generates severe environmental consequences. The expansion of impervious surfaces — roads, car parks, and buildings — reduces infiltration of rainfall into soil, increasing surface runoff and flood risk. Urban areas consume a disproportionate share of global energy, generating substantial greenhouse gas emissions from heating, cooling, and transport. Air quality in many rapidly growing cities is severely degraded: the World Health Organisation estimates that air pollution causes approximately 7 million premature deaths annually, with urban residents disproportionately affected. Noise pollution, urban heat islands, and loss of biodiversity and ecosystem services accompany high-density development." },
+        { letter: "D", text: "Adequate housing is perhaps the most acute infrastructure challenge posed by rapid urbanisation in low-income settings. When cities cannot provide formal housing at the pace required, informal settlements — commonly called slums, favelas, or shanty towns — expand to accommodate new arrivals. An estimated one billion people currently live in informal settlements worldwide, often without access to clean water, sanitation, electricity, or secure tenure. Counter-intuitively, informal settlements are not simply failures of urban planning: they often display remarkable economic and social dynamism, functioning as entry points for rural migrants entering the urban economy. However, residents remain vulnerable to eviction, health risks, and exclusion from formal economic and political systems." },
+        { letter: "E", text: "Urban transport systems are fundamental to how cities function and profoundly affect quality of life, economic productivity, and environmental performance. Many cities in the developing world are experiencing rapid motorisation — rising car ownership — that is producing chronic congestion, worsening air quality, and increasing greenhouse gas emissions, while the majority of urban residents who cannot afford cars depend on inadequate public transport. Investment in high-capacity public transit — metro systems, bus rapid transit, and cycling infrastructure — has proven in numerous cities to generate significant economic, health, and environmental co-benefits, but requires substantial upfront capital that many rapidly growing cities lack." },
+        { letter: "F", text: "Urban governance — the structures and processes through which cities are planned, managed, and financed — is critical to the outcomes of urbanisation. Fragmented governance, in which multiple overlapping authorities with inconsistent mandates and territorial boundaries govern different aspects of city life, is a common obstacle to effective urban management. Fiscal constraints limit the capacity of city governments to invest in infrastructure and services, particularly in countries where central governments retain significant tax revenues. Innovative financing mechanisms — including land value capture, municipal bonds, and public-private partnerships — have been deployed in various cities to bridge investment gaps, though each carries risks and political challenges." },
+        { letter: "G", text: "Urbanisation also presents significant opportunities that can be captured with appropriate planning and investment. Dense, well-planned cities are among the most environmentally efficient forms of human settlement, reducing per-capita energy consumption and enabling shared infrastructure. Cultural diversity concentrated in cities has historically driven innovation, tolerance, and artistic creativity. Properly managed, the urban transition can accelerate poverty reduction, improve access to education and health services, and generate the tax revenues needed to finance public investment. The challenge for planners and policymakers is to capture these opportunities while managing the social, economic, and environmental risks that accompany rapid urban growth." },
+      ],
+      sections: [
+        {
+          type: "match_headings",
+          questionRange: "Questions 1–6",
+          instructions: "The reading passage has seven paragraphs, A–G. Choose the correct heading for paragraphs B–G from the list of headings below.",
+          headings: [
+            { label: "i",    text: "Why cities generate economic advantages for businesses and workers" },
+            { label: "ii",   text: "The environmental costs of expanding urban areas" },
+            { label: "iii",  text: "The housing crisis in fast-growing developing cities" },
+            { label: "iv",   text: "How transport networks shape city life and sustainability" },
+            { label: "v",    text: "The governance structures required to manage urban growth" },
+            { label: "vi",   text: "The positive potential of well-managed urbanisation" },
+            { label: "vii",  text: "The scale and regional variation of global urbanisation" },
+            { label: "viii", text: "How digital technology is changing city management" },
+            { label: "ix",   text: "The demographic decline of rural communities" },
+          ],
+          questions: [
+            { id: 1, paragraph: "B", correct: "i",    explanation: "Paragraph B discusses agglomeration effects and productivity premiums in cities." },
+            { id: 2, paragraph: "C", correct: "ii",   explanation: "Paragraph C covers flood risk, greenhouse gas emissions, air quality, and urban heat islands." },
+            { id: 3, paragraph: "D", correct: "iii",  explanation: "Paragraph D addresses informal settlements, the billion people lacking basic services, and the challenges of housing provision." },
+            { id: 4, paragraph: "E", correct: "iv",   explanation: "Paragraph E discusses motorisation, public transit investment, and transport's effects on air quality and productivity." },
+            { id: 5, paragraph: "F", correct: "v",    explanation: "Paragraph F covers fragmented governance, fiscal constraints, and financing mechanisms." },
+            { id: 6, paragraph: "G", correct: "vi",   explanation: "Paragraph G discusses cities' potential for efficiency, poverty reduction, and cultural creativity when properly planned." },
+          ],
+        },
+        {
+          type: "tfng",
+          questionRange: "Questions 7–10",
+          instructions: "Do the following statements agree with the information given in the reading passage? Write TRUE, FALSE, or NOT GIVEN.",
+          questions: [
+            { id: 7,  statement: "More than half of the world's population lived in cities for the first time in 2008.", correct: "True", explanation: "Paragraph A: 'a threshold crossed in 2008.'" },
+            { id: 8,  statement: "The productivity advantages of large cities are equally strong in both high-income and low-income countries.", correct: "False", explanation: "Paragraph B: 'the relationship is more complex in low-income settings, where a large proportion of urban employment is in the informal sector.'" },
+            { id: 9,  statement: "All residents of informal settlements are opposed to the development of formal housing in their areas.", correct: "Not Given", explanation: "The passage does not discuss residents' attitudes toward formal housing development." },
+            { id: 10, statement: "Dense, well-planned cities can use less energy per person than more spread-out settlement patterns.", correct: "True", explanation: "Paragraph G: 'Dense, well-planned cities are among the most environmentally efficient forms of human settlement, reducing per-capita energy consumption.'" },
+          ],
+        },
+        {
+          type: "sentence_completion",
+          questionRange: "Questions 11–13",
+          instructions: "Complete the sentences below. Choose NO MORE THAN TWO WORDS from the passage for each answer.",
+          questions: [
+            { id: 11, before: "The economic gains that arise from the proximity of workers, firms, and knowledge in cities are called the ", after: ".", correct: "agglomeration effect", explanation: "Paragraph B: 'The agglomeration effect — the economic gains that arise from the density of workers, firms, and knowledge in close proximity.'" },
+            { id: 12, before: "The mechanism by which cities can finance investment by taking a share of increases in land values is called ", after: ".", correct: "land value capture", explanation: "Paragraph F: 'land value capture' is listed as an innovative financing mechanism." },
+            { id: 13, before: "Rising car ownership in developing-world cities is referred to in the passage as ", after: ".", correct: "rapid motorisation", explanation: "Paragraph E: 'Many cities in the developing world are experiencing rapid motorisation — rising car ownership.'" },
+          ],
+        },
+      ],
+    },
+    {
+      number: 2,
+      title: "The Science and History of Vaccine Development",
+      paragraphs: [
+        { letter: "A", text: "Vaccination — the administration of a preparation that stimulates the immune system to produce a protective response against a specific pathogen — is among the most effective public health interventions ever developed. The World Health Organisation attributes vaccination with preventing an estimated 4–5 million deaths annually, and the eradication of smallpox in 1980 — declared by the WHO following a global vaccination campaign — remains the only instance of a human infectious disease being completely eliminated. The dramatic reductions in morbidity and mortality from diseases including polio, measles, diphtheria, tetanus, and pertussis over the twentieth century are attributable in large part to mass vaccination programmes." },
+        { letter: "B", text: "The conceptual origins of vaccination predate the germ theory of disease. Edward Jenner's 1796 observation that milkmaids who contracted cowpox appeared immune to the related but far more lethal smallpox led him to inoculate a child with cowpox material and subsequently demonstrate protection from smallpox challenge — an experiment that would not pass modern ethical review. The word 'vaccine' itself derives from vacca, the Latin for cow. Louis Pasteur extended the principle in the late nineteenth century, demonstrating that attenuated — weakened — forms of pathogens, including those causing cholera in chickens and anthrax in sheep, could immunise animals against subsequent infection, and coining the term vaccination in honour of Jenner." },
+        { letter: "C", text: "Conventional vaccine development typically follows a lengthy, sequential process from initial identification of a pathogen to licensed product. Pre-clinical testing in cell cultures and animal models evaluates safety and immunogenicity. Three phases of clinical trials progressively test safety and efficacy in growing numbers of human volunteers: Phase I assesses safety in small groups; Phase II evaluates immune response and optimal dosage; Phase III tests protective efficacy in large, randomised trials. Post-approval surveillance monitors long-term safety in the broader population. From first identification of a pathogen to licensed vaccine typically takes 10–15 years; the COVID-19 vaccines were developed in less than 12 months using previously established mRNA platform technology." },
+        { letter: "D", text: "mRNA vaccine technology — used in the Pfizer-BioNTech and Moderna COVID-19 vaccines — represents a paradigm shift in vaccine development. Rather than introducing a weakened or inactivated pathogen or a specific protein antigen, mRNA vaccines deliver genetic instructions that cause cells in the recipient's body to produce a pathogen protein — in the case of COVID-19, the spike protein — which then triggers an immune response. This approach offers dramatically faster development timelines, since only the genetic sequence of the target antigen needs to be known, and the manufacturing platform is standardised. The COVID-19 pandemic demonstrated that mRNA vaccines could be safe and highly effective; the technology is now being applied to influenza, HIV, cancer vaccines, and other targets." },
+        { letter: "E", text: "Vaccine hesitancy — the reluctance or refusal to vaccinate despite availability — poses a growing challenge to global immunisation programmes. The WHO has identified vaccine hesitancy as one of the ten threats to global health. Hesitancy is driven by a complex mix of factors including concerns about safety and side effects, distrust of pharmaceutical companies and government institutions, religious or philosophical objections, and the spread of misinformation through social media. Complacency — the perception that vaccine-preventable diseases are no longer a real threat — is a particular challenge when vaccination programmes have been successful enough to remove the visible presence of the disease." },
+        { letter: "F", text: "Ensuring equitable global access to vaccines has been a persistent challenge. The COVAX initiative, co-led by the WHO, CEPI, and Gavi, aimed to ensure equitable access to COVID-19 vaccines for low- and middle-income countries, but was significantly hampered by vaccine nationalism — the tendency of wealthy countries to prioritise their own populations through advance purchase agreements that locked up supply. Historical inequity in vaccine access reflects broader inequities in global health investment: many vaccines against diseases primarily affecting low-income populations, including malaria, tuberculosis, and dengue, were developed decades later — or less effectively — than vaccines against diseases of greater concern to high-income markets." },
+      ],
+      sections: [
+        {
+          type: "match_info",
+          questionRange: "Questions 14–19",
+          instructions: "The reading passage has six paragraphs, A–F. Which paragraph contains the following information? Write the correct letter A–F.",
+          paragraphLetters: ["A", "B", "C", "D", "E", "F"],
+          questions: [
+            { id: 14, text: "An explanation of how mRNA vaccines differ mechanically from conventional vaccines", correct: "D", explanation: "Paragraph D: 'Rather than introducing a weakened or inactivated pathogen… mRNA vaccines deliver genetic instructions that cause cells… to produce a pathogen protein.'" },
+            { id: 15, text: "The typical number of years required to develop a vaccine from pathogen identification to licensed product", correct: "C", explanation: "Paragraph C: 'From first identification of a pathogen to licensed vaccine typically takes 10–15 years.'" },
+            { id: 16, text: "A description of the experiment that led to the first vaccine", correct: "B", explanation: "Paragraph B: 'Jenner… inoculate a child with cowpox material and subsequently demonstrate protection from smallpox challenge.'" },
+            { id: 17, text: "The only example of a human disease being completely eradicated through vaccination", correct: "A", explanation: "Paragraph A: 'the eradication of smallpox in 1980… remains the only instance of a human infectious disease being completely eliminated.'" },
+            { id: 18, text: "An explanation of how success in vaccination programmes can paradoxically undermine support for them", correct: "E", explanation: "Paragraph E: 'Complacency — the perception that vaccine-preventable diseases are no longer a real threat — is a particular challenge when vaccination programmes have been successful.'" },
+            { id: 19, text: "A criticism of wealthy countries' behaviour during the COVID-19 vaccine rollout", correct: "F", explanation: "Paragraph F: 'vaccine nationalism — the tendency of wealthy countries to prioritise their own populations… locked up supply' hampered COVAX." },
+          ],
+        },
+        {
+          type: "mc_single",
+          questionRange: "Questions 20–23",
+          instructions: "Choose the correct letter, A, B, C, or D.",
+          questions: [
+            { id: 20, stem: "What does the word 'vaccine' derive from?", options: [{ label: "A", text: "The Latin word for disease" }, { label: "B", text: "The name of the scientist Edward Jenner" }, { label: "C", text: "The Latin word for cow" }, { label: "D", text: "A French term for inoculation" }], correct: "C", explanation: "Paragraph B: 'The word \"vaccine\" itself derives from vacca, the Latin for cow.'" },
+            { id: 21, stem: "What does Phase II of clinical vaccine trials evaluate?", options: [{ label: "A", text: "Long-term safety in the general population" }, { label: "B", text: "Immune response and optimal dosage" }, { label: "C", text: "Safety in small initial groups of volunteers" }, { label: "D", text: "Protective efficacy in large randomised trials" }], correct: "B", explanation: "Paragraph C: 'Phase II evaluates immune response and optimal dosage.'" },
+            { id: 22, stem: "According to the passage, what advantage does the mRNA platform offer over conventional vaccine development?", options: [{ label: "A", text: "It produces stronger immunity with fewer doses" }, { label: "B", text: "It does not require clinical trials to prove safety" }, { label: "C", text: "Only the genetic sequence of the target is needed, enabling faster development" }, { label: "D", text: "It is cheaper to produce than all other vaccine types" }], correct: "C", explanation: "Paragraph D: 'since only the genetic sequence of the target antigen needs to be known, and the manufacturing platform is standardised.'" },
+            { id: 23, stem: "What does the passage identify as one driver of vaccine hesitancy?", options: [{ label: "A", text: "Incorrect information spread through social media" }, { label: "B", text: "Insufficient government funding for vaccination campaigns" }, { label: "C", text: "Shortages of vaccine supply in high-income countries" }, { label: "D", text: "Excessive side effects from modern vaccines" }], correct: "A", explanation: "Paragraph E: 'the spread of misinformation through social media' is listed as a driver of hesitancy." },
+          ],
+        },
+        {
+          type: "summary_completion",
+          questionRange: "Questions 24–26",
+          instructions: "Complete the summary below. Choose NO MORE THAN TWO WORDS from the passage for each answer.",
+          summaryTitle: "Vaccine Equity and COVAX",
+          summaryText: "Ensuring fair access to vaccines across all countries has proven difficult. The {{24}} initiative was established to guarantee that low- and middle-income countries could access COVID-19 vaccines. However, it was undermined by {{25}}, whereby wealthy nations secured supplies through advance purchase agreements at the expense of poorer nations. This reflects a longer pattern in which vaccines against diseases affecting lower-income populations are developed later or less effectively due to limited commercial incentives from {{26}}.",
+          wordBank: ["COVAX", "vaccine nationalism", "high-income markets", "pharmaceutical companies", "bilateral agreements", "CEPI"],
+          questions: [
+            { id: 24, blankId: 24, correct: "COVAX", explanation: "Paragraph F: 'The COVAX initiative… aimed to ensure equitable access to COVID-19 vaccines.'" },
+            { id: 25, blankId: 25, correct: "vaccine nationalism", explanation: "Paragraph F: 'significantly hampered by vaccine nationalism — the tendency of wealthy countries to prioritise their own populations.'" },
+            { id: 26, blankId: 26, correct: "high-income markets", explanation: "Paragraph F: 'vaccines against diseases of greater concern to high-income markets' — lack of commercial incentive from high-income markets slowed development." },
+          ],
+        },
+      ],
+    },
+    {
+      number: 3,
+      title: "Remote Work: Productivity, Wellbeing, and the Future of the Office",
+      paragraphs: [
+        { letter: "A", text: "The COVID-19 pandemic forced an unprecedented and rapid shift to remote working across professional sectors globally. In the United Kingdom, approximately half of all working adults worked from home at some point during 2020, and similar patterns emerged across most high-income economies. What began as an emergency response has since prompted a fundamental reconsideration of where and how knowledge work is performed. As restrictions lifted, many employers and employees discovered that pre-pandemic assumptions about the necessity of physical office presence were less well-founded than assumed, and a hybrid model — combining remote and office-based work — has emerged as the dominant arrangement in many organisations." },
+        { letter: "B", text: "The productivity implications of remote working are hotly debated and, according to research, highly context-dependent. Early pandemic-era studies found surprisingly high levels of self-reported productivity among remote workers in many roles, though these studies suffered from methodological limitations including self-report bias and the confounding effects of the pandemic context itself. Subsequent research has found more nuanced results: roles involving deep individual focus work — programming, writing, data analysis — often see productivity maintained or improved in remote settings, while roles heavily dependent on spontaneous collaboration, mentorship, and tacit knowledge transfer show larger costs from the absence of co-location." },
+        { letter: "C", text: "The wellbeing effects of remote working are similarly mixed. The elimination of commuting — which research consistently identifies as one of the most negative daily experiences in terms of wellbeing — is among the most widely cited benefits. Remote work can also improve work-life balance by enabling greater flexibility in managing personal and professional demands. However, remote working is associated with increased risks of social isolation, blurred work-life boundaries, and the erosion of the informal social connections that constitute an important source of meaning and belonging in working life. The wellbeing effects vary substantially with living situation: individuals with spacious homes, families, and high intrinsic motivation to work tend to benefit more than those in small or shared accommodation, living alone, or earlier in their careers." },
+        { letter: "D", text: "The career implications of remote work — particularly for junior employees and those from disadvantaged backgrounds — are a growing concern. Proximity bias — the tendency for managers to evaluate more positively, and provide more opportunities to, employees who are physically present — may systematically disadvantage those who work remotely. The informal observation, mentorship, and sponsorship that facilitate career development in traditional office settings are harder to replicate at a distance. Research suggests that junior employees derive particular benefit from in-person working early in their careers, when accumulation of tacit professional knowledge and relationship networks is most valuable." },
+        { letter: "E", text: "The environmental implications of remote working are more complex than often assumed. The reduction in commuting does reduce transport-related carbon emissions, but this benefit is partially or wholly offset by increased energy use in residential settings, which are typically less energy-efficient per occupant than commercial office buildings. The net environmental impact depends on factors including the local energy mix, housing characteristics, and whether commuters shift from public transport to private cars. If remote workers relocate to suburbs or rural areas with longer car-dependent commutes to the office on the days they attend, the carbon impact may increase rather than decrease." },
+        { letter: "F", text: "The future of office work will depend on the outcome of a negotiation between employer preferences for collaboration, culture, and oversight on the one hand, and employee preferences for flexibility and autonomy on the other. Many large employers have attempted to mandate return-to-office requirements but have faced significant employee resistance, with some high-profile examples of employers reversing mandates under pressure. The tight labour markets that followed the pandemic initially gave employees significant leverage, though economic slowdowns have shifted bargaining power back toward employers. The geography of office demand is also shifting: demand for well-located, high-quality office space is recovering, while demand for suburban and lower-quality office space is falling, contributing to significant challenges for commercial property markets and the economies of city centres dependent on daily office worker footfall." },
+      ],
+      sections: [
+        {
+          type: "ynng",
+          questionRange: "Questions 27–31",
+          instructions: "Do the following statements agree with the claims of the writer in the reading passage? Write YES, NO, or NOT GIVEN.",
+          questions: [
+            { id: 27, statement: "The pandemic revealed that physical office presence is less necessary for knowledge work than many organisations had assumed.", correct: "Yes", explanation: "Paragraph A: 'many employers and employees discovered that pre-pandemic assumptions about the necessity of physical office presence were less well-founded than assumed.'" },
+            { id: 28, statement: "The writer believes remote working is always more productive than working in an office.", correct: "No", explanation: "Paragraph B: productivity effects are 'highly context-dependent' and roles requiring collaboration show 'larger costs from the absence of co-location' — the writer does not make this claim." },
+            { id: 29, statement: "Eliminating commuting is identified in the passage as a benefit of remote work.", correct: "Yes", explanation: "Paragraph C: 'The elimination of commuting… is among the most widely cited benefits.'" },
+            { id: 30, statement: "Proximity bias has been completely eliminated in organisations with strong diversity policies.", correct: "Not Given", explanation: "The passage mentions proximity bias but does not discuss whether diversity policies address it." },
+            { id: 31, statement: "The writer argues that remote working always reduces carbon emissions compared with office-based working.", correct: "No", explanation: "Paragraph E: 'If remote workers relocate… with longer car-dependent commutes… the carbon impact may increase rather than decrease' — the writer explicitly says this is not always the case." },
+          ],
+        },
+        {
+          type: "mc_multiple",
+          questionRange: "Questions 32–34",
+          instructions: "Choose TWO letters, A–E.",
+          questions: [
+            { id: 32, stem: "Which TWO wellbeing benefits of remote working are mentioned in the passage?", options: [{ label: "A", text: "Reduced risk of workplace injury" }, { label: "B", text: "No commuting" }, { label: "C", text: "Greater flexibility in managing personal and work demands" }, { label: "D", text: "Stronger social connections with colleagues" }, { label: "E", text: "Lower levels of work-related stress in all roles" }], pickCount: 2, correct: ["B", "C"], explanation: "Paragraph C: elimination of commuting (B) and 'improve work-life balance by enabling greater flexibility' (C) are the cited benefits." },
+            { id: 33, stem: "Which TWO types of workers are described in the passage as benefiting LESS from remote working?", options: [{ label: "A", text: "Those who live alone" }, { label: "B", text: "Those in small or shared accommodation" }, { label: "C", text: "Senior managers with supervisory responsibilities" }, { label: "D", text: "Those working in data analysis roles" }, { label: "E", text: "Those with intrinsically motivating work" }], pickCount: 2, correct: ["A", "B"], explanation: "Paragraph C: 'those in small or shared accommodation, living alone' benefit less from remote work." },
+            { id: 34, stem: "Which TWO factors does the passage identify as affecting the environmental impact of remote working?", options: [{ label: "A", text: "The age of the remote worker's home" }, { label: "B", text: "The local energy mix" }, { label: "C", text: "Whether commuters switch between public and private transport" }, { label: "D", text: "The type of industry the worker is employed in" }, { label: "E", text: "Government tax incentives for home offices" }], pickCount: 2, correct: ["B", "C"], explanation: "Paragraph E: 'factors including the local energy mix' (B) and 'whether commuters shift from public transport to private cars' (C)." },
+          ],
+        },
+        {
+          type: "short_answer",
+          questionRange: "Questions 35–40",
+          instructions: "Answer the questions below. Choose NO MORE THAN THREE WORDS from the passage for each answer.",
+          questions: [
+            { id: 35, before: "What is the term for the hybrid arrangement that has become dominant since the pandemic?", correct: "hybrid model", explanation: "Paragraph A: 'a hybrid model — combining remote and office-based work — has emerged as the dominant arrangement.'" },
+            { id: 36, before: "What research limitation is identified for early productivity studies of remote workers?", correct: "self-report bias", explanation: "Paragraph B: 'these studies suffered from methodological limitations including self-report bias.'" },
+            { id: 37, before: "What is proximity bias?", correct: "tendency for managers", explanation: "Paragraph D: 'Proximity bias — the tendency for managers to evaluate more positively… employees who are physically present.'" },
+            { id: 38, before: "Which type of office space is seeing its demand fall according to the passage?", correct: "suburban", explanation: "Paragraph F: 'demand for suburban and lower-quality office space is falling.'" },
+            { id: 39, before: "What type of knowledge is described as particularly difficult to transfer in remote working settings?", correct: "tacit", explanation: "Paragraphs B and D both refer to 'tacit knowledge' — tacit professional knowledge is harder to transfer remotely." },
+            { id: 40, before: "What gave employees greater leverage in negotiations with employers about remote work after the pandemic?", correct: "tight labour markets", explanation: "Paragraph F: 'The tight labour markets that followed the pandemic initially gave employees significant leverage.'" },
+          ],
+        },
+      ],
+    },
+  ],
+};

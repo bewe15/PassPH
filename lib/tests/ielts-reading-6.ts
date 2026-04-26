@@ -1,0 +1,171 @@
+import type { IELTSTest } from "./types";
+
+export const ieltsReading6: IELTSTest = {
+  id: "ielts-reading-6",
+  exam: "IELTS",
+  title: "IELTS Academic Reading — Test 6",
+  totalSeconds: 3600,
+  passages: [
+    {
+      number: 1,
+      title: "The Global History of Coffee",
+      paragraphs: [
+        { letter: "A", text: "Coffee's journey from an obscure Ethiopian highland plant to the world's second most traded commodity after petroleum is one of history's most remarkable stories of cultural and economic diffusion. The coffee plant, Coffea arabica, was first cultivated in the Ethiopian region of Kaffa, where legend holds that a ninth-century goatherd named Kaldi observed his animals behaving with unusual energy after consuming the plant's red berries. While the legend is almost certainly apocryphal, botanical and genetic evidence confirms that Ethiopia is the centre of origin for arabica coffee, and wild coffee plants still grow in the country's montane forests." },
+        { letter: "B", text: "The first documented use of coffee as a beverage occurred in Yemen during the fifteenth century, where Sufi monasteries brewed the drink to sustain all-night devotional practices. From the port of Mocha, coffee trade spread rapidly across the Arab world, and by the sixteenth century coffeehouses — known as qahveh khaneh — had become central institutions in Ottoman cities. These establishments served not merely as places to consume coffee but as spaces for intellectual exchange, chess playing, and political discussion, earning them the informal name 'schools of the wise.'" },
+        { letter: "C", text: "Coffee reached Europe in the seventeenth century, initially meeting fierce resistance from religious and medical authorities. Some Catholic clergy petitioned Pope Clement VIII to ban the 'Muslim drink,' but after tasting it the Pope reportedly gave it his blessing. European coffeehouses proliferated rapidly and played a significant role in the intellectual ferment of the Enlightenment. London's Lloyd's of London insurance market originated in a coffeehouse, as did the London Stock Exchange. The French philosopher Voltaire was said to consume up to fifty cups per day, though historians treat this claim with some scepticism." },
+        { letter: "D", text: "The European colonial powers were instrumental in spreading coffee cultivation beyond its original regions. The Dutch introduced coffee to their Indonesian colony of Java in the 1690s — giving rise to the term 'java' as a synonym for coffee — and later to Suriname and Brazil. French missionaries brought plants to Martinique in 1720, from which much of the Caribbean and South American coffee industry derives. Brazil emerged as the dominant global producer by the mid-nineteenth century, a position it retains today, accounting for approximately one-third of global coffee production." },
+        { letter: "E", text: "The twentieth century brought profound transformations to the coffee industry. The development of instant coffee during the First World War and its mass commercialisation by Nestlé under the Nescafé brand in 1938 democratised coffee consumption globally. In the 1970s and 1980s, concerns about commodity pricing led to experiments with fair trade certification, which sought to guarantee minimum prices to smallholder farmers and improve their bargaining power relative to multinational trading companies. The specialty coffee movement, which emerged from the 1970s onward, emphasised terroir, single-origin sourcing, and artisan preparation methods." },
+        { letter: "F", text: "Climate change poses an acute threat to global coffee production. Arabica plants are highly sensitive to temperature fluctuations and require specific rainfall patterns; a study published in the journal PLOS ONE estimated that climate change could reduce suitable growing areas for arabica by up to 50 percent by 2050. Robusta coffee, which is more heat-tolerant, may partially substitute arabica in some regions, but it is generally considered inferior in flavour. Researchers are investing heavily in developing climate-resilient arabica varieties through both conventional breeding and genetic techniques." },
+        { letter: "G", text: "Coffee's cultural significance extends far beyond its economic value. In Ethiopia, the elaborate coffee ceremony — in which green beans are roasted, ground, and brewed ceremonially before guests — remains a central social ritual. In Italy, the espresso bar is an institution as culturally important as the pub in Britain. The global proliferation of multinational coffeehouse chains has generated both enthusiasm and criticism: supporters point to the standardisation of quality and the creation of 'third places' for social interaction, while critics argue that chains displace independent cafes and homogenise coffee culture." },
+      ],
+      sections: [
+        {
+          type: "match_headings",
+          questionRange: "Questions 1–6",
+          instructions: "The reading passage has seven paragraphs, A–G. Choose the correct heading for paragraphs B–G from the list of headings below.",
+          headings: [
+            { label: "i",    text: "The plant's origins and an early legend" },
+            { label: "ii",   text: "How colonial expansion spread cultivation globally" },
+            { label: "iii",  text: "Coffee's first use as a drink and its social role in the Arab world" },
+            { label: "iv",   text: "Opposition, acceptance, and intellectual culture in Europe" },
+            { label: "v",    text: "Modern industry changes and ethical sourcing movements" },
+            { label: "vi",   text: "Environmental threats to future production" },
+            { label: "vii",  text: "Cultural meaning and the debate over globalisation" },
+            { label: "viii", text: "The chemistry of caffeine and its effects" },
+            { label: "ix",   text: "Government policies regulating the coffee trade" },
+          ],
+          questions: [
+            { id: 1, paragraph: "B", correct: "iii", explanation: "Paragraph B describes the first use of coffee in Yemen and the role of qahveh khaneh in Arab social life." },
+            { id: 2, paragraph: "C", correct: "iv",  explanation: "Paragraph C covers European resistance, papal acceptance, Enlightenment coffeehouses, and Lloyd's origins." },
+            { id: 3, paragraph: "D", correct: "ii",  explanation: "Paragraph D describes Dutch, French, and other colonial introductions of coffee cultivation to new regions." },
+            { id: 4, paragraph: "E", correct: "v",   explanation: "Paragraph E covers instant coffee, Nescafé, fair trade certification, and the specialty coffee movement." },
+            { id: 5, paragraph: "F", correct: "vi",  explanation: "Paragraph F addresses climate change as a threat to arabica growing areas." },
+            { id: 6, paragraph: "G", correct: "vii", explanation: "Paragraph G discusses coffee's cultural significance and debate over multinational chains." },
+          ],
+        },
+        {
+          type: "tfng",
+          questionRange: "Questions 7–10",
+          instructions: "Do the following statements agree with the information given in the reading passage? Write TRUE, FALSE, or NOT GIVEN.",
+          questions: [
+            { id: 7,  statement: "The story of Kaldi the goatherd is supported by historical documents.", correct: "False", explanation: "Paragraph A describes the legend as 'almost certainly apocryphal' — not supported by evidence." },
+            { id: 8,  statement: "The Dutch first brought coffee cultivation to Indonesia in the 1690s.", correct: "True", explanation: "Paragraph D: 'The Dutch introduced coffee to their Indonesian colony of Java in the 1690s.'" },
+            { id: 9,  statement: "Voltaire consumed more coffee daily than any other Enlightenment philosopher.", correct: "Not Given", explanation: "The passage mentions Voltaire's reputed consumption but does not compare him with other philosophers." },
+            { id: 10, statement: "Climate change may reduce suitable arabica growing areas by half by 2050.", correct: "True", explanation: "Paragraph F: 'climate change could reduce suitable growing areas for arabica by up to 50 percent by 2050.'" },
+          ],
+        },
+        {
+          type: "sentence_completion",
+          questionRange: "Questions 11–13",
+          instructions: "Complete the sentences below. Choose NO MORE THAN TWO WORDS from the passage for each answer.",
+          questions: [
+            { id: 11, before: "In Ottoman cities, coffeehouses were informally called '", after: "' because of the intellectual exchange that took place there.", correct: "schools of the wise", explanation: "Paragraph B: coffeehouses earned 'the informal name \"schools of the wise.\"'" },
+            { id: 12, before: "Nestlé launched its mass-market instant coffee product under the brand name ", after: " in 1938.", correct: "Nescafé", explanation: "Paragraph E: 'mass commercialisation by Nestlé under the Nescafé brand in 1938.'" },
+            { id: 13, before: "Robusta coffee is considered more heat-tolerant than arabica but is generally regarded as inferior in ", after: ".", correct: "flavour", explanation: "Paragraph F: 'Robusta coffee, which is more heat-tolerant… is generally considered inferior in flavour.'" },
+          ],
+        },
+      ],
+    },
+    {
+      number: 2,
+      title: "Deep-Sea Exploration: The Last Frontier",
+      paragraphs: [
+        { letter: "A", text: "The deep ocean — defined as waters below 200 metres, where sunlight can no longer penetrate — covers more than 60 percent of the Earth's surface yet remains the least explored environment on the planet. As of the early 2020s, humans had mapped only approximately 20 percent of the ocean floor in any detail, compared with near-complete mapping of the surfaces of Mars and the Moon. This striking disparity reflects the extreme conditions that make deep-sea exploration technically demanding: pressures reaching over 1,000 atmospheres in the deepest trenches, total darkness, near-freezing temperatures, and the enormous logistical challenges of operating equipment kilometres below the surface." },
+        { letter: "B", text: "The history of deep-sea exploration is marked by a series of technological breakthroughs. The first scientific oceanographic expedition, HMS Challenger (1872–1876), used sounding weights to measure depth and dredging equipment to collect biological specimens from the sea floor. The twentieth century saw the development of bathyspheres — tethered steel spheres that allowed Jacques Piccard and Don Walsh to reach the deepest point on Earth, Challenger Deep in the Mariana Trench, at nearly 11 kilometres depth in 1960. Remotely operated vehicles (ROVs) and autonomous underwater vehicles (AUVs), developed from the 1980s onward, have since transformed deep-sea research by allowing extended observation without risking human lives." },
+        { letter: "C", text: "The biological discoveries made in the deep ocean have repeatedly overturned scientific assumptions. Before the late twentieth century, it was believed that the deep sea was a barren, near-lifeless environment given the absence of sunlight and the extreme cold. The discovery of hydrothermal vent ecosystems in 1977 — communities of organisms clustering around superheated water venting from the sea floor and deriving energy from chemosynthesis rather than photosynthesis — fundamentally altered this view. Species including giant tube worms, eyeless shrimp, and unique microbial communities were found thriving in conditions previously considered incompatible with life." },
+        { letter: "D", text: "Deep-sea ecosystems contain significant concentrations of valuable minerals, a fact that has attracted growing commercial interest. Polymetallic nodules — potato-sized formations rich in manganese, cobalt, nickel, and copper — litter vast areas of the Pacific Ocean floor. Seafloor massive sulphide deposits, formed at hydrothermal vents, contain high concentrations of copper, zinc, gold, and silver. Several companies, backed by national governments, have secured exploration licences from the International Seabed Authority (ISA). Environmentalists and some scientists have warned that mining would cause irreversible damage to ecosystems that took thousands of years to develop." },
+        { letter: "E", text: "The deep ocean plays a critical but poorly understood role in Earth's climate system. The deep ocean stores approximately 50 times more carbon than the atmosphere, absorbed partly through the 'biological pump' — the sinking of dead organic matter from surface waters. Ocean circulation patterns, driven by differences in temperature and salinity, distribute this stored carbon and regulate heat exchange between the equator and the poles. Scientists warn that rising sea temperatures are altering deep-ocean circulation in ways that could have far-reaching consequences for global climate that are not yet fully modelled." },
+        { letter: "F", text: "The governance of the deep sea presents complex challenges. Waters beyond national jurisdictions — known as the high seas — are governed by the United Nations Convention on the Law of the Sea (UNCLOS), which designates the deep seabed as the 'common heritage of mankind.' However, UNCLOS was adopted in 1982, long before the commercial potential of deep-sea minerals was appreciated or the ecological significance of deep-sea ecosystems understood. A 2023 High Seas Treaty, negotiated under UN auspices, sought to address some of these gaps by strengthening biodiversity protections in international waters, though critics argued it did not go far enough in regulating deep-sea mining." },
+      ],
+      sections: [
+        {
+          type: "match_info",
+          questionRange: "Questions 14–19",
+          instructions: "The reading passage has six paragraphs, A–F. Which paragraph contains the following information? Write the correct letter A–F.",
+          paragraphLetters: ["A", "B", "C", "D", "E", "F"],
+          questions: [
+            { id: 14, text: "An explanation of how the deep ocean helps regulate the Earth's temperature", correct: "E", explanation: "Paragraph E: ocean circulation 'distribute[s] stored carbon and regulate[s] heat exchange between the equator and the poles.'" },
+            { id: 15, text: "The first time humans physically reached the deepest point of the ocean", correct: "B", explanation: "Paragraph B: Piccard and Walsh reached Challenger Deep in 1960 in a bathysphere." },
+            { id: 16, text: "A comparison between ocean floor mapping and the mapping of other planetary bodies", correct: "A", explanation: "Paragraph A: 'humans had mapped only approximately 20 percent of the ocean floor… compared with near-complete mapping of Mars and the Moon.'" },
+            { id: 17, text: "A description of organisms that gain energy from chemicals rather than sunlight", correct: "C", explanation: "Paragraph C: hydrothermal vent ecosystems 'deriving energy from chemosynthesis rather than photosynthesis.'" },
+            { id: 18, text: "Concern that commercial extraction could permanently destroy slow-forming ecosystems", correct: "D", explanation: "Paragraph D: 'mining would cause irreversible damage to ecosystems that took thousands of years to develop.'" },
+            { id: 19, text: "A reference to an international legal agreement and criticism of its adequacy", correct: "F", explanation: "Paragraph F discusses UNCLOS and the 2023 High Seas Treaty, noting 'critics argued it did not go far enough.'" },
+          ],
+        },
+        {
+          type: "mc_single",
+          questionRange: "Questions 20–23",
+          instructions: "Choose the correct letter, A, B, C, or D.",
+          questions: [
+            { id: 20, stem: "What was the main scientific assumption overturned by the discovery of hydrothermal vents?", options: [{ label: "A", text: "That the deep sea was too cold for any chemical reactions." }, { label: "B", text: "That life could not exist without sunlight." }, { label: "C", text: "That the deep ocean floor was geologically stable." }, { label: "D", text: "That deep-sea organisms could not survive pressure." }], correct: "B", explanation: "Paragraph C: before this discovery it was believed the deep sea was 'near-lifeless' due to absence of sunlight. Vent communities survive via chemosynthesis — without light." },
+            { id: 21, stem: "According to the passage, polymetallic nodules are significant because they", options: [{ label: "A", text: "are found exclusively in the Mariana Trench." }, { label: "B", text: "provide energy for deep-sea ecosystems." }, { label: "C", text: "contain economically valuable metals." }, { label: "D", text: "form rapidly near hydrothermal vents." }], correct: "C", explanation: "Paragraph D: nodules are 'rich in manganese, cobalt, nickel, and copper' — commercially valuable metals." },
+            { id: 22, stem: "What does the passage say about the 'biological pump'?", options: [{ label: "A", text: "It circulates warm water from the tropics to the poles." }, { label: "B", text: "It involves the sinking of dead organic matter that absorbs carbon." }, { label: "C", text: "It was discovered during the HMS Challenger expedition." }, { label: "D", text: "It is being disrupted by deep-sea mining activities." }], correct: "B", explanation: "Paragraph E: the biological pump involves 'the sinking of dead organic matter from surface waters' as part of ocean carbon storage." },
+            { id: 23, stem: "When was the UN Convention on the Law of the Sea adopted?", options: [{ label: "A", text: "1960" }, { label: "B", text: "1977" }, { label: "C", text: "1982" }, { label: "D", text: "2023" }], correct: "C", explanation: "Paragraph F: 'UNCLOS was adopted in 1982.'" },
+          ],
+        },
+        {
+          type: "summary_completion",
+          questionRange: "Questions 24–26",
+          instructions: "Complete the summary below. Choose NO MORE THAN TWO WORDS from the passage for each answer.",
+          summaryTitle: "The Challenge of Deep-Sea Exploration",
+          summaryText: "The deep ocean begins below 200 metres, where light cannot reach. It covers the majority of the Earth's surface but remains largely unexplored. The extreme {{24}} encountered at great depths, combined with complete darkness, make exploration technically demanding. Early expeditions used {{25}} equipment to collect specimens from the sea floor. Today, {{26}} operate without risking human lives and have enabled extended scientific observation.",
+          wordBank: ["pressures", "dredging", "remotely operated vehicles", "sonar", "sounding weights", "temperatures", "AUVs", "bathyspheres"],
+          questions: [
+            { id: 24, blankId: 24, correct: "pressures", explanation: "Paragraph A: 'pressures reaching over 1,000 atmospheres in the deepest trenches' make exploration demanding." },
+            { id: 25, blankId: 25, correct: "dredging", explanation: "Paragraph B: HMS Challenger used 'dredging equipment to collect biological specimens from the sea floor.'" },
+            { id: 26, blankId: 26, correct: "remotely operated vehicles", explanation: "Paragraph B: 'Remotely operated vehicles (ROVs)… transformed deep-sea research by allowing extended observation without risking human lives.'" },
+          ],
+        },
+      ],
+    },
+    {
+      number: 3,
+      title: "CRISPR and the Genetic Engineering of Crops",
+      paragraphs: [
+        { letter: "A", text: "The development of CRISPR-Cas9 gene editing technology, adapted from a bacterial immune system and first demonstrated in eukaryotic cells in 2012, has transformed the possibilities of agricultural biotechnology. Unlike earlier genetic modification techniques, which introduced genes from other species into crop genomes, CRISPR enables precise edits to a plant's existing DNA — correcting specific sequences, switching genes on or off, or introducing small targeted changes. Proponents argue that this precision makes CRISPR fundamentally different from transgenic modification and capable of accelerating improvements that traditional breeding could achieve only over decades." },
+        { letter: "B", text: "Early agricultural applications of CRISPR have focused on traits with clear commercial or environmental benefits. Scientists have developed CRISPR-edited mushrooms that resist browning, potentially reducing food waste in supply chains. Researchers in the United States have produced a CRISPR-edited soybean oil with a healthier fatty acid profile. In China, CRISPR has been used to develop disease-resistant wheat strains with enhanced resistance to powdery mildew, one of the most damaging crop diseases globally. In Uganda, scientists are trialling CRISPR-edited cassava plants resistant to a devastating viral infection that threatens food security for millions of subsistence farmers." },
+        { letter: "C", text: "The regulatory status of CRISPR-edited crops varies significantly across jurisdictions. In the United States, the Department of Agriculture has determined that CRISPR-edited crops that do not contain foreign DNA are not subject to the same regulatory oversight as conventional genetically modified organisms (GMOs). The European Court of Justice ruled in 2018 that CRISPR-edited crops fall under existing GMO regulations, which require lengthy and expensive approval processes. This divergence has created concern among European plant scientists that regulatory strictness will disadvantage European agriculture relative to competitors in North and South America." },
+        { letter: "D", text: "Critics of agricultural CRISPR applications raise several concerns. Some argue that the technology, regardless of its precision, is being developed primarily by large agrochemical corporations and will reinforce existing power imbalances in global food systems — replicating the experience of first-generation GMOs, which were criticised for making farmers dependent on patented seeds. Others worry that insufficiently tested edited crops may have unintended ecological consequences if they cross-pollinate with wild relatives. Consumer groups in several countries have called for mandatory labelling of CRISPR-edited foods, arguing that individuals have a right to know how their food was produced." },
+        { letter: "E", text: "A distinct set of applications concerns crops engineered to address nutritional deficiencies. Golden Rice — a transgenic variety engineered to produce beta-carotene — is one of the most cited examples of nutritionally enhanced crops, though its development has been mired in regulatory delays and activist opposition for over two decades despite evidence of its potential to reduce vitamin A deficiency in Southeast Asia. CRISPR offers potentially faster and less contested routes to similar ends: researchers have used it to boost the iron and zinc content of rice, and to eliminate allergens from peanuts and gluten from wheat varieties." },
+        { letter: "F", text: "The long-term trajectory of CRISPR in agriculture depends on how several uncertainties resolve. Regulatory frameworks must balance the potential benefits of faster crop improvement against legitimate biosafety concerns. Intellectual property disputes over CRISPR patents — primarily between the Broad Institute and the University of California — create uncertainty about who can use the technology and at what cost. Perhaps most fundamentally, it remains to be seen whether the public acceptance that has eluded first-generation GMOs will be extended to CRISPR-edited foods, or whether the same concerns about corporate control and ecological risk will generate similar resistance." },
+      ],
+      sections: [
+        {
+          type: "ynng",
+          questionRange: "Questions 27–31",
+          instructions: "Do the following statements agree with the claims of the writer in the reading passage? Write YES, NO, or NOT GIVEN.",
+          questions: [
+            { id: 27, statement: "CRISPR gene editing was first applied to plant cells in 2012.", correct: "Not Given", explanation: "The passage states CRISPR was demonstrated in eukaryotic cells in 2012 but does not specify plant cells specifically." },
+            { id: 28, statement: "The European Union applies stricter rules to CRISPR crops than the United States does.", correct: "Yes", explanation: "Paragraph C: EU regulations require 'lengthy and expensive approval processes' while the US does not subject non-foreign-DNA edits to GMO oversight." },
+            { id: 29, statement: "Golden Rice has been successfully adopted by governments across Southeast Asia.", correct: "No", explanation: "Paragraph E: Golden Rice 'has been mired in regulatory delays and activist opposition for over two decades' — not successfully adopted." },
+            { id: 30, statement: "CRISPR has been used to remove allergens from certain food crops.", correct: "Yes", explanation: "Paragraph E: researchers have used CRISPR 'to eliminate allergens from peanuts and gluten from wheat varieties.'" },
+            { id: 31, statement: "The writer believes public acceptance of CRISPR foods is guaranteed because the technology is more precise.", correct: "No", explanation: "Paragraph F: the writer says 'it remains to be seen whether the public acceptance… will be extended to CRISPR-edited foods' — expressing uncertainty, not confidence." },
+          ],
+        },
+        {
+          type: "mc_multiple",
+          questionRange: "Questions 32–34",
+          instructions: "Choose TWO letters, A–E.",
+          questions: [
+            { id: 32, stem: "Which TWO agricultural applications of CRISPR are mentioned in the passage?", options: [{ label: "A", text: "Creating drought-resistant maize" }, { label: "B", text: "Developing disease-resistant wheat" }, { label: "C", text: "Engineering nitrogen-fixing cereals" }, { label: "D", text: "Producing mushrooms that resist browning" }, { label: "E", text: "Increasing the protein content of legumes" }], pickCount: 2, correct: ["B", "D"], explanation: "Paragraph B mentions CRISPR-edited wheat with resistance to powdery mildew (B) and mushrooms that resist browning (D)." },
+            { id: 33, stem: "Which TWO criticisms of CRISPR in agriculture are raised in the passage?", options: [{ label: "A", text: "The technology produces crops with reduced nutritional value." }, { label: "B", text: "It may reinforce corporate control over seeds." }, { label: "C", text: "It is less precise than traditional breeding." }, { label: "D", text: "Edited crops could cross-pollinate with wild plants." }, { label: "E", text: "CRISPR editing has never been tested in field conditions." }], pickCount: 2, correct: ["B", "D"], explanation: "Paragraph D: critics warn about corporate power over patented seeds (B) and ecological risks from cross-pollination with wild relatives (D)." },
+            { id: 34, stem: "Which TWO sources of uncertainty about CRISPR's future in agriculture are mentioned in the passage?", options: [{ label: "A", text: "Disagreements about patent ownership" }, { label: "B", text: "Lack of scientific consensus on editing accuracy" }, { label: "C", text: "Unknown public acceptance" }, { label: "D", text: "Inadequate laboratory facilities" }, { label: "E", text: "Shortage of trained agricultural scientists" }], pickCount: 2, correct: ["A", "C"], explanation: "Paragraph F cites 'intellectual property disputes over CRISPR patents' (A) and uncertainty about whether public acceptance 'will be extended to CRISPR-edited foods' (C)." },
+          ],
+        },
+        {
+          type: "short_answer",
+          questionRange: "Questions 35–40",
+          instructions: "Answer the questions below. Choose NO MORE THAN THREE WORDS from the passage for each answer.",
+          questions: [
+            { id: 35, before: "What type of bacterial system was CRISPR-Cas9 adapted from?", correct: "immune system", explanation: "Paragraph A: CRISPR-Cas9 was 'adapted from a bacterial immune system.'" },
+            { id: 36, before: "In which African country are scientists trialling CRISPR-edited cassava?", correct: "Uganda", explanation: "Paragraph B: 'In Uganda, scientists are trialling CRISPR-edited cassava plants.'" },
+            { id: 37, before: "What did the European Court of Justice rule about CRISPR crops in 2018?", correct: "GMO regulations", explanation: "Paragraph C: the court ruled CRISPR crops 'fall under existing GMO regulations.'" },
+            { id: 38, before: "What nutrient does Golden Rice produce that conventional rice does not?", correct: "beta-carotene", explanation: "Paragraph E: Golden Rice was 'engineered to produce beta-carotene.'" },
+            { id: 39, before: "Which two institutions are involved in patent disputes over CRISPR?", correct: "Broad Institute", explanation: "Paragraph F: 'disputes over CRISPR patents — primarily between the Broad Institute and the University of California.'" },
+            { id: 40, before: "What do consumer groups in several countries demand for CRISPR-edited foods?", correct: "mandatory labelling", explanation: "Paragraph D: 'Consumer groups… have called for mandatory labelling of CRISPR-edited foods.'" },
+          ],
+        },
+      ],
+    },
+  ],
+};

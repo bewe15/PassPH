@@ -1,0 +1,171 @@
+import type { IELTSTest } from "./types";
+
+export const ieltsReading7: IELTSTest = {
+  id: "ielts-reading-7",
+  exam: "IELTS",
+  title: "IELTS Academic Reading — Test 7",
+  totalSeconds: 3600,
+  passages: [
+    {
+      number: 1,
+      title: "Long-Duration Energy Storage: The Missing Link in the Clean Energy Transition",
+      paragraphs: [
+        { letter: "A", text: "The rapid growth of solar and wind power has created an increasingly urgent need for large-scale, long-duration energy storage. Wind and solar are inherently variable: they generate electricity when conditions permit rather than when demand requires it. Short-duration storage technologies, particularly lithium-ion batteries, have matured rapidly and are now economically viable for smoothing out fluctuations over periods of minutes to hours. However, the clean energy transition requires storage capable of bridging periods of days or weeks when renewables generate little electricity — during prolonged cloudy or windless periods — a challenge that existing battery technologies cannot economically address." },
+        { letter: "B", text: "Pumped hydroelectric storage, which uses surplus electricity to pump water uphill and releases it through turbines when power is needed, is currently the dominant form of grid-scale long-duration storage, accounting for over 90 percent of global installed capacity. Its advantages are significant: it is a proven, mature technology with a lifespan measured in decades and round-trip efficiencies of 70–85 percent. Its disadvantages are equally significant: it requires specific geographic conditions — elevation differences, proximity to water, and available land — that make it unsuitable for many regions, and large facilities require years to permit and construct." },
+        { letter: "C", text: "A diverse range of alternative long-duration storage technologies is under development. Flow batteries store energy in liquid electrolytes held in external tanks, allowing energy and power to be scaled independently — a key advantage over solid-state batteries. Iron-air batteries, developed by companies including Form Energy, use the reversible rusting of iron as an electrochemical process, potentially offering very low-cost storage using abundant materials. Compressed air energy storage (CAES) uses excess electricity to compress air into underground caverns, releasing it through turbines when needed. Each technology carries distinct trade-offs in cost, efficiency, geographic flexibility, and environmental impact." },
+        { letter: "D", text: "Green hydrogen — produced by using surplus renewable electricity to split water into hydrogen and oxygen via electrolysis — has attracted significant attention as a long-duration storage medium. Hydrogen can be stored for extended periods in pressurised tanks or underground geological formations and reconverted to electricity through fuel cells or turbines. Advocates argue that green hydrogen could solve multiple clean energy challenges simultaneously: enabling seasonal storage, decarbonising hard-to-electrify industrial processes such as steel and cement production, and serving as a clean fuel for shipping and aviation. Critics note that the round-trip efficiency of the hydrogen pathway — electrolysis, storage, and reconversion — is only 30–40 percent, compared with over 90 percent for lithium-ion batteries." },
+        { letter: "E", text: "The economics of long-duration storage are fundamentally different from those of short-duration technologies. For short-duration storage, cycle frequency — how many times a battery charges and discharges per day — is critical, since capital costs must be recovered over many discharge cycles. Long-duration storage assets cycle infrequently — perhaps a few times per year during weather-driven energy droughts — meaning that capital costs must be very low per unit of energy capacity, while round-trip efficiency is less critical than for daily-cycling technologies. This economic logic favours technologies using abundant, low-cost materials over those with higher efficiency but expensive inputs." },
+        { letter: "F", text: "Policy frameworks have struggled to keep pace with the need for long-duration storage. Most electricity market designs were developed for fossil fuel systems and reward generators based on the energy they produce rather than the system services — such as reliability and flexibility — that storage provides. Several jurisdictions, including the United Kingdom and California, have introduced specific procurement mechanisms for long-duration storage, but analysts argue that a comprehensive overhaul of market design is needed to create the investment signals that will drive large-scale deployment of the diverse portfolio of storage technologies the clean energy transition requires." },
+        { letter: "G", text: "The trajectory of long-duration storage development will be among the most consequential factors determining the pace and cost of global decarbonisation. A failure to develop viable long-duration storage at scale would either require the retention of gas-fired backup generation — undermining decarbonisation goals — or the massive overbuilding of renewable capacity to ensure supply even during prolonged low-generation periods. Success, by contrast, would enable power systems to be reliably supplied by renewables alone, potentially at a cost competitive with fossil-fuel-based generation, removing one of the most cited barriers to achieving net-zero electricity grids." },
+      ],
+      sections: [
+        {
+          type: "match_headings",
+          questionRange: "Questions 1–6",
+          instructions: "The reading passage has seven paragraphs, A–G. Choose the correct heading for paragraphs B–G from the list of headings below.",
+          headings: [
+            { label: "i",    text: "Why existing battery types are insufficient for the task" },
+            { label: "ii",   text: "The dominant existing technology and its geographic constraints" },
+            { label: "iii",  text: "A promising medium with significant efficiency drawbacks" },
+            { label: "iv",   text: "A range of emerging alternative approaches" },
+            { label: "v",    text: "Why cost structure matters more than efficiency for this application" },
+            { label: "vi",   text: "The policy gap and market design challenges" },
+            { label: "vii",  text: "The broader stakes for the energy transition" },
+            { label: "viii", text: "How solar panels store energy directly" },
+            { label: "ix",   text: "The role of nuclear power as a backup" },
+          ],
+          questions: [
+            { id: 1, paragraph: "B", correct: "ii",   explanation: "Paragraph B describes pumped hydro as the dominant technology but highlights its geographic limitations." },
+            { id: 2, paragraph: "C", correct: "iv",   explanation: "Paragraph C surveys flow batteries, iron-air batteries, and CAES as alternative technologies under development." },
+            { id: 3, paragraph: "D", correct: "iii",  explanation: "Paragraph D covers green hydrogen — promising for long-duration storage but with only 30–40% round-trip efficiency." },
+            { id: 4, paragraph: "E", correct: "v",    explanation: "Paragraph E explains why long-duration storage economics favour low capital cost over high efficiency." },
+            { id: 5, paragraph: "F", correct: "vi",   explanation: "Paragraph F discusses inadequate market design and the need for policy reform to support storage investment." },
+            { id: 6, paragraph: "G", correct: "vii",  explanation: "Paragraph G describes the consequences of success or failure in long-duration storage for global decarbonisation." },
+          ],
+        },
+        {
+          type: "tfng",
+          questionRange: "Questions 7–10",
+          instructions: "Do the following statements agree with the information given in the reading passage? Write TRUE, FALSE, or NOT GIVEN.",
+          questions: [
+            { id: 7,  statement: "Pumped hydroelectric storage accounts for more than 90 percent of global grid-scale storage capacity.", correct: "True", explanation: "Paragraph B: pumped hydro accounts 'for over 90 percent of global installed capacity.'" },
+            { id: 8,  statement: "Lithium-ion batteries are suitable for storing energy for periods of several weeks.", correct: "False", explanation: "Paragraph A: lithium-ion is viable 'for smoothing out fluctuations over periods of minutes to hours' — not weeks." },
+            { id: 9,  statement: "Form Energy's iron-air battery uses iron because it is cheaper than lithium.", correct: "Not Given", explanation: "The passage says iron is 'abundant' but does not directly compare its cost with lithium." },
+            { id: 10, statement: "The round-trip efficiency of lithium-ion batteries exceeds 90 percent.", correct: "True", explanation: "Paragraph D: the hydrogen pathway has 30–40% efficiency 'compared with over 90 percent for lithium-ion batteries.'" },
+          ],
+        },
+        {
+          type: "sentence_completion",
+          questionRange: "Questions 11–13",
+          instructions: "Complete the sentences below. Choose NO MORE THAN TWO WORDS from the passage for each answer.",
+          questions: [
+            { id: 11, before: "In flow batteries, energy and ", after: " can be scaled independently, which is a key advantage over solid-state batteries.", correct: "power", explanation: "Paragraph C: 'allowing energy and power to be scaled independently — a key advantage over solid-state batteries.'" },
+            { id: 12, before: "Long-duration storage assets cycle only a few times per year, during what the passage calls energy ", after: ".", correct: "droughts", explanation: "Paragraph E: 'weather-driven energy droughts' are periods when renewables generate little electricity." },
+            { id: 13, before: "Without viable long-duration storage, power systems may need to retain ", after: " generation to ensure reliability.", correct: "gas-fired backup", explanation: "Paragraph G: failure would 'require the retention of gas-fired backup generation.'" },
+          ],
+        },
+      ],
+    },
+    {
+      number: 2,
+      title: "Social Media and the Health of Democracy",
+      paragraphs: [
+        { letter: "A", text: "Few questions in contemporary social science have generated more debate than whether social media platforms are good or bad for democracy. The optimistic view, prominent in the early years of platforms such as Facebook and Twitter, held that social media would empower citizens, facilitate political organisation, enable the rapid dissemination of information, and reduce the influence of gatekeeping media institutions. The Arab Spring uprisings of 2010–2012, in which activists used social platforms to coordinate protests, seemed to validate this view. Subsequent events have substantially complicated the picture." },
+        { letter: "B", text: "Research into social media's effects on political discourse has produced several recurring findings. Algorithms designed to maximise engagement tend to amplify content that provokes strong emotional reactions, particularly anger and outrage. Studies examining Facebook's news feed algorithm found that it systematically elevated content that users found upsetting but that nevertheless kept them on the platform for longer. This dynamic appears to advantage extreme and polarising content over measured, nuanced political discussion, potentially radicalising users incrementally over time." },
+        { letter: "C", text: "The spread of misinformation through social media has been a major focus of research and policy concern. A 2018 study published in Science, analysing the spread of news on Twitter, found that false news stories spread faster, further, and more broadly than true ones, primarily because novelty and emotional arousal — which false stories disproportionately generate — are key drivers of sharing. Platform responses have included fact-checking partnerships, the labelling of disputed content, and the removal of accounts spreading coordinated inauthentic behaviour, though critics argue these measures are insufficiently consistent and too slow to prevent viral spread." },
+        { letter: "D", text: "The relationship between social media and political polarisation is disputed in the scholarly literature. Some researchers, including those who have analysed large-scale data from Facebook's own systems, have found that the platform's algorithms meaningfully increased political polarisation among users. Others have argued that polarisation has increased most among older Americans who use social media least, suggesting that other factors — cable news, economic anxiety, cultural change — are more important drivers. A meta-analysis published in 2023 examined hundreds of studies and concluded that the evidence for large causal effects of social media on polarisation was weaker than commonly assumed." },
+        { letter: "E", text: "Authoritarian governments have proven adept at exploiting social media for their own purposes. Russia's Internet Research Agency conducted a sophisticated influence operation during the 2016 US presidential election, creating thousands of fake accounts to amplify divisive content and sow social distrust. China has invested heavily in both domestic censorship — the 'Great Firewall' — and external influence operations. Smaller democracies have proven particularly vulnerable to foreign influence campaigns, given limited media literacy resources and the outsized impact of a relatively small number of viral posts on small-population political discourse." },
+        { letter: "F", text: "Proposed reforms to reduce social media's harmful effects on democracy span a wide spectrum. Some advocates argue for algorithmic transparency requirements — compelling platforms to disclose how their recommendation systems work. Others call for a shift from engagement-maximising algorithms to quality-maximising alternatives, prioritising authoritative and civil content. A more radical position advocates for treating large social media platforms as public utilities subject to common carrier obligations, preventing them from discriminating among content. Critics of each approach warn of either market distortion, threats to free expression, or the practical impossibility of neutral content moderation at scale." },
+      ],
+      sections: [
+        {
+          type: "match_info",
+          questionRange: "Questions 14–19",
+          instructions: "The reading passage has six paragraphs, A–F. Which paragraph contains the following information? Write the correct letter A–F.",
+          paragraphLetters: ["A", "B", "C", "D", "E", "F"],
+          questions: [
+            { id: 14, text: "A finding that inaccurate stories spread more rapidly online than accurate ones", correct: "C", explanation: "Paragraph C: the Science study found 'false news stories spread faster, further, and more broadly than true ones.'" },
+            { id: 15, text: "A suggestion that social media's role in polarisation may have been overestimated", correct: "D", explanation: "Paragraph D: the 2023 meta-analysis concluded 'the evidence for large causal effects of social media on polarisation was weaker than commonly assumed.'" },
+            { id: 16, text: "An early event that appeared to demonstrate social media's democratic potential", correct: "A", explanation: "Paragraph A: the Arab Spring uprisings 'seemed to validate' the optimistic view of social media's democratic potential." },
+            { id: 17, text: "A description of how engagement-driven algorithms favour extreme content", correct: "B", explanation: "Paragraph B: algorithms 'amplify content that provokes strong emotional reactions… advantage extreme and polarising content.'" },
+            { id: 18, text: "A proposal to treat social media companies like regulated public infrastructure", correct: "F", explanation: "Paragraph F: treating platforms 'as public utilities subject to common carrier obligations.'" },
+            { id: 19, text: "An example of a foreign government using fake accounts to influence an election", correct: "E", explanation: "Paragraph E: Russia's Internet Research Agency created 'thousands of fake accounts' during the 2016 US election." },
+          ],
+        },
+        {
+          type: "mc_single",
+          questionRange: "Questions 20–23",
+          instructions: "Choose the correct letter, A, B, C, or D.",
+          questions: [
+            { id: 20, stem: "Why do false news stories spread more widely on social media, according to the 2018 Science study?", options: [{ label: "A", text: "They are promoted by platform algorithms." }, { label: "B", text: "They generate novelty and emotional arousal that encourages sharing." }, { label: "C", text: "They are shorter and easier to read than true stories." }, { label: "D", text: "They are posted more frequently by influential accounts." }], correct: "B", explanation: "Paragraph C: 'novelty and emotional arousal — which false stories disproportionately generate — are key drivers of sharing.'" },
+            { id: 21, stem: "What argument is made about polarisation among older Americans?", options: [{ label: "A", text: "They are more likely to believe misinformation." }, { label: "B", text: "Rising polarisation among them suggests social media is not the main cause." }, { label: "C", text: "They spend more time on social media than younger users." }, { label: "D", text: "They are the group most affected by foreign influence campaigns." }], correct: "B", explanation: "Paragraph D: polarisation is highest among older Americans 'who use social media least, suggesting that other factors… are more important drivers.'" },
+            { id: 22, stem: "According to the passage, which of the following is a proposed reform to social media?", options: [{ label: "A", text: "Banning political advertising on all platforms" }, { label: "B", text: "Requiring platforms to use engagement-maximising algorithms" }, { label: "C", text: "Compelling platforms to disclose how their recommendation systems work" }, { label: "D", text: "Allowing governments to approve content before publication" }], correct: "C", explanation: "Paragraph F: 'algorithmic transparency requirements — compelling platforms to disclose how their recommendation systems work.'" },
+            { id: 23, stem: "Why are smaller democracies described as particularly vulnerable to influence operations?", options: [{ label: "A", text: "Their governments lack resources to monitor social media." }, { label: "B", text: "A small number of viral posts can have a disproportionate impact." }, { label: "C", text: "They have lower internet access rates." }, { label: "D", text: "Their populations are more politically extreme." }], correct: "B", explanation: "Paragraph E: 'outsized impact of a relatively small number of viral posts on small-population political discourse.'" },
+          ],
+        },
+        {
+          type: "summary_completion",
+          questionRange: "Questions 24–26",
+          instructions: "Complete the summary below. Choose NO MORE THAN TWO WORDS from the passage for each answer.",
+          summaryTitle: "Platform Responses to Misinformation",
+          summaryText: "Social media platforms have introduced several measures to address the spread of misinformation. These include {{24}} with third-party checkers, the {{25}} of content that is disputed, and the removal of accounts engaged in coordinated inauthentic behaviour. However, critics contend that these responses are not applied {{26}} and that action comes too late to halt the viral spread of false content.",
+          wordBank: ["fact-checking partnerships", "labelling", "consistently", "removal", "algorithms", "quickly", "monitoring", "banning"],
+          questions: [
+            { id: 24, blankId: 24, correct: "fact-checking partnerships", explanation: "Paragraph C: 'Platform responses have included fact-checking partnerships.'" },
+            { id: 25, blankId: 25, correct: "labelling", explanation: "Paragraph C: 'the labelling of disputed content.'" },
+            { id: 26, blankId: 26, correct: "consistently", explanation: "Paragraph C: critics argue measures are 'insufficiently consistent' — not applied consistently enough." },
+          ],
+        },
+      ],
+    },
+    {
+      number: 3,
+      title: "Language Extinction and Preservation",
+      paragraphs: [
+        { letter: "A", text: "Of the approximately 7,000 languages spoken on Earth today, linguists estimate that between 50 and 90 percent will cease to be spoken by the end of the twenty-first century. A language is considered endangered when children are no longer learning it as a first language; once intergenerational transmission breaks down, extinction typically follows within two to three generations. The geographic concentration of linguistic diversity — roughly 80 percent of the world's languages are spoken by fewer than 100,000 people, and the ten most widely spoken languages account for half the world's population — means that globalisation exerts enormous pressure on smaller languages." },
+        { letter: "B", text: "The drivers of language shift are complex and interrelated. Economic incentives push speakers towards dominant languages: proficiency in English, Mandarin, Spanish, or Arabic opens access to education, employment, and social mobility that local languages often cannot provide. Urbanisation uproots communities from environments where minority languages functioned as necessary tools for local knowledge. Colonial histories in much of Africa, the Americas, and Oceania involved deliberate suppression of indigenous languages, sometimes through the forced placement of children in residential schools where speaking their native languages was prohibited and punished." },
+        { letter: "C", text: "The loss of a language is not merely the disappearance of a communication system. Each language encodes a unique way of perceiving and categorising the world: the Guugu Yimithirr people of Australia use cardinal directions — north, south, east, west — rather than egocentric terms like 'left' and 'right,' producing a fundamentally different spatial orientation than speakers of most European languages. Many indigenous languages contain detailed ecological knowledge accumulated over centuries — about plant properties, seasonal patterns, and animal behaviour — that has no equivalent in scientific literature and may be lost entirely when a language dies." },
+        { letter: "D", text: "Documentation efforts have accelerated as linguists have recognised the urgency of the situation. The ELDP (Endangered Languages Documentation Programme) and similar initiatives have funded fieldwork to produce grammars, dictionaries, and audio and video recordings of endangered languages. Digital technologies have substantially improved the quality and accessibility of these archives. However, documentation is not equivalent to revitalisation: a well-documented dead language, like Latin, does not serve the living communities who no longer speak it. Genuine language preservation requires sustained community engagement and the creation of social and economic contexts in which the language remains useful." },
+        { letter: "E", text: "Several revitalisation programmes have achieved remarkable results. Welsh, which was declining rapidly in the mid-twentieth century, has been stabilised and partially revived through a combination of statutory recognition, Welsh-medium education, television broadcasting, and bilingual public signage. Māori in New Zealand has seen significant revitalisation since the establishment of kōhanga reo — language nests, or immersion preschools — in 1982, and now benefits from Māori-language television and university programmes. Hebrew is the sole example of a language with no native speakers being revived as a fully functional everyday language, achieved through intense ideological commitment during the formation of the Israeli state." },
+        { letter: "F", text: "Critics of language revitalisation efforts raise pragmatic and philosophical objections. Some argue that the resources devoted to maintaining dozens of minority languages would be better spent on economic development in the communities concerned. Others question whether it is possible — or even desirable — to revive languages in contexts radically different from those in which they evolved. A more sympathetic critique notes that revitalisation efforts sometimes produce 'school language' — a formal, often slightly artificial register maintained in educational contexts — that fails to replace the full, living everyday use of the language. The line between genuine revitalisation and linguistic preservation in amber is one that practitioners grapple with constantly." },
+      ],
+      sections: [
+        {
+          type: "ynng",
+          questionRange: "Questions 27–31",
+          instructions: "Do the following statements agree with the claims of the writer in the reading passage? Write YES, NO, or NOT GIVEN.",
+          questions: [
+            { id: 27, statement: "The ten most widely spoken languages are used by approximately half the world's population.", correct: "Yes", explanation: "Paragraph A: 'the ten most widely spoken languages account for half the world's population.'" },
+            { id: 28, statement: "Economic factors are a more important driver of language shift than colonial history.", correct: "Not Given", explanation: "Paragraph B describes both economic incentives and colonial suppression but does not rank their relative importance." },
+            { id: 29, statement: "The Guugu Yimithirr language uses compass directions instead of relative terms like left and right.", correct: "Yes", explanation: "Paragraph C: Guugu Yimithirr speakers 'use cardinal directions — north, south, east, west — rather than egocentric terms like \"left\" and \"right.\"'" },
+            { id: 30, statement: "The writer considers documentation of endangered languages to be sufficient for their preservation.", correct: "No", explanation: "Paragraph D: 'documentation is not equivalent to revitalisation' — the writer explicitly says documentation alone is insufficient." },
+            { id: 31, statement: "Hebrew is presented as proof that any endangered language can be successfully revived.", correct: "No", explanation: "Paragraph E presents Hebrew as 'the sole example' — unique — implying it cannot be taken as proof it is achievable for all languages." },
+          ],
+        },
+        {
+          type: "mc_multiple",
+          questionRange: "Questions 32–34",
+          instructions: "Choose TWO letters, A–E.",
+          questions: [
+            { id: 32, stem: "Which TWO factors contributed to the revitalisation of Welsh, according to the passage?", options: [{ label: "A", text: "A major increase in Welsh speakers migrating to cities" }, { label: "B", text: "Government funding for language documentation" }, { label: "C", text: "Welsh-medium education" }, { label: "D", text: "Television broadcasting in Welsh" }, { label: "E", text: "Mandatory Welsh lessons in universities" }], pickCount: 2, correct: ["C", "D"], explanation: "Paragraph E: Welsh revitalisation involved 'Welsh-medium education' (C) and 'television broadcasting' (D), among other factors." },
+            { id: 33, stem: "Which TWO criticisms of revitalisation efforts are mentioned in the passage?", options: [{ label: "A", text: "They are funded by organisations with political agendas." }, { label: "B", text: "Resources could be better spent on economic development." }, { label: "C", text: "They produce artificial formal language rather than everyday speech." }, { label: "D", text: "Digital archives are inaccessible to most community members." }, { label: "E", text: "They ignore the wishes of younger community members." }], pickCount: 2, correct: ["B", "C"], explanation: "Paragraph F: critics argue resources would be 'better spent on economic development' (B) and that revitalisation can produce a 'school language' that is artificial (C)." },
+            { id: 34, stem: "Which TWO things are described as unique examples of their kind in the passage?", options: [{ label: "A", text: "The Welsh revitalisation programme" }, { label: "B", text: "Hebrew being revived from having no native speakers" }, { label: "C", text: "Kōhanga reo immersion preschools" }, { label: "D", text: "The spatial orientation of Guugu Yimithirr speakers" }, { label: "E", text: "The ELDP documentation programme" }], pickCount: 2, correct: ["B", "D"], explanation: "Paragraph E: Hebrew is 'the sole example' of a language revived without native speakers (B). Paragraph C: Guugu Yimithirr spatial orientation is described as 'fundamentally different than speakers of most European languages' — uniquely distinct (D)." },
+          ],
+        },
+        {
+          type: "short_answer",
+          questionRange: "Questions 35–40",
+          instructions: "Answer the questions below. Choose NO MORE THAN THREE WORDS from the passage for each answer.",
+          questions: [
+            { id: 35, before: "Approximately what percentage of the world's languages are spoken by fewer than 100,000 people?", correct: "80 percent", explanation: "Paragraph A: 'roughly 80 percent of the world's languages are spoken by fewer than 100,000 people.'" },
+            { id: 36, before: "What term describes the point at which children stop learning a language as their first language?", correct: "intergenerational transmission", explanation: "Paragraph A: 'when children are no longer learning it as a first language' — the breakdown of 'intergenerational transmission.'" },
+            { id: 37, before: "What type of school was used in some colonial contexts to suppress indigenous languages?", correct: "residential schools", explanation: "Paragraph B: 'forced placement of children in residential schools where speaking their native languages was prohibited.'" },
+            { id: 38, before: "What is the Māori term for the immersion preschools established in New Zealand in 1982?", correct: "kōhanga reo", explanation: "Paragraph E: 'the establishment of kōhanga reo — language nests, or immersion preschools — in 1982.'" },
+            { id: 39, before: "What type of knowledge encoded in indigenous languages does the passage say may be lost entirely?", correct: "ecological knowledge", explanation: "Paragraph C: 'detailed ecological knowledge accumulated over centuries… may be lost entirely when a language dies.'" },
+            { id: 40, before: "What does the writer say practitioners constantly struggle with in revitalisation work?", correct: "genuine revitalisation", explanation: "Paragraph F: 'The line between genuine revitalisation and linguistic preservation in amber is one that practitioners grapple with constantly.'" },
+          ],
+        },
+      ],
+    },
+  ],
+};

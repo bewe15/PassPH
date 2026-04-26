@@ -1,0 +1,171 @@
+import type { IELTSTest } from "./types";
+
+export const ieltsReading18: IELTSTest = {
+  id: "ielts-reading-18",
+  exam: "IELTS",
+  title: "IELTS Academic Reading — Test 18",
+  totalSeconds: 3600,
+  passages: [
+    {
+      number: 1,
+      title: "The Neuroscience of Memory",
+      paragraphs: [
+        { letter: "A", text: "Memory is not a single faculty but a collection of distinct systems, each associated with different brain regions, operating through different mechanisms, and capable of being selectively damaged by injury or disease. The broad distinction between declarative memory — consciously accessible memory for facts and events — and non-declarative memory — which encompasses procedural skills, conditioning, and priming without conscious awareness — has been supported by decades of neuropsychological research. The most compelling evidence came from the case of H.M. — Henry Molaison — whose bilateral hippocampal removal for severe epilepsy in 1953 left him unable to form new declarative memories while leaving intact his ability to learn new motor skills and his non-declarative memory systems." },
+        { letter: "B", text: "Within declarative memory, a further distinction is drawn between episodic memory — the memory of personally experienced events, anchored in specific times and places — and semantic memory — general factual knowledge about the world, divorced from personal context. Both systems depend on the hippocampus for initial encoding, but semantic memories gradually become independent of the hippocampus through a process of consolidation, during which neural representations are redistributed across cortical networks. This explains why individuals with hippocampal damage may lose recent autobiographical memories but retain knowledge accumulated earlier in life: old semantic memories have consolidated into hippocampally-independent cortical networks." },
+        { letter: "C", text: "The cellular and molecular basis of memory was illuminated by the discovery of long-term potentiation (LTP) — the sustained strengthening of synaptic connections following repeated stimulation. First demonstrated in the rabbit hippocampus by Timothy Bliss and Terje Lømo in 1973, LTP involves the recruitment and insertion of additional AMPA-type glutamate receptors at synapses and, with sufficient stimulation, the synthesis of new proteins that consolidate lasting changes in synaptic strength. The NMDA receptor, which acts as a molecular coincidence detector requiring simultaneous pre- and postsynaptic activity, is critical to LTP induction and is now understood as a key molecular substrate of learning." },
+        { letter: "D", text: "Memory is reconstructive rather than reproductive. Unlike a video recording that captures events verbatim, each act of remembering involves reconstructing the memory from stored traces, current context, and existing schemas — organised knowledge structures that shape how information is interpreted and stored. This reconstructive nature makes memory susceptible to distortion: schemas can cause schema-consistent information to be better remembered while inconsistent details are altered or forgotten; memories can be contaminated by post-event information presented between the original event and recall; and entirely false memories can be implanted experimentally and in real-world contexts. The psychologist Elizabeth Loftus demonstrated in classic studies that the wording of questions after witnessing an event can alter subsequent memory reports." },
+        { letter: "E", text: "Working memory — the system that temporarily holds and manipulates information for use in ongoing cognitive tasks — is a distinct system from long-term memory and plays a central role in reasoning, comprehension, and problem-solving. The most influential model, proposed by Alan Baddeley and Graham Hitch in 1974, distinguishes between a central executive that controls attention and coordinates subsidiary systems, a phonological loop that rehearses verbal information, a visuospatial sketchpad that maintains spatial and visual representations, and an episodic buffer that integrates information across different systems and with long-term memory. Working memory capacity — typically estimated at around four chunks of information — is strongly correlated with general cognitive ability and academic achievement." },
+        { letter: "F", text: "Sleep plays a critical role in memory consolidation. During slow-wave sleep, newly acquired memories in the hippocampus are 'replayed' and transferred to cortical networks for long-term storage. During REM sleep, emotional memories are processed and their affective valence may be modulated, and creative associations between distant memories are formed. Experimental studies consistently show that sleep following learning improves later recall, while sleep deprivation impairs both encoding of new memories and consolidation of those recently acquired. The therapeutic potential of manipulating sleep to enhance memory consolidation or to reduce the emotional salience of traumatic memories is an active research area." },
+        { letter: "G", text: "The prospect of pharmacological memory enhancement — using drugs to improve learning, boost consolidation, or weaken unwanted memories — raises profound ethical questions. Cognitive-enhancing drugs are already widely used off-label by students and professionals, including stimulants and modafinil, despite limited evidence of efficacy in healthy individuals. More targeted interventions — such as the use of propranolol to attenuate the reconsolidation of traumatic memories, or experimental compounds targeting the CREB signalling pathway involved in memory formation — raise questions about personal identity, authenticity of memory, and the appropriate use of enhancement beyond the treatment of disease. Regulatory frameworks in most countries are poorly adapted to the challenge of cognitive enhancement in healthy populations." },
+      ],
+      sections: [
+        {
+          type: "match_headings",
+          questionRange: "Questions 1–6",
+          instructions: "The reading passage has seven paragraphs, A–G. Choose the correct heading for paragraphs B–G from the list of headings below.",
+          headings: [
+            { label: "i",    text: "The role of sleep in storing and processing memories" },
+            { label: "ii",   text: "Ethical questions raised by drug-based memory manipulation" },
+            { label: "iii",  text: "Why memories change each time they are recalled" },
+            { label: "iv",   text: "The molecular events that underlie the strengthening of neural connections" },
+            { label: "v",    text: "The distinction between episodic and semantic memory systems" },
+            { label: "vi",   text: "The temporary system for holding information during active tasks" },
+            { label: "vii",  text: "The major categories of memory and evidence from brain injury cases" },
+            { label: "viii", text: "How amnesia patients can still learn new languages" },
+            { label: "ix",   text: "Brain scan evidence for the location of memory in the frontal lobe" },
+          ],
+          questions: [
+            { id: 1, paragraph: "B", correct: "v",    explanation: "Paragraph B contrasts episodic and semantic memory and explains their different consolidation patterns." },
+            { id: 2, paragraph: "C", correct: "iv",   explanation: "Paragraph C describes LTP, AMPA receptors, protein synthesis, and NMDA receptor — the molecular basis of synaptic strengthening." },
+            { id: 3, paragraph: "D", correct: "iii",  explanation: "Paragraph D explains the reconstructive nature of memory and how it is susceptible to distortion and false memories." },
+            { id: 4, paragraph: "E", correct: "vi",   explanation: "Paragraph E describes working memory and the Baddeley and Hitch model." },
+            { id: 5, paragraph: "F", correct: "i",    explanation: "Paragraph F covers sleep's role in memory consolidation during slow-wave and REM sleep." },
+            { id: 6, paragraph: "G", correct: "ii",   explanation: "Paragraph G raises ethical questions about pharmacological memory enhancement." },
+          ],
+        },
+        {
+          type: "tfng",
+          questionRange: "Questions 7–10",
+          instructions: "Do the following statements agree with the information given in the reading passage? Write TRUE, FALSE, or NOT GIVEN.",
+          questions: [
+            { id: 7,  statement: "Patient H.M. lost both his declarative memory and his ability to learn new motor skills after surgery.", correct: "False", explanation: "Paragraph A: H.M. was 'unable to form new declarative memories while leaving intact his ability to learn new motor skills.'" },
+            { id: 8,  statement: "Long-term potentiation was first demonstrated in the rabbit hippocampus in 1973.", correct: "True", explanation: "Paragraph C: 'First demonstrated in the rabbit hippocampus by Timothy Bliss and Terje Lømo in 1973.'" },
+            { id: 9,  statement: "Elizabeth Loftus showed that question wording can alter what people claim to remember.", correct: "True", explanation: "Paragraph D: 'Elizabeth Loftus demonstrated… that the wording of questions after witnessing an event can alter subsequent memory reports.'" },
+            { id: 10, statement: "Working memory capacity is unrelated to academic performance.", correct: "False", explanation: "Paragraph E: 'Working memory capacity… is strongly correlated with general cognitive ability and academic achievement.'" },
+          ],
+        },
+        {
+          type: "sentence_completion",
+          questionRange: "Questions 11–13",
+          instructions: "Complete the sentences below. Choose NO MORE THAN TWO WORDS from the passage for each answer.",
+          questions: [
+            { id: 11, before: "The process by which memories gradually become stored in cortical networks independent of the hippocampus is called ", after: ".", correct: "consolidation", explanation: "Paragraph B: 'semantic memories gradually become independent of the hippocampus through a process of consolidation.'" },
+            { id: 12, before: "Organised knowledge structures that shape how information is interpreted and stored are called ", after: ".", correct: "schemas", explanation: "Paragraph D: 'existing schemas — organised knowledge structures that shape how information is interpreted and stored.'" },
+            { id: 13, before: "The Baddeley and Hitch model of working memory includes a system called the ", after: " that maintains spatial and visual representations.", correct: "visuospatial sketchpad", explanation: "Paragraph E: 'a visuospatial sketchpad that maintains spatial and visual representations.'" },
+          ],
+        },
+      ],
+    },
+    {
+      number: 2,
+      title: "Adapting to Climate Change: Strategies and Challenges",
+      paragraphs: [
+        { letter: "A", text: "Climate adaptation — the process of adjusting to the actual or anticipated effects of climate change in order to reduce harm or exploit beneficial opportunities — has become an increasingly urgent policy priority as the pace of global warming has accelerated and the limits of mitigation alone to prevent significant impacts have become apparent. The distinction between mitigation — reducing greenhouse gas emissions to limit the extent of warming — and adaptation — adjusting to the impacts of warming that will occur regardless — is conceptually important but practically blurred: effective climate policy requires both, and adaptation investments often reduce emissions as a co-benefit." },
+        { letter: "B", text: "Sea level rise is among the most physically threatening consequences of climate change for coastal communities and low-lying island states. Global mean sea level has risen approximately 20 centimetres since 1900 and is projected to rise a further 0.3–1 metre by 2100 under current emission trajectories, with higher values possible if ice sheet dynamics behave non-linearly. Adaptation responses include physical flood defences — seawalls, surge barriers, and managed retreat from the highest-risk zones — and building regulations that require new coastal infrastructure to be designed for higher future water levels. The Netherlands, which has centuries of experience managing sea level below the surrounding ocean, offers a frequently cited model of integrated coastal risk management, though its approaches are expensive and not directly transferable to lower-income contexts." },
+        { letter: "C", text: "Urban heat stress is a growing challenge as cities warm and extreme heat events become more frequent and severe. The combination of climate warming and the urban heat island effect means that city residents — particularly the elderly, those with pre-existing health conditions, and low-income residents who cannot afford air conditioning — face disproportionate health risks. Urban adaptation strategies include increasing tree canopy cover and green space, designing buildings with better thermal performance, installing cool roofs and pavements with higher solar reflectivity, and developing heat emergency response plans to provide cooling facilities and welfare checks for vulnerable individuals. Cities in southern Europe and North America have implemented heat action plans following lethal heat events, though the consistency of implementation varies widely." },
+        { letter: "D", text: "Agricultural adaptation is essential as changing precipitation patterns, rising temperatures, and more frequent extreme weather events alter growing conditions across the world. Adaptation strategies range from crop variety substitution — replacing heat-sensitive crops with more tolerant varieties or shifting cultivation to different crops entirely — to changes in planting dates, irrigation management, pest and disease control, and the adoption of insurance mechanisms to manage revenue volatility. Agroforestry — integrating trees and shrubs into crop and livestock systems — can improve soil moisture, provide shade, and increase resilience to both drought and flooding. In regions projected to become too hot and dry for traditional agriculture, managed transitions to alternative livelihoods may be necessary." },
+        { letter: "E", text: "Climate migration — movement of people driven wholly or partly by climate-related factors — is projected to become one of the major humanitarian challenges of the twenty-first century. Estimates of the number of climate migrants by 2050 vary enormously depending on emission scenarios, geographic scope, and definitions, ranging from tens of millions to over a billion in the most extreme scenarios. Internal migration — movement within countries from high-risk coastal or arid areas toward safer or more productive regions — is more prevalent than international migration in most projections. The existing frameworks of international refugee law do not extend legal protection to those displaced by climate change, creating a significant governance gap for what some commentators have termed 'climate refugees'." },
+        { letter: "F", text: "The financing of climate adaptation in developing countries is a critical and contested issue. The costs of adaptation in low-income countries — which have contributed least to historical greenhouse gas emissions but face the greatest impacts — are estimated to run into hundreds of billions of dollars annually by 2030. In 2009, wealthy nations committed to jointly mobilising US$100 billion per year in climate finance for developing countries by 2020; this target was not met by the deadline, and disputes persist about what counts as climate finance and whether loans should be included alongside grants. The Loss and Damage mechanism — providing compensation to developing countries for climate impacts that cannot be adapted to — was formally established at COP 27 in 2022, though its funding remains far below the scale of need." },
+      ],
+      sections: [
+        {
+          type: "match_info",
+          questionRange: "Questions 14–19",
+          instructions: "The reading passage has six paragraphs, A–F. Which paragraph contains the following information? Write the correct letter A–F.",
+          paragraphLetters: ["A", "B", "C", "D", "E", "F"],
+          questions: [
+            { id: 14, text: "Evidence that wealthy nations failed to meet a financial commitment to developing countries on time", correct: "F", explanation: "Paragraph F: 'this target was not met by the deadline' — the US$100 billion climate finance target." },
+            { id: 15, text: "An example of a country with extensive historical experience in protecting land below sea level", correct: "B", explanation: "Paragraph B: 'The Netherlands, which has centuries of experience managing sea level below the surrounding ocean.'" },
+            { id: 16, text: "A description of a farming approach that combines trees with crops to improve soil and water retention", correct: "D", explanation: "Paragraph D: 'Agroforestry — integrating trees and shrubs into crop and livestock systems — can improve soil moisture.'" },
+            { id: 17, text: "A description of the difference between mitigation and adaptation and why both are needed", correct: "A", explanation: "Paragraph A: defines the distinction between mitigation and adaptation and states 'effective climate policy requires both.'" },
+            { id: 18, text: "A reference to a legal framework that currently does not protect people who leave their homes due to climate impacts", correct: "E", explanation: "Paragraph E: 'The existing frameworks of international refugee law do not extend legal protection to those displaced by climate change.'" },
+            { id: 19, text: "Adaptation measures specifically designed to cool urban areas and protect vulnerable residents from extreme heat", correct: "C", explanation: "Paragraph C: 'cool roofs and pavements… heat emergency response plans… provide cooling facilities and welfare checks for vulnerable individuals.'" },
+          ],
+        },
+        {
+          type: "mc_single",
+          questionRange: "Questions 20–23",
+          instructions: "Choose the correct letter, A, B, C, or D.",
+          questions: [
+            { id: 20, stem: "By how much has global mean sea level risen since 1900?", options: [{ label: "A", text: "Approximately 10 centimetres" }, { label: "B", text: "Around 20 centimetres" }, { label: "C", text: "More than half a metre" }, { label: "D", text: "About 5 centimetres" }], correct: "B", explanation: "Paragraph B: 'Global mean sea level has risen approximately 20 centimetres since 1900.'" },
+            { id: 21, stem: "According to the passage, which urban residents face the greatest health risks from extreme heat?", options: [{ label: "A", text: "Children and young adults" }, { label: "B", text: "Office workers in high-rise buildings" }, { label: "C", text: "The elderly, those with health conditions, and low-income residents" }, { label: "D", text: "Outdoor workers and athletes" }], correct: "C", explanation: "Paragraph C: 'the elderly, those with pre-existing health conditions, and low-income residents who cannot afford air conditioning.'" },
+            { id: 22, stem: "What does the passage say about climate migration projections?", options: [{ label: "A", text: "They consistently predict exactly 100 million climate migrants by 2050" }, { label: "B", text: "They vary enormously depending on the scenario and definition used" }, { label: "C", text: "They show that international migration will be more common than internal migration" }, { label: "D", text: "They suggest climate migration will primarily affect high-income countries" }], correct: "B", explanation: "Paragraph E: 'Estimates… vary enormously depending on emission scenarios, geographic scope, and definitions.'" },
+            { id: 23, stem: "What was formally established at COP 27 in 2022?", options: [{ label: "A", text: "The US$100 billion annual climate finance target" }, { label: "B", text: "An international legal status for climate refugees" }, { label: "C", text: "A Loss and Damage mechanism for developing countries" }, { label: "D", text: "A global carbon tax framework" }], correct: "C", explanation: "Paragraph F: 'The Loss and Damage mechanism… was formally established at COP 27 in 2022.'" },
+          ],
+        },
+        {
+          type: "summary_completion",
+          questionRange: "Questions 24–26",
+          instructions: "Complete the summary below. Choose NO MORE THAN TWO WORDS from the passage for each answer.",
+          summaryTitle: "Agricultural Adaptation to Climate Change",
+          summaryText: "Farmers are adapting to climate change through a range of strategies. One approach is crop {{24}} — replacing vulnerable crops with more tolerant varieties or entirely different crops. Changes to planting dates and water management are also common. The practice of {{25}}, which integrates trees and shrubs into farming systems, can improve soil moisture and help farms cope with both drought and flooding. In areas that become too dry or hot for traditional agriculture, farmers may need to transition to {{26}} livelihoods.",
+          wordBank: ["variety substitution", "agroforestry", "alternative", "irrigation", "insurance", "rotation"],
+          questions: [
+            { id: 24, blankId: 24, correct: "variety substitution", explanation: "Paragraph D: 'crop variety substitution — replacing heat-sensitive crops with more tolerant varieties.'" },
+            { id: 25, blankId: 25, correct: "agroforestry", explanation: "Paragraph D: 'Agroforestry — integrating trees and shrubs into crop and livestock systems.'" },
+            { id: 26, blankId: 26, correct: "alternative", explanation: "Paragraph D: 'managed transitions to alternative livelihoods may be necessary.'" },
+          ],
+        },
+      ],
+    },
+    {
+      number: 3,
+      title: "The Rise of E-Commerce and Its Consequences",
+      paragraphs: [
+        { letter: "A", text: "Electronic commerce — the buying and selling of goods and services over digital networks — has grown from a niche activity in the mid-1990s to a fundamental restructuring of retail globally. Global e-commerce sales reached approximately US$5.8 trillion in 2023, representing around 20 percent of all retail sales worldwide. Amazon, founded by Jeff Bezos in 1994 as an online bookstore, has grown into the world's dominant e-commerce platform and one of the most valuable companies in history. China's e-commerce market — dominated by Alibaba's Taobao, Tmall, and JD.com — represents the largest in the world by value, and Chinese platforms including Temu and Shein have rapidly expanded into western markets." },
+        { letter: "B", text: "The logistics infrastructure required to enable rapid e-commerce fulfilment has transformed supply chains and urban environments. Vast fulfillment centres — warehouses of 100,000 square metres or more, with automated picking and packing systems — have proliferated on the edges of major cities and along motorway corridors. Last-mile delivery — the final leg from a distribution hub to the customer's door — is the most expensive and carbon-intensive component of the delivery chain, and has driven innovation in delivery models including click-and-collect, parcel lockers, route optimisation software, and, experimentally, drone and autonomous vehicle delivery. Same-day and next-day delivery expectations, established by Amazon Prime and its equivalents, have raised customer expectations and intensified competitive pressure across the industry." },
+        { letter: "C", text: "The environmental consequences of e-commerce are complex and contested. Advocates argue that e-commerce can reduce transport emissions compared with individual car trips to retail stores, particularly when deliveries are consolidated on optimised routes. Critics point to the growth of packaging waste, the carbon intensity of air freight used for international fast fashion, and the emissions from the rapidly expanding last-mile delivery fleet. Returns — a distinctive feature of online fashion retail, where return rates can exceed 30 percent of orders — add significantly to the environmental footprint. The net environmental impact depends critically on whether consumers use e-commerce as a substitute for car-based shopping or as an additional consumption channel." },
+        { letter: "D", text: "The impact of e-commerce on high street retail — the physical shops in town and city centres — has been severe. Structural decline in footfall and sales, accelerated dramatically by the COVID-19 pandemic when lockdowns forced consumers online, has produced widespread retail vacancy in many countries. Department stores and mid-market fashion chains — including Debenhams, Arcadia Group, and various US equivalents — have collapsed into administration, unable to service debts accumulated in an era of higher physical retail revenue. The decline of the high street poses significant social challenges: physical retail, cafes, and services anchor local economies, provide employment, and serve as social spaces that online commerce cannot replicate." },
+        { letter: "E", text: "Employment in e-commerce and logistics has grown dramatically, but the quality of jobs in the sector has been widely criticised. Warehouse fulfilment centre roles — characterised by intensive monitoring of productivity through electronic tracking systems, high physical demand, and high turnover — have been the subject of investigative journalism and labour organising. Amazon's warehouse workers have mounted union drives in the United States and Europe, and the company has faced regulatory scrutiny in multiple jurisdictions over working conditions. Gig economy delivery workers — typically classified as self-employed contractors rather than employees — lack access to sick pay, holiday entitlement, and other employment protections, mirroring the broader challenges of platform work described in labour economics literature." },
+        { letter: "F", text: "Regulatory responses to the market power and tax practices of large e-commerce platforms have intensified. Amazon, in particular, operates in a dual role as both marketplace facilitator and direct retailer, giving it access to vast data on sellers' performance and the ability to develop competing private-label products — practices that have attracted competition law scrutiny in the European Union and United States. The digital services taxes introduced in several European countries, and the ongoing negotiation of international minimum corporate taxation rates, reflect attempts to address perceived tax avoidance by large digital platforms that base operations in low-tax jurisdictions while generating revenues across multiple higher-tax markets." },
+      ],
+      sections: [
+        {
+          type: "ynng",
+          questionRange: "Questions 27–31",
+          instructions: "Do the following statements agree with the claims of the writer in the reading passage? Write YES, NO, or NOT GIVEN.",
+          questions: [
+            { id: 27, statement: "Amazon was originally established as an online retailer of books.", correct: "Yes", explanation: "Paragraph A: 'Amazon, founded by Jeff Bezos in 1994 as an online bookstore.'" },
+            { id: 28, statement: "The writer believes e-commerce always produces lower carbon emissions than physical retail shopping.", correct: "No", explanation: "Paragraph C: 'The net environmental impact depends critically on whether consumers use e-commerce as a substitute for car-based shopping or as an additional consumption channel' — not always lower." },
+            { id: 29, statement: "Return rates in online fashion retail can exceed 30 percent of all orders.", correct: "Yes", explanation: "Paragraph C: 'return rates can exceed 30 percent of orders.'" },
+            { id: 30, statement: "The writer argues that physical retail provides social value that online commerce cannot replace.", correct: "Yes", explanation: "Paragraph D: 'physical retail, cafes, and services… serve as social spaces that online commerce cannot replicate.'" },
+            { id: 31, statement: "Amazon's private-label practices have been found illegal by courts in Europe and the United States.", correct: "Not Given", explanation: "Paragraph F states these practices 'have attracted competition law scrutiny' but does not say courts have found them illegal." },
+          ],
+        },
+        {
+          type: "mc_multiple",
+          questionRange: "Questions 32–34",
+          instructions: "Choose TWO letters, A–E.",
+          questions: [
+            { id: 32, stem: "Which TWO innovations in last-mile delivery are mentioned in the passage?", options: [{ label: "A", text: "Parcel lockers" }, { label: "B", text: "Hydrogen-powered delivery vans" }, { label: "C", text: "Drone delivery" }, { label: "D", text: "Underground parcel pipelines" }, { label: "E", text: "Robot door-to-door delivery" }], pickCount: 2, correct: ["A", "C"], explanation: "Paragraph B: 'parcel lockers' (A) and 'drone… delivery' (C) are both listed as last-mile innovations." },
+            { id: 33, stem: "Which TWO criticisms of working conditions in e-commerce fulfilment centres are mentioned in the passage?", options: [{ label: "A", text: "Workers are paid below the minimum wage" }, { label: "B", text: "Electronic systems are used to intensively monitor productivity" }, { label: "C", text: "High physical demands are placed on workers" }, { label: "D", text: "Workers are not permitted to take toilet breaks" }, { label: "E", text: "Workers are forced to work night shifts exclusively" }], pickCount: 2, correct: ["B", "C"], explanation: "Paragraph E: 'intensive monitoring of productivity through electronic tracking systems' (B) and 'high physical demand' (C)." },
+            { id: 34, stem: "Which TWO regulatory concerns about large e-commerce platforms are discussed in the passage?", options: [{ label: "A", text: "Tax practices that reduce payments in high-tax markets" }, { label: "B", text: "Using seller data to develop competing own-brand products" }, { label: "C", text: "Selling counterfeit goods through third-party sellers" }, { label: "D", text: "Monopoly control of global parcel delivery networks" }, { label: "E", text: "Discriminatory pricing based on customer location" }], pickCount: 2, correct: ["A", "B"], explanation: "Paragraph F: 'tax avoidance by large digital platforms' (A) and 'access to vast data… to develop competing private-label products' (B)." },
+          ],
+        },
+        {
+          type: "short_answer",
+          questionRange: "Questions 35–40",
+          instructions: "Answer the questions below. Choose NO MORE THAN THREE WORDS from the passage for each answer.",
+          questions: [
+            { id: 35, before: "What percentage of all retail sales globally did e-commerce represent in 2023?", correct: "around 20 percent", explanation: "Paragraph A: 'representing around 20 percent of all retail sales worldwide.'" },
+            { id: 36, before: "What term describes the final stage of delivery from a distribution hub to the customer?", correct: "last-mile delivery", explanation: "Paragraph B: 'Last-mile delivery — the final leg from a distribution hub to the customer's door.'" },
+            { id: 37, before: "What feature of e-commerce is described as adding significantly to the environmental footprint, particularly in online fashion?", correct: "returns", explanation: "Paragraph C: 'Returns… add significantly to the environmental footprint.'" },
+            { id: 38, before: "What were Debenhams and the Arcadia Group examples of in the passage?", correct: "high street retailers", explanation: "Paragraph D: they are described as examples of 'Department stores and mid-market fashion chains' that collapsed — physical high street retailers." },
+            { id: 39, before: "What type of tax have several European countries introduced to target revenues of digital platforms?", correct: "digital services taxes", explanation: "Paragraph F: 'The digital services taxes introduced in several European countries.'" },
+            { id: 40, before: "Amazon's dual role as both marketplace facilitator and direct retailer is the subject of what type of scrutiny?", correct: "competition law", explanation: "Paragraph F: 'practices that have attracted competition law scrutiny in the European Union and United States.'" },
+          ],
+        },
+      ],
+    },
+  ],
+};

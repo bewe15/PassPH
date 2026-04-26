@@ -1,0 +1,171 @@
+import type { IELTSTest } from "./types";
+
+export const ieltsReading10: IELTSTest = {
+  id: "ielts-reading-10",
+  exam: "IELTS",
+  title: "IELTS Academic Reading — Test 10",
+  totalSeconds: 3600,
+  passages: [
+    {
+      number: 1,
+      title: "The Human Gut Microbiome",
+      paragraphs: [
+        { letter: "A", text: "The human gut harbours approximately 38 trillion microbial cells — a number roughly equal to the total count of human cells in the body — comprising thousands of bacterial species alongside viruses, fungi, and archaea. This community, collectively termed the gut microbiome, is now understood to perform functions far beyond simple digestion. Advances in DNA sequencing technology, particularly metagenomic sequencing that profiles entire microbial communities without culturing individual species, have enabled researchers since the 2000s to map the microbiome's composition and begin connecting variations in microbial populations to differences in health outcomes." },
+        { letter: "B", text: "The gut microbiome plays a fundamental role in training and calibrating the immune system. During early life, exposure to diverse microbial communities is essential for the development of immune tolerance — the ability to distinguish harmless substances from genuine threats. The hygiene hypothesis, first proposed by David Strachan in 1989, suggests that reduced childhood exposure to microbes in industrialised societies has contributed to rising rates of allergies, asthma, and autoimmune conditions. More recent formulations, termed the 'old friends' hypothesis, hold that the critical factor is not general microbial exposure but specifically co-evolution with particular parasites and microorganisms that shaped immune regulation over millennia." },
+        { letter: "C", text: "Gut bacteria produce a remarkable array of biologically active compounds. Short-chain fatty acids (SCFAs), produced when bacteria ferment dietary fibre, serve as the primary energy source for colonocytes — the cells lining the colon — and play roles in regulating inflammation and maintaining the integrity of the gut barrier. Certain bacteria synthesise vitamins, including B12 and K2, and modulate levels of neurotransmitter precursors including serotonin and dopamine. The gut-brain axis — a bidirectional communication network linking the enteric nervous system of the gut with the central nervous system — has emerged as a major research area, with animal studies suggesting gut bacteria influence anxiety, mood, and even cognition." },
+        { letter: "D", text: "The composition of the gut microbiome is shaped by a complex interplay of genetic, dietary, and environmental factors. Breastfeeding, vaginal versus caesarean birth, and antibiotic exposure in early childhood are among the factors most strongly associated with microbiome composition in infants. In adults, diet is the most powerful modifiable determinant: high-fibre, plant-rich diets support a more diverse microbiome, while highly processed diets are associated with reduced microbial diversity. Diversity itself appears to be a marker of microbiome health, though the mechanisms linking diversity to health outcomes remain an active area of investigation." },
+        { letter: "E", text: "The potential of the microbiome as a therapeutic target has generated enormous scientific and commercial interest. Faecal microbiota transplantation (FMT) — the transfer of stool from a healthy donor to a patient — has proven highly effective for recurrent Clostridioides difficile infection, a potentially life-threatening gut infection that can follow antibiotic treatment. FMT and more targeted probiotic interventions are under investigation for inflammatory bowel disease, obesity, type 2 diabetes, neurological conditions, and even cancer immunotherapy response. However, the field remains in an early stage: the specific mechanisms by which particular microbial changes affect health outcomes are not yet well understood, and most interventions beyond FMT for C. difficile remain experimental." },
+        { letter: "F", text: "Methodological challenges have complicated microbiome research. Human gut microbiome studies are predominantly observational and cross-sectional: they identify correlations between microbial composition and health status but cannot easily establish causation. Most interventional studies are small and short-term, and results have frequently failed to replicate across cohorts. The microbiome also varies substantially between individuals with similar health profiles, complicating the identification of universal 'healthy' compositions. Researchers are increasingly calling for larger, longitudinal studies with standardised methodologies, and for greater caution in translating preliminary findings into clinical or commercial recommendations." },
+        { letter: "G", text: "The commercial microbiome industry — encompassing probiotic supplements, microbiome testing services, and dietary products marketed on the basis of gut health — has grown rapidly and largely outpaced the scientific evidence. Most commercially available probiotic supplements contain bacterial strains selected decades ago and may not survive transit to the colon or colonise effectively once there. Direct-to-consumer microbiome testing services provide personalised reports whose clinical utility remains unproven. Regulatory frameworks have been slow to adapt: probiotics are generally classified as food supplements rather than medicines, and the health claims permitted for them vary widely across jurisdictions." },
+      ],
+      sections: [
+        {
+          type: "match_headings",
+          questionRange: "Questions 1–6",
+          instructions: "The reading passage has seven paragraphs, A–G. Choose the correct heading for paragraphs B–G from the list of headings below.",
+          headings: [
+            { label: "i",    text: "How gut bacteria produce compounds that affect the body and brain" },
+            { label: "ii",   text: "The microbiome's role in developing immune responses" },
+            { label: "iii",  text: "What shapes microbiome composition across life stages" },
+            { label: "iv",   text: "Treatment potential and the current limits of evidence" },
+            { label: "v",    text: "Problems with research methods and reproducibility" },
+            { label: "vi",   text: "The commercial sector and the gap with scientific knowledge" },
+            { label: "vii",  text: "An introduction to the microbiome and how it is studied" },
+            { label: "viii", text: "The link between gut bacteria and cancer prevention" },
+            { label: "ix",   text: "Why antibiotics destroy the microbiome permanently" },
+          ],
+          questions: [
+            { id: 1, paragraph: "B", correct: "ii",   explanation: "Paragraph B discusses immune training, the hygiene hypothesis, and the 'old friends' hypothesis." },
+            { id: 2, paragraph: "C", correct: "i",    explanation: "Paragraph C covers SCFAs, vitamins, neurotransmitter precursors, and the gut-brain axis." },
+            { id: 3, paragraph: "D", correct: "iii",  explanation: "Paragraph D explains how birth method, breastfeeding, antibiotics, and diet shape microbiome composition." },
+            { id: 4, paragraph: "E", correct: "iv",   explanation: "Paragraph E covers FMT, probiotic interventions, and notes that most treatments beyond C. difficile remain experimental." },
+            { id: 5, paragraph: "F", correct: "v",    explanation: "Paragraph F addresses observational study limitations, poor replication, and calls for standardised methods." },
+            { id: 6, paragraph: "G", correct: "vi",   explanation: "Paragraph G describes the commercial microbiome industry's growth outpacing scientific evidence." },
+          ],
+        },
+        {
+          type: "tfng",
+          questionRange: "Questions 7–10",
+          instructions: "Do the following statements agree with the information given in the reading passage? Write TRUE, FALSE, or NOT GIVEN.",
+          questions: [
+            { id: 7,  statement: "The number of microbial cells in the human gut is approximately equal to the number of human cells in the body.", correct: "True", explanation: "Paragraph A: 'approximately 38 trillion microbial cells — a number roughly equal to the total count of human cells in the body.'" },
+            { id: 8,  statement: "David Strachan first proposed the hygiene hypothesis in 1989.", correct: "True", explanation: "Paragraph B: 'The hygiene hypothesis, first proposed by David Strachan in 1989.'" },
+            { id: 9,  statement: "FMT has been proven effective for treating type 2 diabetes.", correct: "Not Given", explanation: "Paragraph E lists type 2 diabetes as an area of investigation but does not say it has been proven effective." },
+            { id: 10, statement: "Most probiotic supplements contain recently discovered bacterial strains.", correct: "False", explanation: "Paragraph G: 'Most commercially available probiotic supplements contain bacterial strains selected decades ago.'" },
+          ],
+        },
+        {
+          type: "sentence_completion",
+          questionRange: "Questions 11–13",
+          instructions: "Complete the sentences below. Choose NO MORE THAN TWO WORDS from the passage for each answer.",
+          questions: [
+            { id: 11, before: "Short-chain fatty acids serve as the primary energy source for ", after: ", the cells lining the colon.", correct: "colonocytes", explanation: "Paragraph C: 'serve as the primary energy source for colonocytes — the cells lining the colon.'" },
+            { id: 12, before: "FMT involves transferring stool from a healthy ", after: " to a patient suffering from a gut infection.", correct: "donor", explanation: "Paragraph E: 'transfer of stool from a healthy donor to a patient.'" },
+            { id: 13, before: "High-fibre, plant-rich diets are linked to greater ", after: " in the gut microbiome.", correct: "microbial diversity", explanation: "Paragraph D: 'high-fibre, plant-rich diets support a more diverse microbiome' — greater microbial diversity." },
+          ],
+        },
+      ],
+    },
+    {
+      number: 2,
+      title: "Carbon Capture and Storage: Technology, Promise, and Controversy",
+      paragraphs: [
+        { letter: "A", text: "Carbon capture and storage (CCS) refers to a group of technologies that separate carbon dioxide from the exhaust gases of industrial processes or power plants, compress it, and inject it into geological formations for permanent storage. The technology has been demonstrated at commercial scale since the 1990s — the Sleipner project in the Norwegian North Sea has been injecting CO₂ into a saline aquifer since 1996 — but deployment has remained far below the levels envisaged in climate scenarios compatible with the Paris Agreement's temperature targets." },
+        { letter: "B", text: "CCS can be applied at two distinct points in the carbon cycle. In post-combustion capture, CO₂ is separated from flue gases after fossil fuels have been burned, using chemical solvents such as amines. In pre-combustion capture, fuel is converted to a mixture of hydrogen and CO₂ before burning, and the CO₂ is separated and stored while the hydrogen is used as a clean fuel. A third variant, oxyfuel combustion, burns fuel in pure oxygen rather than air, producing a concentrated CO₂ stream that requires less processing. Each approach carries different capital costs, energy penalties, and suitability for different industrial contexts." },
+        { letter: "C", text: "The energy penalty — the additional energy required to capture, compress, and inject CO₂ — is one of CCS's principal economic challenges. Post-combustion capture at a typical coal power plant reduces net electricity output by approximately 15–25 percent, effectively requiring more fuel to produce the same electricity. This efficiency loss significantly increases the cost of CCS-equipped generation relative to unabated fossil fuel or renewable alternatives. Costs have been declining with technological learning, but CCS remains substantially more expensive than most renewable energy sources without significant carbon pricing or policy support." },
+        { letter: "D", text: "Direct air capture (DAC) — a related but distinct approach that captures CO₂ directly from the ambient atmosphere rather than from a point source — has attracted growing investment. Because CO₂ concentrations in the atmosphere are far lower than in industrial flue gases (around 0.04 percent versus 10–15 percent), DAC is significantly more energy-intensive and expensive per tonne of CO₂ captured. Current costs range from US$300 to US$1,000 per tonne, compared with social cost of carbon estimates of US$50–200 per tonne in most models. Proponents argue that DAC is essential for removing historical emissions and that costs will fall dramatically with scale." },
+        { letter: "E", text: "CCS is controversial among climate advocates. Supporters, including the International Energy Agency and the Intergovernmental Panel on Climate Change, argue it is an essential tool for decarbonising industrial sectors — steel, cement, chemicals — where emissions cannot be eliminated by electrification. They also point to its role in bioenergy with carbon capture and storage (BECCS), which combines biomass combustion with CCS to achieve negative emissions. Critics argue that CCS provides cover for continued fossil fuel investment, delays the transition to renewables, and has a poor track record of delivering promised capacity reductions on schedule and budget." },
+        { letter: "F", text: "The geological storage of CO₂ presents its own challenges. Suitable formations — deep saline aquifers and depleted oil and gas reservoirs — must have sufficient capacity, suitable geology to prevent leakage, and proximity to CO₂ sources. Monitoring to ensure stored CO₂ remains in place is technically demanding and must continue for potentially thousands of years. The legal and regulatory frameworks for long-term CO₂ storage liability — who is responsible if stored CO₂ leaks after a company has ceased operations — remain incompletely resolved in most jurisdictions." },
+      ],
+      sections: [
+        {
+          type: "match_info",
+          questionRange: "Questions 14–19",
+          instructions: "The reading passage has six paragraphs, A–F. Which paragraph contains the following information? Write the correct letter A–F.",
+          paragraphLetters: ["A", "B", "C", "D", "E", "F"],
+          questions: [
+            { id: 14, text: "A comparison of CO₂ concentration levels in industrial exhaust versus the open atmosphere", correct: "D", explanation: "Paragraph D: 'around 0.04 percent versus 10–15 percent' — ambient air versus flue gases." },
+            { id: 15, text: "A description of a CCS project that has been operating since the 1990s", correct: "A", explanation: "Paragraph A: 'the Sleipner project… has been injecting CO₂ into a saline aquifer since 1996.'" },
+            { id: 16, text: "An explanation of why CCS increases fuel consumption at power plants", correct: "C", explanation: "Paragraph C: the energy penalty 'reduces net electricity output by approximately 15–25 percent, effectively requiring more fuel to produce the same electricity.'" },
+            { id: 17, text: "An argument that CCS encourages prolonged dependence on fossil fuels", correct: "E", explanation: "Paragraph E: critics argue CCS 'provides cover for continued fossil fuel investment, delays the transition to renewables.'" },
+            { id: 18, text: "A description of burning fuel in pure oxygen as an alternative capture approach", correct: "B", explanation: "Paragraph B: 'oxyfuel combustion, burns fuel in pure oxygen rather than air, producing a concentrated CO₂ stream.'" },
+            { id: 19, text: "Uncertainty about who bears responsibility for CO₂ leakage over very long time periods", correct: "F", explanation: "Paragraph F: 'legal and regulatory frameworks for long-term CO₂ storage liability… remain incompletely resolved.'" },
+          ],
+        },
+        {
+          type: "mc_single",
+          questionRange: "Questions 20–23",
+          instructions: "Choose the correct letter, A, B, C, or D.",
+          questions: [
+            { id: 20, stem: "What is BECCS?", options: [{ label: "A", text: "A method of capturing CO₂ from the ocean" }, { label: "B", text: "A combination of biomass combustion and carbon capture to achieve negative emissions" }, { label: "C", text: "A new type of solar energy storage" }, { label: "D", text: "A pre-combustion capture method used in cement production" }], correct: "B", explanation: "Paragraph E: 'bioenergy with carbon capture and storage (BECCS), which combines biomass combustion with CCS to achieve negative emissions.'" },
+            { id: 21, stem: "Why is direct air capture more expensive than point-source CCS?", options: [{ label: "A", text: "It requires specialised chemical solvents not yet commercially available." }, { label: "B", text: "CO₂ in the atmosphere is far less concentrated than in industrial emissions." }, { label: "C", text: "It must be located near industrial facilities to be economical." }, { label: "D", text: "It produces CO₂ that is too impure for geological storage." }], correct: "B", explanation: "Paragraph D: 'CO₂ concentrations in the atmosphere are far lower than in industrial flue gases (around 0.04 percent versus 10–15 percent)' making DAC more energy-intensive." },
+            { id: 22, stem: "According to the passage, which sectors are CCS supporters most concerned about decarbonising?", options: [{ label: "A", text: "Transport and aviation" }, { label: "B", text: "Electricity generation and residential heating" }, { label: "C", text: "Steel, cement, and chemicals" }, { label: "D", text: "Agriculture and food production" }], correct: "C", explanation: "Paragraph E: CCS is 'essential for decarbonising industrial sectors — steel, cement, chemicals — where emissions cannot be eliminated by electrification.'" },
+            { id: 23, stem: "What is identified as a challenge for long-term geological CO₂ storage?", options: [{ label: "A", text: "Stored CO₂ tends to escape within a few years." }, { label: "B", text: "Monitoring must be maintained for a very long period." }, { label: "C", text: "There are no suitable geological formations near industrial centres." }, { label: "D", text: "CO₂ reacts with rock to produce toxic compounds." }], correct: "B", explanation: "Paragraph F: 'Monitoring to ensure stored CO₂ remains in place is technically demanding and must continue for potentially thousands of years.'" },
+          ],
+        },
+        {
+          type: "summary_completion",
+          questionRange: "Questions 24–26",
+          instructions: "Complete the summary below. Choose NO MORE THAN TWO WORDS from the passage for each answer.",
+          summaryTitle: "The Economic Challenge of CCS",
+          summaryText: "One of the main obstacles to widespread CCS adoption is the {{24}} — the extra energy needed to separate, compress, and inject CO₂. At a coal plant, this can reduce electricity output by up to a quarter. As a result, CCS increases generation {{25}} significantly compared with both renewable energy and unabated fossil fuels. Without substantial {{26}} or dedicated policy support, CCS-equipped plants struggle to compete economically.",
+          wordBank: ["energy penalty", "costs", "carbon pricing", "subsidies", "efficiency", "capacity", "regulation", "investment"],
+          questions: [
+            { id: 24, blankId: 24, correct: "energy penalty", explanation: "Paragraph C: 'The energy penalty — the additional energy required to capture, compress, and inject CO₂.'" },
+            { id: 25, blankId: 25, correct: "costs", explanation: "Paragraph C: 'This efficiency loss significantly increases the cost of CCS-equipped generation.'" },
+            { id: 26, blankId: 26, correct: "carbon pricing", explanation: "Paragraph C: CCS remains expensive 'without significant carbon pricing or policy support.'" },
+          ],
+        },
+      ],
+    },
+    {
+      number: 3,
+      title: "The Gig Economy: Flexibility, Precarity, and Labour Rights",
+      paragraphs: [
+        { letter: "A", text: "The gig economy — encompassing work arranged through digital platforms that connect customers with independent contractors for discrete tasks or services — has grown rapidly since the proliferation of smartphones in the early 2010s. Companies such as Uber, Lyft, DoorDash, TaskRabbit, and Upwork have built multi-billion-dollar businesses on a model in which workers are classified as self-employed contractors rather than employees. This classification has profound implications for workers' rights, social protections, and the cost structures of the companies involved." },
+        { letter: "B", text: "Proponents of the gig economy model argue that it offers genuine benefits to workers, particularly those who value flexibility above the stability of traditional employment. Survey data from platform companies consistently show that many gig workers — especially those who treat platform work as supplementary income — report high satisfaction with their working arrangements. The model also provides access to economic participation for individuals who face barriers to conventional employment, including those with caregiving responsibilities, disability-related constraints, or irregular availability." },
+        { letter: "C", text: "Critics point to a different picture. Research examining the earnings of gig workers accounting for vehicle depreciation, fuel, insurance, and the absence of employer contributions to social insurance reveals that effective hourly wages are frequently below the statutory minimum wage in many jurisdictions. Because gig workers are classified as self-employed, they typically bear the full cost of social contributions, receive no sick pay, holiday entitlement, or pension contributions, and have no protection against unfair dismissal. The asymmetry of information and bargaining power between individual workers and large platform companies further disadvantages workers in any dispute." },
+        { letter: "D", text: "Legal challenges to the contractor classification model have proliferated. In 2021, the UK Supreme Court ruled that Uber drivers were 'workers' — a category between employees and self-employed contractors — entitled to minimum wage guarantees, holiday pay, and pension auto-enrolment. California's Proposition 22 ballot initiative, passed in 2020, allowed rideshare and delivery companies to maintain contractor classification in exchange for limited benefits. The European Commission proposed a Directive in 2021 that would create a rebuttable presumption of employment for platform workers, though it faced significant lobbying resistance from platform companies." },
+        { letter: "E", text: "The gig economy's effects on labour markets more broadly are contested. Some economists argue that platforms have improved labour market efficiency by better matching workers with demand and enabling more hours to be worked by people who might otherwise be excluded. Others contend that the spread of the gig model exerts downward pressure on wages and working conditions across the economy — a process termed 'fissuring' by labour economist David Weil — as traditional employers adopt similar flexibility-seeking structures to remain competitive, eroding standards in sectors beyond platform work itself." },
+        { letter: "F", text: "The future of gig work depends partly on how regulatory frameworks evolve and partly on technological change. Autonomous vehicles could dramatically reduce the demand for ride-hailing drivers, eliminating one of the largest categories of gig work. Artificial intelligence tools are beginning to automate tasks currently performed by freelancers on platforms such as Upwork, from graphic design to basic coding. Meanwhile, cooperative platform models — in which workers own and govern the platform rather than simply supplying labour to an investor-owned company — have emerged as an alternative organisational form, though they have not yet achieved the scale of conventional platform companies." },
+      ],
+      sections: [
+        {
+          type: "ynng",
+          questionRange: "Questions 27–31",
+          instructions: "Do the following statements agree with the claims of the writer in the reading passage? Write YES, NO, or NOT GIVEN.",
+          questions: [
+            { id: 27, statement: "Many gig workers who use platforms as a secondary income source report being satisfied with the arrangement.", correct: "Yes", explanation: "Paragraph B: 'many gig workers — especially those who treat platform work as supplementary income — report high satisfaction.'" },
+            { id: 28, statement: "Gig workers in most countries earn more per hour than workers in traditional employment.", correct: "Not Given", explanation: "The passage discusses effective wages being below minimum wage but does not compare gig workers with all traditional employees." },
+            { id: 29, statement: "The UK Supreme Court ruled in 2021 that Uber drivers were full employees entitled to all employment rights.", correct: "No", explanation: "Paragraph D: the court ruled drivers were 'workers' — a category between employees and self-employed — not full employees." },
+            { id: 30, statement: "David Weil uses the term 'fissuring' to describe how the gig model affects wages across the broader economy.", correct: "Yes", explanation: "Paragraph E: 'a process termed \"fissuring\" by labour economist David Weil' describes downward pressure on wages beyond platform work." },
+            { id: 31, statement: "The writer believes cooperative platform models will eventually replace conventional platform companies.", correct: "Not Given", explanation: "Paragraph F mentions cooperative models as an alternative but makes no prediction about them replacing conventional companies." },
+          ],
+        },
+        {
+          type: "mc_multiple",
+          questionRange: "Questions 32–34",
+          instructions: "Choose TWO letters, A–E.",
+          questions: [
+            { id: 32, stem: "Which TWO benefits of gig work are described in the passage?", options: [{ label: "A", text: "Higher wages than traditional employment" }, { label: "B", text: "Flexibility in working arrangements" }, { label: "C", text: "Full social insurance contributions paid by the platform" }, { label: "D", text: "Access to work for people with irregular availability" }, { label: "E", text: "Guaranteed minimum hours each week" }], pickCount: 2, correct: ["B", "D"], explanation: "Paragraph B: flexibility (B) and 'access to economic participation for individuals… with caregiving responsibilities… or irregular availability' (D)." },
+            { id: 33, stem: "Which TWO disadvantages for gig workers are identified in the passage?", options: [{ label: "A", text: "No sick pay or holiday entitlement" }, { label: "B", text: "No access to digital platforms for finding work" }, { label: "C", text: "Bearing the full cost of social contributions" }, { label: "D", text: "Being required to work unsociable hours" }, { label: "E", text: "Inability to work for more than one platform at a time" }], pickCount: 2, correct: ["A", "C"], explanation: "Paragraph C: gig workers 'receive no sick pay, holiday entitlement' (A) and 'bear the full cost of social contributions' (C)." },
+            { id: 34, stem: "Which TWO technological changes are identified in the passage as potential threats to gig work?", options: [{ label: "A", text: "Blockchain-based payment systems" }, { label: "B", text: "Autonomous vehicles" }, { label: "C", text: "AI tools that automate freelance tasks" }, { label: "D", text: "Improved internet connectivity" }, { label: "E", text: "Cloud-based accounting software" }], pickCount: 2, correct: ["B", "C"], explanation: "Paragraph F: 'Autonomous vehicles could dramatically reduce demand for ride-hailing drivers' (B) and 'Artificial intelligence tools are beginning to automate tasks currently performed by freelancers' (C)." },
+          ],
+        },
+        {
+          type: "short_answer",
+          questionRange: "Questions 35–40",
+          instructions: "Answer the questions below. Choose NO MORE THAN THREE WORDS from the passage for each answer.",
+          questions: [
+            { id: 35, before: "How are gig workers typically classified in employment law?", correct: "self-employed contractors", explanation: "Paragraph A: 'workers are classified as self-employed contractors rather than employees.'" },
+            { id: 36, before: "What three costs do critics say must be accounted for when calculating gig workers' effective wages?", correct: "vehicle depreciation", explanation: "Paragraph C: 'vehicle depreciation, fuel, insurance' are the costs mentioned that reduce effective wages." },
+            { id: 37, before: "What is the name of the California ballot initiative that allowed platform companies to keep contractor classification?", correct: "Proposition 22", explanation: "Paragraph D: 'California's Proposition 22 ballot initiative, passed in 2020.'" },
+            { id: 38, before: "What type of platform model involves workers owning and governing the platform themselves?", correct: "cooperative platform", explanation: "Paragraph F: 'cooperative platform models — in which workers own and govern the platform.'" },
+            { id: 39, before: "What did the European Commission propose in 2021 regarding platform workers?", correct: "rebuttable presumption", explanation: "Paragraph D: the Commission proposed 'a rebuttable presumption of employment for platform workers.'" },
+            { id: 40, before: "Which economist coined the term used to describe how gig working practices spread downward pressure across the wider labour market?", correct: "David Weil", explanation: "Paragraph E: 'termed \"fissuring\" by labour economist David Weil.'" },
+          ],
+        },
+      ],
+    },
+  ],
+};

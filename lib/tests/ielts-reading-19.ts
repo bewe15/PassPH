@@ -1,0 +1,171 @@
+import type { IELTSTest } from "./types";
+
+export const ieltsReading19: IELTSTest = {
+  id: "ielts-reading-19",
+  exam: "IELTS",
+  title: "IELTS Academic Reading — Test 19",
+  totalSeconds: 3600,
+  passages: [
+    {
+      number: 1,
+      title: "Global Water Scarcity",
+      paragraphs: [
+        { letter: "A", text: "Water — an apparently abundant resource covering approximately 71 percent of the Earth's surface — is paradoxically becoming one of the most critical constraints on human development. Of all water on Earth, 97.5 percent is saline ocean water; of the remaining 2.5 percent freshwater, approximately 68.9 percent is locked in glaciers and permanent ice, 30.8 percent in groundwater, and only about 0.3 percent is accessible in rivers and lakes. Global freshwater withdrawals have tripled since 1950, driven by population growth, agricultural expansion, industrialisation, and rising consumption patterns. An estimated 2.3 billion people live in water-stressed countries, and over half the world's population faces severe water scarcity for at least one month per year." },
+        { letter: "B", text: "Agriculture accounts for approximately 70 percent of global freshwater withdrawals, and irrigation is the most significant driver. Much of the world's food production is sustained by groundwater extracted from underground aquifers, many of which are being depleted far faster than they are recharged by rainfall — a process termed groundwater mining. The Ogallala Aquifer beneath the US Great Plains, which took thousands of years to fill, is being drawn down at rates that may exhaust it within decades in some areas. The Indus Basin, North China Plain, and Mekong Delta — breadbaskets of Asia — all depend on groundwater that is declining at alarming rates, raising profound questions about the long-term sustainability of current agricultural systems." },
+        { letter: "C", text: "Climate change is reshaping global water availability in complex ways. Warming increases evaporation from water bodies and soil, intensifying droughts in already water-stressed regions. Changes in precipitation patterns are altering the distribution and timing of rainfall, making monsoon systems less predictable and reducing snowpack and glacier storage that many rivers depend on for summer flows. Higher-latitude regions may see increased rainfall, while sub-tropical regions including the Mediterranean, southern Africa, and southwest Australia are projected to experience significant drying. Critically, water scarcity is likely to intensify in many of the regions already most affected, exacerbating existing inequities." },
+        { letter: "D", text: "Virtual water — the concept developed by John Allan in the 1990s — refers to the water embedded in the production of traded goods. A kilogram of beef requires approximately 15,000 litres of water to produce; a kilogram of wheat, around 1,500 litres. When water-scarce countries import food rather than growing it domestically, they are effectively importing the water that would have been required to produce that food — transferring the water burden to exporting countries. Global trade in virtual water represents one of the world's most significant water transfers and is increasingly viewed as a mechanism through which water-scarce regions can sustain food security without exhausting local water resources." },
+        { letter: "E", text: "Technological responses to water scarcity span a wide range. Desalination — the removal of salt from seawater or brackish water — has expanded rapidly and now provides water for hundreds of millions of people, with Saudi Arabia, the United Arab Emirates, and Israel heavily dependent on desalinated water. However, conventional reverse-osmosis desalination is highly energy-intensive, and large-scale deployment raises environmental concerns about brine disposal and impacts on marine ecosystems. Drip irrigation — delivering water directly to plant root zones — can reduce agricultural water consumption by 30–70 percent compared with flood irrigation, but requires upfront capital investment that many smallholder farmers cannot afford. Atmospheric water generation, the extraction of moisture from air, remains too energy-intensive and low-yield for large-scale application." },
+        { letter: "F", text: "Water governance — the rules, institutions, and processes that determine who gets water, in what quantities, and at what cost — is as important as physical availability. In many countries, water is priced far below its true economic and ecological cost, providing no incentive for efficient use and enabling wasteful agricultural practices to persist. Water rights systems — particularly in the western United States and parts of Australia — allocate access based on historical entitlements that may no longer reflect either ecological needs or social priorities. Transboundary water conflicts — disputes over shared rivers, lakes, and aquifers that cross national borders — already affect dozens of river basins worldwide and are expected to intensify as scarcity increases." },
+        { letter: "G", text: "The human right to water — recognised by the UN General Assembly in 2010 — establishes a framework for ensuring that all people have access to sufficient, safe, affordable, and physically accessible water. Yet an estimated 2 billion people lack access to safely managed drinking water and 3.6 billion lack access to safely managed sanitation. Progress toward these goals is unevenly distributed, with the fastest improvements occurring in urban areas of rapidly growing middle-income countries and the slowest in rural areas of least-developed countries. Investment in water and sanitation infrastructure — particularly in rural areas and informal urban settlements — is consistently identified by development economists as among the highest-return investments available to governments." },
+      ],
+      sections: [
+        {
+          type: "match_headings",
+          questionRange: "Questions 1–6",
+          instructions: "The reading passage has seven paragraphs, A–G. Choose the correct heading for paragraphs B–G from the list of headings below.",
+          headings: [
+            { label: "i",    text: "How trade can help water-scarce regions meet their food needs" },
+            { label: "ii",   text: "The agricultural and industrial reasons for groundwater depletion" },
+            { label: "iii",  text: "How climate change is altering freshwater availability around the world" },
+            { label: "iv",   text: "Technologies that can increase water supply or reduce consumption" },
+            { label: "v",    text: "Rules and policies that determine access to water resources" },
+            { label: "vi",   text: "The human right to water and remaining gaps in access" },
+            { label: "vii",  text: "Why freshwater is scarcer than the Earth's water coverage suggests" },
+            { label: "viii", text: "How ocean warming is reducing fish populations in river systems" },
+            { label: "ix",   text: "The economic benefits of investing in water purification technology" },
+          ],
+          questions: [
+            { id: 1, paragraph: "B", correct: "ii",   explanation: "Paragraph B covers agriculture's 70 percent share of withdrawals and groundwater mining of aquifers." },
+            { id: 2, paragraph: "C", correct: "iii",  explanation: "Paragraph C explains how warming, evaporation, and changed precipitation alter global water availability." },
+            { id: 3, paragraph: "D", correct: "i",    explanation: "Paragraph D explains the virtual water concept and how food trade transfers water burdens between regions." },
+            { id: 4, paragraph: "E", correct: "iv",   explanation: "Paragraph E covers desalination, drip irrigation, and atmospheric water generation as technical responses." },
+            { id: 5, paragraph: "F", correct: "v",    explanation: "Paragraph F covers water pricing, rights systems, and transboundary governance." },
+            { id: 6, paragraph: "G", correct: "vi",   explanation: "Paragraph G discusses the UN right to water and remaining access gaps." },
+          ],
+        },
+        {
+          type: "tfng",
+          questionRange: "Questions 7–10",
+          instructions: "Do the following statements agree with the information given in the reading passage? Write TRUE, FALSE, or NOT GIVEN.",
+          questions: [
+            { id: 7,  statement: "Only about 0.3 percent of all Earth's freshwater is accessible in rivers and lakes.", correct: "True", explanation: "Paragraph A: 'only about 0.3 percent is accessible in rivers and lakes.'" },
+            { id: 8,  statement: "John Allan developed the concept of virtual water in the 1990s.", correct: "True", explanation: "Paragraph D: 'The concept developed by John Allan in the 1990s.'" },
+            { id: 9,  statement: "Desalination is widely regarded as an environmentally benign solution to water scarcity.", correct: "False", explanation: "Paragraph E: 'large-scale deployment raises environmental concerns about brine disposal and impacts on marine ecosystems.'" },
+            { id: 10, statement: "The UN General Assembly recognised the human right to water in 2010.", correct: "True", explanation: "Paragraph G: 'The human right to water — recognised by the UN General Assembly in 2010.'" },
+          ],
+        },
+        {
+          type: "sentence_completion",
+          questionRange: "Questions 11–13",
+          instructions: "Complete the sentences below. Choose NO MORE THAN TWO WORDS from the passage for each answer.",
+          questions: [
+            { id: 11, before: "The unsustainable extraction of underground water resources at rates faster than recharge is called ", after: ".", correct: "groundwater mining", explanation: "Paragraph B: 'depleted far faster than they are recharged by rainfall — a process termed groundwater mining.'" },
+            { id: 12, before: "Compared with flood irrigation, drip irrigation can reduce water use by between 30 and ", after: " percent.", correct: "70", explanation: "Paragraph E: 'can reduce agricultural water consumption by 30–70 percent compared with flood irrigation.'" },
+            { id: 13, before: "Disputes over shared rivers and aquifers that cross national borders are called ", after: " conflicts.", correct: "transboundary water", explanation: "Paragraph F: 'Transboundary water conflicts — disputes over shared rivers, lakes, and aquifers that cross national borders.'" },
+          ],
+        },
+      ],
+    },
+    {
+      number: 2,
+      title: "The Global Mental Health Crisis",
+      paragraphs: [
+        { letter: "A", text: "Mental health disorders — conditions affecting mood, thought, perception, and behaviour — are among the leading causes of disability worldwide. The Global Burden of Disease study estimates that mental disorders account for approximately 13 percent of all disability-adjusted life years (DALYs), a measure combining years of life lost to premature death and years lived with disability. Depression and anxiety disorders collectively affect over 970 million people globally and are the leading causes of years lived with disability. Despite this enormous burden, mental health receives a disproportionately small share of health budgets: globally, governments spend on average just over 2 percent of health budgets on mental health, and in low-income countries this may be less than 1 percent." },
+        { letter: "B", text: "The treatment gap — the difference between the prevalence of mental health conditions and the proportion of those affected who receive evidence-based treatment — is enormous. In high-income countries, approximately 35–50 percent of people with serious mental disorders receive no treatment; in low- and middle-income countries, this proportion rises to 75–95 percent. Barriers to treatment include stigma — which deters people from seeking help and can lead to discrimination by employers, family members, and healthcare providers — shortage of trained mental health professionals, costs, geographic inaccessibility of services, and the inadequacy of primary care systems to identify and manage mental health conditions." },
+        { letter: "C", text: "The COVID-19 pandemic produced a substantial increase in the global prevalence of mental health conditions. A 2021 analysis published in The Lancet estimated that the pandemic led to an additional 53 million cases of major depressive disorder and 76 million cases of anxiety disorders in 2020 alone, with women and younger age groups disproportionately affected. The mechanisms included direct psychological impacts of infection and illness, bereavement, social isolation during lockdowns, economic distress, and disruption of education and employment. Crucially, the pandemic also severely disrupted mental health services in most countries, worsening the treatment gap precisely when demand increased." },
+        { letter: "D", text: "Digital mental health — the use of digital technologies including apps, online platforms, and AI-driven chatbots to deliver mental health support — has attracted significant attention as a potentially scalable approach to closing the treatment gap. A growing evidence base supports the efficacy of internet-delivered cognitive behavioural therapy (iCBT) for depression and anxiety, with effect sizes comparable to face-to-face therapy in some trials. Smartphone applications for mood tracking, mindfulness, and guided self-help have reached tens of millions of users. However, the quality and evidence base of commercial mental health apps is highly variable, most users disengage rapidly, and there are concerns that digital tools may not adequately address the needs of the most severely affected." },
+        { letter: "E", text: "The social and structural determinants of mental health — the conditions in which people live, work, and age — deserve as much attention as clinical interventions. Income inequality, unemployment, housing insecurity, exposure to violence, childhood adversity, and social isolation are among the strongest predictors of mental health outcomes across populations. Public health approaches that address these upstream determinants — including social protection programmes, anti-poverty interventions, and school-based social and emotional learning curricula — may have larger impacts on population mental health than expanding clinical services alone, though both are needed. The integration of mental health into poverty reduction, education, and social protection programmes represents an important but underexplored avenue." },
+        { letter: "F", text: "Stigma surrounding mental illness remains a significant barrier to help-seeking and a driver of social exclusion worldwide. Anti-stigma campaigns — including mental health literacy programmes in schools, celebrity disclosure of personal mental health experiences, and social contact-based approaches in which people with lived experience of mental illness interact with target audiences — have shown measurable effects on knowledge, attitudes, and, to a lesser extent, help-seeking behaviour. However, sustained changes in structural stigma — discrimination embedded in laws, policies, and institutional practices — require policy change alongside public attitude shifts. The UN Convention on the Rights of Persons with Disabilities, which includes mental health conditions, provides a framework for the rights-based approach to mental health that is gaining ground internationally." },
+      ],
+      sections: [
+        {
+          type: "match_info",
+          questionRange: "Questions 14–19",
+          instructions: "The reading passage has six paragraphs, A–F. Which paragraph contains the following information? Write the correct letter A–F.",
+          paragraphLetters: ["A", "B", "C", "D", "E", "F"],
+          questions: [
+            { id: 14, text: "Evidence that evidence-based digital therapy can be as effective as in-person treatment for some conditions", correct: "D", explanation: "Paragraph D: 'effect sizes comparable to face-to-face therapy in some trials' for iCBT." },
+            { id: 15, text: "Statistics on the proportion of people with severe mental disorders who receive no treatment in low-income countries", correct: "B", explanation: "Paragraph B: 'in low- and middle-income countries, this proportion rises to 75–95 percent.'" },
+            { id: 16, text: "A description of a UN legal instrument relevant to the rights of people with mental health conditions", correct: "F", explanation: "Paragraph F: 'The UN Convention on the Rights of Persons with Disabilities, which includes mental health conditions.'" },
+            { id: 17, text: "The percentage of global disability burden attributed to mental health disorders", correct: "A", explanation: "Paragraph A: 'mental disorders account for approximately 13 percent of all disability-adjusted life years.'" },
+            { id: 18, text: "An argument that reducing poverty and improving housing may benefit population mental health as much as clinical care", correct: "E", explanation: "Paragraph E: 'Public health approaches that address these upstream determinants… may have larger impacts on population mental health than expanding clinical services alone.'" },
+            { id: 19, text: "Figures estimating how many additional cases of depression and anxiety the COVID-19 pandemic caused in 2020", correct: "C", explanation: "Paragraph C: 'an additional 53 million cases of major depressive disorder and 76 million cases of anxiety disorders in 2020 alone.'" },
+          ],
+        },
+        {
+          type: "mc_single",
+          questionRange: "Questions 20–23",
+          instructions: "Choose the correct letter, A, B, C, or D.",
+          questions: [
+            { id: 20, stem: "What does the 'treatment gap' refer to in the context of mental health?", options: [{ label: "A", text: "The difference between what patients pay and what treatment actually costs" }, { label: "B", text: "The gap between developed and developing countries in mental health funding" }, { label: "C", text: "The difference between how many people have mental disorders and how many receive treatment" }, { label: "D", text: "The period of time between developing a mental disorder and receiving a diagnosis" }], correct: "C", explanation: "Paragraph B: 'The treatment gap — the difference between the prevalence of mental health conditions and the proportion of those affected who receive evidence-based treatment.'" },
+            { id: 21, stem: "According to the passage, which groups were disproportionately affected by increased mental health conditions during the pandemic?", options: [{ label: "A", text: "Healthcare workers and the elderly" }, { label: "B", text: "Women and younger age groups" }, { label: "C", text: "People in low-income countries" }, { label: "D", text: "Men and people with pre-existing conditions" }], correct: "B", explanation: "Paragraph C: 'women and younger age groups disproportionately affected.'" },
+            { id: 22, stem: "What does the passage identify as a limitation of smartphone mental health apps?", options: [{ label: "A", text: "They are too expensive for most users to access" }, { label: "B", text: "They can only be used by people with professional diagnoses" }, { label: "C", text: "Most users disengage rapidly from them" }, { label: "D", text: "They have been banned in many countries for privacy reasons" }], correct: "C", explanation: "Paragraph D: 'most users disengage rapidly' is identified as a limitation." },
+            { id: 23, stem: "What approach to anti-stigma involves people with lived experience of mental illness meeting with target audiences?", options: [{ label: "A", text: "Media campaigns" }, { label: "B", text: "School-based curricula" }, { label: "C", text: "Social contact-based approaches" }, { label: "D", text: "Policy reform programmes" }], correct: "C", explanation: "Paragraph F: 'social contact-based approaches in which people with lived experience of mental illness interact with target audiences.'" },
+          ],
+        },
+        {
+          type: "summary_completion",
+          questionRange: "Questions 24–26",
+          instructions: "Complete the summary below. Choose NO MORE THAN TWO WORDS from the passage for each answer.",
+          summaryTitle: "Barriers to Mental Health Treatment",
+          summaryText: "Many people with mental health conditions do not receive treatment, creating a large {{24}} worldwide. One important barrier is {{25}}, which can discourage people from seeking help and lead to discrimination in employment and social settings. Geographic {{26}} of specialist services and a shortage of trained mental health professionals are additional obstacles, particularly in lower-income countries where the proportion of untreated cases can reach 95 percent.",
+          wordBank: ["treatment gap", "stigma", "inaccessibility", "funding", "awareness", "diagnosis"],
+          questions: [
+            { id: 24, blankId: 24, correct: "treatment gap", explanation: "Paragraph B: 'The treatment gap — the difference between the prevalence of mental health conditions and the proportion… who receive evidence-based treatment.'" },
+            { id: 25, blankId: 25, correct: "stigma", explanation: "Paragraph B: 'Barriers to treatment include stigma — which deters people from seeking help and can lead to discrimination.'" },
+            { id: 26, blankId: 26, correct: "inaccessibility", explanation: "Paragraph B: 'geographic inaccessibility of services' is listed as a barrier." },
+          ],
+        },
+      ],
+    },
+    {
+      number: 3,
+      title: "Genomics and the Future of Personalised Medicine",
+      paragraphs: [
+        { letter: "A", text: "Genomics — the study of an organism's complete genetic material — has undergone a revolution since the completion of the Human Genome Project in 2003, which produced the first reference sequence of the human genome at a cost of approximately US$3 billion over 13 years. The subsequent development of next-generation sequencing technologies has reduced the cost of sequencing an individual human genome to under US$1,000 and the time required to days rather than years. Millions of individuals have now had their genomes sequenced, enabling population-scale studies that have identified thousands of genetic variants associated with disease risk, drug response, and other traits." },
+        { letter: "B", text: "Polygenic risk scores — calculated by combining the effects of thousands of genetic variants — can now predict individual risk of conditions including heart disease, type 2 diabetes, schizophrenia, and several cancers with meaningful predictive power, though these predictions are probabilistic rather than deterministic. Individuals with high polygenic risk for conditions such as cardiovascular disease can be targeted for earlier preventive interventions — statin therapy, dietary counselling, or increased screening — potentially preventing disease before it manifests. However, current polygenic risk scores are more accurate in individuals of European ancestry due to the historical underrepresentation of other populations in genomic research, creating a significant equity concern." },
+        { letter: "C", text: "Pharmacogenomics — the study of how an individual's genetic variants influence their response to drugs — offers the prospect of personalised drug prescribing. Genetic variants in the CYP450 enzyme system — which metabolises many common medications — affect whether a given patient will respond normally, experience toxicity, or receive no benefit from a drug at standard doses. Variants in genes such as TPMT affect the metabolism of chemotherapy drugs used in childhood leukaemia, and genetic testing prior to prescribing can significantly reduce adverse drug reactions. The US FDA has approved pharmacogenomic labelling for over 200 drugs, indicating that genetic testing should inform prescribing decisions." },
+        { letter: "D", text: "Gene therapy — directly modifying or replacing defective genes to treat disease — has moved from theoretical promise to clinical reality. Treatments for conditions including spinal muscular atrophy (SMA), haemophilia, sickle cell disease, and several inherited blindness conditions have received regulatory approval, offering transformative outcomes for patients with conditions previously managed only symptomatically. CRISPR-Cas9 gene editing — which allows precise, targeted modifications to DNA sequences — has opened new possibilities for treating both rare genetic diseases and common conditions including cancer and HIV. The first CRISPR-based treatment was approved in the UK in 2023 for sickle cell disease and beta-thalassaemia, representing a landmark in therapeutic gene editing." },
+        { letter: "E", text: "The clinical implementation of genomic medicine faces significant practical barriers. Interpreting genomic data requires specialist expertise that is in short supply: even high-income health systems have insufficient clinical geneticists and genetic counsellors to meet projected demand as genomic testing expands. The integration of genomic data into electronic health records — where it can inform clinical decisions throughout a patient's care — is technically complex and raises significant data governance and privacy challenges. Incidental findings — genomic variants associated with diseases unrelated to the reason for testing — require careful protocols for disclosure, as they may have significant psychological and social implications for patients and their biological relatives." },
+        { letter: "F", text: "The ethical and social implications of advances in genomics extend beyond clinical medicine. Direct-to-consumer genetic testing — offered by companies including 23andMe and AncestryDNA — provides ancestry information, relative matching, and health-related traits to consumers without medical supervision. Concerns have been raised about the accuracy of consumer-grade health interpretations, data privacy and ownership — several companies have faced data breaches or controversies over data sharing with third parties — and psychological harms from unexpected results. The use of genomic data in insurance, employment, and criminal justice raises deep concerns about genetic discrimination, and legal protections against such discrimination vary considerably between jurisdictions." },
+      ],
+      sections: [
+        {
+          type: "ynng",
+          questionRange: "Questions 27–31",
+          instructions: "Do the following statements agree with the claims of the writer in the reading passage? Write YES, NO, or NOT GIVEN.",
+          questions: [
+            { id: 27, statement: "The cost of sequencing a human genome has fallen to under US$1,000 since the completion of the Human Genome Project.", correct: "Yes", explanation: "Paragraph A: 'The subsequent development of next-generation sequencing technologies has reduced the cost of sequencing an individual human genome to under US$1,000.'" },
+            { id: 28, statement: "Polygenic risk scores are more accurate for people of European ancestry due to historical patterns in research.", correct: "Yes", explanation: "Paragraph B: 'current polygenic risk scores are more accurate in individuals of European ancestry due to the historical underrepresentation of other populations in genomic research.'" },
+            { id: 29, statement: "The writer believes that gene therapy should only be used to treat conditions that have no other treatment.", correct: "Not Given", explanation: "The writer does not make this argument; gene therapy's scope is described but no such restriction is proposed." },
+            { id: 30, statement: "The first CRISPR-based therapeutic treatment was approved in the United Kingdom in 2023.", correct: "Yes", explanation: "Paragraph D: 'The first CRISPR-based treatment was approved in the UK in 2023.'" },
+            { id: 31, statement: "Legal protections against genetic discrimination in insurance and employment are consistent across all countries.", correct: "No", explanation: "Paragraph F: 'legal protections against such discrimination vary considerably between jurisdictions.'" },
+          ],
+        },
+        {
+          type: "mc_multiple",
+          questionRange: "Questions 32–34",
+          instructions: "Choose TWO letters, A–E.",
+          questions: [
+            { id: 32, stem: "Which TWO diseases are mentioned as having received approved gene therapy treatments?", options: [{ label: "A", text: "Parkinson's disease" }, { label: "B", text: "Sickle cell disease" }, { label: "C", text: "Spinal muscular atrophy" }, { label: "D", text: "Cystic fibrosis" }, { label: "E", text: "Multiple sclerosis" }], pickCount: 2, correct: ["B", "C"], explanation: "Paragraph D: 'spinal muscular atrophy (SMA)' (C) and 'sickle cell disease' (B) are both listed as having approved treatments." },
+            { id: 33, stem: "Which TWO concerns about direct-to-consumer genetic testing are mentioned in the passage?", options: [{ label: "A", text: "The high cost making it inaccessible to most people" }, { label: "B", text: "Data privacy issues and breaches" }, { label: "C", text: "The accuracy of health-related interpretations" }, { label: "D", text: "Lack of qualified laboratory staff to process tests" }, { label: "E", text: "Government surveillance of genetic databases" }], pickCount: 2, correct: ["B", "C"], explanation: "Paragraph F: 'data privacy and ownership — several companies have faced data breaches' (B) and 'Concerns have been raised about the accuracy of consumer-grade health interpretations' (C)." },
+            { id: 34, stem: "Which TWO practical barriers to clinical genomic medicine are described in the passage?", options: [{ label: "A", text: "Insufficient numbers of trained clinical geneticists" }, { label: "B", text: "Patients refusing genomic testing" }, { label: "C", text: "High costs of gene therapy treatments" }, { label: "D", text: "Technical complexity of integrating genomic data into health records" }, { label: "E", text: "Pharmaceutical companies not developing genomic drugs" }], pickCount: 2, correct: ["A", "D"], explanation: "Paragraph E: 'insufficient clinical geneticists and genetic counsellors' (A) and 'The integration of genomic data into electronic health records… is technically complex' (D)." },
+          ],
+        },
+        {
+          type: "short_answer",
+          questionRange: "Questions 35–40",
+          instructions: "Answer the questions below. Choose NO MORE THAN THREE WORDS from the passage for each answer.",
+          questions: [
+            { id: 35, before: "How much did sequencing the first human genome cost, according to the passage?", correct: "US$3 billion", explanation: "Paragraph A: 'at a cost of approximately US$3 billion over 13 years.'" },
+            { id: 36, before: "What are genomic findings called when they are unrelated to the original reason for testing?", correct: "incidental findings", explanation: "Paragraph E: 'Incidental findings — genomic variants associated with diseases unrelated to the reason for testing.'" },
+            { id: 37, before: "What enzyme system is described as metabolising many common medications and being affected by genetic variants?", correct: "CYP450", explanation: "Paragraph C: 'Genetic variants in the CYP450 enzyme system — which metabolises many common medications.'" },
+            { id: 38, before: "What statistical tool combines thousands of genetic variants to estimate disease risk?", correct: "polygenic risk scores", explanation: "Paragraph B: 'Polygenic risk scores — calculated by combining the effects of thousands of genetic variants.'" },
+            { id: 39, before: "What gene editing technology has made precise DNA modifications possible and is now used in approved treatments?", correct: "CRISPR-Cas9", explanation: "Paragraph D: 'CRISPR-Cas9 gene editing — which allows precise, targeted modifications to DNA sequences.'" },
+            { id: 40, before: "For how many drugs has the US FDA approved pharmacogenomic labelling indicating genetic testing should inform prescribing?", correct: "over 200", explanation: "Paragraph C: 'The US FDA has approved pharmacogenomic labelling for over 200 drugs.'" },
+          ],
+        },
+      ],
+    },
+  ],
+};

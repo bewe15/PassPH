@@ -1,0 +1,171 @@
+import type { IELTSTest } from "./types";
+
+export const ieltsReading15: IELTSTest = {
+  id: "ielts-reading-15",
+  exam: "IELTS",
+  title: "IELTS Academic Reading — Test 15",
+  totalSeconds: 3600,
+  passages: [
+    {
+      number: 1,
+      title: "The Psychology of Decision-Making Under Risk",
+      paragraphs: [
+        { letter: "A", text: "Human beings are often poor intuitive statisticians. Decades of research in cognitive psychology and behavioural economics has documented the systematic ways in which individuals deviate from the predictions of rational choice theory — the economic model that assumes people make decisions by calculating the expected utility of available options. These deviations are not random but predictable, arising from the cognitive shortcuts and evolved psychological tendencies that characterise human reasoning. Understanding these tendencies has practical implications across fields as diverse as public health, financial regulation, environmental policy, and legal systems." },
+        { letter: "B", text: "Prospect theory, developed by Daniel Kahneman and Amos Tversky and published in 1979, describes how people evaluate outcomes relative to a reference point rather than in absolute terms. A central finding is loss aversion: the psychological impact of losing a given sum is approximately twice as powerful as the pleasure of gaining the equivalent amount. This asymmetry has far-reaching consequences. It helps explain why investors hold losing stocks too long — avoiding the psychological pain of realising a loss — and why governments find it politically easier to frame policies as preventing losses rather than achieving gains. Loss aversion also interacts with the endowment effect: people tend to value objects they own more highly than identical objects they do not own, simply by virtue of ownership." },
+        { letter: "C", text: "The framing effect refers to the influence of how choices are presented on the decisions people make. Classic experiments by Kahneman and Tversky presented subjects with equivalent options described in different ways — for example, a medical treatment described as having a '90 percent survival rate' versus a '10 percent mortality rate' — and found that choices changed dramatically depending on the frame, despite the options being mathematically identical. Framing effects are pervasive in everyday life: the same food is judged more positively when labelled '95 percent fat-free' than when labelled 'contains 5 percent fat'; lottery odds are described in terms of winners rather than the far larger number of losers." },
+        { letter: "D", text: "The availability heuristic causes people to estimate the probability of events based on how easily examples come to mind. Vivid, emotionally charged events that receive extensive media coverage — plane crashes, shark attacks, terrorist incidents — are overestimated in frequency relative to statistically more common but less memorable causes of death, such as heart disease or diabetes. This has important implications for risk communication and policy: public concern and political attention tend to be allocated to salient, dramatic risks rather than in proportion to their actual statistical significance, potentially leading to suboptimal allocation of resources for risk reduction." },
+        { letter: "E", text: "Overconfidence is among the most robust findings in the psychology of judgment. In a variety of domains, people's subjective confidence in their judgments and predictions substantially exceeds their actual accuracy. A particularly striking demonstration is the calibration task: when people are asked questions and invited to express their 90 percent confidence intervals, the intervals typically contain the correct answer only around 50 percent of the time. Overconfidence is particularly pronounced among experts in fields involving high degrees of irreducible uncertainty — geopolitical forecasters, financial analysts, and clinical psychologists show similar or greater overconfidence than novices in some studies." },
+        { letter: "F", text: "Status quo bias — the preference for the current state of affairs regardless of its objective merits — reflects a combination of loss aversion, inertia, and the cognitive effort required to change. People tend to stick with default options: studies of organ donation systems, retirement savings enrolment, and energy tariff switching all find that the majority of individuals remain on whatever option they were initially assigned, even when changing would be straightforwardly advantageous. Nudge theory, developed by Richard Thaler and Cass Sunstein, exploits status quo bias constructively: by redesigning default options so that the socially desirable choice is the default, policymakers can dramatically increase participation in programmes without restricting freedom of choice." },
+        { letter: "G", text: "Awareness of cognitive biases does not automatically eliminate their influence on decision-making. Research has consistently shown that individuals who learn about biases continue to exhibit them in subsequent tasks, and that self-reported awareness of a bias predicts behaviour only weakly. Structural interventions — changes to the choice architecture that make the decision environment itself more conducive to good decisions — tend to be more effective than simply educating individuals about their biases. This suggests that the most productive applications of behavioural insights are likely to come from system and policy design rather than from individual-level behavioural change programmes alone." },
+      ],
+      sections: [
+        {
+          type: "match_headings",
+          questionRange: "Questions 1–6",
+          instructions: "The reading passage has seven paragraphs, A–G. Choose the correct heading for paragraphs B–G from the list of headings below.",
+          headings: [
+            { label: "i",    text: "How the way choices are presented changes the decision made" },
+            { label: "ii",   text: "Why people overestimate how confident they are in their own judgments" },
+            { label: "iii",  text: "The tendency to stick with the status quo and how policymakers use it" },
+            { label: "iv",   text: "Why dramatic events are perceived as more common than they are" },
+            { label: "v",    text: "How losses and gains are weighted differently in human psychology" },
+            { label: "vi",   text: "Why knowing about biases does not prevent them" },
+            { label: "vii",  text: "The gap between human decision-making and rational choice theory" },
+            { label: "viii", text: "How cultural differences affect susceptibility to cognitive bias" },
+            { label: "ix",   text: "The relationship between emotions and financial risk-taking" },
+          ],
+          questions: [
+            { id: 1, paragraph: "B", correct: "v",    explanation: "Paragraph B explains prospect theory and loss aversion — how losses and gains are weighted differently." },
+            { id: 2, paragraph: "C", correct: "i",    explanation: "Paragraph C discusses framing effects — how the same information presented differently changes choices." },
+            { id: 3, paragraph: "D", correct: "iv",   explanation: "Paragraph D covers the availability heuristic — overestimating dramatic events that come easily to mind." },
+            { id: 4, paragraph: "E", correct: "ii",   explanation: "Paragraph E is about overconfidence — people's subjective confidence exceeding their actual accuracy." },
+            { id: 5, paragraph: "F", correct: "iii",  explanation: "Paragraph F covers status quo bias and nudge theory." },
+            { id: 6, paragraph: "G", correct: "vi",   explanation: "Paragraph G explains that awareness of biases does not eliminate them." },
+          ],
+        },
+        {
+          type: "tfng",
+          questionRange: "Questions 7–10",
+          instructions: "Do the following statements agree with the information given in the reading passage? Write TRUE, FALSE, or NOT GIVEN.",
+          questions: [
+            { id: 7,  statement: "Prospect theory was published by Kahneman and Tversky in 1979.", correct: "True", explanation: "Paragraph B: 'Prospect theory, developed by Daniel Kahneman and Amos Tversky and published in 1979.'" },
+            { id: 8,  statement: "In calibration experiments, people's 90 percent confidence intervals contain the correct answer about 90 percent of the time.", correct: "False", explanation: "Paragraph E: 'the intervals typically contain the correct answer only around 50 percent of the time' — far less than 90 percent." },
+            { id: 9,  statement: "Organ donation rates are higher in countries that use opt-out rather than opt-in systems.", correct: "Not Given", explanation: "Paragraph F mentions organ donation as an example of status quo bias but does not compare opt-in versus opt-out donation rates directly." },
+            { id: 10, statement: "Teaching people about cognitive biases is the most effective way to improve decision-making according to the passage.", correct: "False", explanation: "Paragraph G: 'Structural interventions… tend to be more effective than simply educating individuals about their biases.'" },
+          ],
+        },
+        {
+          type: "sentence_completion",
+          questionRange: "Questions 11–13",
+          instructions: "Complete the sentences below. Choose NO MORE THAN TWO WORDS from the passage for each answer.",
+          questions: [
+            { id: 11, before: "The tendency to value something more highly just because you own it is called the ", after: ".", correct: "endowment effect", explanation: "Paragraph B: 'the endowment effect: people tend to value objects they own more highly than identical objects they do not own.'" },
+            { id: 12, before: "The theory developed by Richard Thaler and Cass Sunstein that uses default options to improve decisions is called ", after: " theory.", correct: "nudge", explanation: "Paragraph F: 'Nudge theory, developed by Richard Thaler and Cass Sunstein, exploits status quo bias constructively.'" },
+            { id: 13, before: "Changes to the environment in which decisions are made to make better choices more likely are called ", after: " interventions.", correct: "structural", explanation: "Paragraph G: 'Structural interventions — changes to the choice architecture' — the passage uses 'structural interventions.'" },
+          ],
+        },
+      ],
+    },
+    {
+      number: 2,
+      title: "Coral Reefs: Biology, Threats, and Conservation",
+      paragraphs: [
+        { letter: "A", text: "Coral reefs are among the most biologically diverse ecosystems on Earth, covering less than 0.1 percent of the ocean floor yet supporting an estimated 25 percent of all marine species. The intricate limestone structures that form reefs are built by colonial marine invertebrates — coral polyps — which secrete calcium carbonate skeletons. This construction process occurs over geological timescales: the Great Barrier Reef, the world's largest coral reef system, has been building for an estimated 20,000 years, yet its current reef structures are largely 6,000–8,000 years old. Reefs provide critical services beyond biodiversity: they protect coastlines from wave damage, support fisheries upon which hundreds of millions of people depend, and generate significant economic value through tourism." },
+        { letter: "B", text: "The remarkable productivity of coral reefs depends on a symbiotic relationship between coral polyps and microscopic photosynthetic algae called zooxanthellae, which live within the coral's tissue. The algae use sunlight to photosynthesise, providing up to 90 percent of the coral's energy requirements in return for shelter, nutrients, and carbon dioxide. This relationship explains why reefs are confined to warm, shallow, clear waters — where light can penetrate sufficiently for photosynthesis — and why even slight changes in water conditions can be catastrophically disruptive. When water temperatures rise above a critical threshold — typically around 1°C above seasonal maxima — corals expel their zooxanthellae in a stress response, losing their colour and food supply in a process known as bleaching." },
+        { letter: "C", text: "Mass coral bleaching events — in which large areas of reef bleach simultaneously during episodes of elevated sea surface temperatures — have become dramatically more frequent and severe as global temperatures have risen. The Great Barrier Reef experienced five mass bleaching events between 2016 and 2022, damaging or killing the majority of reef structures in the northern and central sections. The 2016 bleaching, associated with a combination of record sea surface temperatures and a strong El Niño event, affected two-thirds of the reef. Scientists warn that at 1.5°C of global warming, 70–90 percent of the world's coral reefs will be severely degraded; at 2°C, this rises to 99 percent." },
+        { letter: "D", text: "Ocean acidification — the reduction in ocean pH caused by absorption of atmospheric carbon dioxide — poses a distinct but related threat. As CO₂ dissolves in seawater, it forms carbonic acid, reducing the availability of carbonate ions that corals and other calcifying organisms require to build their skeletons. Laboratory experiments show that elevated CO₂ concentrations significantly reduce coral calcification rates and weaken skeletal structures. In combination with warming, acidification may impede reef recovery following bleaching events by slowing the re-establishment of coral colonies on degraded reef structures." },
+        { letter: "E", text: "Local stressors compound the global threats from climate change and acidification. Agricultural and urban runoff introduces excess nutrients and sediments that promote algal growth, smothering corals and reducing water clarity. Destructive fishing practices — including blast fishing and cyanide fishing used to stun reef fish for the aquarium trade — cause direct physical damage. Coastal development, dredging, and tourism-related anchoring damage reef structures. These local stressors reduce reef resilience — the capacity to recover from bleaching and other disturbances — and management of local stressors is regarded as an important complementary strategy alongside action on climate change." },
+        { letter: "F", text: "Conservation efforts combine protection, active restoration, and research into reef resilience. Marine protected areas can reduce local stressors and improve recovery, though their effectiveness against climate change impacts is limited. Coral restoration — collecting fragments of heat-tolerant coral colonies, cultivating them in underwater nurseries, and outplanting them on degraded reefs — has been implemented at increasing scale in the Caribbean and Indo-Pacific, though questions remain about the scalability and long-term viability of these approaches. Research into assisted evolution — selectively breeding or genetically modifying corals for enhanced heat tolerance — offers potential but remains controversial and faces significant ethical and ecological uncertainties about the deployment of genetically altered organisms in natural ecosystems." },
+      ],
+      sections: [
+        {
+          type: "match_info",
+          questionRange: "Questions 14–19",
+          instructions: "The reading passage has six paragraphs, A–F. Which paragraph contains the following information? Write the correct letter A–F.",
+          paragraphLetters: ["A", "B", "C", "D", "E", "F"],
+          questions: [
+            { id: 14, text: "A description of a research approach involving breeding corals to withstand higher temperatures", correct: "F", explanation: "Paragraph F: 'assisted evolution — selectively breeding or genetically modifying corals for enhanced heat tolerance.'" },
+            { id: 15, text: "An explanation of how carbon dioxide in the atmosphere affects the chemistry of seawater", correct: "D", explanation: "Paragraph D: 'CO₂ dissolves in seawater, it forms carbonic acid, reducing the availability of carbonate ions.'" },
+            { id: 16, text: "A description of the economic value that coral reefs provide beyond supporting marine biodiversity", correct: "A", explanation: "Paragraph A: 'They protect coastlines from wave damage, support fisheries… and generate significant economic value through tourism.'" },
+            { id: 17, text: "The temperature threshold at which corals expel their algae", correct: "B", explanation: "Paragraph B: 'typically around 1°C above seasonal maxima' is the critical threshold for bleaching." },
+            { id: 18, text: "Evidence of how frequently the Great Barrier Reef has bleached in recent years", correct: "C", explanation: "Paragraph C: 'The Great Barrier Reef experienced five mass bleaching events between 2016 and 2022.'" },
+            { id: 19, text: "An explanation of why managing pollution and fishing can help reefs recover from bleaching", correct: "E", explanation: "Paragraph E: 'These local stressors reduce reef resilience — the capacity to recover from bleaching — and management of local stressors is regarded as an important complementary strategy.'" },
+          ],
+        },
+        {
+          type: "mc_single",
+          questionRange: "Questions 20–23",
+          instructions: "Choose the correct letter, A, B, C, or D.",
+          questions: [
+            { id: 20, stem: "What percentage of all marine species do coral reefs support, despite covering a tiny fraction of the ocean floor?", options: [{ label: "A", text: "About 10 percent" }, { label: "B", text: "Around 25 percent" }, { label: "C", text: "Approximately 50 percent" }, { label: "D", text: "More than 70 percent" }], correct: "B", explanation: "Paragraph A: 'supporting an estimated 25 percent of all marine species.'" },
+            { id: 21, stem: "What percentage of a coral polyp's energy is typically provided by its zooxanthellae?", options: [{ label: "A", text: "Around 50 percent" }, { label: "B", text: "More than 70 percent" }, { label: "C", text: "Up to 90 percent" }, { label: "D", text: "Approximately 100 percent" }], correct: "C", explanation: "Paragraph B: 'providing up to 90 percent of the coral's energy requirements.'" },
+            { id: 22, stem: "According to the passage, what will happen to coral reefs if global warming reaches 2°C?", options: [{ label: "A", text: "Around half of all reefs will be severely degraded" }, { label: "B", text: "70–90 percent of reefs will be at risk" }, { label: "C", text: "99 percent of reefs will be severely degraded" }, { label: "D", text: "Only reefs in tropical regions will be affected" }], correct: "C", explanation: "Paragraph C: 'at 2°C, this rises to 99 percent.'" },
+            { id: 23, stem: "What does the passage say about the use of MPAs to protect reefs from climate change?", options: [{ label: "A", text: "MPAs are the most effective tool for preventing bleaching events" }, { label: "B", text: "MPAs are effective against local stressors but limited against climate impacts" }, { label: "C", text: "MPAs have been shown to increase coral thermal tolerance over time" }, { label: "D", text: "MPAs are only effective in the Caribbean region" }], correct: "B", explanation: "Paragraph F: 'Marine protected areas can reduce local stressors and improve recovery, though their effectiveness against climate change impacts is limited.'" },
+          ],
+        },
+        {
+          type: "summary_completion",
+          questionRange: "Questions 24–26",
+          instructions: "Complete the summary below. Choose NO MORE THAN TWO WORDS from the passage for each answer.",
+          summaryTitle: "Local Threats to Coral Reefs",
+          summaryText: "Beyond climate change, coral reefs face several local threats. {{24}} from farms and cities adds nutrients and sediments that encourage algae and reduce water clarity, harming corals. Destructive fishing methods including blast fishing and {{25}}, used to stun fish for the aquarium trade, cause direct physical damage. These local threats lower reef {{26}} — the ability of reefs to bounce back after damage — making it harder for them to survive bleaching events.",
+          wordBank: ["Agricultural and urban runoff", "cyanide fishing", "resilience", "acidification", "coral restoration", "bleaching"],
+          questions: [
+            { id: 24, blankId: 24, correct: "Agricultural and urban runoff", explanation: "Paragraph E: 'Agricultural and urban runoff introduces excess nutrients and sediments.'" },
+            { id: 25, blankId: 25, correct: "cyanide fishing", explanation: "Paragraph E: 'blast fishing and cyanide fishing used to stun reef fish for the aquarium trade.'" },
+            { id: 26, blankId: 26, correct: "resilience", explanation: "Paragraph E: 'These local stressors reduce reef resilience — the capacity to recover from bleaching.'" },
+          ],
+        },
+      ],
+    },
+    {
+      number: 3,
+      title: "The Commercial Space Race",
+      paragraphs: [
+        { letter: "A", text: "The commercialisation of space — once the exclusive domain of nation-states with vast public budgets and geopolitical imperatives — has undergone a dramatic transformation since the early 2000s. The emergence of privately financed space companies, led by SpaceX, Blue Origin, and Virgin Galactic, has introduced competition, innovation, and dramatically reduced launch costs into what was previously a near-monopoly of state-backed agencies. SpaceX's development of partially reusable rocket technology — culminating in the Falcon 9's booster recovery capability — reduced the cost of placing a kilogram of payload in low Earth orbit from approximately US$50,000 in 2000 to under US$3,000 by the early 2020s, fundamentally altering the economics of access to space." },
+        { letter: "B", text: "The satellite industry has been the primary beneficiary and driver of commercial space activity to date. Earth observation satellites provide data for agriculture, environmental monitoring, disaster response, and military intelligence. Communication satellites underpin global internet, television, and telephone services. Navigation satellites — the GPS constellation and its Russian, European, and Chinese equivalents — have become embedded in virtually every aspect of modern logistics, transport, and personal navigation. The deployment of large-scale low Earth orbit satellite constellations — most notably SpaceX's Starlink, which had deployed over 5,000 satellites by 2024 — has raised concerns among astronomers about light pollution and orbital congestion." },
+        { letter: "C", text: "Human spaceflight is experiencing a commercial revival. SpaceX's Crew Dragon capsule has transported astronauts to the International Space Station under NASA contract since 2020, ending US dependence on Russian Soyuz vehicles. Axiom Space has operated the first fully private astronaut missions to the ISS. The emerging space tourism market — offering suborbital flights, orbital flights, and eventually lunar trips to wealthy private customers — is nascent but growing: Blue Origin's New Shepard and Virgin Galactic's SpaceShipTwo have both conducted commercial passenger flights. The price of suborbital tourist flights has been in the range of US$450,000–US$500,000, putting them far beyond the reach of most consumers but within range of ultra-high-net-worth individuals." },
+        { letter: "D", text: "The moon and Mars are increasingly within commercial and governmental ambitions. NASA's Artemis programme — aiming to return humans to the lunar surface — selected SpaceX's Starship as its lunar lander. Several national space agencies and private companies are pursuing lunar resource utilisation, particularly the extraction of water ice from permanently shadowed craters at the lunar poles, which could be used to produce rocket propellant and support long-duration human presence. Mars has become a stated goal of SpaceX founder Elon Musk, who has described establishing a self-sustaining Martian colony as essential for the long-term survival of humanity as a multi-planetary species." },
+        { letter: "E", text: "The regulatory framework governing commercial space activity is struggling to keep pace with the industry's growth. The Outer Space Treaty of 1967, which established the foundational principles of space law, was drafted in a context where only state actors were relevant; its provisions apply to states rather than private entities, creating ambiguity about liability and property rights in commercial operations. The US Commercial Space Launch Competitiveness Act of 2015 granted US citizens rights to resources they extract in space, but the international legal status of space resource extraction remains contested. Debris management is a growing concern: the proliferation of satellites and the risk of cascade failure — the Kessler syndrome, in which collisions generate debris that causes further collisions — represents a potential long-term threat to access to space itself." },
+        { letter: "F", text: "The dual-use nature of space technology — the fact that the same rockets, satellites, and remote-sensing capabilities serve both civilian and military purposes — creates significant national security dimensions to commercial space activity. Military reliance on satellite infrastructure for communications, navigation, and intelligence creates potential vulnerabilities to adversarial anti-satellite weapons, of which several nations have demonstrated capabilities. The blurring of boundaries between commercial and governmental space activity also complicates arms control and space governance frameworks, as states may leverage private entities to develop capabilities that would face greater scrutiny if developed within governmental programmes." },
+      ],
+      sections: [
+        {
+          type: "ynng",
+          questionRange: "Questions 27–31",
+          instructions: "Do the following statements agree with the claims of the writer in the reading passage? Write YES, NO, or NOT GIVEN.",
+          questions: [
+            { id: 27, statement: "The cost of launching payload to low Earth orbit has fallen dramatically since 2000 due to reusable rocket technology.", correct: "Yes", explanation: "Paragraph A: cost fell 'from approximately US$50,000 in 2000 to under US$3,000 by the early 2020s' due to reusable rocket development." },
+            { id: 28, statement: "The writer argues that space tourism will soon become affordable for the general public.", correct: "No", explanation: "Paragraph C: flights are described as being 'far beyond the reach of most consumers but within range of ultra-high-net-worth individuals' — the writer does not argue affordability is imminent." },
+            { id: 29, statement: "The Outer Space Treaty was designed to address the activities of commercial space companies.", correct: "No", explanation: "Paragraph E: the Treaty 'was drafted in a context where only state actors were relevant; its provisions apply to states rather than private entities.'" },
+            { id: 30, statement: "Elon Musk has described a self-sustaining Mars colony as important for human survival as a species.", correct: "Yes", explanation: "Paragraph D: Musk has described 'establishing a self-sustaining Martian colony as essential for the long-term survival of humanity as a multi-planetary species.'" },
+            { id: 31, statement: "The writer believes the development of anti-satellite weapons is the greatest threat to space exploration.", correct: "Not Given", explanation: "The passage mentions anti-satellite weapons as a threat but makes no claim about their relative priority compared to other threats." },
+          ],
+        },
+        {
+          type: "mc_multiple",
+          questionRange: "Questions 32–34",
+          instructions: "Choose TWO letters, A–E.",
+          questions: [
+            { id: 32, stem: "Which TWO applications of Earth observation satellites are mentioned in the passage?", options: [{ label: "A", text: "Monitoring weather patterns for aviation safety" }, { label: "B", text: "Supporting disaster response operations" }, { label: "C", text: "Providing data for agricultural use" }, { label: "D", text: "Tracking illegal fishing vessels" }, { label: "E", text: "Monitoring atmospheric carbon levels" }], pickCount: 2, correct: ["B", "C"], explanation: "Paragraph B: 'data for agriculture' (C) and 'disaster response' (B) are listed as applications." },
+            { id: 33, stem: "Which TWO concerns are raised in the passage about large satellite constellations?", options: [{ label: "A", text: "High energy consumption during operation" }, { label: "B", text: "Light pollution affecting astronomical observation" }, { label: "C", text: "Increased orbital congestion" }, { label: "D", text: "Disruption of weather satellite signals" }, { label: "E", text: "Competitive disadvantage for national space agencies" }], pickCount: 2, correct: ["B", "C"], explanation: "Paragraph B: 'raised concerns among astronomers about light pollution' (B) 'and orbital congestion' (C)." },
+            { id: 34, stem: "Which TWO issues in space law are identified as unresolved in the passage?", options: [{ label: "A", text: "Who is legally responsible for debris collision damage" }, { label: "B", text: "The international legal status of resource extraction in space" }, { label: "C", text: "Which countries are permitted to launch commercial rockets" }, { label: "D", text: "How to tax revenues generated from satellite services" }, { label: "E", text: "The right to establish military bases on the moon" }], pickCount: 2, correct: ["A", "B"], explanation: "Paragraph E: 'ambiguity about liability' (A) and 'the international legal status of space resource extraction remains contested' (B)." },
+          ],
+        },
+        {
+          type: "short_answer",
+          questionRange: "Questions 35–40",
+          instructions: "Answer the questions below. Choose NO MORE THAN THREE WORDS from the passage for each answer.",
+          questions: [
+            { id: 35, before: "What specific rocket capability reduced the cost of orbital launches dramatically?", correct: "booster recovery", explanation: "Paragraph A: 'the Falcon 9's booster recovery capability — reduced the cost of placing a kilogram of payload in low Earth orbit.'" },
+            { id: 36, before: "What space law treaty established the foundational principles of space governance?", correct: "Outer Space Treaty", explanation: "Paragraph E: 'The Outer Space Treaty of 1967, which established the foundational principles of space law.'" },
+            { id: 37, before: "What term describes the potential cascade of space debris caused by collisions generating further collisions?", correct: "Kessler syndrome", explanation: "Paragraph E: 'the Kessler syndrome, in which collisions generate debris that causes further collisions.'" },
+            { id: 38, before: "What resource at the lunar poles is of particular interest for producing rocket propellant?", correct: "water ice", explanation: "Paragraph D: 'the extraction of water ice from permanently shadowed craters at the lunar poles, which could be used to produce rocket propellant.'" },
+            { id: 39, before: "Which spacecraft has transported NASA astronauts to the ISS since 2020, replacing Russian Soyuz vehicles?", correct: "Crew Dragon", explanation: "Paragraph C: 'SpaceX's Crew Dragon capsule has transported astronauts to the International Space Station under NASA contract since 2020.'" },
+            { id: 40, before: "What term describes the property of space technology that allows it to serve both civilian and military purposes?", correct: "dual-use nature", explanation: "Paragraph F: 'The dual-use nature of space technology — the fact that the same rockets, satellites… serve both civilian and military purposes.'" },
+          ],
+        },
+      ],
+    },
+  ],
+};

@@ -1,0 +1,171 @@
+import type { IELTSTest } from "./types";
+
+export const ieltsReading11: IELTSTest = {
+  id: "ielts-reading-11",
+  exam: "IELTS",
+  title: "IELTS Academic Reading — Test 11",
+  totalSeconds: 3600,
+  passages: [
+    {
+      number: 1,
+      title: "The Science of Sleep",
+      paragraphs: [
+        { letter: "A", text: "Sleep was once regarded by scientists as a passive state — a period of inactivity during which the brain and body simply rested. This understanding has been comprehensively overturned. Modern neuroscience has revealed that sleep is a period of intense biological activity, during which the brain cycles through distinct stages, consolidates memories, regulates hormones, and performs critical maintenance functions that cannot occur during wakefulness. The discovery of rapid eye movement (REM) sleep by Eugene Aserinsky and Nathaniel Kleitman in 1953 was a landmark moment, demonstrating that the sleeping brain is electrically active in ways that resemble waking states." },
+        { letter: "B", text: "A typical night's sleep consists of four to six cycles, each lasting approximately 90 minutes and comprising both non-REM and REM stages. Non-REM sleep is divided into three stages of increasing depth: stage N1 is a light transitional stage; stage N2 accounts for the majority of sleep time and is characterised by sleep spindles and K-complexes; stage N3, often called slow-wave sleep or deep sleep, is the most restorative phase, during which the body releases growth hormone, repairs tissues, and strengthens the immune system. REM sleep, which predominates in the later cycles of the night, is associated with vivid dreaming and plays a critical role in emotional memory processing and creativity." },
+        { letter: "C", text: "Sleep is regulated by two interacting biological systems: the circadian clock and the sleep homeostatic drive. The circadian clock — a roughly 24-hour internal cycle governed by a cluster of neurons in the suprachiasmatic nucleus of the hypothalamus — responds to light signals to align sleep timing with the external environment. The homeostatic drive, by contrast, tracks how long a person has been awake: adenosine, a chemical byproduct of neural activity, accumulates in the brain throughout the day, producing increasing sleepiness. Caffeine works by blocking adenosine receptors, temporarily suppressing this drive. When sleep occurs, adenosine is cleared, restoring alertness." },
+        { letter: "D", text: "Chronic sleep deprivation — consistently obtaining less than the recommended seven to nine hours for adults — has been linked to a wide range of adverse health outcomes. Cognitively, even moderate sleep restriction impairs attention, working memory, and decision-making, while subjective alertness adjusts to the deficit, causing individuals to underestimate their impairment. Physiologically, insufficient sleep disrupts the regulation of hormones including cortisol, insulin, leptin, and ghrelin, elevating risks of obesity, type 2 diabetes, and cardiovascular disease. Emerging research also links poor sleep to accelerated accumulation of amyloid plaques in the brain — a hallmark of Alzheimer's disease — through disruption of the glymphatic system, which clears metabolic waste during sleep." },
+        { letter: "E", text: "Adolescents present a particular challenge. Puberty triggers a biological shift in the circadian clock — a phenomenon termed sleep phase delay — that naturally inclines teenagers to later sleep and wake times. When combined with early school start times typical of many educational systems, this creates a systemic mismatch that results in widespread chronic sleep deprivation among adolescents. Neuroscientific evidence shows that the prefrontal cortex — the brain region responsible for impulse control, planning, and emotional regulation — continues developing through the mid-twenties and is particularly sensitive to sleep loss, helping to explain adolescents' heightened vulnerability to poor decision-making and emotional dysregulation under sleep-deprived conditions." },
+        { letter: "F", text: "Sleep disorders affect a substantial proportion of the global population. Insomnia — characterised by difficulty initiating or maintaining sleep combined with daytime impairment — affects an estimated 10–15 percent of adults in its chronic form. Obstructive sleep apnoea, in which the upper airway collapses repeatedly during sleep causing fragmented sleep and oxygen desaturation, is significantly underdiagnosed; estimates suggest it affects up to 936 million adults worldwide. Narcolepsy, restless legs syndrome, and circadian rhythm disorders are among the other conditions that impair sleep quality and daytime functioning. Cognitive behavioural therapy for insomnia (CBT-I) is now recognised as the most effective first-line treatment for chronic insomnia, superior to pharmacological approaches in the long term." },
+        { letter: "G", text: "The cultural and structural barriers to adequate sleep are formidable. Many societies valorise productivity and treat sleep as a negotiable commodity — 'I'll sleep when I'm dead' reflects a cultural attitude that research now suggests is literally counterproductive. Shift work, long commutes, round-the-clock digital connectivity, and the nocturnal blue light emitted by screens — which suppresses melatonin secretion and delays sleep onset — all conspire against healthy sleep hygiene. Public health efforts have increasingly focused on sleep as a pillar of health alongside diet and exercise, and workplace and school interventions targeting sleep environment and scheduling have shown measurable improvements in health and performance outcomes." },
+      ],
+      sections: [
+        {
+          type: "match_headings",
+          questionRange: "Questions 1–6",
+          instructions: "The reading passage has seven paragraphs, A–G. Choose the correct heading for paragraphs B–G from the list of headings below.",
+          headings: [
+            { label: "i",    text: "Social and environmental obstacles to getting enough sleep" },
+            { label: "ii",   text: "The stages and structure of a normal night's sleep" },
+            { label: "iii",  text: "A biological explanation of why and when we feel sleepy" },
+            { label: "iv",   text: "Health consequences of insufficient sleep over time" },
+            { label: "v",    text: "Why teenagers are especially affected by sleep loss" },
+            { label: "vi",   text: "Common sleep conditions and their treatment" },
+            { label: "vii",  text: "Why sleep was misunderstood for much of history" },
+            { label: "viii", text: "How sleeping position affects sleep quality" },
+            { label: "ix",   text: "The economic cost of sleep deprivation to employers" },
+          ],
+          questions: [
+            { id: 1, paragraph: "B", correct: "ii",   explanation: "Paragraph B describes the 90-minute cycle, non-REM stages (N1–N3), and REM sleep." },
+            { id: 2, paragraph: "C", correct: "iii",  explanation: "Paragraph C explains the circadian clock and homeostatic drive — the two systems controlling sleepiness." },
+            { id: 3, paragraph: "D", correct: "iv",   explanation: "Paragraph D covers cognitive and physiological harms of chronic sleep deprivation." },
+            { id: 4, paragraph: "E", correct: "v",    explanation: "Paragraph E addresses adolescent sleep phase delay and the prefrontal cortex's sensitivity to sleep loss." },
+            { id: 5, paragraph: "F", correct: "vi",   explanation: "Paragraph F describes insomnia, sleep apnoea, narcolepsy, and CBT-I treatment." },
+            { id: 6, paragraph: "G", correct: "i",    explanation: "Paragraph G covers cultural attitudes, shift work, screens, and public health efforts." },
+          ],
+        },
+        {
+          type: "tfng",
+          questionRange: "Questions 7–10",
+          instructions: "Do the following statements agree with the information given in the reading passage? Write TRUE, FALSE, or NOT GIVEN.",
+          questions: [
+            { id: 7,  statement: "REM sleep was discovered by Aserinsky and Kleitman in 1953.", correct: "True", explanation: "Paragraph A: 'The discovery of rapid eye movement (REM) sleep by Eugene Aserinsky and Nathaniel Kleitman in 1953.'" },
+            { id: 8,  statement: "Stage N2 is the deepest and most restorative stage of non-REM sleep.", correct: "False", explanation: "Paragraph B: Stage N3, not N2, is described as 'the most restorative phase.'" },
+            { id: 9,  statement: "Caffeine permanently destroys adenosine receptors in the brain.", correct: "False", explanation: "Paragraph C: 'Caffeine works by blocking adenosine receptors, temporarily suppressing this drive' — blocking, not destroying, and only temporarily." },
+            { id: 10, statement: "Cognitive behavioural therapy for insomnia outperforms medication in the long term.", correct: "True", explanation: "Paragraph F: 'CBT-I is now recognised as the most effective first-line treatment for chronic insomnia, superior to pharmacological approaches in the long term.'" },
+          ],
+        },
+        {
+          type: "sentence_completion",
+          questionRange: "Questions 11–13",
+          instructions: "Complete the sentences below. Choose NO MORE THAN TWO WORDS from the passage for each answer.",
+          questions: [
+            { id: 11, before: "The suprachiasmatic nucleus of the hypothalamus governs the body's ", after: ", which aligns sleep timing with the external environment.", correct: "circadian clock", explanation: "Paragraph C: 'The circadian clock — a roughly 24-hour internal cycle governed by a cluster of neurons in the suprachiasmatic nucleus.'" },
+            { id: 12, before: "The glymphatic system is responsible for clearing ", after: " from the brain during sleep.", correct: "metabolic waste", explanation: "Paragraph D: 'the glymphatic system, which clears metabolic waste during sleep.'" },
+            { id: 13, before: "The biological shift in teenagers that pushes sleep later is known as ", after: ".", correct: "sleep phase delay", explanation: "Paragraph E: 'a biological shift in the circadian clock — a phenomenon termed sleep phase delay.'" },
+          ],
+        },
+      ],
+    },
+    {
+      number: 2,
+      title: "Urban Green Infrastructure: Planning Cities for People and Nature",
+      paragraphs: [
+        { letter: "A", text: "Green infrastructure — the network of parks, street trees, green roofs, urban wetlands, and other natural or semi-natural spaces woven into the built environment — has moved from a peripheral concern to a central priority in urban planning over the past two decades. As the world's urban population approaches 70 percent of the global total, the ecological and human health consequences of poorly designed cities have become increasingly apparent, driving a shift toward planning frameworks that treat green space not as an aesthetic amenity but as critical urban infrastructure delivering measurable services." },
+        { letter: "B", text: "Urban heat islands — the phenomenon by which cities are significantly warmer than surrounding rural areas, due to the replacement of vegetation with heat-absorbing impervious surfaces — represent one of the most documented effects of rapid urbanisation. The temperature differential between dense urban cores and their rural surroundings can exceed 10°C. Green infrastructure mitigates urban heat through evapotranspiration, shading, and albedo effects. A systematic review of urban temperature studies found that urban parks reduce surrounding temperatures by an average of 1–2°C, while strategically planted street trees can reduce peak pavement temperatures by up to 15°C." },
+        { letter: "C", text: "Biodiversity within cities is higher than many people assume, and urban green infrastructure plays a critical role in its preservation. Contrary to the intuition that cities are ecological deserts, some urban areas — particularly older cities with diverse built forms, mature tree canopies, and connected green corridors — support surprisingly rich communities of birds, insects, and plants. The ecological value of urban greenery depends significantly on connectivity: isolated patches of habitat support far fewer species than those linked by continuous corridors of vegetation that allow fauna to move safely between larger green spaces." },
+        { letter: "D", text: "The mental and physical health benefits of urban green space are well evidenced. Meta-analyses of observational studies consistently show associations between proximity to and use of green space and lower rates of depression, anxiety, and stress-related illness. The mechanisms proposed include restoration of directed attention through exposure to natural stimuli — as formalised in Attention Restoration Theory — and activation of the parasympathetic nervous system through physiological responses to natural environments. Access to green space also facilitates physical activity, and research in several European countries has demonstrated that people living within 300 metres of a park exercise more frequently than those without proximate green space." },
+        { letter: "E", text: "Urban green infrastructure also delivers important services related to water management. Vegetated surfaces intercept rainfall, slow surface runoff, and promote infiltration into soil, reducing the volume and speed of stormwater entering drainage systems. This function — termed green stormwater infrastructure — is increasingly used to complement or replace expensive grey infrastructure upgrades in cities facing ageing drainage networks and increasing rainfall intensity from climate change. Cities including Philadelphia, Melbourne, and Rotterdam have implemented ambitious green stormwater programmes, combining rain gardens, vegetated swales, permeable paving, and wetland restoration to manage flood risk." },
+        { letter: "F", text: "Despite the evidence base, urban green infrastructure faces significant barriers to implementation. Land values in dense cities make the acquisition and maintenance of green space financially challenging, creating persistent green space inequity: affluent neighbourhoods typically feature far more green space per resident than lower-income areas, producing the so-called 'green gentrification' risk, in which improving green space in deprived areas raises property values and displaces the residents who were intended to benefit. Political support for green infrastructure can also be episodic, vulnerable to budget cycles and changing administrations. Advocates argue that robust valuation of the ecosystem services provided by urban greenery — quantifying benefits in monetary terms — is essential to make a compelling case for sustained investment in competition with other urban budget priorities." },
+      ],
+      sections: [
+        {
+          type: "match_info",
+          questionRange: "Questions 14–19",
+          instructions: "The reading passage has six paragraphs, A–F. Which paragraph contains the following information? Write the correct letter A–F.",
+          paragraphLetters: ["A", "B", "C", "D", "E", "F"],
+          questions: [
+            { id: 14, text: "The risk that improving green space may push out the people it was meant to help", correct: "F", explanation: "Paragraph F: 'green gentrification risk, in which improving green space in deprived areas raises property values and displaces the residents.'" },
+            { id: 15, text: "Evidence that parks lower temperatures in the areas surrounding them", correct: "B", explanation: "Paragraph B: 'urban parks reduce surrounding temperatures by an average of 1–2°C.'" },
+            { id: 16, text: "Examples of cities that have introduced programmes to manage stormwater using vegetation", correct: "E", explanation: "Paragraph E: 'Cities including Philadelphia, Melbourne, and Rotterdam have implemented ambitious green stormwater programmes.'" },
+            { id: 17, text: "An argument that the importance of green space requires a shift in how urban planners categorise it", correct: "A", explanation: "Paragraph A: the shift 'toward planning frameworks that treat green space not as an aesthetic amenity but as critical urban infrastructure.'" },
+            { id: 18, text: "Evidence that links living near a park to more frequent exercise", correct: "D", explanation: "Paragraph D: 'people living within 300 metres of a park exercise more frequently than those without proximate green space.'" },
+            { id: 19, text: "An explanation of why connected patches of habitat support more species than isolated ones", correct: "C", explanation: "Paragraph C: 'isolated patches of habitat support far fewer species than those linked by continuous corridors of vegetation.'" },
+          ],
+        },
+        {
+          type: "mc_single",
+          questionRange: "Questions 20–23",
+          instructions: "Choose the correct letter, A, B, C, or D.",
+          questions: [
+            { id: 20, stem: "What is the urban heat island effect?", options: [{ label: "A", text: "The tendency of city residents to prefer warmer climates" }, { label: "B", text: "Higher temperatures in cities compared to surrounding rural areas caused by built surfaces" }, { label: "C", text: "Increased flooding in cities due to impermeable pavements" }, { label: "D", text: "The loss of biodiversity caused by urban development" }], correct: "B", explanation: "Paragraph B: 'cities are significantly warmer than surrounding rural areas, due to the replacement of vegetation with heat-absorbing impervious surfaces.'" },
+            { id: 21, stem: "According to the passage, what makes urban areas ecologically valuable?", options: [{ label: "A", text: "The total number of parks within the city boundaries" }, { label: "B", text: "The absence of industrial development near green areas" }, { label: "C", text: "Diverse built forms, mature trees, and connected green corridors" }, { label: "D", text: "The proportion of the city dedicated to formal nature reserves" }], correct: "C", explanation: "Paragraph C: 'older cities with diverse built forms, mature tree canopies, and connected green corridors — support surprisingly rich communities.'" },
+            { id: 22, stem: "What does Attention Restoration Theory propose?", options: [{ label: "A", text: "Urban noise distracts workers and reduces productivity" }, { label: "B", text: "Natural environments help restore mental capacity depleted by focused tasks" }, { label: "C", text: "Parks should be designed to promote physical exercise rather than passive rest" }, { label: "D", text: "Natural light in offices improves cognitive performance" }], correct: "B", explanation: "Paragraph D: 'restoration of directed attention through exposure to natural stimuli — as formalised in Attention Restoration Theory.'" },
+            { id: 23, stem: "What does the passage say about the relationship between green space and income levels?", options: [{ label: "A", text: "Low-income areas tend to have better quality green space than wealthier areas" }, { label: "B", text: "Green space distribution is roughly equal across different income groups" }, { label: "C", text: "Wealthier neighbourhoods typically have more green space per resident" }, { label: "D", text: "Income has no measurable effect on proximity to parks" }], correct: "C", explanation: "Paragraph F: 'affluent neighbourhoods typically feature far more green space per resident than lower-income areas.'" },
+          ],
+        },
+        {
+          type: "summary_completion",
+          questionRange: "Questions 24–26",
+          instructions: "Complete the summary below. Choose NO MORE THAN TWO WORDS from the passage for each answer.",
+          summaryTitle: "Green Infrastructure and Water Management",
+          summaryText: "One valuable function of urban greenery is managing rainfall. Vegetated surfaces slow {{24}} and encourage water to soak into the ground rather than entering drainage pipes. This approach, known as {{25}}, is being used by cities to supplement or replace costly drainage upgrades. Features such as rain gardens, permeable paving, and restored {{26}} help reduce the risk of urban flooding.",
+          wordBank: ["surface runoff", "green stormwater infrastructure", "wetlands", "grey infrastructure", "infiltration", "drainage"],
+          questions: [
+            { id: 24, blankId: 24, correct: "surface runoff", explanation: "Paragraph E: 'slow surface runoff, and promote infiltration into soil.'" },
+            { id: 25, blankId: 25, correct: "green stormwater infrastructure", explanation: "Paragraph E: 'This function — termed green stormwater infrastructure.'" },
+            { id: 26, blankId: 26, correct: "wetlands", explanation: "Paragraph E: 'wetland restoration to manage flood risk' — restored wetlands are listed as a feature." },
+          ],
+        },
+      ],
+    },
+    {
+      number: 3,
+      title: "Social Media and the Psychology of Public Opinion",
+      paragraphs: [
+        { letter: "A", text: "The rise of social media platforms over the past two decades has fundamentally altered the ecology of public information and, by extension, the dynamics of public opinion formation. Where previous generations received information primarily through mass broadcast media — television, radio, newspapers — whose editorial gatekeepers exercised significant control over what reached audiences, social media enables any individual or organisation to publish content that may reach millions within hours. This structural change has been celebrated as a democratisation of information access and criticised as an engine of misinformation, polarisation, and manipulation." },
+        { letter: "B", text: "A central concept in understanding social media's influence is the filter bubble — a term coined by internet activist Eli Pariser to describe the personalised information environment created by algorithmic content curation. Recommendation algorithms, designed to maximise engagement, tend to surface content that aligns with a user's existing preferences and beliefs, gradually narrowing their exposure to diverse perspectives. Related is the concept of the echo chamber, in which social network homophily — the tendency to connect with like-minded others — reinforces ideological clustering. However, several researchers have challenged the extent of these effects, arguing that social media users are, on average, exposed to more diverse viewpoints online than through offline social networks." },
+        { letter: "C", text: "The rapid spread of misinformation — false or misleading information regardless of intent — is among the most widely discussed consequences of social media. A landmark study by Vosoughi, Roy, and Aral, published in Science in 2018, analysed 126,000 rumour cascades on Twitter over a decade and found that false news spread faster, further, and more broadly than true news, and that human behaviour rather than bot activity was primarily responsible. The researchers attributed this to the novelty and emotional resonance of false content: people are more likely to share information that surprises or provokes strong emotion. Political misinformation was found to be particularly prone to rapid spread." },
+        { letter: "D", text: "Social comparison theory, originally proposed by Leon Festinger in 1954, holds that humans evaluate their own opinions and abilities by comparing them with others, particularly in the absence of objective standards. Social media provides an unprecedented context for social comparison, typically with upward comparators: curated highlight reels of others' lives, professional accomplishments, and physical appearances. Research consistently links intensive social media use — particularly platforms with highly visual, aspirational content — to lower self-esteem, body dissatisfaction, and depressive symptoms, especially among adolescent girls. The relationship appears to be bidirectional, with existing low mood also predicting heavier use." },
+        { letter: "E", text: "Political polarisation — the widening of ideological distance between political groups and the increasing moral condemnation of out-groups — has intensified in many democracies over the same period that social media has expanded, leading to widespread attribution of the former to the latter. The causal relationship is, however, contested. Polarisation has increased most sharply among demographic groups — older adults — who use social media least intensively. Cross-national comparisons also show polarisation rising in countries with low social media penetration. Researchers therefore caution against single-factor explanations, pointing to the role of economic inequality, media fragmentation, and partisan political strategies as co-occurring causes." },
+        { letter: "F", text: "Platforms, regulators, and researchers are exploring a range of interventions to mitigate the harms associated with social media. Content moderation — the removal or demotion of content that violates platform policies — faces significant challenges of scale, consistency, and the politically charged question of who decides what constitutes misinformation. Friction interventions — prompts that ask users to verify information before sharing — have shown modest but significant effects in reducing misinformation sharing in experimental settings. Digital literacy programmes aim to equip users with the skills to critically evaluate online information, though evidence on their effectiveness at scale remains mixed. Structural reforms to algorithmic recommendation systems — prioritising content quality over pure engagement metrics — represent a more fundamental intervention but face resistance from platforms dependent on engagement for advertising revenue." },
+      ],
+      sections: [
+        {
+          type: "ynng",
+          questionRange: "Questions 27–31",
+          instructions: "Do the following statements agree with the claims of the writer in the reading passage? Write YES, NO, or NOT GIVEN.",
+          questions: [
+            { id: 27, statement: "Filter bubbles are created when algorithms show users content that matches their existing views.", correct: "Yes", explanation: "Paragraph B: 'Recommendation algorithms… tend to surface content that aligns with a user's existing preferences and beliefs.'" },
+            { id: 28, statement: "The writer believes social media is solely responsible for the increase in political polarisation.", correct: "No", explanation: "Paragraph E: the causal relationship is 'contested,' and the writer points to 'economic inequality, media fragmentation, and partisan political strategies as co-occurring causes.'" },
+            { id: 29, statement: "The 2018 study by Vosoughi, Roy, and Aral showed that bots were primarily responsible for spreading false news.", correct: "No", explanation: "Paragraph C: 'human behaviour rather than bot activity was primarily responsible' for false news spreading faster." },
+            { id: 30, statement: "Digital literacy programmes have been definitively proven to reduce online misinformation at scale.", correct: "No", explanation: "Paragraph F: 'evidence on their effectiveness at scale remains mixed' — not definitively proven." },
+            { id: 31, statement: "Research shows that older adults are the heaviest users of social media across all age groups.", correct: "Not Given", explanation: "Paragraph E states polarisation increased most among older adults who 'use social media least intensively' but does not rank social media usage across all age groups." },
+          ],
+        },
+        {
+          type: "mc_multiple",
+          questionRange: "Questions 32–34",
+          instructions: "Choose TWO letters, A–E.",
+          questions: [
+            { id: 32, stem: "Which TWO features of false news are identified in the Vosoughi study as explaining its rapid spread?", options: [{ label: "A", text: "It is promoted by platform recommendation algorithms" }, { label: "B", text: "It tends to be more novel than true news" }, { label: "C", text: "It provokes stronger emotional responses" }, { label: "D", text: "It is produced by well-funded political organisations" }, { label: "E", text: "It is shorter and easier to read" }], pickCount: 2, correct: ["B", "C"], explanation: "Paragraph C: 'the novelty and emotional resonance of false content' — novelty (B) and emotional provocation (C) are identified as the causes." },
+            { id: 33, stem: "Which TWO platform interventions to reduce social media harms are discussed in the passage?", options: [{ label: "A", text: "Limiting the number of posts users can make per day" }, { label: "B", text: "Content moderation that removes policy-violating material" }, { label: "C", text: "Age verification systems to restrict access by minors" }, { label: "D", text: "Friction interventions that prompt users to verify before sharing" }, { label: "E", text: "Banning anonymous accounts entirely" }], pickCount: 2, correct: ["B", "D"], explanation: "Paragraph F mentions 'content moderation' (B) and 'friction interventions — prompts that ask users to verify information before sharing' (D)." },
+            { id: 34, stem: "Which TWO effects of intensive social media use are identified in the passage?", options: [{ label: "A", text: "Increased risk of physical health problems" }, { label: "B", text: "Lower self-esteem" }, { label: "C", text: "Improved academic performance" }, { label: "D", text: "Body dissatisfaction" }, { label: "E", text: "Reduced interest in political news" }], pickCount: 2, correct: ["B", "D"], explanation: "Paragraph D: 'lower self-esteem, body dissatisfaction, and depressive symptoms' — self-esteem (B) and body dissatisfaction (D) are explicitly listed." },
+          ],
+        },
+        {
+          type: "short_answer",
+          questionRange: "Questions 35–40",
+          instructions: "Answer the questions below. Choose NO MORE THAN THREE WORDS from the passage for each answer.",
+          questions: [
+            { id: 35, before: "What term did Eli Pariser coin for the personalised information environment created by algorithms?", correct: "filter bubble", explanation: "Paragraph B: 'a term coined by internet activist Eli Pariser' — the filter bubble." },
+            { id: 36, before: "What is the tendency called when people form social connections with like-minded others?", correct: "social network homophily", explanation: "Paragraph B: 'social network homophily — the tendency to connect with like-minded others.'" },
+            { id: 37, before: "Who originally proposed social comparison theory?", correct: "Leon Festinger", explanation: "Paragraph D: 'Social comparison theory, originally proposed by Leon Festinger in 1954.'" },
+            { id: 38, before: "Which age group does the passage say has seen the sharpest increase in political polarisation despite low social media use?", correct: "older adults", explanation: "Paragraph E: 'Polarisation has increased most sharply among demographic groups — older adults — who use social media least intensively.'" },
+            { id: 39, before: "What type of social media content is described as a 'curated highlight reel' of others' lives?", correct: "visual aspirational", explanation: "Paragraph D: 'platforms with highly visual, aspirational content' — visual, aspirational content is the type described." },
+            { id: 40, before: "What do critics say prevents platforms from reforming their recommendation algorithms?", correct: "advertising revenue", explanation: "Paragraph F: 'platforms dependent on engagement for advertising revenue' resist algorithmic reforms." },
+          ],
+        },
+      ],
+    },
+  ],
+};

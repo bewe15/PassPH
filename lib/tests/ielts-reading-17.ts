@@ -1,0 +1,171 @@
+import type { IELTSTest } from "./types";
+
+export const ieltsReading17: IELTSTest = {
+  id: "ielts-reading-17",
+  exam: "IELTS",
+  title: "IELTS Academic Reading — Test 17",
+  totalSeconds: 3600,
+  passages: [
+    {
+      number: 1,
+      title: "Artificial Intelligence in Healthcare",
+      paragraphs: [
+        { letter: "A", text: "Artificial intelligence — encompassing machine learning, deep learning, and large language models — is transforming healthcare at a pace and scale that would have seemed implausible a decade ago. The convergence of vast clinical datasets, unprecedented computational power, and algorithmic advances has enabled AI systems to perform tasks in radiology, pathology, genomics, and drug discovery at levels that match or exceed specialist clinicians in narrowly defined tasks. The promise of AI in healthcare is substantial: faster and more accurate diagnosis, personalised treatment selection, earlier detection of disease, and more efficient deployment of clinical resources. The risks and challenges are equally significant." },
+        { letter: "B", text: "Medical imaging is the domain where AI has demonstrated the most compelling clinical evidence to date. Deep learning algorithms trained on hundreds of thousands of labelled images have achieved dermatologist-level accuracy in detecting skin cancer from dermoscopy images, radiologist-level performance in detecting breast cancer in mammograms, and comparable performance to expert ophthalmologists in screening for diabetic retinopathy. A landmark study published in Nature in 2019 showed that a deep learning system outperformed six radiologists in detecting lung cancer on CT scans. These algorithms typically require large training datasets and perform best in domains where the task is well-defined and the data closely resembles the training set." },
+        { letter: "C", text: "AI's potential in drug discovery is generating significant investment. Traditional drug development is enormously costly, time-consuming, and prone to failure: fewer than 10 percent of drug candidates that enter clinical trials reach approval. AI-assisted methods — including molecular docking simulations, generative models that propose novel molecular structures, and machine learning models trained on clinical trial data to identify likely responders — offer the prospect of dramatically accelerating the identification of drug candidates and predicting their likelihood of clinical success. In 2020, the AI system AlphaFold 2, developed by DeepMind, achieved a breakthrough by predicting the three-dimensional structures of proteins with near-experimental accuracy, a problem that had challenged structural biology for five decades." },
+        { letter: "D", text: "The deployment of AI in clinical settings confronts substantial practical and ethical challenges. AI systems trained on historical clinical data may perpetuate or amplify existing biases: a 2019 study found that an algorithm widely used in US health systems to allocate care management resources was significantly less likely to refer Black patients than White patients with equivalent health needs, because it used healthcare cost as a proxy for health need — and Black patients historically had lower costs due to unequal access to care. Data quality is a perennial challenge: clinical records are incomplete, inconsistently formatted, and variable in coding practices across institutions." },
+        { letter: "E", text: "Regulatory and validation challenges are formidable. Most AI medical devices are cleared in the US by the Food and Drug Administration under 510(k) equivalence pathways that require demonstrating equivalence to a predicate device rather than clinical efficacy in the target population. Many AI systems approved on one population underperform on different populations, and the dynamic nature of AI — systems may be updated after approval — creates ongoing challenges for post-market surveillance. The black-box nature of many deep learning systems — the inability to explain why a prediction was made — raises concerns about accountability and about the ability of clinicians to identify and correct errors." },
+        { letter: "F", text: "The integration of AI into clinical workflow is as much an organisational and human factors challenge as a technical one. Evidence from other technology implementations in healthcare suggests that the introduction of new tools without careful attention to workflow integration, clinician training, and alert fatigue can produce unintended consequences including increased workload and degraded performance. A particularly concerning scenario is automation bias — the tendency of clinicians to defer excessively to AI recommendations, reducing rather than augmenting human judgment. Several studies have found that clinicians shown AI outputs prior to making their own assessment are more likely to be influenced toward incorrect AI predictions than to correct them." },
+        { letter: "G", text: "Equitable access to AI-enhanced healthcare is a significant concern. The data and infrastructure required to develop and deploy AI systems are concentrated in high-income countries and large academic medical centres, and there is a risk that AI will widen rather than narrow global health inequities. Several researchers have proposed that AI could, conversely, extend the reach of specialist expertise to under-resourced settings through telemedicine and decision-support tools; but this potential depends on deliberate attention to designing and validating systems for diverse populations and on investment in digital health infrastructure in low-income settings." },
+      ],
+      sections: [
+        {
+          type: "match_headings",
+          questionRange: "Questions 1–6",
+          instructions: "The reading passage has seven paragraphs, A–G. Choose the correct heading for paragraphs B–G from the list of headings below.",
+          headings: [
+            { label: "i",    text: "Evidence for AI's capabilities in analysing medical images" },
+            { label: "ii",   text: "How AI is accelerating the search for new medicines" },
+            { label: "iii",  text: "Bias, data quality, and the risks of deploying AI in clinical care" },
+            { label: "iv",   text: "Regulatory approval processes and the problem of explainability" },
+            { label: "v",    text: "Workflow integration and the risk of over-relying on AI" },
+            { label: "vi",   text: "Concerns about whether AI will increase or reduce health inequalities" },
+            { label: "vii",  text: "The scope of AI's potential impact on healthcare" },
+            { label: "viii", text: "How AI is replacing human clinicians in surgical procedures" },
+            { label: "ix",   text: "The use of AI to set insurance premiums for patients" },
+          ],
+          questions: [
+            { id: 1, paragraph: "B", correct: "i",    explanation: "Paragraph B discusses AI performance in skin cancer, breast cancer, retinopathy, and lung cancer imaging." },
+            { id: 2, paragraph: "C", correct: "ii",   explanation: "Paragraph C covers AI in drug discovery: molecular modelling, AlphaFold, and clinical trial prediction." },
+            { id: 3, paragraph: "D", correct: "iii",  explanation: "Paragraph D addresses algorithmic bias (racial disparities in care allocation) and data quality challenges." },
+            { id: 4, paragraph: "E", correct: "iv",   explanation: "Paragraph E discusses FDA 510(k) clearance, post-market surveillance, and the black-box explainability problem." },
+            { id: 5, paragraph: "F", correct: "v",    explanation: "Paragraph F covers workflow integration challenges, alert fatigue, and automation bias." },
+            { id: 6, paragraph: "G", correct: "vi",   explanation: "Paragraph G addresses AI's potential to either widen or narrow global health inequities." },
+          ],
+        },
+        {
+          type: "tfng",
+          questionRange: "Questions 7–10",
+          instructions: "Do the following statements agree with the information given in the reading passage? Write TRUE, FALSE, or NOT GIVEN.",
+          questions: [
+            { id: 7,  statement: "Deep learning systems typically perform best when tested on data that closely resembles what they were trained on.", correct: "True", explanation: "Paragraph B: 'these algorithms… perform best in domains where the task is well-defined and the data closely resembles the training set.'" },
+            { id: 8,  statement: "AlphaFold 2 was the first AI system to predict protein structures.", correct: "Not Given", explanation: "Paragraph C mentions AlphaFold 2 achieving a breakthrough in protein structure prediction but does not say it was the first AI system to attempt this." },
+            { id: 9,  statement: "The 2019 study cited in the passage found that a care allocation algorithm discriminated against Black patients.", correct: "True", explanation: "Paragraph D: 'an algorithm… was significantly less likely to refer Black patients than White patients with equivalent health needs.'" },
+            { id: 10, statement: "Automation bias occurs when clinicians ignore AI recommendations entirely.", correct: "False", explanation: "Paragraph F: automation bias is 'the tendency of clinicians to defer excessively to AI recommendations' — the opposite, deferring too much, not ignoring them." },
+          ],
+        },
+        {
+          type: "sentence_completion",
+          questionRange: "Questions 11–13",
+          instructions: "Complete the sentences below. Choose NO MORE THAN TWO WORDS from the passage for each answer.",
+          questions: [
+            { id: 11, before: "The FDA process that allows AI devices to be cleared by comparison to an existing approved product is called the ", after: " pathway.", correct: "510(k) equivalence", explanation: "Paragraph E: 'cleared in the US by the Food and Drug Administration under 510(k) equivalence pathways.'" },
+            { id: 12, before: "The tendency for clinicians to follow AI recommendations too closely, reducing independent judgment, is called ", after: ".", correct: "automation bias", explanation: "Paragraph F: 'automation bias — the tendency of clinicians to defer excessively to AI recommendations.'" },
+            { id: 13, before: "AlphaFold 2 solved the long-standing challenge of predicting the three-dimensional ", after: " of proteins.", correct: "structures", explanation: "Paragraph C: 'predicting the three-dimensional structures of proteins with near-experimental accuracy.'" },
+          ],
+        },
+      ],
+    },
+    {
+      number: 2,
+      title: "The Renewable Energy Transition",
+      paragraphs: [
+        { letter: "A", text: "The global energy system is undergoing its most profound transformation since the adoption of fossil fuels during the Industrial Revolution. Driven by the urgent need to reduce greenhouse gas emissions to limit climate change, technological progress that has slashed the costs of solar photovoltaic and wind power, and supportive policies in major economies, renewable energy is growing at an unprecedented pace. Solar PV module costs fell by 89 percent in the decade to 2020; wind turbine costs fell by approximately 70 percent. By 2023, renewables accounted for approximately 30 percent of global electricity generation, and new renewable capacity additions regularly exceed those of fossil fuels." },
+        { letter: "B", text: "The economics of renewable energy have shifted from a story of subsidies and environmental obligation to one of financial advantage in most parts of the world. The levelised cost of energy — a measure of the lifetime cost of generating a unit of electricity — for utility-scale solar PV and onshore wind is now below the cost of new coal or gas power plants in most markets. In many locations, building new solar is cheaper than running existing coal plants. This economic turning point has accelerated investment from the private sector independently of policy support, though policy signals including carbon pricing, renewable purchase obligations, and tax credits — most notably the US Inflation Reduction Act of 2022 — have continued to play an important role." },
+        { letter: "C", text: "Grid integration of variable renewable energy presents significant technical and economic challenges. Solar and wind generation is intermittent and not dispatchable on demand — output varies with weather conditions and time of day, and does not necessarily align with periods of peak demand. As renewable penetration increases, the existing power grid — designed for dispatchable generation from centralised fossil fuel plants — requires significant adaptation: transmission expansion, demand flexibility, energy storage, and interconnection between regions with complementary generation profiles. Curtailment — the deliberate reduction of renewable output when supply exceeds demand — becomes more common and economically wasteful at high penetration levels." },
+        { letter: "D", text: "Energy storage is widely regarded as a critical enabler of deep decarbonisation of electricity systems. Lithium-ion batteries — costs for which have fallen by more than 90 percent since 2010 — are now widely deployed for short-duration grid storage, smoothing renewable generation profiles and providing frequency regulation services. Long-duration energy storage — holding energy for days or weeks rather than hours — remains a significant unsolved challenge. Pumped hydro, which uses surplus electricity to pump water uphill for later release through turbines, accounts for the majority of existing grid storage capacity but is geographically constrained and faces lengthy permitting timelines. Alternatives including iron-air batteries, compressed air storage, green hydrogen, and flow batteries are at varying stages of development." },
+        { letter: "E", text: "Decarbonising electricity generation is necessary but not sufficient for achieving net-zero emissions. Several sectors — heavy industry including steel and cement production, long-haul aviation and shipping, and high-temperature industrial heat — are difficult to decarbonise through direct electrification. Green hydrogen — produced by electrolyser technologies using renewable electricity to split water into hydrogen and oxygen — is widely regarded as a key solution for hard-to-abate sectors, but currently costs several times more to produce than grey hydrogen derived from natural gas. Scaling green hydrogen to competitive cost levels requires continued electrolyser cost reduction, cheap renewable electricity, and investment in infrastructure for transportation and storage." },
+        { letter: "F", text: "The geopolitical implications of the energy transition are complex. Fossil fuel-exporting nations face structural decline in demand for their primary export revenue, with consequences ranging from economic disruption to political instability in states where oil revenues finance public services and political stability. Conversely, countries with abundant renewable resources, critical minerals required for clean energy technologies — including lithium, cobalt, nickel, and rare earth elements — or manufacturing capabilities in solar panels, wind turbines, and batteries may gain strategic economic advantages. The reshuffling of energy geopolitics has already prompted significant policy responses, including the EU's Green Deal Industrial Plan and the US Inflation Reduction Act, both partly designed to secure domestic clean energy supply chains." },
+      ],
+      sections: [
+        {
+          type: "match_info",
+          questionRange: "Questions 14–19",
+          instructions: "The reading passage has six paragraphs, A–F. Which paragraph contains the following information? Write the correct letter A–F.",
+          paragraphLetters: ["A", "B", "C", "D", "E", "F"],
+          questions: [
+            { id: 14, text: "An explanation of why green hydrogen currently costs more than conventional hydrogen production", correct: "E", explanation: "Paragraph E: 'currently costs several times more to produce than grey hydrogen derived from natural gas.'" },
+            { id: 15, text: "Statistics on how much solar panel and wind turbine costs have fallen over a decade", correct: "A", explanation: "Paragraph A: 'Solar PV module costs fell by 89 percent in the decade to 2020; wind turbine costs fell by approximately 70 percent.'" },
+            { id: 16, text: "A description of a storage method that uses surplus electricity to move water to a higher elevation", correct: "D", explanation: "Paragraph D: 'Pumped hydro, which uses surplus electricity to pump water uphill for later release through turbines.'" },
+            { id: 17, text: "The point at which the cost of renewable electricity became cheaper than running existing fossil fuel plants", correct: "B", explanation: "Paragraph B: 'In many locations, building new solar is cheaper than running existing coal plants.'" },
+            { id: 18, text: "The strategic advantages that some countries may gain from having critical mineral resources", correct: "F", explanation: "Paragraph F: 'countries with abundant renewable resources, critical minerals… may gain strategic economic advantages.'" },
+            { id: 19, text: "A description of the challenge caused by high-penetration renewable generation exceeding grid demand", correct: "C", explanation: "Paragraph C: 'Curtailment — the deliberate reduction of renewable output when supply exceeds demand — becomes more common.'" },
+          ],
+        },
+        {
+          type: "mc_single",
+          questionRange: "Questions 20–23",
+          instructions: "Choose the correct letter, A, B, C, or D.",
+          questions: [
+            { id: 20, stem: "What is the 'levelised cost of energy'?", options: [{ label: "A", text: "The price charged to consumers for electricity" }, { label: "B", text: "A measure of the lifetime cost of generating a unit of electricity" }, { label: "C", text: "The cost of connecting a power plant to the grid" }, { label: "D", text: "The average cost of energy across a country" }], correct: "B", explanation: "Paragraph B: 'The levelised cost of energy — a measure of the lifetime cost of generating a unit of electricity.'" },
+            { id: 21, stem: "By approximately how much have lithium-ion battery costs fallen since 2010?", options: [{ label: "A", text: "Around 50 percent" }, { label: "B", text: "More than 70 percent" }, { label: "C", text: "More than 90 percent" }, { label: "D", text: "Around 30 percent" }], correct: "C", explanation: "Paragraph D: 'Lithium-ion batteries — costs for which have fallen by more than 90 percent since 2010.'" },
+            { id: 22, stem: "According to the passage, which sectors are described as 'hard to abate' through direct electrification?", options: [{ label: "A", text: "Road transport and residential heating" }, { label: "B", text: "Steel and cement production, long-haul aviation and shipping" }, { label: "C", text: "Electricity generation and retail" }, { label: "D", text: "Agriculture and forestry" }], correct: "B", explanation: "Paragraph E: 'heavy industry including steel and cement production, long-haul aviation and shipping… are difficult to decarbonise through direct electrification.'" },
+            { id: 23, stem: "What does the passage say about fossil fuel-exporting nations in the context of the energy transition?", options: [{ label: "A", text: "They are rapidly diversifying into renewable energy" }, { label: "B", text: "They will benefit from rising oil prices during the transition" }, { label: "C", text: "They face structural decline in demand for their main export" }, { label: "D", text: "They have successfully lobbied against renewable energy policies" }], correct: "C", explanation: "Paragraph F: 'Fossil fuel-exporting nations face structural decline in demand for their primary export revenue.'" },
+          ],
+        },
+        {
+          type: "summary_completion",
+          questionRange: "Questions 24–26",
+          instructions: "Complete the summary below. Choose NO MORE THAN TWO WORDS from the passage for each answer.",
+          summaryTitle: "Challenges of Grid Integration",
+          summaryText: "Integrating high levels of renewable energy into power grids is technically demanding. Unlike fossil fuel plants, solar and wind generation is {{24}} and cannot be controlled to match demand. When supply greatly exceeds demand, {{25}} of renewable output becomes necessary, wasting energy. Addressing this requires expanding transmission, increasing {{26}} flexibility, and deploying energy storage across different time scales.",
+          wordBank: ["intermittent", "curtailment", "demand", "storage", "dispatchable", "frequency"],
+          questions: [
+            { id: 24, blankId: 24, correct: "intermittent", explanation: "Paragraph C: 'Solar and wind generation is intermittent and not dispatchable on demand.'" },
+            { id: 25, blankId: 25, correct: "curtailment", explanation: "Paragraph C: 'Curtailment — the deliberate reduction of renewable output when supply exceeds demand.'" },
+            { id: 26, blankId: 26, correct: "demand", explanation: "Paragraph C: 'demand flexibility' is listed as a required adaptation for grids with high renewable penetration." },
+          ],
+        },
+      ],
+    },
+    {
+      number: 3,
+      title: "International Migration: Patterns, Drivers, and Debates",
+      paragraphs: [
+        { letter: "A", text: "International migration — the movement of people across national borders to reside in a country other than that of their birth or citizenship — is a defining feature of the contemporary world, yet not a new one. Human migration has shaped civilisations, spread languages, religions, and technologies, and responded to environmental, economic, and political conditions throughout history. What distinguishes migration in the contemporary era is its scale — an estimated 281 million international migrants globally in 2020 — the speed with which information, images, and migration networks facilitate movement, and the intensity of political and policy contestation around its management." },
+        { letter: "B", text: "The drivers of migration are complex and multifaceted, typically summarised through the push-pull framework. Push factors — conditions in origin countries that motivate departure — include poverty, unemployment, violence, conflict, environmental degradation, and limited access to education and healthcare. Pull factors — conditions in destination countries that attract migrants — include higher wages, employment opportunities, political stability, family reunion, and better services. This binary framework is useful as a starting point but has been criticised for oversimplifying migration decisions, which are typically shaped by the interaction of structural factors, social networks, individual aspirations, and migration policies in ways that cannot be reduced to a simple cost-benefit calculation." },
+        { letter: "C", text: "The economic impacts of migration have been extensively studied. For receiving countries, the balance of evidence suggests that immigration generates net positive economic effects: immigrants contribute to labour force growth, fill skills shortages, start businesses, pay taxes, and contribute to innovation. Studies in several high-income countries have found that immigrants are overrepresented among the founders of highly innovative companies. The distributional effects are more nuanced: while aggregate economic impacts are positive, the wages and employment conditions of native workers in competing occupations — particularly lower-skilled workers — may be modestly negatively affected, though the magnitude of these effects is disputed." },
+        { letter: "D", text: "For origin countries, the economic effects of emigration are similarly ambiguous. Remittances — money sent by migrants to family members in their home countries — represent one of the largest financial flows from rich to poor countries, exceeding official development aid in total volume. Remittances have been shown to reduce poverty and support consumption, health, and education investment in recipient households. However, the emigration of skilled workers — doctors, nurses, engineers, and teachers — produces a 'brain drain' that can deprive origin countries of professionals essential for development, particularly in sectors such as healthcare where emigration rates in some sub-Saharan African countries exceed 50 percent of trained professionals." },
+        { letter: "E", text: "Refugees and asylum seekers — those fleeing persecution, conflict, and violence rather than primarily economic motivations — represent a subset of international migrants with distinct legal status and protection needs under international law. The 1951 Refugee Convention and its 1967 Protocol define refugee status and establish the principle of non-refoulement — the prohibition of returning a person to a country where they face serious risk of persecution. The number of forcibly displaced people reached a record 108 million in 2022, driven by conflicts in Syria, Afghanistan, Ukraine, and the Democratic Republic of Congo. The distinction between 'economic migrants' and 'refugees' is politically significant but often empirically blurred, as individuals may flee countries where conflict, poverty, and environmental crisis co-occur." },
+        { letter: "F", text: "Migration policy has become one of the most contested political domains in many democracies. Public concern about cultural change, pressure on public services, and national identity has fuelled the growth of nationalist and populist political movements that treat reduced immigration as a central policy priority. These concerns coexist with evidence that immigration generates net economic benefits and with the demographic imperative of ageing societies to attract working-age migrants to sustain welfare systems and labour forces. Managing this tension requires policymakers to both communicate the evidence effectively and address legitimate concerns about the pace and management of social change — a task that has proven persistently difficult in politically polarised environments." },
+      ],
+      sections: [
+        {
+          type: "ynng",
+          questionRange: "Questions 27–31",
+          instructions: "Do the following statements agree with the claims of the writer in the reading passage? Write YES, NO, or NOT GIVEN.",
+          questions: [
+            { id: 27, statement: "The push-pull framework gives an oversimplified account of why individuals decide to migrate.", correct: "Yes", explanation: "Paragraph B: 'This binary framework… has been criticised for oversimplifying migration decisions.'" },
+            { id: 28, statement: "The writer believes that immigration always raises wages for all native workers in receiving countries.", correct: "No", explanation: "Paragraph C: 'the wages and employment conditions of native workers in competing occupations… may be modestly negatively affected.'" },
+            { id: 29, statement: "Remittances sent home by migrants exceed official development aid flows in total volume.", correct: "Yes", explanation: "Paragraph D: 'Remittances… represent one of the largest financial flows from rich to poor countries, exceeding official development aid in total volume.'" },
+            { id: 30, statement: "The writer argues that all economic migrants should be given refugee status under international law.", correct: "Not Given", explanation: "The writer discusses the blurred distinction between economic migrants and refugees but makes no such policy argument." },
+            { id: 31, statement: "The principle of non-refoulement prohibits returning people to countries where they face persecution.", correct: "Yes", explanation: "Paragraph E: 'the principle of non-refoulement — the prohibition of returning a person to a country where they face serious risk of persecution.'" },
+          ],
+        },
+        {
+          type: "mc_multiple",
+          questionRange: "Questions 32–34",
+          instructions: "Choose TWO letters, A–E.",
+          questions: [
+            { id: 32, stem: "Which TWO economic benefits of immigration to receiving countries are mentioned in the passage?", options: [{ label: "A", text: "Immigrants starting businesses" }, { label: "B", text: "A reduction in demand for public services" }, { label: "C", text: "Filling skills shortages in the labour market" }, { label: "D", text: "Increasing property values in urban areas" }, { label: "E", text: "Raising wages for all categories of native worker" }], pickCount: 2, correct: ["A", "C"], explanation: "Paragraph C: 'start businesses' (A) and 'fill skills shortages' (C) are among the listed benefits." },
+            { id: 33, stem: "Which TWO negative effects of emigration on origin countries are identified in the passage?", options: [{ label: "A", text: "A reduction in remittances sent home" }, { label: "B", text: "Loss of skilled workers in key professions" }, { label: "C", text: "Reduced investment from foreign companies" }, { label: "D", text: "The depletion of essential professionals like doctors and teachers" }, { label: "E", text: "Increased political instability due to population decline" }], pickCount: 2, correct: ["B", "D"], explanation: "Paragraph D: 'brain drain' (B) — loss of 'doctors, nurses, engineers, and teachers' (D) — these are the two related points: skilled workers and essential professionals (same concept, but the question asks for two letters)." },
+            { id: 34, stem: "Which TWO factors are identified as driving the growth of populist movements opposed to immigration?", options: [{ label: "A", text: "Evidence that immigration causes unemployment" }, { label: "B", text: "Concern about pressure on public services" }, { label: "C", text: "Political manipulation of migration statistics" }, { label: "D", text: "Concern about cultural change and national identity" }, { label: "E", text: "Rising crime rates attributed to immigrants" }], pickCount: 2, correct: ["B", "D"], explanation: "Paragraph F: 'pressure on public services' (B) and 'cultural change… and national identity' (D) are listed as drivers of populist movements." },
+          ],
+        },
+        {
+          type: "short_answer",
+          questionRange: "Questions 35–40",
+          instructions: "Answer the questions below. Choose NO MORE THAN THREE WORDS from the passage for each answer.",
+          questions: [
+            { id: 35, before: "How many international migrants were there globally in 2020, according to the passage?", correct: "281 million", explanation: "Paragraph A: 'an estimated 281 million international migrants globally in 2020.'" },
+            { id: 36, before: "What international legal instrument from 1951 defines refugee status?", correct: "Refugee Convention", explanation: "Paragraph E: 'The 1951 Refugee Convention and its 1967 Protocol define refugee status.'" },
+            { id: 37, before: "What term describes the loss of skilled professionals from developing countries due to emigration?", correct: "brain drain", explanation: "Paragraph D: 'the emigration of skilled workers… produces a \"brain drain.\"'" },
+            { id: 38, before: "How many forcibly displaced people were there globally in 2022?", correct: "108 million", explanation: "Paragraph E: 'The number of forcibly displaced people reached a record 108 million in 2022.'" },
+            { id: 39, before: "What type of country especially needs to attract working-age migrants to maintain its labour force and welfare systems?", correct: "ageing societies", explanation: "Paragraph F: 'the demographic imperative of ageing societies to attract working-age migrants to sustain welfare systems and labour forces.'" },
+            { id: 40, before: "What does the term 'non-refoulement' prohibit?", correct: "returning a person", explanation: "Paragraph E: 'the principle of non-refoulement — the prohibition of returning a person to a country where they face serious risk of persecution.'" },
+          ],
+        },
+      ],
+    },
+  ],
+};

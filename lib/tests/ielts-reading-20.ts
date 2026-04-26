@@ -1,0 +1,171 @@
+import type { IELTSTest } from "./types";
+
+export const ieltsReading20: IELTSTest = {
+  id: "ielts-reading-20",
+  exam: "IELTS",
+  title: "IELTS Academic Reading — Test 20",
+  totalSeconds: 3600,
+  passages: [
+    {
+      number: 1,
+      title: "Education Technology: Promises, Evidence, and Challenges",
+      paragraphs: [
+        { letter: "A", text: "Education technology — the use of digital tools, platforms, and artificial intelligence to support teaching and learning — has attracted enormous investment and optimistic projections over the past decade. Venture capital investment in edtech exceeded US$20 billion in 2021, driven by the expansion of online learning platforms including Coursera, Khan Academy, and Duolingo, and by the expectation that adaptive learning systems powered by artificial intelligence could personalise education at scale in ways impossible for individual teachers. The COVID-19 pandemic accelerated edtech adoption globally as schools moved to remote learning, though the outcomes of this forced experiment were highly uneven." },
+        { letter: "B", text: "The evidence base for edtech interventions is more mixed than the enthusiasm of investors and advocates often suggests. Systematic reviews of digital learning tools consistently find high variance in outcomes: well-designed, evidence-based applications in specific contexts — including computer-assisted instruction for mathematics, certain adaptive reading programmes, and interactive simulations for science — show measurable positive effects. However, many interventions fail to demonstrate efficacy in rigorous trials, and effects that appear promising in pilots often do not replicate at scale or in different contexts. The relationship between technology use and learning outcomes is not linear: simply providing devices or internet access, without attention to pedagogical quality and teacher training, consistently fails to improve outcomes." },
+        { letter: "C", text: "Adaptive learning systems — platforms that adjust content, pacing, and difficulty in real time based on student performance data — represent the most technically ambitious expression of edtech's potential. In principle, such systems can provide the individualised instruction that research consistently identifies as among the most effective pedagogical approaches, at a scale and cost impossible for individual teachers to achieve. In practice, the evidence for adaptive learning systems remains limited: most published evaluations are conducted or funded by vendors and lack independent validation. The most rigorously evaluated systems have shown modest positive effects for specific skills, particularly mathematics, at certain grade levels." },
+        { letter: "D", text: "Teacher quality remains the most powerful lever on educational outcomes, consistently outweighing the effects of most technology interventions in head-to-head comparisons. The most productive role for edtech may be as a tool that empowers teachers rather than one that seeks to substitute for them. Formative assessment tools that provide teachers with real-time data on student understanding, communication platforms that enable more effective home-school partnership, and professional development resources that expand access to high-quality training for teachers in remote or under-resourced settings represent areas where technology may add genuine value by amplifying teacher effectiveness rather than replacing it." },
+        { letter: "E", text: "Equity implications of edtech are complex and often counterintuitive. On one hand, digital learning platforms have the potential to democratise access to high-quality educational content, extending the reach of expert teachers and well-produced materials to students in under-resourced schools and remote areas. On the other hand, the so-called digital divide — unequal access to devices, reliable internet connectivity, and the digital literacy skills needed to use them effectively — means that technology interventions often benefit more advantaged students more, potentially widening rather than narrowing achievement gaps. The COVID-19 school closures provided a vivid demonstration of this risk, as students in lower-income households with less access to devices and internet fell significantly further behind." },
+        { letter: "F", text: "Concerns about screen time, attention, and wellbeing have grown alongside edtech adoption. Research on the effects of excessive screen time on children's development — including its effects on sleep, physical activity, social development, and attention — has found associations between heavy use and negative outcomes, though causality is difficult to establish given the observational nature of most studies. Social media platforms, which were not designed as educational tools, have nonetheless become significant influences on adolescent socialisation and wellbeing, and their effects on self-esteem, cyberbullying, and academic performance are subjects of active research and policy debate. Most educational technology advocates acknowledge the importance of age-appropriate guidance on screen time alongside expanded edtech use." },
+        { letter: "G", text: "The governance of edtech — including data privacy for minors, content quality standards, and procurement practices — has not kept pace with the sector's growth. Schools frequently adopt digital tools with minimal evaluation of their evidence base or consideration of data privacy implications. Many edtech platforms collect detailed behavioural and learning data on students, raising concerns about how this data is stored, shared, and potentially monetised. Regulatory frameworks for children's data privacy — including GDPR in Europe and COPPA in the United States — provide some protections, but enforcement is often inconsistent. Advocates for stronger governance argue that public procurement of edtech should require independent evidence of efficacy, transparency about data practices, and interoperability to prevent vendor lock-in." },
+      ],
+      sections: [
+        {
+          type: "match_headings",
+          questionRange: "Questions 1–6",
+          instructions: "The reading passage has seven paragraphs, A–G. Choose the correct heading for paragraphs B–G from the list of headings below.",
+          headings: [
+            { label: "i",    text: "What the research evidence actually shows about digital learning tools" },
+            { label: "ii",   text: "AI-powered systems that tailor instruction to individual students" },
+            { label: "iii",  text: "The argument for technology as a support for teachers rather than a replacement" },
+            { label: "iv",   text: "The risk that technology may increase rather than reduce educational inequality" },
+            { label: "v",    text: "Health concerns associated with increased digital screen use" },
+            { label: "vi",   text: "Weak oversight of data, content quality, and procurement in edtech" },
+            { label: "vii",  text: "The scale of investment and expectations driving edtech growth" },
+            { label: "viii", text: "How gaming technology has been adapted for educational use" },
+            { label: "ix",   text: "The role of parents in supervising children's online learning" },
+          ],
+          questions: [
+            { id: 1, paragraph: "B", correct: "i",    explanation: "Paragraph B reviews what systematic evidence shows: high variance, and that devices alone without pedagogy fail to improve outcomes." },
+            { id: 2, paragraph: "C", correct: "ii",   explanation: "Paragraph C covers adaptive learning systems — AI platforms that personalise content in real time." },
+            { id: 3, paragraph: "D", correct: "iii",  explanation: "Paragraph D argues technology is best as a tool that amplifies teacher effectiveness rather than replacing teachers." },
+            { id: 4, paragraph: "E", correct: "iv",   explanation: "Paragraph E discusses the digital divide and how edtech may widen achievement gaps." },
+            { id: 5, paragraph: "F", correct: "v",    explanation: "Paragraph F covers screen time concerns, sleep, attention, social media, and wellbeing." },
+            { id: 6, paragraph: "G", correct: "vi",   explanation: "Paragraph G describes weak governance of data privacy, content quality, and procurement." },
+          ],
+        },
+        {
+          type: "tfng",
+          questionRange: "Questions 7–10",
+          instructions: "Do the following statements agree with the information given in the reading passage? Write TRUE, FALSE, or NOT GIVEN.",
+          questions: [
+            { id: 7,  statement: "Venture capital investment in edtech exceeded US$20 billion in 2021.", correct: "True", explanation: "Paragraph A: 'Venture capital investment in edtech exceeded US$20 billion in 2021.'" },
+            { id: 8,  statement: "Most evaluations of adaptive learning systems have been independently conducted by academic researchers.", correct: "False", explanation: "Paragraph C: 'most published evaluations are conducted or funded by vendors and lack independent validation.'" },
+            { id: 9,  statement: "GDPR and COPPA provide complete protection for children's data used by edtech platforms.", correct: "False", explanation: "Paragraph G: 'enforcement is often inconsistent' — these frameworks provide some but not complete protection." },
+            { id: 10, statement: "Research has conclusively proven that screen time directly causes poor academic performance.", correct: "False", explanation: "Paragraph F: 'causality is difficult to establish given the observational nature of most studies' — causality has not been proven." },
+          ],
+        },
+        {
+          type: "sentence_completion",
+          questionRange: "Questions 11–13",
+          instructions: "Complete the sentences below. Choose NO MORE THAN TWO WORDS from the passage for each answer.",
+          questions: [
+            { id: 11, before: "Technology interventions that provide devices without attention to pedagogy and teacher training consistently fail to improve ", after: ".", correct: "outcomes", explanation: "Paragraph B: 'simply providing devices or internet access, without attention to pedagogical quality and teacher training, consistently fails to improve outcomes.'" },
+            { id: 12, before: "The unequal access to devices, internet, and digital skills between different groups of students is called the ", after: ".", correct: "digital divide", explanation: "Paragraph E: 'the so-called digital divide — unequal access to devices, reliable internet connectivity, and the digital literacy skills.'" },
+            { id: 13, before: "Advocates for stronger edtech governance say procurement should require independence of evidence, data transparency, and ", after: " to prevent vendors locking in schools.", correct: "interoperability", explanation: "Paragraph G: 'interoperability to prevent vendor lock-in.'" },
+          ],
+        },
+      ],
+    },
+    {
+      number: 2,
+      title: "The Circular Economy: Beyond Recycling",
+      paragraphs: [
+        { letter: "A", text: "The linear economy — characterised by a 'take-make-dispose' model in which raw materials are extracted, manufactured into products, used, and discarded — has generated the material prosperity of the industrial age at the cost of accelerating resource depletion and environmental degradation. The circular economy is a proposed alternative that seeks to decouple economic activity from the consumption of finite resources by keeping products, components, and materials in use for as long as possible through principles of design for durability, repair, reuse, remanufacture, and recycling. Where recycling typically recovers only a fraction of a material's embedded energy and economic value, higher-order circular strategies — reuse and remanufacture — retain much more." },
+        { letter: "B", text: "The Ellen MacArthur Foundation, which has been influential in popularising the circular economy concept since its establishment in 2010, estimates that a circular economy could reduce global CO₂ emissions by 9.1 billion tonnes annually by 2050 — representing around 45 percent of the emissions reductions required to achieve the Paris Agreement targets. Additional claimed benefits include reduced raw material costs, new revenue streams from product-as-a-service business models, and job creation in repair, remanufacturing, and recycling sectors. Critics caution that these estimates rely on optimistic assumptions about adoption rates and may not adequately account for rebound effects — the tendency for increased resource efficiency to be offset by increased consumption." },
+        { letter: "C", text: "Product design is the foundation of circular economy strategies. The majority of a product's environmental impact — and its potential for circularity — is determined at the design stage. Products designed for durability, with standardised and repairable components, using recyclable or biodegradable materials, and avoiding hazardous substances that complicate end-of-life processing, can circulate far longer and at higher value than conventionally designed equivalents. Fast fashion epitomises the antithesis of circular design: garments made with mixed synthetic fibres that cannot be separated for recycling, designed for brief use, and sold at prices that make repair economically irrational. The EU's Ecodesign Regulation, expanded in 2022, aims to mandate circular design requirements for a wide range of product categories." },
+        { letter: "D", text: "Business model innovation is as important as product design in enabling circular economy transitions. Product-as-a-service models — in which customers pay for the use of a product rather than its outright purchase, and the manufacturer retains ownership and responsibility for maintenance and end-of-life — align financial incentives with durability and resource efficiency: if a manufacturer profits from selling performance rather than units, they benefit from making products that last. Michelin, for example, offers tyre performance per kilometre rather than tyre sales to fleet customers. Servitisation has also been adopted by industrial equipment manufacturers, lighting companies, and clothing rental platforms, though scaling these models to consumer markets at competitive price points remains challenging." },
+        { letter: "E", text: "Recycling — the recovery of materials from end-of-life products for use as secondary raw materials — remains a critical component of circular economy systems, particularly for materials that cannot be viably reused or remanufactured. Recycling rates for major materials vary considerably: aluminium recycling is well-established and economically attractive because recycled aluminium requires only 5 percent of the energy of primary production; paper and cardboard recycling is widespread; but plastic recycling rates remain low — globally, less than 10 percent of plastic ever produced has been recycled — and the economics of most plastic recycling are unfavourable without policy support. The contamination of recyclable streams by incorrect sorting and the proliferation of complex material composites in products are persistent technical challenges." },
+        { letter: "F", text: "Digital technologies are enabling new forms of circular economy activity. Online platforms and apps facilitate peer-to-peer product sharing, rental, and resale — extending product lifespans by connecting sellers and buyers more efficiently. Digital product passports — a concept promoted by the European Commission — would attach a digital record to each product containing information about its materials, components, and repair and recycling instructions, enabling better end-of-life processing and supporting circular business models. Industrial internet of things (IoT) sensors enable predictive maintenance, extending the life of industrial equipment and reducing downtime. Artificial intelligence is being applied to improve sorting and quality control in recycling facilities." },
+      ],
+      sections: [
+        {
+          type: "match_info",
+          questionRange: "Questions 14–19",
+          instructions: "The reading passage has six paragraphs, A–F. Which paragraph contains the following information? Write the correct letter A–F.",
+          paragraphLetters: ["A", "B", "C", "D", "E", "F"],
+          questions: [
+            { id: 14, text: "An example of a company that charges customers for the use of a product rather than its purchase", correct: "D", explanation: "Paragraph D: 'Michelin, for example, offers tyre performance per kilometre rather than tyre sales to fleet customers.'" },
+            { id: 15, text: "A reference to the EU regulation that aims to make circular product design mandatory", correct: "C", explanation: "Paragraph C: 'The EU's Ecodesign Regulation, expanded in 2022, aims to mandate circular design requirements.'" },
+            { id: 16, text: "Statistics showing the proportion of all plastic ever produced that has been recycled", correct: "E", explanation: "Paragraph E: 'less than 10 percent of plastic ever produced has been recycled.'" },
+            { id: 17, text: "A definition contrasting the linear economy with the circular economy concept", correct: "A", explanation: "Paragraph A: describes the 'take-make-dispose' linear model and contrasts it with the circular economy alternative." },
+            { id: 18, text: "An estimate of how much the circular economy could reduce annual CO₂ emissions by 2050", correct: "B", explanation: "Paragraph B: '9.1 billion tonnes annually by 2050.'" },
+            { id: 19, text: "An explanation of how digital records attached to products could improve recycling and support circular business", correct: "F", explanation: "Paragraph F: 'Digital product passports… would attach a digital record to each product containing information about its materials, components, and repair and recycling instructions.'" },
+          ],
+        },
+        {
+          type: "mc_single",
+          questionRange: "Questions 20–23",
+          instructions: "Choose the correct letter, A, B, C, or D.",
+          questions: [
+            { id: 20, stem: "What is the 'rebound effect' as described in the passage?", options: [{ label: "A", text: "The tendency for recycled materials to degrade in quality" }, { label: "B", text: "Increased consumption that offsets the gains from improved resource efficiency" }, { label: "C", text: "The return of waste materials from low-income to high-income countries" }, { label: "D", text: "Economic growth that follows investment in circular economy projects" }], correct: "B", explanation: "Paragraph B: 'rebound effects — the tendency for increased resource efficiency to be offset by increased consumption.'" },
+            { id: 21, stem: "Why is aluminium recycling described as economically attractive?", options: [{ label: "A", text: "Aluminium is rarer than other metals and commands a higher price" }, { label: "B", text: "Recycled aluminium requires only 5 percent of the energy of primary production" }, { label: "C", text: "Aluminium recycling is subsidised by most governments" }, { label: "D", text: "Aluminium products have the longest lifespans of all manufactured goods" }], correct: "B", explanation: "Paragraph E: 'recycled aluminium requires only 5 percent of the energy of primary production.'" },
+            { id: 22, stem: "What does the passage say makes repair economically irrational for fast fashion?", options: [{ label: "A", text: "The absence of repair services in retail locations" }, { label: "B", text: "Legal restrictions on consumer repair rights" }, { label: "C", text: "The low prices at which fast fashion garments are sold" }, { label: "D", text: "The short time between fashion seasons" }], correct: "C", explanation: "Paragraph C: 'sold at prices that make repair economically irrational.'" },
+            { id: 23, stem: "According to the passage, what technical challenge makes plastic recycling difficult?", options: [{ label: "A", text: "Plastic cannot be melted and reformed without losing all structural integrity" }, { label: "B", text: "Contamination of recyclable streams and complex material composites in products" }, { label: "C", text: "Lack of consumer awareness about which plastics can be recycled" }, { label: "D", text: "Plastics are made from chemicals that are hazardous to recycling workers" }], correct: "B", explanation: "Paragraph E: 'The contamination of recyclable streams by incorrect sorting and the proliferation of complex material composites in products are persistent technical challenges.'" },
+          ],
+        },
+        {
+          type: "summary_completion",
+          questionRange: "Questions 24–26",
+          instructions: "Complete the summary below. Choose NO MORE THAN TWO WORDS from the passage for each answer.",
+          summaryTitle: "Business Models for the Circular Economy",
+          summaryText: "Moving beyond product design, business model innovation is essential for circular economy transitions. In {{24}} models, customers pay for access and performance rather than outright ownership, aligning the manufacturer's incentives with durability and efficiency. The manufacturer retains ownership and takes responsibility for maintenance and {{25}} management. This approach, also called {{26}}, has been adopted in industrial equipment and lighting but scaling it to everyday consumer markets at affordable prices remains a challenge.",
+          wordBank: ["product-as-a-service", "end-of-life", "servitisation", "leasing", "subscription", "remanufacturing"],
+          questions: [
+            { id: 24, blankId: 24, correct: "product-as-a-service", explanation: "Paragraph D: 'Product-as-a-service models — in which customers pay for the use of a product rather than its outright purchase.'" },
+            { id: 25, blankId: 25, correct: "end-of-life", explanation: "Paragraph D: 'the manufacturer retains ownership and responsibility for maintenance and end-of-life.'" },
+            { id: 26, blankId: 26, correct: "servitisation", explanation: "Paragraph D: 'Servitisation has also been adopted by industrial equipment manufacturers.'" },
+          ],
+        },
+      ],
+    },
+    {
+      number: 3,
+      title: "The Information Disorder: Misinformation, Disinformation, and Truth",
+      paragraphs: [
+        { letter: "A", text: "The proliferation of false and misleading information — a phenomenon variously termed the 'infodemic,' 'post-truth era,' or 'information disorder' — has emerged as one of the defining challenges of the digital age. Researchers distinguish between misinformation — false or misleading information shared without intent to deceive — and disinformation — false information deliberately created and spread to achieve political, commercial, or ideological objectives. A third category, malinformation — accurate information used maliciously to harm a person or group — completes the typology. These distinctions matter for analysis and response, even though they are often difficult to establish empirically in specific cases." },
+        { letter: "B", text: "The economic ecosystem supporting disinformation has become a subject of serious scholarly attention. False or emotionally charged content tends to generate more engagement on social media platforms than accurate but less sensational information, and engagement-based advertising models therefore financially reward the creation and distribution of such content. 'Clickbait' headline formats, outrage-inducing content, and fabricated viral stories generate advertising revenue regardless of their accuracy. State-sponsored disinformation operations — documented activities of Russian, Chinese, Iranian, and other actors — exploit this ecosystem to amplify divisive content and undermine public trust in democratic institutions." },
+        { letter: "C", text: "Cognitive mechanisms make humans susceptible to false information. Confirmation bias — the tendency to seek out, interpret, and remember information in ways that confirm pre-existing beliefs — means that false information aligned with existing worldviews is more readily accepted and shared. The illusory truth effect — the finding that repeated exposure to a claim increases its perceived truthfulness regardless of its actual accuracy — is particularly concerning in environments where false claims circulate repeatedly. The continued influence effect describes how corrections of false information often fail to fully update beliefs; even after being told a claim is false, people's judgments continue to be influenced by it." },
+        { letter: "D", text: "Fact-checking organisations — independent bodies that investigate and rate the accuracy of claims made by public figures and circulating online — have emerged as a significant institutional response to the information disorder. Prominent examples include PolitiFact, Full Fact, and Africa Check. Research on the effectiveness of fact-checking shows that corrections can reduce belief in specific false claims, but that the effects are modest and may not persist; people who are most invested in false beliefs are least responsive to corrections. The scalability of fact-checking is also limited: human fact-checkers can evaluate only a tiny fraction of the false claims that circulate at any given time, and the political independence of fact-checking organisations has itself been challenged as a source of bias." },
+        { letter: "E", text: "Platform-level interventions represent a second major strategy. Content moderation — removing, reducing the distribution of, or labelling inaccurate content — has been extensively implemented, though it faces persistent challenges of consistency, transparency, and the contested question of who determines what is true. Friction interventions — such as prompting users to read an article before sharing it — have shown significant effects in reducing careless sharing of false content in experimental studies. Algorithmic changes that reduce the amplification of emotionally charged content have been implemented at various platforms with mixed evidence of effectiveness. The most fundamental structural critique is that engagement-based business models incentivise the spread of false information and that meaningful reform requires changing the underlying financial architecture." },
+        { letter: "F", text: "Media and information literacy — the capacity to critically evaluate information sources, identify manipulation techniques, and assess the credibility of claims — is widely advocated as a long-term solution. Educational programmes in Finland, the Baltic states, and several other countries have integrated media literacy into curricula with positive reported effects on critical thinking and resistance to manipulation. 'Prebunking' — a psychological inoculation approach that exposes people to weakened forms of manipulation techniques before they encounter them in the wild — has shown promising results in experimental studies, including games and short videos that teach recognition of common disinformation strategies. Scaling these interventions globally and demonstrating long-term population-level effects remains a significant challenge." },
+      ],
+      sections: [
+        {
+          type: "ynng",
+          questionRange: "Questions 27–31",
+          instructions: "Do the following statements agree with the claims of the writer in the reading passage? Write YES, NO, or NOT GIVEN.",
+          questions: [
+            { id: 27, statement: "Disinformation is defined in the passage as false information created and spread with deliberate intent to deceive.", correct: "Yes", explanation: "Paragraph A: 'disinformation — false information deliberately created and spread to achieve political, commercial, or ideological objectives.'" },
+            { id: 28, statement: "The writer believes that engagement-based advertising is the single most important cause of the information disorder.", correct: "Not Given", explanation: "Paragraph B discusses engagement-based models as a contributing factor but the writer does not rank it as the single most important cause." },
+            { id: 29, statement: "The illusory truth effect means that reading a claim many times makes people more likely to believe it, even if it is false.", correct: "Yes", explanation: "Paragraph C: 'repeated exposure to a claim increases its perceived truthfulness regardless of its actual accuracy.'" },
+            { id: 30, statement: "The continued influence effect means that corrections of misinformation are completely ineffective.", correct: "No", explanation: "Paragraph C: the effect describes how beliefs 'continue to be influenced' by false claims after correction — not that corrections are completely ineffective, only that they fail to fully update beliefs." },
+            { id: 31, statement: "Finland and the Baltic states have introduced media literacy into their national school curricula.", correct: "Yes", explanation: "Paragraph F: 'Educational programmes in Finland, the Baltic states, and several other countries have integrated media literacy into curricula.'" },
+          ],
+        },
+        {
+          type: "mc_multiple",
+          questionRange: "Questions 32–34",
+          instructions: "Choose TWO letters, A–E.",
+          questions: [
+            { id: 32, stem: "Which TWO cognitive biases or effects described in the passage make people more susceptible to false information?", options: [{ label: "A", text: "Anchoring bias" }, { label: "B", text: "Confirmation bias" }, { label: "C", text: "Hindsight bias" }, { label: "D", text: "The illusory truth effect" }, { label: "E", text: "The halo effect" }], pickCount: 2, correct: ["B", "D"], explanation: "Paragraph C: 'Confirmation bias' (B) and 'the illusory truth effect' (D) are both described as making people susceptible to false information." },
+            { id: 33, stem: "Which TWO platform-level interventions to reduce misinformation are discussed in the passage?", options: [{ label: "A", text: "Banning anonymous accounts" }, { label: "B", text: "Content moderation of inaccurate material" }, { label: "C", text: "Friction interventions prompting users to read before sharing" }, { label: "D", text: "Charging users for fact-checking services" }, { label: "E", text: "Requiring sources to be disclosed in all posts" }], pickCount: 2, correct: ["B", "C"], explanation: "Paragraph E: 'Content moderation' (B) and 'Friction interventions — prompting users to read an article before sharing' (C) are both discussed." },
+            { id: 34, stem: "Which TWO limitations of fact-checking as a strategy are mentioned in the passage?", options: [{ label: "A", text: "Fact-checkers make frequent errors in their ratings" }, { label: "B", text: "Effects on belief in false claims are modest and may not persist" }, { label: "C", text: "Fact-checking is too expensive for most organisations to fund" }, { label: "D", text: "Human fact-checkers can only evaluate a fraction of circulating false claims" }, { label: "E", text: "Fact-checkers are legally prevented from investigating claims by politicians" }], pickCount: 2, correct: ["B", "D"], explanation: "Paragraph D: corrections have 'modest' effects that 'may not persist' (B) and 'human fact-checkers can evaluate only a tiny fraction' of false claims (D)." },
+          ],
+        },
+        {
+          type: "short_answer",
+          questionRange: "Questions 35–40",
+          instructions: "Answer the questions below. Choose NO MORE THAN THREE WORDS from the passage for each answer.",
+          questions: [
+            { id: 35, before: "What three-category typology is used to classify different types of harmful information in the passage?", correct: "misinformation disinformation malinformation", explanation: "Paragraph A: 'misinformation… disinformation… malinformation' — the three-category typology." },
+            { id: 36, before: "What format of online content is described as generating advertising revenue regardless of accuracy?", correct: "clickbait", explanation: "Paragraph B: '\"Clickbait\" headline formats… generate advertising revenue regardless of their accuracy.'" },
+            { id: 37, before: "What is the name given to the psychological inoculation approach that exposes people to manipulation techniques before they encounter them?", correct: "prebunking", explanation: "Paragraph F: '\"Prebunking\" — a psychological inoculation approach that exposes people to weakened forms of manipulation techniques.'" },
+            { id: 38, before: "What fact-checking organisation focused on African countries is mentioned in the passage?", correct: "Africa Check", explanation: "Paragraph D: 'Africa Check' is listed alongside PolitiFact and Full Fact." },
+            { id: 39, before: "Which cognitive effect describes how repeated exposure to a false claim makes it seem more believable?", correct: "illusory truth effect", explanation: "Paragraph C: 'The illusory truth effect — the finding that repeated exposure to a claim increases its perceived truthfulness.'" },
+            { id: 40, before: "What fundamental structural change does the most radical critique of platforms suggest is needed to address the spread of false information?", correct: "financial architecture", explanation: "Paragraph E: 'meaningful reform requires changing the underlying financial architecture' — the engagement-based financial model." },
+          ],
+        },
+      ],
+    },
+  ],
+};
