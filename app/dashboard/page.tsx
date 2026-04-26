@@ -92,14 +92,27 @@ export default async function DashboardPage() {
           <p className="text-slate-500 text-sm mt-1">Keep practicing — consistency is the key to a higher band score.</p>
         </div>
 
-        {/* Free plan upgrade banner */}
+        {/* Free plan banner */}
         {plan === "free" && (
-          <div className="bg-gradient-to-r from-cyan-500/10 to-cyan-600/5 border border-cyan-500/20 rounded-xl p-4 mb-8 flex items-center justify-between gap-4">
+          <div className={`border rounded-xl p-4 mb-8 flex items-center justify-between gap-4 ${
+            testsUsed >= testsLimit
+              ? "bg-red-50 border-red-200"
+              : "bg-gradient-to-r from-cyan-500/10 to-cyan-600/5 border-cyan-500/20"
+          }`}>
             <div>
-              <p className="font-semibold text-slate-900 text-sm">
-                You&apos;ve used {testsUsed} of {testsLimit} free tests this month
-              </p>
-              <p className="text-xs text-slate-500 mt-0.5">Upgrade to Pro for unlimited tests + AI feedback</p>
+              {testsUsed >= testsLimit ? (
+                <>
+                  <p className="font-semibold text-red-700 text-sm">You&apos;ve used all {testsLimit} free tests this month</p>
+                  <p className="text-xs text-red-500 mt-0.5">Upgrade to Pro to keep practicing — resets on the 1st of next month</p>
+                </>
+              ) : (
+                <>
+                  <p className="font-semibold text-slate-900 text-sm">
+                    You&apos;ve used {testsUsed} of {testsLimit} free tests this month
+                  </p>
+                  <p className="text-xs text-slate-500 mt-0.5">Upgrade to Pro for unlimited tests + AI feedback</p>
+                </>
+              )}
             </div>
             <Link href="/pricing" className="shrink-0">
               <Button size="sm">Upgrade to Pro</Button>
@@ -156,23 +169,35 @@ export default async function DashboardPage() {
                     <span className="text-slate-900 font-bold">Reading</span>
                   </div>
                   <div className="space-y-2">
-                    {section.tests.map((test) => (
-                      <div key={test.label} className="flex items-center justify-between">
-                        <div>
-                          <p className="text-sm font-medium text-slate-900">{test.label}</p>
-                          <p className="text-xs text-slate-500">{test.sub}</p>
+                    {section.tests.map((test) => {
+                      const overLimit = plan === "free" && testsUsed >= testsLimit;
+                      const locked = !test.free && plan === "free";
+                      return (
+                        <div key={test.label} className="flex items-center justify-between">
+                          <div>
+                            <p className="text-sm font-medium text-slate-900">{test.label}</p>
+                            <p className="text-xs text-slate-500">{test.sub}</p>
+                          </div>
+                          {locked ? (
+                            <Link href="/pricing">
+                              <Button size="sm" className="opacity-60 bg-slate-200 text-slate-500 hover:bg-slate-300">
+                                <Lock className="w-3 h-3 mr-1" /> Pro
+                              </Button>
+                            </Link>
+                          ) : overLimit ? (
+                            <Link href="/pricing">
+                              <Button size="sm" className="bg-red-100 text-red-600 hover:bg-red-200 border-0">
+                                <Lock className="w-3 h-3 mr-1" /> Limit reached
+                              </Button>
+                            </Link>
+                          ) : (
+                            <Link href={`/test/${test.id}`}>
+                              <Button size="sm">Start</Button>
+                            </Link>
+                          )}
                         </div>
-                        {test.free || plan !== "free" ? (
-                          <Link href={`/test/${test.id}`}>
-                            <Button size="sm">Start</Button>
-                          </Link>
-                        ) : (
-                          <Button size="sm" className="opacity-50 cursor-not-allowed bg-slate-200 text-slate-500 hover:bg-slate-200">
-                            <Lock className="w-3 h-3 mr-1" /> Pro
-                          </Button>
-                        )}
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 </CardContent>
               </Card>

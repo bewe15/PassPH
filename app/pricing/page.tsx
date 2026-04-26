@@ -1,6 +1,9 @@
+"use client";
+
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { CheckCircle, ChevronLeft } from "lucide-react";
+import { CheckCircle, ChevronLeft, AlertCircle } from "lucide-react";
 
 const plans = [
   {
@@ -61,6 +64,9 @@ const faqs = [
 ];
 
 export default function PricingPage() {
+  const searchParams = useSearchParams();
+  const hitLimit = searchParams.get("reason") === "limit";
+
   return (
     <div className="min-h-screen bg-slate-50">
       {/* Header */}
@@ -82,6 +88,17 @@ export default function PricingPage() {
       </header>
 
       <main className="max-w-5xl mx-auto px-6 py-16">
+        {/* Limit reached alert */}
+        {hitLimit && (
+          <div className="flex items-start gap-3 bg-red-50 border border-red-200 rounded-xl px-5 py-4 mb-10">
+            <AlertCircle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
+            <div>
+              <p className="text-sm font-semibold text-red-700">You&apos;ve used all 3 free tests this month</p>
+              <p className="text-xs text-red-500 mt-0.5">Upgrade to Pro for unlimited access — your limit resets on the 1st of next month.</p>
+            </div>
+          </div>
+        )}
+
         {/* Hero */}
         <div className="text-center mb-14">
           <h1 className="text-4xl font-extrabold text-slate-900 mb-3">Simple, affordable pricing</h1>
