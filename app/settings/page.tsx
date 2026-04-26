@@ -1,12 +1,93 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, CheckCircle } from "lucide-react";
+import { createClient } from "@/lib/supabase/client";
+import LogoutButton from "@/components/LogoutButton";
+
+function Toast({ message, type }: { message: string; type: "success" | "error" }) {
+  return (
+    <div className={`fixed bottom-6 right-6 z-50 flex items-center gap-2 px-4 py-3 rounded-xl shadow-lg text-sm font-medium transition-all ${
+      type === "success" ? "bg-green-500 text-white" : "bg-red-500 text-white"
+    }`}>
+      {type === "success" && <CheckCircle className="w-4 h-4 shrink-0" />}
+      {message}
+    </div>
+  );
+}
 
 export default function SettingsPage() {
+  const supabase = createClient();
+
+  const [profile, setProfile] = useState({ full_name: "", country: "PH", plan: "free" });
+  const [email, setEmail] = useState("");
+  const [profileLoading, setProfileLoading] = useState(false);
+
+  const [passwords, setPasswords] = useState({ newPassword: "", confirmPassword: "" });
+  const [passwordLoading, setPasswordLoading] = useState(false);
+  const [passwordError, setPasswordError] = useState("");
+
+  const [toast, setToast] = useState<{ message: string; type: "success" | "error" } | null>(null);
+
+  function showToast(message: string, type: "success" | "error") {
+    setToast({ message, type });
+    setTimeout(() => setToast(null), 3500);
+  }
+
+  useEffect(() => {
+    async function load() {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return;
+      setEmail(user.email ?? "");
+      const { data } = await supabase.from("profiles").select("*").eq("id", user.id).single();
+      if (data) setProfile({ full_name: data.full_name ?? "", country: data.country ?? "PH", plan: data.plan ?? "free" });
+    }
+    load();
+  }, []);
+
+  async function saveProfile(e: React.FormEvent) {
+    e.preventDefault();
+    setProfileLoading(true);
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return;
+    const { error } = await supabase.from("profiles").update({
+      full_name: profile.full_name,
+      country: profile.country,
+    }).eq("id", user.id);
+    setProfileLoading(false);
+    if (error) showToast("Failed to save profile.", "error");
+    else showToast("Profile saved!", "success");
+  }
+
+  async function updatePassword(e: React.FormEvent) {
+    e.preventDefault();
+    setPasswordError("");
+    if (passwords.newPassword.length < 8) {
+      setPasswordError("Password must be at least 8 characters.");
+      return;
+    }
+    if (passwords.newPassword !== passwords.confirmPassword) {
+      setPasswordError("Passwords do not match.");
+      return;
+    }
+    setPasswordLoading(true);
+    const { error } = await supabase.auth.updateUser({ password: passwords.newPassword });
+    setPasswordLoading(false);
+    if (error) showToast(error.message, "error");
+    else {
+      setPasswords({ newPassword: "", confirmPassword: "" });
+      showToast("Password updated!", "success");
+    }
+  }
+
   return (
     <div className="min-h-screen bg-slate-50">
+      {toast && <Toast message={toast.message} type={toast.type} />}
+
       {/* Header */}
       <header className="bg-white border-b border-slate-200 px-6 py-4">
         <div className="max-w-4xl mx-auto flex items-center justify-between">
@@ -16,8 +97,10 @@ export default function SettingsPage() {
             <Link href="/settings" className="text-slate-900 font-medium">Settings</Link>
           </nav>
           <div className="flex items-center gap-3">
-            <Badge variant="free">Free plan</Badge>
-            <div className="w-8 h-8 rounded-full bg-cyan-500 flex items-center justify-center text-white text-sm font-bold">M</div>
+            <Badge variant={profile.plan === "free" ? "free" : "pro"}>
+              {profile.plan === "free" ? "Free plan" : "Pro"}
+            </Badge>
+            <LogoutButton />
           </div>
         </div>
       </header>
@@ -29,45 +112,68 @@ export default function SettingsPage() {
           {/* Profile */}
           <section className="bg-white border border-slate-200 rounded-xl p-6">
             <h2 className="text-base font-bold text-slate-900 mb-5">Profile</h2>
-            <div className="space-y-4 max-w-md">
+            <form onSubmit={saveProfile} className="space-y-4 max-w-md">
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1.5">Full name</label>
-                <Input type="text" defaultValue="Maria Santos" className="border-slate-300" />
+                <Input
+                  type="text"
+                  value={profile.full_name}
+                  onChange={(e) => setProfile((p) => ({ ...p, full_name: e.target.value }))}
+                  className="border-slate-300"
+                />
               </div>
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1.5">Email</label>
-                <Input type="email" defaultValue="maria@email.com" className="border-slate-300" />
+                <Input type="email" value={email} disabled className="border-slate-200 bg-slate-50 text-slate-400 cursor-not-allowed" />
+                <p className="text-xs text-slate-400 mt-1">Email cannot be changed here.</p>
               </div>
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1.5">Country</label>
-                <select className="w-full px-4 py-2.5 text-sm border border-slate-300 rounded-lg bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                <select
+                  value={profile.country}
+                  onChange={(e) => setProfile((p) => ({ ...p, country: e.target.value }))}
+                  className="w-full px-4 py-2.5 text-sm border border-slate-300 rounded-lg bg-white text-slate-900 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                >
                   <option value="PH">Philippines 🇵🇭</option>
                   <option value="AU">Australia 🇦🇺</option>
                   <option value="other">Other</option>
                 </select>
               </div>
-              <Button size="sm">Save changes</Button>
-            </div>
+              <Button size="sm" disabled={profileLoading}>
+                {profileLoading ? "Saving…" : "Save changes"}
+              </Button>
+            </form>
           </section>
 
           {/* Change password */}
           <section className="bg-white border border-slate-200 rounded-xl p-6">
             <h2 className="text-base font-bold text-slate-900 mb-5">Change Password</h2>
-            <div className="space-y-4 max-w-md">
-              <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1.5">Current password</label>
-                <Input type="password" placeholder="••••••••" className="border-slate-300" />
-              </div>
+            <form onSubmit={updatePassword} className="space-y-4 max-w-md">
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1.5">New password</label>
-                <Input type="password" placeholder="At least 8 characters" className="border-slate-300" />
+                <Input
+                  type="password"
+                  placeholder="At least 8 characters"
+                  value={passwords.newPassword}
+                  onChange={(e) => setPasswords((p) => ({ ...p, newPassword: e.target.value }))}
+                  className="border-slate-300"
+                />
               </div>
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-1.5">Confirm new password</label>
-                <Input type="password" placeholder="••••••••" className="border-slate-300" />
+                <Input
+                  type="password"
+                  placeholder="••••••••"
+                  value={passwords.confirmPassword}
+                  onChange={(e) => setPasswords((p) => ({ ...p, confirmPassword: e.target.value }))}
+                  className="border-slate-300"
+                />
               </div>
-              <Button size="sm">Update password</Button>
-            </div>
+              {passwordError && <p className="text-xs text-red-500">{passwordError}</p>}
+              <Button size="sm" disabled={passwordLoading}>
+                {passwordLoading ? "Updating…" : "Update password"}
+              </Button>
+            </form>
           </section>
 
           {/* Subscription */}
@@ -76,16 +182,20 @@ export default function SettingsPage() {
             <p className="text-sm text-slate-500 mb-5">Manage your plan and billing.</p>
             <div className="flex items-center justify-between p-4 bg-slate-50 rounded-lg mb-4">
               <div>
-                <p className="font-semibold text-slate-900 text-sm">Free Plan</p>
-                <p className="text-xs text-slate-500 mt-0.5">3 practice tests per month</p>
+                <p className="font-semibold text-slate-900 text-sm capitalize">{profile.plan} Plan</p>
+                <p className="text-xs text-slate-500 mt-0.5">
+                  {profile.plan === "free" ? "3 practice tests per month" : "Unlimited tests + AI feedback"}
+                </p>
               </div>
-              <Badge variant="free">Active</Badge>
+              <Badge variant={profile.plan === "free" ? "free" : "pro"}>Active</Badge>
             </div>
-            <Link href="/pricing">
-              <Button>
-                Upgrade to Pro <ChevronRight className="w-4 h-4 ml-1" />
-              </Button>
-            </Link>
+            {profile.plan === "free" && (
+              <Link href="/pricing">
+                <Button>
+                  Upgrade to Pro <ChevronRight className="w-4 h-4 ml-1" />
+                </Button>
+              </Link>
+            )}
           </section>
 
           {/* Notifications */}
