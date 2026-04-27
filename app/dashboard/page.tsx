@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { BookOpen, TrendingUp, Clock, ChevronRight, Lock, ArrowUpRight } from "lucide-react";
+import { BookOpen, PenLine, TrendingUp, Clock, ChevronRight, Lock, ArrowUpRight } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import LogoutButton from "@/components/LogoutButton";
 
@@ -142,8 +142,15 @@ export default async function DashboardPage() {
 
         {/* Start a test */}
         <div className="mb-8">
-          <h2 className="text-lg font-bold text-slate-900 mb-4">Start a Practice Test</h2>
-          <div className="grid md:grid-cols-2 gap-4">
+          <h2 className="text-lg font-bold text-slate-900 mb-1">Start a Practice Test</h2>
+          <p className="text-sm text-slate-500 mb-4">Reading &amp; Writing tests available for both IELTS and PTE Academic.</p>
+
+          {/* Reading */}
+          <div className="flex items-center gap-2 mb-3">
+            <BookOpen className="w-4 h-4 text-slate-400" />
+            <span className="text-sm font-semibold text-slate-600 uppercase tracking-wide">Reading</span>
+          </div>
+          <div className="grid md:grid-cols-2 gap-4 mb-6">
             {[
               {
                 exam: "IELTS",
@@ -154,6 +161,7 @@ export default async function DashboardPage() {
                   { label: "Reading Test 2", sub: "40 questions • 60 min", id: "ielts-reading-2", free: true },
                   { label: "Reading Test 3", sub: "40 questions • 60 min", id: "ielts-reading-3", free: true },
                 ],
+                route: "test",
               },
               {
                 exam: "PTE",
@@ -164,6 +172,7 @@ export default async function DashboardPage() {
                   { label: "Reading Test 2", sub: "5 tasks • 30 min", id: "pte-reading-2", free: true },
                   { label: "Reading Test 3", sub: "5 tasks • 30 min", id: "pte-reading-3", free: true },
                 ],
+                route: "test",
               },
             ].map((section) => (
               <Card key={section.exam} className={`border-2 transition ${section.color}`}>
@@ -195,7 +204,77 @@ export default async function DashboardPage() {
                               </Button>
                             </Link>
                           ) : (
-                            <Link href={`/test/${test.id}`}>
+                            <Link href={`/${section.route}/${test.id}`}>
+                              <Button size="sm">Start</Button>
+                            </Link>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {/* Writing */}
+          <div className="flex items-center gap-2 mb-3">
+            <PenLine className="w-4 h-4 text-slate-400" />
+            <span className="text-sm font-semibold text-slate-600 uppercase tracking-wide">Writing</span>
+          </div>
+          <div className="grid md:grid-cols-2 gap-4">
+            {[
+              {
+                exam: "IELTS",
+                color: "border-blue-200 hover:border-blue-400",
+                accent: "bg-blue-50 text-blue-700",
+                tests: [
+                  { label: "Writing Test 1", sub: "Task 1 + Task 2 • 60 min", id: "ielts-writing-1", free: true },
+                  { label: "Writing Test 2", sub: "Task 1 + Task 2 • 60 min", id: "ielts-writing-2", free: true },
+                  { label: "Writing Test 3", sub: "Task 1 + Task 2 • 60 min", id: "ielts-writing-3", free: true },
+                ],
+              },
+              {
+                exam: "PTE",
+                color: "border-purple-200 hover:border-purple-400",
+                accent: "bg-purple-50 text-purple-700",
+                tests: [
+                  { label: "Writing Test 1", sub: "SWT + Essay • 30 min", id: "pte-writing-1", free: true },
+                  { label: "Writing Test 2", sub: "SWT + Essay • 30 min", id: "pte-writing-2", free: true },
+                  { label: "Writing Test 3", sub: "SWT + Essay • 30 min", id: "pte-writing-3", free: true },
+                ],
+              },
+            ].map((section) => (
+              <Card key={`writing-${section.exam}`} className={`border-2 transition ${section.color}`}>
+                <CardContent className="py-5">
+                  <div className="flex items-center gap-2 mb-4">
+                    <span className={`text-xs font-bold px-2 py-0.5 rounded ${section.accent}`}>{section.exam}</span>
+                    <span className="text-slate-900 font-bold">Writing</span>
+                  </div>
+                  <div className="space-y-2">
+                    {section.tests.map((test) => {
+                      const overLimit = plan === "free" && testsUsed >= testsLimit;
+                      const locked = !test.free && plan === "free";
+                      return (
+                        <div key={test.label} className="flex items-center justify-between">
+                          <div>
+                            <p className="text-sm font-medium text-slate-900">{test.label}</p>
+                            <p className="text-xs text-slate-500">{test.sub}</p>
+                          </div>
+                          {locked ? (
+                            <Link href="/pricing">
+                              <Button size="sm" className="opacity-60 bg-slate-200 text-slate-500 hover:bg-slate-300">
+                                <Lock className="w-3 h-3 mr-1" /> Pro
+                              </Button>
+                            </Link>
+                          ) : overLimit ? (
+                            <Link href="/pricing">
+                              <Button size="sm" className="bg-red-100 text-red-600 hover:bg-red-200 border-0">
+                                <Lock className="w-3 h-3 mr-1" /> Limit reached
+                              </Button>
+                            </Link>
+                          ) : (
+                            <Link href={`/write/${test.id}`}>
                               <Button size="sm">Start</Button>
                             </Link>
                           )}
