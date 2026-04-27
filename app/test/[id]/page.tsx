@@ -668,7 +668,7 @@ function IELTSRunner({ test, onSubmit }: { test: IELTSTest; onSubmit: (answers: 
   const [answers, setAnswers] = useState<AnswerMap>({});
   const [currentQId, setCurrentQId] = useState(1);
   const [showConfirm, setShowConfirm] = useState(false);
-  const [flagged, setFlagged] = useState<Set<number>>(new Set());
+  const flagged = new Set<number>();
   const startRef = useRef(Date.now());
 
   const allIds = allIELTSIds(test);
