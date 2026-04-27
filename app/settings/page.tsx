@@ -47,7 +47,7 @@ export default function SettingsPage() {
       if (data) setProfile({ full_name: data.full_name ?? "", country: data.country ?? "PH", plan: data.plan ?? "free" });
     }
     load();
-  }, []);
+  }, [supabase]);
 
   async function saveProfile(e: React.FormEvent) {
     e.preventDefault();

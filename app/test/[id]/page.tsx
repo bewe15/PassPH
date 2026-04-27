@@ -3,12 +3,12 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
-import { ChevronLeft, ChevronRight, Clock, Flag } from "lucide-react";
+import { ChevronLeft, ChevronRight, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getTest, buildResult } from "@/lib/tests/index";
 import { createClient } from "@/lib/supabase/client";
 import type {
-  AnyTest, IELTSTest, PTETest, IELTSPassage, Section, QuestionItem,
+  IELTSTest, PTETest, Section, QuestionItem,
   PTETask, AnswerMap,
 } from "@/lib/tests/types";
 
@@ -475,7 +475,6 @@ function RFIBRenderer({
   const [activeBlank, setActiveBlank] = useState<number | null>(null);
 
   const wordBank = task.wordBank ?? [];
-  const blanks = task.blanks ?? [];
   const usedWords = new Set(Object.values(blankMap).filter(Boolean));
 
   function fillBlank(id: number, word: string) {
@@ -681,10 +680,6 @@ function IELTSRunner({ test, onSubmit }: { test: IELTSTest; onSubmit: (answers: 
   function setAnswer(id: number, val: string) {
     setAnswers((prev) => ({ ...prev, [id]: val }));
   }
-  function toggleFlag(id: number) {
-    setFlagged((prev) => { const n = new Set(prev); n.has(id) ? n.delete(id) : n.add(id); return n; });
-  }
-
   function submit() {
     const elapsed = Math.round((Date.now() - startRef.current) / 1000);
     onSubmit(answers, elapsed);

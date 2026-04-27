@@ -7,7 +7,7 @@ import { ChevronLeft, Clock, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getWritingTest } from "@/lib/tests/writing-index";
 import { createClient } from "@/lib/supabase/client";
-import type { WritingTest, WritingTask, WritingResult } from "@/lib/tests/writing-types";
+import type { WritingTask, WritingResult } from "@/lib/tests/writing-types";
 
 function cn(...classes: (string | undefined | false)[]) {
   return classes.filter(Boolean).join(" ");
