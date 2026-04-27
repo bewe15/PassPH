@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -63,10 +64,22 @@ const faqs = [
   { q: "Can I cancel anytime?", a: "Absolutely. No lock-in contracts. Cancel anytime from your settings and you keep access until the end of your billing period." },
 ];
 
-export default function PricingPage() {
+function LimitBanner() {
   const searchParams = useSearchParams();
   const hitLimit = searchParams.get("reason") === "limit";
+  if (!hitLimit) return null;
+  return (
+    <div className="flex items-start gap-3 bg-red-50 border border-red-200 rounded-xl px-5 py-4 mb-10">
+      <AlertCircle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
+      <div>
+        <p className="text-sm font-semibold text-red-700">You&apos;ve used all 3 free tests this month</p>
+        <p className="text-xs text-red-500 mt-0.5">Upgrade to Pro for unlimited access — your limit resets on the 1st of next month.</p>
+      </div>
+    </div>
+  );
+}
 
+export default function PricingPage() {
   return (
     <div className="min-h-screen bg-slate-50">
       {/* Header */}
@@ -89,15 +102,9 @@ export default function PricingPage() {
 
       <main className="max-w-5xl mx-auto px-6 py-16">
         {/* Limit reached alert */}
-        {hitLimit && (
-          <div className="flex items-start gap-3 bg-red-50 border border-red-200 rounded-xl px-5 py-4 mb-10">
-            <AlertCircle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
-            <div>
-              <p className="text-sm font-semibold text-red-700">You&apos;ve used all 3 free tests this month</p>
-              <p className="text-xs text-red-500 mt-0.5">Upgrade to Pro for unlimited access — your limit resets on the 1st of next month.</p>
-            </div>
-          </div>
-        )}
+        <Suspense fallback={null}>
+          <LimitBanner />
+        </Suspense>
 
         {/* Hero */}
         <div className="text-center mb-14">
