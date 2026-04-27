@@ -191,8 +191,8 @@ export default function LandingPage() {
                 { icon: Zap,       title: "Instant Scores & Feedback",  desc: "Get your band score estimate immediately after each test with detailed explanations." },
                 { icon: Clock,     title: "Practice Anytime",           desc: "No fixed schedule. Study at 2am or during your lunch break — your choice." },
                 { icon: BookOpen,  title: "Reading Section",            desc: "Multiple choice, true/false, fill in the blank — all question types covered." },
+                { icon: PenLine,   title: "Writing Section",            desc: "Timed writing tasks with model answers and band descriptor self-assessment." },
                 { icon: Headphones,title: "Listening Section",          desc: "Coming soon — audio-based questions with exam-style player." },
-                { icon: PenLine,   title: "AI Writing Feedback",        desc: "Coming soon — get a band score estimate and improvement tips instantly." },
               ].map((f) => (
                 <div key={f.title} className="bg-white border border-slate-200 rounded-xl p-6 hover:border-cyan-400 hover:shadow-md transition">
                   <div className="w-10 h-10 bg-cyan-50 rounded-lg flex items-center justify-center mb-4">
