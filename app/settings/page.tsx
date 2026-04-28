@@ -21,8 +21,6 @@ function Toast({ message, type }: { message: string; type: "success" | "error" }
 }
 
 export default function SettingsPage() {
-  const supabase = createClient();
-
   const [profile, setProfile] = useState({ full_name: "", country: "PH", plan: "free" });
   const [email, setEmail] = useState("");
   const [profileLoading, setProfileLoading] = useState(false);
@@ -40,6 +38,7 @@ export default function SettingsPage() {
 
   useEffect(() => {
     async function load() {
+      const supabase = createClient();
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) return;
       setEmail(user.email ?? "");
@@ -47,11 +46,12 @@ export default function SettingsPage() {
       if (data) setProfile({ full_name: data.full_name ?? "", country: data.country ?? "PH", plan: data.plan ?? "free" });
     }
     load();
-  }, [supabase]);
+  }, []);
 
   async function saveProfile(e: React.FormEvent) {
     e.preventDefault();
     setProfileLoading(true);
+    const supabase = createClient();
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) return;
     const { error } = await supabase.from("profiles").update({
@@ -75,6 +75,7 @@ export default function SettingsPage() {
       return;
     }
     setPasswordLoading(true);
+    const supabase = createClient();
     const { error } = await supabase.auth.updateUser({ password: passwords.newPassword });
     setPasswordLoading(false);
     if (error) showToast(error.message, "error");
