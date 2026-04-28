@@ -42,8 +42,7 @@ export default function SettingsPage() {
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) return;
       setEmail(user.email ?? "");
-      const { data, error } = await supabase.from("profiles").select("*").eq("id", user.id).single();
-      console.log("profile data:", data, "error:", error);
+      const { data } = await supabase.from("profiles").select("*").eq("id", user.id).single();
       if (data) setProfile({ full_name: data.full_name ?? "", country: data.country ?? "PH", plan: data.plan ?? "free" });
     }
     load();
