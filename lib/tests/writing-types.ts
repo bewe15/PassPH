@@ -41,6 +41,8 @@ export interface WritingTaskResult {
   wordCount: number;
   modelAnswer: string;
   bandDescriptors: BandDescriptor[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  scoreBreakdown?: any;
 }
 
 export interface WritingResult {
@@ -50,4 +52,5 @@ export interface WritingResult {
   date: string;
   timeTaken: string;
   tasks: WritingTaskResult[];
+  overallBand?: number;
 }

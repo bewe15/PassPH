@@ -3,12 +3,68 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { ChevronLeft, BookOpen, CheckCircle, ArrowRight } from "lucide-react";
+import { ChevronLeft, BookOpen, CheckCircle, ArrowRight, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import type { WritingResult, WritingTaskResult } from "@/lib/tests/writing-types";
 
 function cn(...classes: (string | undefined | false)[]) {
   return classes.filter(Boolean).join(" ");
+}
+
+// ── Score Breakdown Card ──────────────────────────────────────────────────────
+
+function getBandColor(band: number) {
+  if (band >= 7.5) return "text-green-500";
+  if (band >= 6.5) return "text-cyan-500";
+  if (band >= 5.5) return "text-yellow-500";
+  return "text-red-400";
+}
+
+function getBandLabel(band: number) {
+  if (band >= 8.0) return "Excellent";
+  if (band >= 7.0) return "Good";
+  if (band >= 6.0) return "Competent";
+  if (band >= 5.0) return "Modest";
+  return "Limited";
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function ScoreBreakdown({ breakdown, taskLabel }: { breakdown: any; taskLabel: string }) {
+  const metrics = [
+    { label: "Word Count", ...breakdown.wordCount },
+    { label: "Vocabulary", ...breakdown.vocabulary },
+    { label: "Cohesion", ...breakdown.cohesion },
+    { label: "Sentence Variety", ...breakdown.sentenceVariety },
+  ];
+
+  return (
+    <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 space-y-3">
+      <div className="flex items-center justify-between mb-1">
+        <p className="text-xs font-bold text-slate-500 uppercase tracking-wide">{taskLabel} — Score Analysis</p>
+        <span className={`text-sm font-extrabold ${getBandColor(breakdown.band)}`}>Band {breakdown.band}</span>
+      </div>
+      {metrics.map((m) => (
+        <div key={m.label}>
+          <div className="flex justify-between text-xs mb-1">
+            <span className="font-medium text-slate-700">{m.label}</span>
+            <span className="text-slate-500">{m.score}/{m.max}</span>
+          </div>
+          <div className="h-1.5 bg-slate-200 rounded-full overflow-hidden mb-1">
+            <div
+              className={cn("h-full rounded-full", m.score / m.max >= 0.8 ? "bg-green-500" : m.score / m.max >= 0.5 ? "bg-cyan-500" : "bg-amber-400")}
+              style={{ width: `${(m.score / m.max) * 100}%` }}
+            />
+          </div>
+          <p className="text-xs text-slate-500">{m.feedback}</p>
+        </div>
+      ))}
+      {breakdown.cohesion.words.length > 0 && (
+        <p className="text-xs text-slate-400">
+          Linking words found: <span className="text-cyan-600 font-medium">{breakdown.cohesion.words.join(", ")}</span>
+        </p>
+      )}
+    </div>
+  );
 }
 
 // ── Band Descriptor Table ─────────────────────────────────────────────────────
@@ -69,6 +125,11 @@ function TaskReview({ task }: { task: WritingTaskResult }) {
               }
             </div>
           </details>
+        )}
+
+        {/* Score breakdown */}
+        {task.scoreBreakdown && (
+          <ScoreBreakdown breakdown={task.scoreBreakdown} taskLabel={task.taskLabel.split("—")[0].trim()} />
         )}
 
         {/* User response */}
@@ -139,6 +200,7 @@ export default function WriteResultsPage() {
   if (!result) return null;
 
   const totalWords = result.tasks.reduce((s, t) => s + t.wordCount, 0);
+  const overall = result.overallBand ?? null;
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -162,27 +224,52 @@ export default function WriteResultsPage() {
 
       <main className="max-w-4xl mx-auto px-4 py-8">
         {/* Summary card */}
-        <div className="bg-gradient-to-r from-cyan-500 to-cyan-600 rounded-2xl p-6 text-white mb-8">
-          <div className="flex items-start justify-between">
-            <div>
-              <p className="text-cyan-100 text-sm mb-1">{result.exam} Academic Writing</p>
-              <h1 className="text-2xl font-extrabold mb-1">{result.title}</h1>
-              <p className="text-cyan-100 text-sm">{result.date} &middot; {result.timeTaken}</p>
+        <div className="bg-gradient-to-br from-[#0a0e27] to-[#0f1535] rounded-2xl p-8 text-white mb-8">
+          <div className="flex items-center justify-center gap-2 mb-2">
+            <TrendingUp className="w-5 h-5 text-cyan-400" />
+            <p className="text-sm font-semibold text-cyan-400 uppercase tracking-widest">Writing Result</p>
+          </div>
+          <h1 className="text-center text-lg font-bold mb-6">{result.exam} — {result.title}</h1>
+
+          <div className="flex items-center justify-center gap-12 flex-wrap mb-6">
+            {overall !== null && (
+              <div className="text-center">
+                <p className={`text-5xl font-extrabold ${getBandColor(overall)}`}>{overall}</p>
+                <p className="text-sm text-slate-400 mt-1">Band Estimate</p>
+              </div>
+            )}
+            <div className="text-center">
+              <p className="text-5xl font-extrabold">{totalWords}</p>
+              <p className="text-sm text-slate-400 mt-1">Total Words</p>
             </div>
-            <div className="bg-white/20 rounded-xl px-4 py-3 text-center">
-              <p className="text-2xl font-extrabold">{totalWords}</p>
-              <p className="text-xs text-cyan-100 mt-0.5">total words</p>
+            <div className="text-center">
+              <p className="text-5xl font-extrabold">{result.tasks.length}</p>
+              <p className="text-sm text-slate-400 mt-1">Tasks</p>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-3 mt-5">
+          {overall !== null && (
+            <div className="flex justify-center">
+              <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-1.5 text-sm">
+                <TrendingUp className="w-4 h-4 text-cyan-400" />
+                <span>Band {overall} — <span className="text-cyan-400 font-semibold">{getBandLabel(overall)}</span></span>
+              </div>
+            </div>
+          )}
+
+          <div className="grid grid-cols-2 gap-3 mt-6">
             {result.tasks.map((t) => (
-              <div key={t.taskId} className="bg-white/15 rounded-xl px-4 py-3 flex items-center justify-between">
+              <div key={t.taskId} className="bg-white/10 rounded-xl px-4 py-3 flex items-center justify-between">
                 <div>
-                  <p className="text-xs text-cyan-100">{t.taskLabel.split("—")[0].trim()}</p>
+                  <p className="text-xs text-slate-400">{t.taskLabel.split("—")[0].trim()}</p>
                   <p className="font-bold">{t.wordCount} words</p>
                 </div>
-                <CheckCircle className={cn("w-5 h-5", t.wordCount > 0 ? "text-white" : "text-white/30")} />
+                <div className="text-right">
+                  {t.scoreBreakdown && (
+                    <p className={`font-bold text-sm ${getBandColor(t.scoreBreakdown.band)}`}>Band {t.scoreBreakdown.band}</p>
+                  )}
+                  <CheckCircle className={cn("w-4 h-4 mt-0.5 ml-auto", t.wordCount > 0 ? "text-white/60" : "text-white/20")} />
+                </div>
               </div>
             ))}
           </div>

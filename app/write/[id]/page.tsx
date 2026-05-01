@@ -7,6 +7,7 @@ import { ChevronLeft, Clock, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getWritingTest } from "@/lib/tests/writing-index";
 import { createClient } from "@/lib/supabase/client";
+import { scoreTask, overallBand } from "@/lib/writing-scorer";
 import type { WritingTask, WritingResult } from "@/lib/tests/writing-types";
 
 function cn(...classes: (string | undefined | false)[]) {
@@ -244,24 +245,35 @@ export default function WritePage() {
     const mm = Math.floor(elapsed / 60).toString().padStart(2, "0");
     const ss = (elapsed % 60).toString().padStart(2, "0");
 
-    const result: WritingResult = {
-      exam: test.exam,
-      testId: test.id,
-      title: test.title,
-      date: new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }),
-      timeTaken: `${mm} min ${ss} sec`,
-      tasks: test.tasks.map((t) => ({
+    const scoredTasks = test.tasks.map((t) => {
+      const response = responses[t.id] ?? "";
+      const breakdown = scoreTask(response, t.type);
+      return {
         taskId: t.id,
         taskLabel: t.taskLabel,
         type: t.type,
         prompt: t.prompt,
         chartDescription: t.chartDescription,
         passage: t.passage,
-        userResponse: responses[t.id] ?? "",
-        wordCount: countWords(responses[t.id] ?? ""),
+        userResponse: response,
+        wordCount: countWords(response),
         modelAnswer: t.modelAnswer,
         bandDescriptors: t.bandDescriptors,
-      })),
+        scoreBreakdown: breakdown,
+      };
+    });
+
+    const bands = scoredTasks.map((t) => t.scoreBreakdown.band);
+    const overall = overallBand(bands);
+
+    const result: WritingResult = {
+      exam: test.exam,
+      testId: test.id,
+      title: test.title,
+      date: new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }),
+      timeTaken: `${mm} min ${ss} sec`,
+      tasks: scoredTasks,
+      overallBand: overall,
     };
 
     sessionStorage.setItem("passph_writing_result", JSON.stringify(result));
@@ -275,9 +287,9 @@ export default function WritePage() {
           user_id: user.id,
           exam: test.exam,
           test_id: test.id,
-          score: 0,
-          total: 0,
-          band: 0,
+          score: Math.round(overall * 10),
+          total: 90,
+          band: overall,
           time_taken: `${mm} min ${ss} sec`,
           result_json: result,
         });

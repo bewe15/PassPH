@@ -24,7 +24,7 @@ const plans = [
   },
   {
     name: "Basic",
-    price: "₱199",
+    price: "₱299",
     period: "/month",
     desc: "For regular practice",
     features: [
@@ -40,7 +40,7 @@ const plans = [
   },
   {
     name: "Pro",
-    price: "₱399",
+    price: "₱499",
     period: "/month",
     desc: "Everything you need to pass",
     features: [
@@ -60,7 +60,7 @@ const plans = [
 const faqs = [
   { q: "Can I switch plans anytime?", a: "Yes, upgrade or downgrade at any time from your account settings. Changes take effect immediately." },
   { q: "What payment methods are accepted?", a: "Philippine users can pay via GCash, Maya, or credit/debit card through PayMongo. Australian users pay in AUD via Stripe." },
-  { q: "Is there a one-time payment option?", a: "Yes — ₱999 gives you 3 months of Pro access as a one-time payment. Great if you have a fixed exam date." },
+  { q: "Is there a one-time payment option?", a: "Yes — ₱1,299 gives you 3 months of Pro access as a one-time payment. Great if you have a fixed exam date." },
   { q: "Can I cancel anytime?", a: "Absolutely. No lock-in contracts. Cancel anytime from your settings and you keep access until the end of your billing period." },
 ];
 
@@ -110,7 +110,7 @@ export default function PricingPage() {
         <div className="text-center mb-14">
           <h1 className="text-4xl font-extrabold text-slate-900 mb-3">Simple, affordable pricing</h1>
           <p className="text-slate-500 text-lg">Start free. Upgrade when you are ready. No hidden fees.</p>
-          <p className="text-sm text-slate-400 mt-2">Also available: ₱999 one-time for 3 months Pro</p>
+          <p className="text-sm text-slate-400 mt-2">Also available: ₱1,299 one-time for 3 months Pro</p>
         </div>
 
         {/* Plans */}
@@ -164,10 +164,10 @@ export default function PricingPage() {
         <div className="bg-white border border-slate-200 rounded-xl p-6 flex flex-col md:flex-row items-center justify-between gap-4 mb-16">
           <div>
             <h3 className="font-bold text-slate-900 mb-1">One-time payment option</h3>
-            <p className="text-sm text-slate-500">Pay ₱999 once and get 3 months of Pro access. Best for exam prep with a fixed date.</p>
+            <p className="text-sm text-slate-500">Pay ₱1,299 once and get 3 months of Pro access. Best for exam prep with a fixed date.</p>
           </div>
           <Link href="/signup" className="shrink-0">
-            <Button variant="outline">Get 3 months for ₱999</Button>
+            <Button variant="outline">Get 3 months for ₱1,299</Button>
           </Link>
         </div>
 

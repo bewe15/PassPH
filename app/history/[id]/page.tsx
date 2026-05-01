@@ -126,21 +126,36 @@ function WritingResult({ result }: { result: any }) {
   }
 
   const totalWords = result.tasks.reduce((s: number, t: { wordCount: number }) => s + t.wordCount, 0);
+  const overall = result.overallBand ?? null;
 
   return (
     <>
-      <div className="bg-gradient-to-r from-cyan-500 to-cyan-600 rounded-2xl p-6 text-white mb-8">
-        <div className="flex items-start justify-between">
-          <div>
-            <p className="text-cyan-100 text-sm mb-1">{result.exam} Academic Writing</p>
-            <h1 className="text-2xl font-extrabold mb-1">{result.title}</h1>
-            <p className="text-cyan-100 text-sm">{result.date} &middot; {result.timeTaken}</p>
-          </div>
-          <div className="bg-white/20 rounded-xl px-4 py-3 text-center">
-            <p className="text-2xl font-extrabold">{totalWords}</p>
-            <p className="text-xs text-cyan-100 mt-0.5">total words</p>
+      <div className="bg-gradient-to-br from-[#0a0e27] to-[#0f1535] rounded-2xl p-8 text-white mb-8">
+        <div className="flex items-center justify-center gap-2 mb-2">
+          <TrendingUp className="w-5 h-5 text-cyan-400" />
+          <p className="text-sm font-semibold text-cyan-400 uppercase tracking-widest">Writing Result</p>
+        </div>
+        <h1 className="text-center text-lg font-bold mb-6">{result.exam} — {result.title}</h1>
+        <div className="flex items-center justify-center gap-12 flex-wrap mb-6">
+          {overall !== null && (
+            <div className="text-center">
+              <p className={`text-5xl font-extrabold ${getBandColor(overall)}`}>{overall}</p>
+              <p className="text-sm text-slate-400 mt-1">Band Estimate</p>
+            </div>
+          )}
+          <div className="text-center">
+            <p className="text-5xl font-extrabold">{totalWords}</p>
+            <p className="text-sm text-slate-400 mt-1">Total Words</p>
           </div>
         </div>
+        {overall !== null && (
+          <div className="flex justify-center">
+            <div className="inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-1.5 text-sm">
+              <TrendingUp className="w-4 h-4 text-cyan-400" />
+              <span>Band {overall} — <span className="text-cyan-400 font-semibold">{getBandLabel(overall)}</span></span>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
