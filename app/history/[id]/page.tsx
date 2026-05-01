@@ -1,0 +1,291 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
+import Link from "next/link";
+import { ChevronLeft, Trophy, TrendingUp, RotateCcw, CheckCircle, XCircle, BookOpen } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { createClient } from "@/lib/supabase/client";
+
+function getBandColor(band: number) {
+  if (band >= 7.5) return "text-green-500";
+  if (band >= 6.5) return "text-cyan-500";
+  if (band >= 5.5) return "text-yellow-500";
+  return "text-red-400";
+}
+
+function getBandLabel(band: number) {
+  if (band >= 8.0) return "Excellent";
+  if (band >= 7.0) return "Good";
+  if (band >= 6.0) return "Competent";
+  if (band >= 5.0) return "Modest";
+  return "Limited";
+}
+
+// ── Reading Result View ───────────────────────────────────────────────────────
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function ReadingResult({ result }: { result: any }) {
+  const pct = Math.round((result.score / result.total) * 100);
+  const correct = result.questions.filter((q: { isCorrect: boolean }) => q.isCorrect).length;
+  const incorrect = result.questions.length - correct;
+
+  return (
+    <>
+      <Card className="mb-6 overflow-hidden">
+        <div className="bg-gradient-to-br from-[#0a0e27] to-[#0f1535] p-8 text-white text-center">
+          <div className="flex items-center justify-center gap-2 mb-2">
+            <Trophy className="w-5 h-5 text-cyan-400" />
+            <p className="text-sm font-semibold text-cyan-400 uppercase tracking-widest">Test Result</p>
+          </div>
+          <h1 className="text-lg font-bold mb-6">{result.exam} — {result.type}</h1>
+          <div className="flex items-center justify-center gap-16 flex-wrap">
+            <div>
+              <p className="text-5xl font-extrabold">{result.score}<span className="text-2xl text-slate-400">/{result.total}</span></p>
+              <p className="text-sm text-slate-400 mt-1">Questions Correct</p>
+            </div>
+            <div>
+              <p className={`text-5xl font-extrabold ${getBandColor(result.band)}`}>{result.band}</p>
+              <p className="text-sm text-slate-400 mt-1">Band Estimate</p>
+            </div>
+            <div>
+              <p className="text-5xl font-extrabold">{pct}<span className="text-2xl text-slate-400">%</span></p>
+              <p className="text-sm text-slate-400 mt-1">Accuracy</p>
+            </div>
+          </div>
+          <div className="mt-6 inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-1.5 text-sm">
+            <TrendingUp className="w-4 h-4 text-cyan-400" />
+            <span>Band {result.band} — <span className="text-cyan-400 font-semibold">{getBandLabel(result.band)}</span></span>
+          </div>
+        </div>
+        <CardContent className="py-4">
+          <div className="grid grid-cols-3 gap-4 text-center text-sm">
+            <div><p className="text-green-500 font-bold text-lg">{correct}</p><p className="text-slate-500 text-xs">Correct</p></div>
+            <div><p className="text-red-400 font-bold text-lg">{incorrect}</p><p className="text-slate-500 text-xs">Incorrect</p></div>
+            <div><p className="text-slate-700 font-bold text-lg">{result.timeTaken}</p><p className="text-slate-500 text-xs">Time Taken</p></div>
+          </div>
+          <div className="mt-4">
+            <div className="flex justify-between text-xs text-slate-500 mb-1"><span>Score progress</span><span>{pct}%</span></div>
+            <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
+              <div className="h-full bg-cyan-500 rounded-full" style={{ width: `${pct}%` }} />
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      <h2 className="text-lg font-bold text-slate-900 mb-4">Answer Review</h2>
+      <div className="space-y-3">
+        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+        {result.questions.map((q: any) => (
+          <Card key={q.id}>
+            <CardContent className="py-4">
+              <div className="flex items-start gap-3">
+                <div className="mt-0.5 shrink-0">
+                  {q.isCorrect ? <CheckCircle className="w-5 h-5 text-green-500" /> : <XCircle className="w-5 h-5 text-red-400" />}
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-xs font-bold text-slate-400">Q{q.id}</span>
+                    <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${q.isCorrect ? "bg-green-50 text-green-600" : "bg-red-50 text-red-500"}`}>
+                      {q.isCorrect ? "Correct" : "Incorrect"}
+                    </span>
+                  </div>
+                  <p className="text-sm text-slate-800 font-medium mb-2">{q.text}</p>
+                  {!q.isCorrect && (
+                    <div className="flex flex-col gap-1 text-xs mb-2">
+                      <span className="text-red-400">Your answer: <strong>{q.given}</strong></span>
+                      <span className="text-green-600">Correct answer: <strong>{q.correct}</strong></span>
+                    </div>
+                  )}
+                  <div className="bg-slate-50 border border-slate-100 rounded-lg px-3 py-2 text-xs text-slate-600">
+                    <span className="font-semibold text-slate-700">Explanation: </span>{q.explanation}
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </>
+  );
+}
+
+// ── Writing Result View ───────────────────────────────────────────────────────
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function WritingResult({ result }: { result: any }) {
+  const [revealedTasks, setRevealedTasks] = useState<Set<number>>(new Set());
+
+  function toggleReveal(id: number) {
+    setRevealedTasks((prev) => {
+      const next = new Set(prev);
+      next.has(id) ? next.delete(id) : next.add(id);
+      return next;
+    });
+  }
+
+  const totalWords = result.tasks.reduce((s: number, t: { wordCount: number }) => s + t.wordCount, 0);
+
+  return (
+    <>
+      <div className="bg-gradient-to-r from-cyan-500 to-cyan-600 rounded-2xl p-6 text-white mb-8">
+        <div className="flex items-start justify-between">
+          <div>
+            <p className="text-cyan-100 text-sm mb-1">{result.exam} Academic Writing</p>
+            <h1 className="text-2xl font-extrabold mb-1">{result.title}</h1>
+            <p className="text-cyan-100 text-sm">{result.date} &middot; {result.timeTaken}</p>
+          </div>
+          <div className="bg-white/20 rounded-xl px-4 py-3 text-center">
+            <p className="text-2xl font-extrabold">{totalWords}</p>
+            <p className="text-xs text-cyan-100 mt-0.5">total words</p>
+          </div>
+        </div>
+      </div>
+
+      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+      {result.tasks.map((task: any) => {
+        const shown = revealedTasks.has(task.taskId);
+        return (
+          <div key={task.taskId} className="bg-white rounded-2xl border border-slate-200 overflow-hidden mb-6">
+            <div className="px-6 py-4 border-b border-slate-100 bg-slate-50">
+              <p className="text-xs font-bold text-cyan-600 uppercase tracking-wider mb-0.5">{task.taskLabel}</p>
+              <p className="text-sm font-medium text-slate-800 leading-relaxed">{task.prompt}</p>
+              {task.wordCount > 0 && <p className="text-xs text-slate-500 mt-1">{task.wordCount} words written</p>}
+            </div>
+            <div className="p-6 space-y-6">
+              {(task.chartDescription || task.passage) && (
+                <details className="border border-slate-200 rounded-lg">
+                  <summary className="px-4 py-3 text-sm font-medium text-slate-700 cursor-pointer hover:bg-slate-50 rounded-lg">
+                    {task.chartDescription ? "View chart data" : "View reading passage"}
+                  </summary>
+                  <div className="px-4 pb-4 text-sm text-slate-600 leading-relaxed">
+                    {task.chartDescription
+                      ? <pre className="whitespace-pre-wrap font-sans text-xs mt-2">{task.chartDescription}</pre>
+                      : <p className="mt-2">{task.passage}</p>}
+                  </div>
+                </details>
+              )}
+              <div>
+                <p className="text-xs font-bold text-slate-500 uppercase tracking-wide mb-3">Your Response</p>
+                {task.userResponse?.trim() ? (
+                  <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 text-sm text-slate-800 leading-relaxed whitespace-pre-wrap">{task.userResponse}</div>
+                ) : (
+                  <div className="bg-slate-50 border-2 border-dashed border-slate-300 rounded-xl p-6 text-center text-slate-400 text-sm">No response written.</div>
+                )}
+              </div>
+              <div>
+                <div className="flex items-center justify-between mb-3">
+                  <p className="text-xs font-bold text-slate-500 uppercase tracking-wide">Model Answer</p>
+                  <Button size="sm" variant={shown ? "outline" : "primary"} onClick={() => toggleReveal(task.taskId)} className="text-xs">
+                    {shown ? "Hide" : "Reveal model answer"}
+                  </Button>
+                </div>
+                {shown ? (
+                  <div className="bg-green-50 border border-green-200 rounded-xl p-4 text-sm text-slate-800 leading-relaxed whitespace-pre-wrap">{task.modelAnswer}</div>
+                ) : (
+                  <div className="bg-slate-50 border-2 border-dashed border-slate-200 rounded-xl p-6 flex items-center justify-center gap-2 text-slate-400 text-sm">
+                    <BookOpen className="w-4 h-4" /> Click &quot;Reveal model answer&quot; to compare your writing
+                  </div>
+                )}
+              </div>
+              <div>
+                <p className="text-xs font-bold text-slate-500 uppercase tracking-wide mb-3">Scoring Criteria (Band Descriptors)</p>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm border-collapse">
+                    <thead>
+                      <tr className="bg-slate-100">
+                        <th className="text-left px-4 py-2.5 text-xs font-bold text-slate-600 uppercase tracking-wide w-40 border border-slate-200">Criterion</th>
+                        <th className="text-left px-4 py-2.5 text-xs font-bold text-amber-600 uppercase tracking-wide border border-slate-200">Band 7</th>
+                        <th className="text-left px-4 py-2.5 text-xs font-bold text-green-600 uppercase tracking-wide border border-slate-200">Band 8</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+                      {task.bandDescriptors.map((d: any, i: number) => (
+                        <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-slate-50"}>
+                          <td className="px-4 py-3 font-semibold text-slate-800 border border-slate-200 align-top">{d.criterion}</td>
+                          <td className="px-4 py-3 text-slate-600 border border-slate-200 align-top leading-relaxed">{d.band7}</td>
+                          <td className="px-4 py-3 text-slate-600 border border-slate-200 align-top leading-relaxed">{d.band8}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </>
+  );
+}
+
+// ── Page ─────────────────────────────────────────────────────────────────────
+
+export default function HistoryPage() {
+  const params = useParams<{ id: string }>();
+  const router = useRouter();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [attempt, setAttempt] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function load() {
+      const supabase = createClient();
+      const { data, error } = await supabase
+        .from("test_attempts")
+        .select("*")
+        .eq("id", params.id)
+        .single();
+      if (error || !data) { router.push("/dashboard"); return; }
+      setAttempt(data);
+      setLoading(false);
+    }
+    load();
+  }, [params.id, router]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-slate-50">
+        <div className="w-8 h-8 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin" />
+      </div>
+    );
+  }
+
+  const result = attempt.result_json;
+  const isWriting = !!result?.tasks;
+
+  return (
+    <div className="min-h-screen bg-slate-50">
+      <header className="bg-white border-b border-slate-200 px-6 py-4 sticky top-0 z-10">
+        <div className="max-w-4xl mx-auto flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <Link href="/dashboard" className="text-slate-400 hover:text-slate-600 transition">
+              <ChevronLeft className="w-5 h-5" />
+            </Link>
+            <div>
+              <p className="text-sm font-bold text-slate-900">{isWriting ? "Writing Review" : "Reading Review"}</p>
+              <p className="text-xs text-slate-500">{attempt.created_at ? new Date(attempt.created_at).toLocaleDateString("en-PH", { month: "long", day: "numeric", year: "numeric" }) : ""}</p>
+            </div>
+          </div>
+          <Link href="/dashboard">
+            <Button size="sm" variant="outline">Back to dashboard</Button>
+          </Link>
+        </div>
+      </header>
+
+      <main className="max-w-4xl mx-auto px-6 py-8">
+        {isWriting ? <WritingResult result={result} /> : <ReadingResult result={result} />}
+
+        <div className="text-center pt-6">
+          <Link href="/dashboard">
+            <Button variant="outline" className="gap-2">
+              <RotateCcw className="w-4 h-4" /> Practice another test
+            </Button>
+          </Link>
+        </div>
+      </main>
+    </div>
+  );
+}
