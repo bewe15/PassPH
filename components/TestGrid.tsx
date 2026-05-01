@@ -26,14 +26,14 @@ const ALL_TESTS = {
     })),
   },
   writing: {
-    ielts: Array.from({ length: 3 }, (_, i) => ({
+    ielts: Array.from({ length: 20 }, (_, i) => ({
       label: `Writing Test ${i + 1}`,
       sub: "Task 1 + Task 2 • 60 min",
       id: `ielts-writing-${i + 1}`,
       free: true,
       route: "write",
     })),
-    pte: Array.from({ length: 3 }, (_, i) => ({
+    pte: Array.from({ length: 20 }, (_, i) => ({
       label: `Writing Test ${i + 1}`,
       sub: "SWT + Essay • 30 min",
       id: `pte-writing-${i + 1}`,
