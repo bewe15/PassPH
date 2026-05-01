@@ -58,8 +58,15 @@ function Timer({ seconds, onExpire }: { seconds: number; onExpire: () => void })
 function SubmitModal({
   answered, total, onConfirm, onCancel,
 }: { answered: number; total: number; onConfirm: () => void; onCancel: () => void }) {
+  const [submitting, setSubmitting] = useState(false);
+
+  async function handleConfirm() {
+    setSubmitting(true);
+    await onConfirm();
+  }
+
   return (
-    <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center px-4">
+    <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center px-4" style={{ position: "fixed", top: 0, left: 0, right: 0, bottom: 0 }}>
       <div className="bg-white rounded-xl p-6 max-w-sm w-full shadow-xl">
         <h3 className="font-bold text-slate-900 text-lg mb-2">Submit test?</h3>
         <p className="text-sm text-slate-500 mb-1">
@@ -71,8 +78,15 @@ function SubmitModal({
           </p>
         )}
         <div className="flex gap-3 mt-5">
-          <Button variant="outline" className="flex-1" onClick={onCancel}>Keep going</Button>
-          <Button className="flex-1" onClick={onConfirm}>Submit now</Button>
+          <Button variant="outline" className="flex-1" onClick={onCancel} disabled={submitting}>Keep going</Button>
+          <Button className="flex-1" onClick={handleConfirm} disabled={submitting}>
+            {submitting ? (
+              <span className="flex items-center gap-2">
+                <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                Submitting…
+              </span>
+            ) : "Submit now"}
+          </Button>
         </div>
       </div>
     </div>
@@ -670,6 +684,12 @@ function IELTSRunner({ test, onSubmit }: { test: IELTSTest; onSubmit: (answers: 
   const [showConfirm, setShowConfirm] = useState(false);
   const flagged = new Set<number>();
   const startRef = useRef(Date.now());
+  const questionsRef = useRef<HTMLDivElement>(null);
+
+  function goToPassage(idx: 0 | 1 | 2) {
+    setActivePassage(idx);
+    setTimeout(() => questionsRef.current?.scrollTo({ top: 0, behavior: "smooth" }), 50);
+  }
 
   const allIds = allIELTSIds(test);
   const answered = allIds.filter((id) => {
@@ -711,7 +731,7 @@ function IELTSRunner({ test, onSubmit }: { test: IELTSTest; onSubmit: (answers: 
         {test.passages.map((p, i) => (
           <button
             key={i}
-            onClick={() => setActivePassage(i as 0 | 1 | 2)}
+            onClick={() => goToPassage(i as 0 | 1 | 2)}
             className={cn(
               "px-4 py-2.5 text-sm font-medium border-b-2 transition",
               activePassage === i ? "border-cyan-500 text-cyan-600" : "border-transparent text-slate-500 hover:text-slate-900"
@@ -764,7 +784,7 @@ function IELTSRunner({ test, onSubmit }: { test: IELTSTest; onSubmit: (answers: 
         </div>
 
         {/* Questions panel */}
-        <div className="w-1/2 overflow-y-auto p-5">
+        <div ref={questionsRef} className="w-1/2 overflow-y-auto p-5">
           {passage.sections.map((section) => (
             <SectionBlock
               key={section.questionRange}
@@ -780,13 +800,13 @@ function IELTSRunner({ test, onSubmit }: { test: IELTSTest; onSubmit: (answers: 
             <Button
               variant="outline"
               size="sm"
-              onClick={() => setActivePassage((p) => Math.max(0, p - 1) as 0 | 1 | 2)}
+              onClick={() => goToPassage(Math.max(0, activePassage - 1) as 0 | 1 | 2)}
               disabled={activePassage === 0}
             >
               <ChevronLeft className="w-4 h-4 mr-1" /> Previous passage
             </Button>
             {activePassage < test.passages.length - 1 ? (
-              <Button size="sm" onClick={() => setActivePassage((p) => (p + 1) as 0 | 1 | 2)}>
+              <Button size="sm" onClick={() => goToPassage((activePassage + 1) as 0 | 1 | 2)}>
                 Next passage <ChevronRight className="w-4 h-4 ml-1" />
               </Button>
             ) : (
