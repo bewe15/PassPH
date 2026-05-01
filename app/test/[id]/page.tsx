@@ -775,6 +775,26 @@ function IELTSRunner({ test, onSubmit }: { test: IELTSTest; onSubmit: (answers: 
               setCurrentQId={setCurrentQId}
             />
           ))}
+          {/* Passage navigation */}
+          <div className="flex justify-between mt-6 pt-4 border-t border-slate-200">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setActivePassage((p) => Math.max(0, p - 1) as 0 | 1 | 2)}
+              disabled={activePassage === 0}
+            >
+              <ChevronLeft className="w-4 h-4 mr-1" /> Previous passage
+            </Button>
+            {activePassage < test.passages.length - 1 ? (
+              <Button size="sm" onClick={() => setActivePassage((p) => (p + 1) as 0 | 1 | 2)}>
+                Next passage <ChevronRight className="w-4 h-4 ml-1" />
+              </Button>
+            ) : (
+              <Button size="sm" onClick={() => setShowConfirm(true)}>
+                Finish &amp; submit
+              </Button>
+            )}
+          </div>
         </div>
       </div>
 
