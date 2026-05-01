@@ -308,7 +308,7 @@ export default async function DashboardPage() {
             <Card>
               <div className="divide-y divide-slate-100">
                 {attempts.map((attempt) => (
-                  <Link key={attempt.id} href={`/history/${attempt.id}`} className="flex items-center justify-between px-6 py-4 hover:bg-slate-50 transition cursor-pointer">
+                  <Link key={attempt.id} href={`/history/${attempt.id}`} className="block w-full flex items-center justify-between px-6 py-4 hover:bg-slate-50 transition cursor-pointer">
                     <div className="flex items-center gap-4">
                       <div className="w-10 h-10 rounded-lg bg-cyan-50 flex items-center justify-center">
                         <BookOpen className="w-5 h-5 text-cyan-500" />
