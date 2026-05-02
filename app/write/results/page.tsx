@@ -31,10 +31,11 @@ function getBandLabel(band: number) {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function ScoreBreakdown({ breakdown, taskLabel }: { breakdown: any; taskLabel: string }) {
   const metrics = [
-    { label: "Word Count", ...breakdown.wordCount },
-    { label: "Vocabulary", ...breakdown.vocabulary },
-    { label: "Cohesion", ...breakdown.cohesion },
-    { label: "Sentence Variety", ...breakdown.sentenceVariety },
+    { label: "Word Count",        ...breakdown.wordCount },
+    { label: "Vocabulary",        ...breakdown.vocabulary },
+    { label: "Cohesion",          ...breakdown.cohesion },
+    { label: "Sentence Variety",  ...breakdown.sentenceVariety },
+    { label: "Grammar & Accuracy",...breakdown.grammar },
   ];
 
   return (
@@ -62,6 +63,17 @@ function ScoreBreakdown({ breakdown, taskLabel }: { breakdown: any; taskLabel: s
         <p className="text-xs text-slate-400">
           Linking words found: <span className="text-cyan-600 font-medium">{breakdown.cohesion.words.join(", ")}</span>
         </p>
+      )}
+      {breakdown.grammar.issues.length > 0 && (
+        <div className="space-y-1">
+          <p className="text-xs font-semibold text-slate-500">Grammar issues detected:</p>
+          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+          {breakdown.grammar.issues.map((issue: any, i: number) => (
+            <p key={i} className="text-xs text-amber-700 flex items-start gap-1">
+              <span className="mt-0.5">⚠</span> {issue}
+            </p>
+          ))}
+        </div>
       )}
     </div>
   );
