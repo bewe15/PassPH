@@ -186,7 +186,12 @@ export default function PricingPage() {
       </main>
 
       <footer className="border-t border-slate-200 bg-white py-6 px-6 mt-16 text-center text-sm text-slate-400">
-        © 2026 PassPH. Practice IELTS &amp; PTE with confidence.
+        <p>© 2026 PassPH. Practice IELTS &amp; PTE with confidence.</p>
+        <div className="flex items-center justify-center gap-6 mt-2">
+          <Link href="/privacy" className="hover:text-slate-600 transition">Privacy Policy</Link>
+          <Link href="/terms" className="hover:text-slate-600 transition">Terms &amp; Conditions</Link>
+          <a href="mailto:support@passph.com" className="hover:text-slate-600 transition">Contact</a>
+        </div>
       </footer>
     </div>
   );

@@ -375,9 +375,9 @@ export default function LandingPage() {
             <span className="font-bold text-cyan-500 text-lg">PassPH</span>
             <p>© 2026 PassPH. Practice IELTS &amp; PTE with confidence.</p>
             <div className="flex gap-6">
-              <a href="#" className="hover:text-slate-900 transition">Privacy</a>
-              <a href="#" className="hover:text-slate-900 transition">Terms</a>
-              <a href="#" className="hover:text-slate-900 transition">Contact</a>
+              <Link href="/privacy" className="hover:text-slate-900 transition">Privacy</Link>
+              <Link href="/terms" className="hover:text-slate-900 transition">Terms</Link>
+              <a href="mailto:support@passph.com" className="hover:text-slate-900 transition">Contact</a>
             </div>
           </div>
         </footer>
