@@ -147,9 +147,9 @@ export default async function DashboardPage() {
         <div>
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-bold text-slate-900">Recent Attempts</h2>
-            <button className="text-sm text-cyan-500 hover:text-cyan-600 flex items-center gap-1">
+            <Link href="/history" className="text-sm text-cyan-500 hover:text-cyan-600 flex items-center gap-1">
               View all <ArrowUpRight className="w-3 h-3" />
-            </button>
+            </Link>
           </div>
 
           {attempts.length === 0 ? (
