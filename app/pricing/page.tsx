@@ -190,7 +190,7 @@ export default function PricingPage() {
         <div className="flex items-center justify-center gap-6 mt-2">
           <Link href="/privacy" className="hover:text-slate-600 transition">Privacy Policy</Link>
           <Link href="/terms" className="hover:text-slate-600 transition">Terms &amp; Conditions</Link>
-          <a href="mailto:support@passph.com" className="hover:text-slate-600 transition">Contact</a>
+          <Link href="/contact" className="hover:text-slate-600 transition">Contact</Link>
         </div>
       </footer>
     </div>

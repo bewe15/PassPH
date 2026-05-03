@@ -377,7 +377,7 @@ export default function LandingPage() {
             <div className="flex gap-6">
               <Link href="/privacy" className="hover:text-slate-900 transition">Privacy</Link>
               <Link href="/terms" className="hover:text-slate-900 transition">Terms</Link>
-              <a href="mailto:support@passph.com" className="hover:text-slate-900 transition">Contact</a>
+              <Link href="/contact" className="hover:text-slate-900 transition">Contact</Link>
             </div>
           </div>
         </footer>
