@@ -45,6 +45,8 @@ export default async function DashboardPage() {
   const plan = profile?.plan ?? "free";
   const testsUsed = profile?.tests_used_this_month ?? 0;
   const testsLimit = plan === "free" ? 3 : Infinity;
+  const writingUsed = profile?.writing_tests_used_this_month ?? 0;
+  const writingLimit = plan === "pro" ? Infinity : 3; // basic=3/month, free=0 (locked in UI)
   const firstName = (profile?.full_name ?? user.email ?? "there").split(" ")[0];
   const initials = firstName.slice(0, 2).toUpperCase();
 
@@ -141,7 +143,7 @@ export default async function DashboardPage() {
           ))}
         </div>
 
-        <TestGrid plan={plan} testsUsed={testsUsed} testsLimit={testsLimit === Infinity ? 999 : testsLimit} />
+        <TestGrid plan={plan} testsUsed={testsUsed} testsLimit={testsLimit === Infinity ? 999 : testsLimit} writingUsed={writingUsed} writingLimit={writingLimit === Infinity ? 999 : writingLimit} />
 
         {/* Recent attempts */}
         <div>

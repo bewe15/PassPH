@@ -29,7 +29,7 @@ const plans = [
     desc: "For regular practice",
     features: [
       "Unlimited Reading tests",
-      "Unlimited Listening tests",
+      "3 Writing tests/month",
       "Detailed score report",
       "Progress tracking",
       "Band score estimates",
@@ -45,11 +45,11 @@ const plans = [
     desc: "Everything you need to pass",
     features: [
       "Everything in Basic",
+      "Unlimited Writing tests",
       "AI Writing feedback",
-      "AI Speaking scoring",
       "Band score estimates",
-      "Priority support",
       "Downloadable score reports",
+      "Priority support",
     ],
     cta: "Start Pro",
     href: "/signup",
