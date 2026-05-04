@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
-import { ChevronLeft, Trophy, TrendingUp, RotateCcw, CheckCircle, XCircle, BookOpen } from "lucide-react";
+import { ChevronLeft, Trophy, TrendingUp, RotateCcw, CheckCircle, XCircle, BookOpen, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { createClient } from "@/lib/supabase/client";
@@ -243,18 +243,23 @@ export default function HistoryPage() {
   const router = useRouter();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [attempt, setAttempt] = useState<any>(null);
+  const [plan, setPlan]       = useState<string>("free");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function load() {
       const supabase = createClient();
-      const { data, error } = await supabase
-        .from("test_attempts")
-        .select("*")
-        .eq("id", params.id)
-        .single();
-      if (error || !data) { router.push("/dashboard"); return; }
-      setAttempt(data);
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) { router.push("/login"); return; }
+
+      const [attemptRes, profileRes] = await Promise.all([
+        supabase.from("test_attempts").select("*").eq("id", params.id).single(),
+        supabase.from("profiles").select("plan").eq("id", user.id).single(),
+      ]);
+
+      if (attemptRes.error || !attemptRes.data) { router.push("/dashboard"); return; }
+      setAttempt(attemptRes.data);
+      setPlan(profileRes.data?.plan ?? "free");
       setLoading(false);
     }
     load();
@@ -284,9 +289,18 @@ export default function HistoryPage() {
               <p className="text-xs text-slate-500">{attempt.created_at ? new Date(attempt.created_at).toLocaleDateString("en-PH", { month: "long", day: "numeric", year: "numeric" }) : ""}</p>
             </div>
           </div>
-          <Link href="/dashboard">
-            <Button size="sm" variant="outline">Back to dashboard</Button>
-          </Link>
+          <div className="flex items-center gap-2">
+            {plan === "pro" && (
+              <Link href={`/history/${params.id}/report`} target="_blank">
+                <Button size="sm" className="gap-1.5">
+                  <Download className="w-3.5 h-3.5" /> Download PDF
+                </Button>
+              </Link>
+            )}
+            <Link href="/dashboard">
+              <Button size="sm" variant="outline">Back to dashboard</Button>
+            </Link>
+          </div>
         </div>
       </header>
 

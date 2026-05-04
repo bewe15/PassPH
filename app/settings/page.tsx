@@ -2,10 +2,11 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { ChevronRight, CheckCircle } from "lucide-react";
+import { ChevronRight, CheckCircle, AlertTriangle } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import LogoutButton from "@/components/LogoutButton";
 
@@ -21,6 +22,7 @@ function Toast({ message, type }: { message: string; type: "success" | "error" }
 }
 
 export default function SettingsPage() {
+  const router = useRouter();
   const [profile, setProfile] = useState({ full_name: "", country: "PH", plan: "free" });
   const [email, setEmail] = useState("");
   const [profileLoading, setProfileLoading] = useState(false);
@@ -28,6 +30,10 @@ export default function SettingsPage() {
   const [passwords, setPasswords] = useState({ newPassword: "", confirmPassword: "" });
   const [passwordLoading, setPasswordLoading] = useState(false);
   const [passwordError, setPasswordError] = useState("");
+
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [deleteConfirm, setDeleteConfirm]     = useState("");
+  const [deleteLoading, setDeleteLoading]     = useState(false);
 
   const [toast, setToast] = useState<{ message: string; type: "success" | "error" } | null>(null);
 
@@ -85,9 +91,77 @@ export default function SettingsPage() {
     }
   }
 
+  async function deleteAccount() {
+    if (deleteConfirm !== "DELETE") return;
+    setDeleteLoading(true);
+    try {
+      const supabase = createClient();
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) return;
+      // Delete all user data
+      await supabase.from("test_attempts").delete().eq("user_id", user.id);
+      await supabase.from("profiles").delete().eq("id", user.id);
+      await supabase.auth.signOut();
+      router.push("/?deleted=true");
+    } catch {
+      setDeleteLoading(false);
+      showToast("Failed to delete account. Please try again.", "error");
+    }
+  }
+
   return (
     <div className="min-h-screen bg-slate-50">
       {toast && <Toast message={toast.message} type={toast.type} />}
+
+      {/* Delete confirmation modal */}
+      {showDeleteModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4">
+          <div className="bg-white rounded-2xl shadow-xl p-6 w-full max-w-md">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center shrink-0">
+                <AlertTriangle className="w-5 h-5 text-red-500" />
+              </div>
+              <div>
+                <h3 className="font-bold text-slate-900">Delete your account?</h3>
+                <p className="text-xs text-slate-500">This will permanently delete all your data.</p>
+              </div>
+            </div>
+            <div className="bg-red-50 border border-red-200 rounded-lg px-4 py-3 mb-4 text-sm text-red-700 space-y-1">
+              <p>The following will be permanently deleted:</p>
+              <ul className="list-disc list-inside text-xs space-y-0.5 mt-1">
+                <li>Your profile and account details</li>
+                <li>All test attempts and score history</li>
+                <li>Your subscription data</li>
+              </ul>
+            </div>
+            <p className="text-sm text-slate-600 mb-2">Type <strong>DELETE</strong> to confirm:</p>
+            <Input
+              value={deleteConfirm}
+              onChange={(e) => setDeleteConfirm(e.target.value)}
+              placeholder="DELETE"
+              className="mb-4 border-slate-300 font-mono"
+            />
+            <div className="flex gap-3">
+              <Button
+                variant="outline"
+                className="flex-1"
+                onClick={() => { setShowDeleteModal(false); setDeleteConfirm(""); }}
+                disabled={deleteLoading}
+              >
+                Cancel
+              </Button>
+              <Button
+                variant="danger"
+                className="flex-1"
+                onClick={deleteAccount}
+                disabled={deleteConfirm !== "DELETE" || deleteLoading}
+              >
+                {deleteLoading ? "Deleting…" : "Delete my account"}
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Header */}
       <header className="bg-white border-b border-slate-200 px-6 py-4">
@@ -226,7 +300,9 @@ export default function SettingsPage() {
           <section className="bg-white border border-red-100 rounded-xl p-6">
             <h2 className="text-base font-bold text-red-500 mb-1">Danger Zone</h2>
             <p className="text-sm text-slate-500 mb-5">These actions are permanent and cannot be undone.</p>
-            <Button variant="danger" size="sm">Delete my account</Button>
+            <Button variant="danger" size="sm" onClick={() => setShowDeleteModal(true)}>
+              Delete my account
+            </Button>
           </section>
         </div>
       </main>
