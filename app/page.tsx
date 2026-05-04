@@ -166,7 +166,7 @@ export default function LandingPage() {
           <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
               { value: "500+", label: "Active Learners" },
-              { value: "₱399", label: "Pro / month" },
+              { value: "₱499", label: "Pro / month" },
               { value: "20+", label: "Practice Tests" },
               { value: "4.9★", label: "User Rating" },
             ].map((s) => (
@@ -246,7 +246,7 @@ export default function LandingPage() {
                 </thead>
                 <tbody>
                   {[
-                    ["Price",            "₱199–₱399/mo",  "₱3,500–₱10,000", "₱4,000–₱6,000/mo"],
+                    ["Price",            "₱299–₱499/mo",  "₱3,500–₱10,000", "₱4,000–₱6,000/mo"],
                     ["Schedule",         "Anytime",        "Fixed classes",   "Anytime"],
                     ["Filipino-focused", "✓",              "✓",               "✗"],
                     ["AI feedback",      "✓ Coming soon",  "✗",               "Some"],
@@ -275,8 +275,8 @@ export default function LandingPage() {
             <div className="grid md:grid-cols-3 gap-6">
               {[
                 { name:"Free",  price:"₱0",   period:"forever",  desc:"Try before you commit",        features:["3 practice tests/month","Reading section only","Basic score report"],                                    cta:"Get started free", highlight:false },
-                { name:"Basic", price:"₱199", period:"/month",   desc:"For regular practice",         features:["Unlimited Reading tests","Unlimited Listening tests","Detailed score report","Progress tracking"],       cta:"Start Basic",      highlight:false },
-                { name:"Pro",   price:"₱399", period:"/month",   desc:"Everything you need to pass",  features:["Everything in Basic","AI Writing feedback","AI Speaking scoring","Band score estimates","Priority support"], cta:"Start Pro",        highlight:true  },
+                { name:"Basic", price:"₱299", period:"/month",   desc:"For regular practice",         features:["Unlimited Reading tests","3 Writing tests/month","Detailed score report","Progress tracking","Band score estimates"],       cta:"Start Basic",      highlight:false },
+                { name:"Pro",   price:"₱499", period:"/month",   desc:"Everything you need to pass",  features:["Everything in Basic","Unlimited Writing tests","AI Writing feedback","Downloadable score reports","Priority support"], cta:"Start Pro",        highlight:true  },
               ].map((plan) => (
                 <div
                   key={plan.name}
@@ -305,7 +305,7 @@ export default function LandingPage() {
               ))}
             </div>
             <p className="text-center text-sm text-slate-400 mt-6">
-              Also available: ₱999 one-time for 3 months Pro • Australian pricing in AUD at checkout
+              Also available: ₱1,299 one-time for 3 months Pro • Australian pricing in AUD at checkout
             </p>
           </div>
         </section>
