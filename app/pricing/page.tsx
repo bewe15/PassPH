@@ -95,6 +95,8 @@ export default function PricingPage() {
       const data = await res.json();
       if (res.status === 401) { router.push("/login?redirect=/pricing"); return; }
       if (!res.ok || !data.url) throw new Error(data.error ?? "Checkout failed");
+      // Store session ID so success page can verify payment without relying on webhooks
+      if (data.sessionId) localStorage.setItem("pm_session_id", data.sessionId);
       window.location.href = data.url;
     } catch (err) {
       console.error(err);

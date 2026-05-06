@@ -1,15 +1,14 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
-import { Suspense } from "react";
 import Link from "next/link";
 import { CheckCircle, ArrowRight, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const PLAN_LABELS: Record<string, { name: string; desc: string }> = {
-  basic:  { name: "Basic",         desc: "Unlimited Reading + 3 Writing tests/month" },
-  pro:    { name: "Pro",           desc: "Unlimited Reading + Writing + PDF reports" },
+  basic:  { name: "Basic",          desc: "Unlimited Reading + 3 Writing tests/month" },
+  pro:    { name: "Pro",            desc: "Unlimited Reading + Writing + PDF reports" },
   pro3mo: { name: "Pro (3 Months)", desc: "3 months of full Pro access" },
 };
 
@@ -18,8 +17,34 @@ function SuccessContent() {
   const router       = useRouter();
   const plan         = searchParams.get("plan") ?? "pro";
   const info         = PLAN_LABELS[plan] ?? PLAN_LABELS.pro;
-  const [count, setCount] = useState(5);
+  const [count, setCount]       = useState(6);
+  const [activated, setActivated] = useState(false);
 
+  // On mount: verify payment with PayMongo and activate plan
+  useEffect(() => {
+    async function activate() {
+      try {
+        const sessionId = localStorage.getItem("pm_session_id");
+        if (!sessionId) return;
+
+        const res = await fetch("/api/activate-plan", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ sessionId }),
+        });
+
+        if (res.ok) {
+          localStorage.removeItem("pm_session_id");
+          setActivated(true);
+        }
+      } catch {
+        // silent — webhook will handle it as fallback
+      }
+    }
+    activate();
+  }, []);
+
+  // Countdown redirect
   useEffect(() => {
     const id = setInterval(() => {
       setCount((c) => {
@@ -52,6 +77,10 @@ function SuccessContent() {
           </div>
           <p className="text-cyan-100 text-xs">{info.desc}</p>
         </div>
+
+        {activated && (
+          <p className="text-xs text-green-600 font-medium mb-3">✓ Plan activated successfully</p>
+        )}
 
         {/* Redirect notice */}
         <p className="text-xs text-slate-400 mb-4">

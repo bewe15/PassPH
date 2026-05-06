@@ -85,8 +85,9 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Failed to create checkout." }, { status: 500 });
     }
 
-    const url = json.data?.attributes?.checkout_url;
-    return NextResponse.json({ url });
+    const url       = json.data?.attributes?.checkout_url;
+    const sessionId = json.data?.id;
+    return NextResponse.json({ url, sessionId });
   } catch (err) {
     console.error("Checkout route error:", err);
     return NextResponse.json({ error: "Something went wrong." }, { status: 500 });
