@@ -91,18 +91,35 @@ Use this checklist when switching from the Vercel preview domain to your real do
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | unchanged | unchanged |
 | `SUPABASE_SERVICE_ROLE_KEY` | unchanged | unchanged |
 | `RESEND_API_KEY` | unchanged | unchanged |
+| `NEXT_PUBLIC_GA_ID` | not set | `G-XXXXXXXXXX` |
 
 ---
 
 ## 8. Nice to Have (Post-Launch)
 
+### Analytics
+- [ ] Go to [analytics.google.com](https://analytics.google.com) → create a **GA4 property** for PassPH
+- [ ] Get your **Measurement ID** (starts with `G-`)
+- [ ] Add to **Vercel → Settings → Environment Variables**:
+  - `NEXT_PUBLIC_GA_ID` → `G-XXXXXXXXXX`
+- [ ] Redeploy — GA4 will activate automatically (already wired up in `app/layout.tsx`)
+- [ ] Vercel Analytics is already active — enable it in **Vercel → Analytics tab** (free)
+- [ ] Later: add [Hotjar](https://hotjar.com) for heatmaps & session recordings (free tier)
+
+### Marketing & Growth
 - [ ] Set up custom email sender on Resend (`hello@passph.com`)
-- [ ] Add Google Analytics or Vercel Analytics
-- [ ] Set up admin/super user exemption (specific email gets unlimited access)
-- [ ] Build email notification campaigns (weekly progress, exam tips)
-- [ ] Add Listening tests (currently placeholder)
+- [ ] Build email notification campaigns (weekly progress report, exam tips)
+- [ ] Set up Facebook / Instagram pixel for ad retargeting
+
+### Features
+- [ ] Admin/super user exemption (specific email gets unlimited access)
+- [ ] Add Listening tests
 - [ ] Add AI Writing feedback for Pro users
-- [ ] Set up uptime monitoring (e.g. UptimeRobot — free)
+- [ ] Add Speaking practice section
+
+### Operations
+- [ ] Set up uptime monitoring — [UptimeRobot](https://uptimerobot.com) (free)
+- [ ] Set up error monitoring — [Sentry](https://sentry.io) (free tier)
 
 ---
 
