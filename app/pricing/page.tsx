@@ -1,10 +1,11 @@
 "use client";
 
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { CheckCircle, ChevronLeft, AlertCircle } from "lucide-react";
+import { CheckCircle, ChevronLeft, AlertCircle, Loader2 } from "lucide-react";
 
 const plans = [
   {
@@ -80,6 +81,29 @@ function LimitBanner() {
 }
 
 export default function PricingPage() {
+  const router = useRouter();
+  const [loadingPlan, setLoadingPlan] = useState<string | null>(null);
+
+  async function handleCheckout(planKey: string) {
+    setLoadingPlan(planKey);
+    try {
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ plan: planKey }),
+      });
+      const data = await res.json();
+      if (res.status === 401) { router.push("/login?redirect=/pricing"); return; }
+      if (!res.ok || !data.url) throw new Error(data.error ?? "Checkout failed");
+      window.location.href = data.url;
+    } catch (err) {
+      console.error(err);
+      alert("Something went wrong. Please try again.");
+    } finally {
+      setLoadingPlan(null);
+    }
+  }
+
   return (
     <div className="min-h-screen bg-slate-50">
       {/* Header */}
@@ -145,17 +169,23 @@ export default function PricingPage() {
                   </li>
                 ))}
               </ul>
-              <Link href={plan.href}>
+              {plan.name === "Free" ? (
+                <Link href="/signup">
+                  <Button className="w-full bg-transparent border border-slate-300 text-slate-700 hover:bg-slate-50">
+                    {plan.cta}
+                  </Button>
+                </Link>
+              ) : (
                 <Button
-                  className={`w-full ${
-                    !plan.highlight
-                      ? "bg-transparent border border-slate-300 text-slate-700 hover:bg-slate-50"
-                      : ""
-                  }`}
+                  className={`w-full ${!plan.highlight ? "bg-transparent border border-slate-300 text-slate-700 hover:bg-slate-50" : ""}`}
+                  onClick={() => handleCheckout(plan.name === "Basic" ? "basic" : "pro")}
+                  disabled={loadingPlan !== null}
                 >
-                  {plan.cta}
+                  {loadingPlan === (plan.name === "Basic" ? "basic" : "pro") ? (
+                    <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Processing…</>
+                  ) : plan.cta}
                 </Button>
-              </Link>
+              )}
             </div>
           ))}
         </div>
@@ -166,9 +196,16 @@ export default function PricingPage() {
             <h3 className="font-bold text-slate-900 mb-1">One-time payment option</h3>
             <p className="text-sm text-slate-500">Pay ₱1,299 once and get 3 months of Pro access. Best for exam prep with a fixed date.</p>
           </div>
-          <Link href="/signup" className="shrink-0">
-            <Button variant="outline">Get 3 months for ₱1,299</Button>
-          </Link>
+          <Button
+            variant="outline"
+            className="shrink-0"
+            onClick={() => handleCheckout("pro3mo")}
+            disabled={loadingPlan !== null}
+          >
+            {loadingPlan === "pro3mo" ? (
+              <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Processing…</>
+            ) : "Get 3 months for ₱1,299"}
+          </Button>
         </div>
 
         {/* FAQ */}
