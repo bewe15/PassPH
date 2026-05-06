@@ -20,7 +20,7 @@ function getBandLabel(band: number) {
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function ReadingReport({ result, attempt }: { result: any; attempt: any }) {
+function ReadingReport({ result }: { result: any }) {
   const pct = Math.round((result.score / result.total) * 100);
   const correct = result.questions.filter((q: { isCorrect: boolean }) => q.isCorrect).length;
 
@@ -172,7 +172,7 @@ export default function ReportPage() {
   const router = useRouter();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [attempt, setAttempt] = useState<any>(null);
-  const [plan, setPlan]       = useState<string>("free");
+  const [, setPlan]            = useState<string>("free");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -257,7 +257,7 @@ export default function ReportPage() {
         {/* Result content */}
         {isWriting
           ? <WritingReport result={result} />
-          : <ReadingReport result={result} attempt={attempt} />
+          : <ReadingReport result={result} />
         }
 
         {/* Footer */}
