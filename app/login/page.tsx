@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useState, Suspense } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -21,7 +21,7 @@ function LoadingModal() {
         </div>
         <div className="text-center">
           <p className="text-slate-900 font-bold text-base">Logging you in…</p>
-          <p className="text-slate-400 text-xs mt-1">Taking you to your dashboard</p>
+          <p className="text-slate-400 text-xs mt-1">Just a moment…</p>
         </div>
         {/* Animated dots */}
         <div className="flex gap-1.5">
@@ -38,8 +38,11 @@ function LoadingModal() {
   );
 }
 
-export default function LoginPage() {
+function LoginForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const redirectTo = searchParams.get("redirect") ?? "/dashboard";
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
@@ -70,14 +73,17 @@ export default function LoginPage() {
       return;
     }
     setRedirecting(true);
-    router.push("/dashboard");
+    router.push(redirectTo);
   }
 
   async function handleGoogle() {
     const supabase = createClient();
+    // Pass the redirect destination through the callback URL so Google OAuth
+    // returns the user to the right page after authentication.
+    const callbackUrl = `${location.origin}/auth/callback?next=${encodeURIComponent(redirectTo)}`;
     await supabase.auth.signInWithOAuth({
       provider: "google",
-      options: { redirectTo: `${location.origin}/auth/callback` },
+      options: { redirectTo: callbackUrl },
     });
   }
 
@@ -150,5 +156,17 @@ export default function LoginPage() {
         </div>
       </div>
     </>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center bg-slate-50">
+        <div className="w-8 h-8 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin" />
+      </div>
+    }>
+      <LoginForm />
+    </Suspense>
   );
 }
