@@ -257,14 +257,20 @@ export default function SettingsPage() {
             <p className="text-sm text-slate-500 mb-5">Manage your plan and billing.</p>
             <div className="flex items-center justify-between p-4 bg-slate-50 rounded-lg mb-4">
               <div>
-                <p className="font-semibold text-slate-900 text-sm capitalize">{profile.plan} Plan</p>
+                <p className="font-semibold text-slate-900 text-sm capitalize">
+                  {profile.plan === "free" ? "Free" : profile.plan === "basic" ? "Basic" : "Pro"} Plan
+                </p>
                 <p className="text-xs text-slate-500 mt-0.5">
-                  {profile.plan === "free" ? "3 practice tests per month" : "Unlimited tests + AI feedback"}
+                  {profile.plan === "free"
+                    ? "3 practice tests per month"
+                    : profile.plan === "basic"
+                    ? "Unlimited Reading + 3 Writing tests/month"
+                    : "Unlimited Reading + Writing + PDF reports"}
                 </p>
               </div>
               <Badge variant={profile.plan === "free" ? "free" : "pro"}>Active</Badge>
             </div>
-            {profile.plan === "free" && (
+            {profile.plan !== "pro" && (
               <Link href="/pricing">
                 <Button>
                   Upgrade to Pro <ChevronRight className="w-4 h-4 ml-1" />
