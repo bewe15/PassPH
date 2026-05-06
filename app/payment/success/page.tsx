@@ -30,7 +30,7 @@ function SuccessContent() {
         const res = await fetch("/api/activate-plan", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ sessionId }),
+          body: JSON.stringify({ sessionId, planKey: plan }),
         });
 
         if (res.ok) {
