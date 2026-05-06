@@ -280,8 +280,11 @@ export default function SettingsPage() {
           </section>
 
           {/* Notifications */}
-          <section className="bg-white border border-slate-200 rounded-xl p-6">
-            <h2 className="text-base font-bold text-slate-900 mb-5">Notifications</h2>
+          <section className="bg-white border border-slate-200 rounded-xl p-6 opacity-60">
+            <div className="flex items-center justify-between mb-5">
+              <h2 className="text-base font-bold text-slate-900">Notifications</h2>
+              <span className="text-xs bg-slate-100 text-slate-500 px-2 py-1 rounded-full font-medium">Coming soon</span>
+            </div>
             <div className="space-y-4">
               {[
                 { label: "Weekly progress report", sub: "Get a summary of your practice activity every week" },
@@ -293,10 +296,7 @@ export default function SettingsPage() {
                     <p className="text-sm font-medium text-slate-900">{item.label}</p>
                     <p className="text-xs text-slate-500">{item.sub}</p>
                   </div>
-                  <label className="relative inline-flex items-center cursor-pointer">
-                    <input type="checkbox" defaultChecked className="sr-only peer" />
-                    <div className="w-10 h-5 bg-slate-200 rounded-full peer peer-checked:bg-cyan-500 transition-colors after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:after:translate-x-5" />
-                  </label>
+                  <div className="w-10 h-5 bg-slate-200 rounded-full cursor-not-allowed" />
                 </div>
               ))}
             </div>
