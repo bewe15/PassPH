@@ -22,11 +22,31 @@ Use this checklist when switching from the Vercel preview domain to your real do
 - [ ] Log in to [dashboard.paymongo.com](https://dashboard.paymongo.com)
 - [ ] Go to **Settings → Account Verification**
 - [ ] Submit required documents:
-  - Valid government ID (passport, driver's license, etc.)
-  - Business registration (DTI for sole proprietor, SEC for corporation)
+  - Valid government ID (Philippine passport works from Australia)
+  - Business registration — see options below
   - Proof of business (your PassPH website URL qualifies)
 - [ ] Wait for PayMongo approval (usually 2–5 business days)
 - [ ] Confirm account is on **Full Access** before accepting real payments
+
+### 📋 Business Registration Options (if required by PayMongo)
+
+**Step 1 — Email PayMongo first before registering anything**
+- Email `support@paymongo.com` and explain you are an overseas Filipino running an online business
+- Ask what documents they require — they may approve with just a valid ID + website URL for individual/freelancer accounts
+- This could save you the registration step entirely
+
+**Step 2 — If DTI registration is required (can be done from Australia)**
+- Go to [bnrs.dti.gov.ph](https://bnrs.dti.gov.ph) — fully online, no need to be in the Philippines
+- Register as a **sole proprietor** (simplest option)
+- You will need a **Philippine address** — use a family member's address
+- Cost: around **₱200–₱500 for 5 years**
+- Pay via credit/debit card online
+- Certificate is issued digitally — nothing to pick up
+
+**Alternative — Have a trusted person in the Philippines do it**
+- A family member can register DTI on your behalf
+- They may need a **Special Power of Attorney (SPA)** notarized in Australia
+- Faster if someone can handle it locally
 
 ## 3. PayMongo — Switch to Live Mode
 
