@@ -15,7 +15,20 @@ Use this checklist when switching from the Vercel preview domain to your real do
 
 ---
 
-## 2. PayMongo — Switch to Live Mode
+## 2. PayMongo — Account Verification (Do This Early!)
+
+> ⚠️ **Limited vs Full Access:** Unverified accounts are capped at ₱100,000/month total and ₱50,000 per transaction. You need Full Access before going live. Apply at least 1 week before launch — approval takes a few days.
+
+- [ ] Log in to [dashboard.paymongo.com](https://dashboard.paymongo.com)
+- [ ] Go to **Settings → Account Verification**
+- [ ] Submit required documents:
+  - Valid government ID (passport, driver's license, etc.)
+  - Business registration (DTI for sole proprietor, SEC for corporation)
+  - Proof of business (your PassPH website URL qualifies)
+- [ ] Wait for PayMongo approval (usually 2–5 business days)
+- [ ] Confirm account is on **Full Access** before accepting real payments
+
+## 3. PayMongo — Switch to Live Mode
 
 - [ ] Go to [dashboard.paymongo.com](https://dashboard.paymongo.com) → toggle to **Live Mode**
 - [ ] Copy your **Live Secret Key** (`sk_live_...`)
@@ -33,7 +46,7 @@ Use this checklist when switching from the Vercel preview domain to your real do
 
 ---
 
-## 3. Supabase
+## 4. Supabase
 
 - [ ] Go to **Supabase → Authentication → URL Configuration**
 - [ ] Update **Site URL**: `https://passph.com`
@@ -42,7 +55,7 @@ Use this checklist when switching from the Vercel preview domain to your real do
 
 ---
 
-## 4. Google OAuth (if using Google login)
+## 5. Google OAuth (if using Google login)
 
 - [ ] Go to [console.cloud.google.com](https://console.cloud.google.com)
 - [ ] Open your project → **APIs & Services → Credentials**
@@ -53,7 +66,7 @@ Use this checklist when switching from the Vercel preview domain to your real do
 
 ---
 
-## 5. Resend (Contact Form Emails)
+## 6. Resend (Contact Form Emails)
 
 - [ ] Go to [resend.com](https://resend.com) → **Domains** → Add `passph.com`
 - [ ] Add the DNS records Resend provides (SPF, DKIM)
@@ -64,7 +77,7 @@ Use this checklist when switching from the Vercel preview domain to your real do
 
 ---
 
-## 6. Final Checks Before Announcing
+## 7. Final Checks Before Announcing
 
 - [ ] Redeploy Vercel after **all** environment variable changes
 - [ ] Test the full signup → login → checkout flow on the live domain
@@ -80,7 +93,7 @@ Use this checklist when switching from the Vercel preview domain to your real do
 
 ---
 
-## 7. Environment Variables — Full Reference
+## 8. Environment Variables — Full Reference
 
 | Variable | Test Value | Live Value |
 |---|---|---|
@@ -95,7 +108,7 @@ Use this checklist when switching from the Vercel preview domain to your real do
 
 ---
 
-## 8. Nice to Have (Post-Launch)
+## 9. Nice to Have (Post-Launch)
 
 ### Analytics
 - [ ] Go to [analytics.google.com](https://analytics.google.com) → create a **GA4 property** for PassPH
