@@ -173,7 +173,7 @@ export default function SettingsPage() {
           </nav>
           <div className="flex items-center gap-3">
             <Badge variant={profile.plan === "free" ? "free" : "pro"}>
-              {profile.plan === "free" ? "Free plan" : "Pro"}
+              {profile.plan === "free" ? "Free plan" : profile.plan === "basic" ? "Basic" : "Pro"}
             </Badge>
             <LogoutButton />
           </div>

@@ -79,7 +79,9 @@ export default async function DashboardPage() {
             <Link href="/settings" className="hover:text-slate-900 transition">Settings</Link>
           </nav>
           <div className="flex items-center gap-3">
-            <Badge variant={plan === "free" ? "free" : "pro"}>{plan === "free" ? "Free plan" : "Pro"}</Badge>
+            <Badge variant={plan === "free" ? "free" : "pro"}>
+              {plan === "free" ? "Free plan" : plan === "basic" ? "Basic" : "Pro"}
+            </Badge>
             <div className="w-8 h-8 rounded-full bg-cyan-500 flex items-center justify-center text-white text-sm font-bold">
               {initials}
             </div>
