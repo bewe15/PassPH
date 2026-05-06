@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { Logo } from "@/components/Logo";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -166,7 +167,7 @@ export default function SettingsPage() {
       {/* Header */}
       <header className="bg-white border-b border-slate-200 px-6 py-4">
         <div className="max-w-4xl mx-auto flex items-center justify-between">
-          <span className="text-xl font-extrabold text-cyan-500">PassPH</span>
+          <Logo className="h-8 w-auto" />
           <nav className="hidden md:flex items-center gap-6 text-sm text-slate-500">
             <Link href="/dashboard" className="hover:text-slate-900 transition">Dashboard</Link>
             <Link href="/settings" className="text-slate-900 font-medium">Settings</Link>

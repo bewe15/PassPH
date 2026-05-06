@@ -2,6 +2,7 @@
 
 import { Suspense, useState } from "react";
 import Link from "next/link";
+import { Logo } from "@/components/Logo";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -115,7 +116,7 @@ export default function PricingPage() {
             <Link href="/" className="text-slate-400 hover:text-slate-600 transition">
               <ChevronLeft className="w-5 h-5" />
             </Link>
-            <Link href="/" className="text-xl font-extrabold text-cyan-500">PassPH</Link>
+            <Logo className="h-8 w-auto" />
           </div>
           <div className="flex items-center gap-4 text-sm">
             <Link href="/login" className="text-slate-500 hover:text-slate-900 transition">Log in</Link>

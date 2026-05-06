@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Logo } from "@/components/Logo";
 import { ChevronLeft } from "lucide-react";
 
 export const metadata = {
@@ -15,7 +16,7 @@ export default function TermsPage() {
           <Link href="/" className="text-slate-400 hover:text-slate-600 transition">
             <ChevronLeft className="w-5 h-5" />
           </Link>
-          <span className="text-xl font-extrabold text-cyan-500">PassPH</span>
+          <Logo className="h-8 w-auto" />
         </div>
       </header>
 

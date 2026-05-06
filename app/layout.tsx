@@ -10,6 +10,11 @@ const inter = Inter({ subsets: ["latin"], display: "swap" });
 export const metadata: Metadata = {
   title: "PassPH — Practice IELTS & PTE",
   description: "Affordable, self-serve IELTS and PTE practice for Filipinos. AI-powered feedback, progress tracking, anytime access.",
+  icons: {
+    icon: "/icon.svg",
+    shortcut: "/icon.svg",
+    apple: "/icon.svg",
+  },
 };
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;

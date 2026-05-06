@@ -3,6 +3,7 @@
 import { useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
+import { Logo } from "@/components/Logo";
 import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -94,7 +95,7 @@ function LoginForm() {
       <div className="min-h-screen bg-slate-50 flex items-center justify-center px-4">
         <div className="w-full max-w-sm">
           <div className="text-center mb-8">
-            <Link href="/" className="text-2xl font-extrabold text-cyan-500">PassPH</Link>
+            <Logo className="h-9 w-auto" />
             <h1 className="text-xl font-bold text-slate-900 mt-6 mb-1">Welcome back</h1>
             <p className="text-sm text-slate-500">Log in to continue practicing</p>
           </div>

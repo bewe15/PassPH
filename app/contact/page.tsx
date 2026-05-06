@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { Logo } from "@/components/Logo";
 import { ChevronLeft, Send, CheckCircle, AlertCircle, Mail, MessageSquare, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -55,7 +56,7 @@ export default function ContactPage() {
             <Link href="/" className="text-slate-400 hover:text-slate-600 transition">
               <ChevronLeft className="w-5 h-5" />
             </Link>
-            <span className="text-xl font-extrabold text-cyan-500">PassPH</span>
+            <Logo className="h-8 w-auto" />
           </div>
           <div className="flex items-center gap-4 text-sm">
             <Link href="/login" className="text-slate-500 hover:text-slate-900 transition">Log in</Link>

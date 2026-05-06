@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { Logo } from "@/components/Logo";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { CheckCircle } from "lucide-react";
@@ -70,7 +71,7 @@ export default function SignupPage() {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center px-4">
         <div className="w-full max-w-sm text-center">
-          <Link href="/" className="text-2xl font-extrabold text-cyan-500">PassPH</Link>
+          <Logo className="h-9 w-auto" />
           <div className="bg-white border border-slate-200 rounded-xl p-8 shadow-sm mt-8">
             <div className="w-14 h-14 bg-cyan-50 rounded-full flex items-center justify-center mx-auto mb-4">
               <CheckCircle className="w-8 h-8 text-cyan-500" />
@@ -92,7 +93,7 @@ export default function SignupPage() {
     <div className="min-h-screen bg-slate-50 flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
-          <Link href="/" className="text-2xl font-extrabold text-cyan-500">PassPH</Link>
+          <Logo className="h-9 w-auto" />
           <h1 className="text-xl font-bold text-slate-900 mt-6 mb-1">Create your free account</h1>
           <p className="text-sm text-slate-500">Start with 3 free tests — no credit card needed</p>
         </div>

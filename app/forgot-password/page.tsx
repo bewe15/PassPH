@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { Logo } from "@/components/Logo";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ChevronLeft, Mail, CheckCircle } from "lucide-react";
@@ -32,7 +33,7 @@ export default function ForgotPasswordPage() {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center px-4">
         <div className="w-full max-w-sm text-center">
-          <Link href="/" className="text-2xl font-extrabold text-cyan-500">PassPH</Link>
+          <Logo className="h-9 w-auto" />
           <div className="bg-white border border-slate-200 rounded-xl p-8 shadow-sm mt-8">
             <div className="w-14 h-14 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-4">
               <CheckCircle className="w-8 h-8 text-green-500" />
@@ -54,7 +55,7 @@ export default function ForgotPasswordPage() {
     <div className="min-h-screen bg-slate-50 flex items-center justify-center px-4">
       <div className="w-full max-w-sm">
         <div className="text-center mb-8">
-          <Link href="/" className="text-2xl font-extrabold text-cyan-500">PassPH</Link>
+          <Logo className="h-9 w-auto" />
           <div className="w-12 h-12 bg-cyan-50 rounded-full flex items-center justify-center mx-auto mt-6 mb-4">
             <Mail className="w-6 h-6 text-cyan-500" />
           </div>

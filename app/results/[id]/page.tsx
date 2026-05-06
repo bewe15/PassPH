@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { Logo } from "@/components/Logo";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle, XCircle, ChevronLeft, Trophy, TrendingUp, RotateCcw } from "lucide-react";
@@ -67,7 +68,7 @@ export default function ResultsPage() {
             <Link href="/dashboard" className="text-slate-400 hover:text-slate-600 transition">
               <ChevronLeft className="w-5 h-5" />
             </Link>
-            <span className="text-xl font-extrabold text-cyan-500">PassPH</span>
+            <Logo className="h-8 w-auto" />
           </div>
           <p className="text-sm text-slate-500">{results.date}</p>
         </div>
