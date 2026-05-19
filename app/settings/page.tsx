@@ -50,7 +50,20 @@ export default function SettingsPage() {
       if (!user) return;
       setEmail(user.email ?? "");
       const { data } = await supabase.from("profiles").select("*").eq("id", user.id).single();
-      if (data) setProfile({ full_name: data.full_name ?? "", country: data.country ?? "PH", plan: data.plan ?? "free" });
+      if (data) {
+        // Enforce plan expiry on the client: if expired, downgrade locally and update DB
+        let resolvedPlan = data.plan ?? "free";
+        if (resolvedPlan !== "free" && data.plan_expires_at) {
+          if (new Date(data.plan_expires_at) < new Date()) {
+            resolvedPlan = "free";
+            await supabase
+              .from("profiles")
+              .update({ plan: "free", plan_expires_at: null })
+              .eq("id", user.id);
+          }
+        }
+        setProfile({ full_name: data.full_name ?? "", country: data.country ?? "PH", plan: resolvedPlan });
+      }
     }
     load();
   }, []);

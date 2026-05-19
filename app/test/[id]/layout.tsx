@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { enforcePlanExpiry } from "@/lib/enforce-plan-expiry";
 
 export default async function TestLayout({ children }: { children: React.ReactNode }) {
   const supabase = await createClient();
@@ -9,11 +10,14 @@ export default async function TestLayout({ children }: { children: React.ReactNo
 
   const { data: profile } = await supabase
     .from("profiles")
-    .select("plan, tests_used_this_month")
+    .select("plan, plan_expires_at, tests_used_this_month")
     .eq("id", user.id)
     .single();
 
-  const plan = profile?.plan ?? "free";
+  const plan = await enforcePlanExpiry(supabase, user.id, {
+    plan: profile?.plan ?? "free",
+    plan_expires_at: profile?.plan_expires_at,
+  });
   const testsUsed = profile?.tests_used_this_month ?? 0;
   const testsLimit = 3;
 

@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { BookOpen, TrendingUp, Clock, ChevronRight, ArrowUpRight } from "lucide-react";
 import TestGrid from "@/components/TestGrid";
 import { createClient } from "@/lib/supabase/server";
+import { enforcePlanExpiry } from "@/lib/enforce-plan-expiry";
 import LogoutButton from "@/components/LogoutButton";
 
 function getGreeting() {
@@ -43,7 +44,10 @@ export default async function DashboardPage() {
   const profile = profileRes.data;
   const attempts = attemptsRes.data ?? [];
 
-  const plan = profile?.plan ?? "free";
+  const plan = await enforcePlanExpiry(supabase, user.id, {
+    plan: profile?.plan ?? "free",
+    plan_expires_at: profile?.plan_expires_at,
+  });
   const testsUsed = profile?.tests_used_this_month ?? 0;
   const testsLimit = plan === "free" ? 3 : Infinity;
   const writingUsed = profile?.writing_tests_used_this_month ?? 0;
