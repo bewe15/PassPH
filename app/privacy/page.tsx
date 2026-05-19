@@ -6,7 +6,7 @@ export const metadata = {
   title: "Privacy Policy — PassPH",
 };
 
-const LAST_UPDATED = "May 2, 2026";
+const LAST_UPDATED = "May 19, 2026";
 
 export default function PrivacyPage() {
   return (
@@ -55,9 +55,9 @@ export default function PrivacyPage() {
 
             <h3 className="font-semibold text-slate-800 mt-4 mb-2">Payment Information</h3>
             <ul className="list-disc list-inside space-y-1">
-              <li>Payment processing is handled entirely by PayMongo or Stripe</li>
+              <li>Payment processing is handled entirely by Stripe</li>
               <li>We do not store credit card numbers, bank account details, or any sensitive financial data</li>
-              <li>We receive only a confirmation of successful payment and your subscription plan</li>
+              <li>We receive only a confirmation of successful payment and your plan tier</li>
             </ul>
 
             <h3 className="font-semibold text-slate-800 mt-4 mb-2">Technical Information</h3>
@@ -99,9 +99,9 @@ export default function PrivacyPage() {
               {[
                 { name: "Supabase", purpose: "Database, authentication, and file storage", link: "https://supabase.com/privacy" },
                 { name: "Vercel", purpose: "Web hosting and deployment", link: "https://vercel.com/legal/privacy-policy" },
-                { name: "PayMongo", purpose: "Philippine payment processing", link: "https://www.paymongo.com/privacy" },
-                { name: "Stripe", purpose: "International payment processing", link: "https://stripe.com/privacy" },
+                { name: "Stripe", purpose: "Payment processing (cards, Google Pay, Apple Pay)", link: "https://stripe.com/privacy" },
                 { name: "Google", purpose: "Optional Google sign-in (OAuth)", link: "https://policies.google.com/privacy" },
+                { name: "Resend", purpose: "Transactional email delivery", link: "https://resend.com/privacy" },
               ].map((s) => (
                 <div key={s.name} className="flex items-start gap-3 bg-slate-100 rounded-lg px-4 py-3">
                   <div className="flex-1">
