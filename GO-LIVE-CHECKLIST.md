@@ -15,54 +15,42 @@ Use this checklist when switching from the Vercel preview domain to your real do
 
 ---
 
-## 2. PayMongo — Account Verification (Do This Early!)
+## 2. Stripe — Account Setup (Do This Early!)
 
-> ⚠️ **Limited vs Full Access:** Unverified accounts are capped at ₱100,000/month total and ₱50,000 per transaction. You need Full Access before going live. Apply at least 1 week before launch — approval takes a few days.
+> ✅ **Much simpler than PayMongo** — since you live in Australia, set up a Stripe AU account. No Philippine business registration needed.
 
-- [ ] Log in to [dashboard.paymongo.com](https://dashboard.paymongo.com)
-- [ ] Go to **Settings → Account Verification**
-- [ ] Submit required documents:
-  - Valid government ID (Philippine passport works from Australia)
-  - Business registration — see options below
-  - Proof of business (your PassPH website URL qualifies)
-- [ ] Wait for PayMongo approval (usually 2–5 business days)
-- [ ] Confirm account is on **Full Access** before accepting real payments
+### Create your Stripe account
+- [ ] Go to [dashboard.stripe.com](https://dashboard.stripe.com) → Sign up
+- [ ] Enter your details: full name, Australian address, DOB, phone
+- [ ] Add your **Australian bank account** for payouts
+- [ ] Upload **photo ID** (passport or driver's license) for identity verification
+- [ ] ABN: register free at [abr.business.gov.au](https://abr.business.gov.au) if Stripe asks (takes 15 minutes, no documents needed)
 
-### 📋 Business Registration Options (if required by PayMongo)
-
-**Step 1 — Email PayMongo first before registering anything**
-- Email `support@paymongo.com` and explain you are an overseas Filipino running an online business
-- Ask what documents they require — they may approve with just a valid ID + website URL for individual/freelancer accounts
-- This could save you the registration step entirely
-
-**Step 2 — If DTI registration is required (can be done from Australia)**
-- Go to [bnrs.dti.gov.ph](https://bnrs.dti.gov.ph) — fully online, no need to be in the Philippines
-- Register as a **sole proprietor** (simplest option)
-- You will need a **Philippine address** — use a family member's address
-- Cost: around **₱200–₱500 for 5 years**
-- Pay via credit/debit card online
-- Certificate is issued digitally — nothing to pick up
-
-**Alternative — Have a trusted person in the Philippines do it**
-- A family member can register DTI on your behalf
-- They may need a **Special Power of Attorney (SPA)** notarized in Australia
-- Faster if someone can handle it locally
-
-## 3. PayMongo — Switch to Live Mode
-
-- [ ] Go to [dashboard.paymongo.com](https://dashboard.paymongo.com) → toggle to **Live Mode**
+### Get your Stripe live keys
+- [ ] Go to **Developers → API Keys** in Stripe dashboard
 - [ ] Copy your **Live Secret Key** (`sk_live_...`)
-- [ ] Update in **Vercel → Settings → Environment Variables**:
-  - `PAYMONGO_SECRET_KEY` → replace test key with live key
-- [ ] Go to **Developers → Webhooks** (still in Live Mode)
-- [ ] Delete the old test webhook
-- [ ] Create a new **Live webhook**:
-  - URL: `https://passph.com/api/webhooks/paymongo`
-  - Event: `checkout_session.payment.paid`
-- [ ] Copy the new **Live Webhook Secret**
-- [ ] Update in Vercel:
-  - `PAYMONGO_WEBHOOK_SECRET` → replace with live webhook secret
-- [ ] Redeploy Vercel after updating env vars
+- [ ] Copy your **Live Publishable Key** (`pk_live_...`)
+- [ ] Add to **Vercel → Settings → Environment Variables**:
+  - `STRIPE_SECRET_KEY` → `sk_live_...`
+  - `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` → `pk_live_...`
+
+### Set up Stripe webhook
+- [ ] Go to **Developers → Webhooks** → Add endpoint
+- [ ] URL: `https://passph.com/api/webhooks/stripe`
+- [ ] Events to listen to: `checkout.session.completed`
+- [ ] Copy the **Webhook Signing Secret** (`whsec_...`)
+- [ ] Add to Vercel:
+  - `STRIPE_WEBHOOK_SECRET` → `whsec_...`
+- [ ] Redeploy Vercel after all env var changes
+
+## 3. Stripe — Test Before Going Live
+
+- [ ] In Stripe dashboard → toggle to **Test Mode**
+- [ ] Use test card: `4242 4242 4242 4242`, any future expiry, any CVC
+- [ ] Complete a test checkout for Basic plan
+- [ ] Confirm plan updates in Supabase `profiles` table
+- [ ] Reset test account back to `free` after testing
+- [ ] Toggle Stripe back to **Live Mode** when ready
 
 ---
 
@@ -101,8 +89,8 @@ Use this checklist when switching from the Vercel preview domain to your real do
 
 - [ ] Redeploy Vercel after **all** environment variable changes
 - [ ] Test the full signup → login → checkout flow on the live domain
-- [ ] Test PayMongo checkout with a **real card** (small amount, e.g. Basic plan)
-- [ ] Confirm webhook fires and `plan` updates in Supabase `profiles` table
+- [ ] Test Stripe checkout with a **real card** (small amount, e.g. Basic plan)
+- [ ] Confirm Stripe webhook fires and `plan` updates in Supabase `profiles` table
 - [ ] Reset your test account back to `free` after testing
 - [ ] Test Google OAuth login works on live domain
 - [ ] Test contact form — confirm email arrives in inbox
@@ -118,8 +106,8 @@ Use this checklist when switching from the Vercel preview domain to your real do
 | Variable | Test Value | Live Value |
 |---|---|---|
 | `NEXT_PUBLIC_SITE_URL` | `https://pass-ph.vercel.app` | `https://passph.com` |
-| `PAYMONGO_SECRET_KEY` | `sk_test_...` | `sk_live_...` |
-| `PAYMONGO_WEBHOOK_SECRET` | test webhook secret | live webhook secret |
+| `STRIPE_SECRET_KEY` | `sk_test_...` | `sk_live_...` |
+| `STRIPE_WEBHOOK_SECRET` | test webhook secret | live webhook secret |
 | `NEXT_PUBLIC_SUPABASE_URL` | unchanged | unchanged |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | unchanged | unchanged |
 | `SUPABASE_SERVICE_ROLE_KEY` | unchanged | unchanged |
