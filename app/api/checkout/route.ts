@@ -7,23 +7,23 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://pass-ph.vercel.app
 
 const PLANS = {
   basic: {
-    amount: 29900, // ₱299.00 in centavos
+    amount: 599, // $5.99 in cents
     name: "PassPH Basic Plan",
     description: "Unlimited Reading + 3 Writing tests/month",
     planKey: "basic",
     duration: "1mo",
   },
   pro: {
-    amount: 49900, // ₱499.00
+    amount: 999, // $9.99
     name: "PassPH Pro Plan",
     description: "Unlimited Reading + Writing tests + PDF reports",
     planKey: "pro",
     duration: "1mo",
   },
   pro3mo: {
-    amount: 129900, // ₱1,299.00
+    amount: 2499, // $24.99
     name: "PassPH Pro — 3 Months",
-    description: "3 months Pro access (save ₱198 vs monthly)",
+    description: "3 months Pro access (save $5 vs monthly)",
     planKey: "pro",
     duration: "3mo",
   },
@@ -49,7 +49,7 @@ export async function POST(req: NextRequest) {
       line_items: [
         {
           price_data: {
-            currency: "php",
+            currency: "usd",
             product_data: {
               name: selected.name,
               description: selected.description,

@@ -6,7 +6,7 @@ export const metadata = {
   title: "Terms & Conditions — PassPH",
 };
 
-const LAST_UPDATED = "May 19, 2026";
+const LAST_UPDATED = "May 30, 2026";
 
 export default function TermsPage() {
   return (
@@ -60,10 +60,10 @@ export default function TermsPage() {
             <p className="mb-3">PassPH offers a Free plan and paid plans (Basic and Pro).</p>
             <ul className="list-disc list-inside space-y-2">
               <li>Free plan: limited to 3 reading practice tests per month.</li>
-              <li>Basic plan (₱299/month): unlimited reading tests and 3 writing tests per month.</li>
-              <li>Pro plan (₱499/month or ₱1,299 for 3 months): unlimited reading and writing tests, plus PDF score reports.</li>
+              <li>Basic plan ($5.99/month): unlimited reading tests and 3 writing tests per month.</li>
+              <li>Pro plan ($9.99/month or $24.99 for 3 months): unlimited reading and writing tests, plus PDF score reports.</li>
               <li>Paid plans are one-time payments granting access for the purchased period (1 month or 3 months). They do not renew automatically — you must purchase again when your plan expires.</li>
-              <li>All prices are listed in Philippine Peso (₱). Payments are processed securely through Stripe (cards, Google Pay, Apple Pay). We do not store your card details.</li>
+              <li>All prices are in USD. Payments are processed securely through Stripe (cards, Google Pay, Apple Pay). We do not store your card details.</li>
               <li>Refunds are handled on a case-by-case basis. Contact us within 7 days of a charge if you believe there is an error.</li>
             </ul>
           </section>

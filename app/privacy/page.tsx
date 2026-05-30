@@ -6,7 +6,7 @@ export const metadata = {
   title: "Privacy Policy — PassPH",
 };
 
-const LAST_UPDATED = "May 19, 2026";
+const LAST_UPDATED = "May 30, 2026";
 
 export default function PrivacyPage() {
   return (

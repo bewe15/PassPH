@@ -11,7 +11,7 @@ import { CheckCircle, ChevronLeft, AlertCircle, Loader2 } from "lucide-react";
 const plans = [
   {
     name: "Free",
-    price: "₱0",
+    price: "$0",
     period: "forever",
     desc: "Try before you commit",
     features: [
@@ -26,7 +26,7 @@ const plans = [
   },
   {
     name: "Basic",
-    price: "₱299",
+    price: "$5.99",
     period: "/month",
     desc: "For regular practice",
     features: [
@@ -42,7 +42,7 @@ const plans = [
   },
   {
     name: "Pro",
-    price: "₱499",
+    price: "$9.99",
     period: "/month",
     desc: "Everything you need to pass",
     features: [
@@ -60,10 +60,10 @@ const plans = [
 ];
 
 const faqs = [
-  { q: "Can I switch plans anytime?", a: "Yes, upgrade or downgrade at any time from your account settings. Changes take effect immediately." },
-  { q: "What payment methods are accepted?", a: "Philippine users can pay via GCash, Maya, or credit/debit card through PayMongo. Australian users pay in AUD via Stripe." },
-  { q: "Is there a one-time payment option?", a: "Yes — ₱1,299 gives you 3 months of Pro access as a one-time payment. Great if you have a fixed exam date." },
-  { q: "Can I cancel anytime?", a: "Absolutely. No lock-in contracts. Cancel anytime from your settings and you keep access until the end of your billing period." },
+  { q: "Can I switch plans anytime?", a: "Yes, upgrade anytime from your account settings. Changes take effect immediately." },
+  { q: "What payment methods are accepted?", a: "We accept Visa, Mastercard, Amex, Google Pay, and Apple Pay — all processed securely through Stripe." },
+  { q: "Is there a one-time payment option?", a: "Yes — $24.99 gives you 3 months of Pro access as a one-time payment. Great if you have a fixed exam date." },
+  { q: "Can I cancel anytime?", a: "Plans are one-time payments — there is nothing to cancel. You simply get access for the period you paid for (1 month or 3 months) and renew when ready." },
 ];
 
 function LimitBanner() {
@@ -137,7 +137,7 @@ export default function PricingPage() {
         <div className="text-center mb-14">
           <h1 className="text-4xl font-extrabold text-slate-900 mb-3">Simple, affordable pricing</h1>
           <p className="text-slate-500 text-lg">Start free. Upgrade when you are ready. No hidden fees.</p>
-          <p className="text-sm text-slate-400 mt-2">Also available: ₱1,299 one-time for 3 months Pro</p>
+          <p className="text-sm text-slate-400 mt-2">Also available: $24.99 one-time for 3 months Pro</p>
         </div>
 
         {/* Plans */}
@@ -197,7 +197,7 @@ export default function PricingPage() {
         <div className="bg-white border border-slate-200 rounded-xl p-6 flex flex-col md:flex-row items-center justify-between gap-4 mb-16">
           <div>
             <h3 className="font-bold text-slate-900 mb-1">One-time payment option</h3>
-            <p className="text-sm text-slate-500">Pay ₱1,299 once and get 3 months of Pro access. Best for exam prep with a fixed date.</p>
+            <p className="text-sm text-slate-500">Pay $24.99 once and get 3 months of Pro access. Best for exam prep with a fixed date.</p>
           </div>
           <Button
             variant="outline"
@@ -207,7 +207,7 @@ export default function PricingPage() {
           >
             {loadingPlan === "pro3mo" ? (
               <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Processing…</>
-            ) : "Get 3 months for ₱1,299"}
+            ) : "Get 3 months for $24.99"}
           </Button>
         </div>
 
