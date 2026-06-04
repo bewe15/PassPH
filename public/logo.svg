@@ -1,27 +1,23 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 120">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 120">
   <!-- Hexagon left half (dark blue) -->
   <polygon points="58,8 15,33 15,87 58,112" fill="#0e7490"/>
   <!-- Hexagon right half (light blue / cyan) -->
   <polygon points="58,8 101,33 101,87 58,112" fill="#06b6d4"/>
 
-  <!-- P stem (white) -->
-  <rect x="24" y="27" width="13" height="67" rx="2" fill="white"/>
-  <!-- P bowl (white filled D-shape) -->
-  <path d="M 37,27 A 24,24 0 0,1 37,75 Z" fill="white"/>
+  <!-- S letter (white) centered in hexagon -->
+  <text x="58" y="80"
+    font-family="Arial, Helvetica, sans-serif"
+    font-weight="800" font-size="58"
+    fill="white" text-anchor="middle">S</text>
 
-  <!-- Checkmark inside bowl (dark cyan) -->
-  <polyline points="43,53 49,62 64,42"
-    fill="none" stroke="#0e7490" stroke-width="5"
+  <!-- Checkmark accent (dark cyan) -->
+  <polyline points="43,90 49,99 72,79"
+    fill="none" stroke="#0e7490" stroke-width="4"
     stroke-linecap="round" stroke-linejoin="round"/>
 
-  <!-- "Pass" text dark slate -->
+  <!-- "Scor" text dark slate -->
   <text x="118" y="82"
     font-family="Arial, Helvetica, sans-serif"
     font-weight="800" font-size="60"
-    fill="#0f172a">Pass</text>
-  <!-- "PH" text cyan -->
-  <text x="260" y="82"
-    font-family="Arial, Helvetica, sans-serif"
-    font-weight="800" font-size="60"
-    fill="#06b6d4">PH</text>
+    fill="#0f172a">Scor<tspan fill="#06b6d4">avo</tspan></text>
 </svg>

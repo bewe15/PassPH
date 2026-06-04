@@ -3,7 +3,7 @@ import { Logo } from "@/components/Logo";
 import { ChevronLeft } from "lucide-react";
 
 export const metadata = {
-  title: "Privacy Policy — PassPH",
+  title: "Privacy Policy — Scoravo",
 };
 
 const LAST_UPDATED = "May 30, 2026";
@@ -29,8 +29,8 @@ export default function PrivacyPage() {
           <section>
             <h2 className="text-lg font-bold text-slate-900 mb-3">1. Overview</h2>
             <p>
-              PassPH respects your privacy. This policy explains what personal information we collect,
-              how we use it, and your rights regarding your data. By using PassPH, you agree to the
+              Scoravo respects your privacy. This policy explains what personal information we collect,
+              how we use it, and your rights regarding your data. By using Scoravo, you agree to the
               practices described in this policy.
             </p>
           </section>
@@ -70,7 +70,7 @@ export default function PrivacyPage() {
           <section>
             <h2 className="text-lg font-bold text-slate-900 mb-3">3. How We Use Your Information</h2>
             <ul className="list-disc list-inside space-y-2">
-              <li>To provide and personalise the PassPH service (dashboard, scores, history)</li>
+              <li>To provide and personalise the Scoravo service (dashboard, scores, history)</li>
               <li>To enforce plan limits and process subscription payments</li>
               <li>To send transactional emails (password reset, payment confirmation)</li>
               <li>To improve our practice content and scoring system</li>
@@ -127,8 +127,8 @@ export default function PrivacyPage() {
             </ul>
             <p className="mt-3">
               To exercise any of these rights, email{" "}
-              <a href="mailto:support@passph.com" className="text-cyan-600 hover:underline">
-                support@passph.com
+              <a href="mailto:support@scoravo.com" className="text-cyan-600 hover:underline">
+                support@scoravo.com
               </a>{" "}
               with the subject &quot;Data Request&quot;. We will respond within 30 days.
             </p>
@@ -147,7 +147,7 @@ export default function PrivacyPage() {
           <section>
             <h2 className="text-lg font-bold text-slate-900 mb-3">8. Cookies</h2>
             <p>
-              PassPH uses only essential cookies required for authentication (keeping you logged in).
+              Scoravo uses only essential cookies required for authentication (keeping you logged in).
               We do not use advertising cookies or third-party tracking cookies. No cookie consent
               banner is shown because we only use strictly necessary cookies.
             </p>
@@ -156,7 +156,7 @@ export default function PrivacyPage() {
           <section>
             <h2 className="text-lg font-bold text-slate-900 mb-3">9. Children&apos;s Privacy</h2>
             <p>
-              PassPH is not intended for children under 13. We do not knowingly collect personal
+              Scoravo is not intended for children under 13. We do not knowingly collect personal
               information from children under 13. If you believe a child has created an account,
               please contact us and we will delete it promptly.
             </p>
@@ -175,8 +175,8 @@ export default function PrivacyPage() {
             <h2 className="text-lg font-bold text-slate-900 mb-3">11. Contact Us</h2>
             <p>
               For any privacy-related questions or requests, contact us at{" "}
-              <a href="mailto:support@passph.com" className="text-cyan-600 hover:underline">
-                support@passph.com
+              <a href="mailto:support@scoravo.com" className="text-cyan-600 hover:underline">
+                support@scoravo.com
               </a>
               .
             </p>

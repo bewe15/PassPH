@@ -38,7 +38,7 @@ export default function LandingPage() {
         >
           {/* Logo */}
           <span style={{ fontSize: 22, fontWeight: 800, color: "#06b6d4", letterSpacing: "-0.02em", flexShrink: 0 }}>
-            PassPH
+            Scoravo
           </span>
 
           {/* Nav links */}
@@ -231,7 +231,7 @@ export default function LandingPage() {
         <section className="py-20 px-6 bg-white">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-14">
-              <h2 className="text-3xl font-extrabold mb-3 text-slate-900">Why Filipinos choose PassPH</h2>
+              <h2 className="text-3xl font-extrabold mb-3 text-slate-900">Why Filipinos choose Scoravo</h2>
               <p className="text-slate-500">Compare us to the alternatives</p>
             </div>
             <div className="overflow-x-auto">
@@ -239,7 +239,7 @@ export default function LandingPage() {
                 <thead>
                   <tr className="border-b border-slate-200">
                     <th className="text-left py-3 px-4 text-slate-400 font-medium"></th>
-                    <th className="py-3 px-4 text-cyan-500 font-normal">PassPH</th>
+                    <th className="py-3 px-4 text-cyan-500 font-normal">Scoravo</th>
                     <th className="py-3 px-4 text-slate-400 font-medium">Review Centers</th>
                     <th className="py-3 px-4 text-slate-400 font-medium">Global Platforms</th>
                   </tr>
@@ -318,7 +318,7 @@ export default function LandingPage() {
             </div>
             <div className="grid md:grid-cols-3 gap-6">
               {[
-                { name:"Maria Santos",  role:"Nurse, Manila",  quote:"I got Band 7.5 on my first try! PassPH practice tests were so similar to the real exam." },
+                { name:"Maria Santos",  role:"Nurse, Manila",  quote:"I got Band 7.5 on my first try! Scoravo practice tests were so similar to the real exam." },
                 { name:"John dela Cruz",role:"OFW, Dubai",     quote:"Way cheaper than review centers and I can practice during my night shift breaks. Highly recommend!" },
                 { name:"Ana Reyes",     role:"Student, Cebu",  quote:"The AI feedback on my writing was super helpful. Got specific suggestions I could act on right away." },
               ].map((t) => (
@@ -341,8 +341,8 @@ export default function LandingPage() {
             <h2 className="text-3xl font-extrabold text-center mb-14 text-slate-900">Frequently asked questions</h2>
             <div className="space-y-6">
               {[
-                { q:"Is PassPH really free to start?",                     a:"Yes! You get 3 free practice tests every month with no credit card required. Upgrade anytime when you need more." },
-                { q:"How is PassPH different from free websites?",          a:"Free sites give you questions but no feedback or tracking. PassPH gives you band score estimates, detailed explanations, and tracks your improvement over time." },
+                { q:"Is Scoravo really free to start?",                     a:"Yes! You get 3 free practice tests every month with no credit card required. Upgrade anytime when you need more." },
+                { q:"How is Scoravo different from free websites?",          a:"Free sites give you questions but no feedback or tracking. Scoravo gives you band score estimates, detailed explanations, and tracks your improvement over time." },
                 { q:"Can I use PayMongo or GCash?",                         a:"Yes — Philippine users can pay via GCash, Maya, or credit/debit cards through PayMongo. Australian users pay in AUD via Stripe." },
                 { q:"Are the practice tests similar to the real exam?",     a:"Our tests follow the exact same format, question types, and difficulty levels — all original questions created to match official standards." },
                 { q:"Can I cancel anytime?",                                a:"Yes, cancel anytime from your account settings. No lock-in contracts." },
@@ -372,8 +372,8 @@ export default function LandingPage() {
         {/* ── Footer ── */}
         <footer className="border-t border-slate-200 bg-slate-50 py-8 px-6">
           <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-slate-500">
-            <span className="font-bold text-cyan-500 text-lg">PassPH</span>
-            <p>© 2026 PassPH. Practice IELTS &amp; PTE with confidence.</p>
+            <span className="font-bold text-cyan-500 text-lg">Scoravo</span>
+            <p>© 2026 Scoravo. Practice IELTS &amp; PTE with confidence.</p>
             <div className="flex gap-6">
               <Link href="/privacy" className="hover:text-slate-900 transition">Privacy</Link>
               <Link href="/terms" className="hover:text-slate-900 transition">Terms</Link>
@@ -381,7 +381,7 @@ export default function LandingPage() {
             </div>
           </div>
           <p className="text-center text-xs text-slate-400 mt-4 max-w-3xl mx-auto">
-            PassPH is an independent practice platform not affiliated with, endorsed by, or connected to British Council, IDP Education, Cambridge Assessment English, or Pearson PLC. IELTS® and PTE Academic® are registered trademarks of their respective owners.
+            Scoravo is an independent practice platform not affiliated with, endorsed by, or connected to British Council, IDP Education, Cambridge Assessment English, or Pearson PLC. IELTS® and PTE Academic® are registered trademarks of their respective owners.
           </p>
         </footer>
       </div>

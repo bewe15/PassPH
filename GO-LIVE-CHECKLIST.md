@@ -15,42 +15,44 @@ Use this checklist when switching from the Vercel preview domain to your real do
 
 ---
 
-## 2. Stripe — Account Setup (Do This Early!)
+## 2. Stripe — Switch to Live Mode
 
-> ✅ **Much simpler than PayMongo** — since you live in Australia, set up a Stripe AU account. No Philippine business registration needed.
+> ✅ **Stripe account already created and tested in sandbox.** Just switch to live mode and update keys.
 
-### Create your Stripe account
-- [ ] Go to [dashboard.stripe.com](https://dashboard.stripe.com) → Sign up
-- [ ] Enter your details: full name, Australian address, DOB, phone
-- [ ] Add your **Australian bank account** for payouts
-- [ ] Upload **photo ID** (passport or driver's license) for identity verification
-- [ ] ABN: register free at [abr.business.gov.au](https://abr.business.gov.au) if Stripe asks (takes 15 minutes, no documents needed)
+### Activate your live account
+- [ ] Go to [dashboard.stripe.com](https://dashboard.stripe.com)
+- [ ] Click **"Switch to live account"** (top right banner)
+- [ ] Complete business verification if prompted:
+  - Australian address, DOB, bank account
+  - Photo ID (passport or driver's license)
+  - ABN if required — register free at [abr.business.gov.au](https://abr.business.gov.au)
 
-### Get your Stripe live keys
-- [ ] Go to **Developers → API Keys** in Stripe dashboard
+### Get your live keys
+- [ ] Go to **Developers → API Keys** (make sure you're in Live mode, not Sandbox)
 - [ ] Copy your **Live Secret Key** (`sk_live_...`)
-- [ ] Copy your **Live Publishable Key** (`pk_live_...`)
-- [ ] Add to **Vercel → Settings → Environment Variables**:
+- [ ] Update in **Vercel → Settings → Environment Variables**:
   - `STRIPE_SECRET_KEY` → `sk_live_...`
-  - `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` → `pk_live_...`
 
-### Set up Stripe webhook
-- [ ] Go to **Developers → Webhooks** → Add endpoint
+### Set up live webhook
+- [ ] Go to **Developers → Webhooks** → Add destination
 - [ ] URL: `https://passph.com/api/webhooks/stripe`
-- [ ] Events to listen to: `checkout.session.completed`
-- [ ] Copy the **Webhook Signing Secret** (`whsec_...`)
-- [ ] Add to Vercel:
-  - `STRIPE_WEBHOOK_SECRET` → `whsec_...`
+- [ ] Event: `checkout.session.completed`
+- [ ] Copy the **Signing Secret** (`whsec_...`)
+- [ ] Update in Vercel:
+  - `STRIPE_WEBHOOK_SECRET` → live `whsec_...`
 - [ ] Redeploy Vercel after all env var changes
 
-## 3. Stripe — Test Before Going Live
+### Payment methods (already enabled in sandbox)
+- [ ] Go to **Settings → Payment methods** → confirm these are enabled in Live mode:
+  - ✅ Cards (Visa, Mastercard, Amex)
+  - ✅ Google Pay
+  - ✅ Apple Pay
 
-- [ ] In Stripe dashboard → toggle to **Test Mode**
-- [ ] Use test card: `4242 4242 4242 4242`, any future expiry, any CVC
-- [ ] Complete a test checkout for Basic plan
+## 3. Stripe — Test on Live Domain
+- [ ] Complete a real payment with a real card (Basic plan ₱299)
 - [ ] Confirm plan updates in Supabase `profiles` table
-- [ ] Reset test account back to `free` after testing
-- [ ] Toggle Stripe back to **Live Mode** when ready
+- [ ] Check payment appears in Stripe live dashboard
+- [ ] Reset your test account back to `free` after testing
 
 ---
 
@@ -106,8 +108,8 @@ Use this checklist when switching from the Vercel preview domain to your real do
 | Variable | Test Value | Live Value |
 |---|---|---|
 | `NEXT_PUBLIC_SITE_URL` | `https://pass-ph.vercel.app` | `https://passph.com` |
-| `STRIPE_SECRET_KEY` | `sk_test_...` | `sk_live_...` |
-| `STRIPE_WEBHOOK_SECRET` | test webhook secret | live webhook secret |
+| `STRIPE_SECRET_KEY` | `sk_test_...` (sandbox) | `sk_live_...` |
+| `STRIPE_WEBHOOK_SECRET` | sandbox `whsec_...` | live `whsec_...` |
 | `NEXT_PUBLIC_SUPABASE_URL` | unchanged | unchanged |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | unchanged | unchanged |
 | `SUPABASE_SERVICE_ROLE_KEY` | unchanged | unchanged |
@@ -144,4 +146,4 @@ Use this checklist when switching from the Vercel preview domain to your real do
 
 ---
 
-_Last updated: May 2026_
+_Last updated: May 2026 — Stripe integrated (cards + Google Pay + Apple Pay), sandbox tested ✅_

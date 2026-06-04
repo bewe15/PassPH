@@ -204,7 +204,7 @@ export default function WriteResultsPage() {
   const [result, setResult] = useState<WritingResult | null>(null);
 
   useEffect(() => {
-    const raw = sessionStorage.getItem("passph_writing_result");
+    const raw = sessionStorage.getItem("scoravo_writing_result");
     if (!raw) { router.push("/dashboard"); return; }
     try { setResult(JSON.parse(raw)); } catch { router.push("/dashboard"); }
   }, [router]);

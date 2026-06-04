@@ -226,14 +226,14 @@ export default function PricingPage() {
       </main>
 
       <footer className="border-t border-slate-200 bg-white py-6 px-6 mt-16 text-center text-sm text-slate-400">
-        <p>© 2026 PassPH. Practice IELTS &amp; PTE with confidence.</p>
+        <p>© 2026 Scoravo. Practice IELTS &amp; PTE with confidence.</p>
         <div className="flex items-center justify-center gap-6 mt-2">
           <Link href="/privacy" className="hover:text-slate-600 transition">Privacy Policy</Link>
           <Link href="/terms" className="hover:text-slate-600 transition">Terms &amp; Conditions</Link>
           <Link href="/contact" className="hover:text-slate-600 transition">Contact</Link>
         </div>
         <p className="text-xs text-slate-300 mt-3 max-w-2xl mx-auto">
-          PassPH is an independent practice platform not affiliated with, endorsed by, or connected to British Council, IDP Education, Cambridge Assessment English, or Pearson PLC. IELTS® and PTE Academic® are registered trademarks of their respective owners.
+          Scoravo is an independent practice platform not affiliated with, endorsed by, or connected to British Council, IDP Education, Cambridge Assessment English, or Pearson PLC. IELTS® and PTE Academic® are registered trademarks of their respective owners.
         </p>
       </footer>
     </div>

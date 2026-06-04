@@ -3,26 +3,26 @@ import Stripe from "stripe";
 import { createClient } from "@/lib/supabase/server";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://pass-ph.vercel.app";
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://scoravo.vercel.app";
 
 const PLANS = {
   basic: {
     amount: 599, // $5.99 in cents
-    name: "PassPH Basic Plan",
+    name: "Scoravo Basic Plan",
     description: "Unlimited Reading + 3 Writing tests/month",
     planKey: "basic",
     duration: "1mo",
   },
   pro: {
     amount: 999, // $9.99
-    name: "PassPH Pro Plan",
+    name: "Scoravo Pro Plan",
     description: "Unlimited Reading + Writing tests + PDF reports",
     planKey: "pro",
     duration: "1mo",
   },
   pro3mo: {
     amount: 2499, // $24.99
-    name: "PassPH Pro — 3 Months",
+    name: "Scoravo Pro — 3 Months",
     description: "3 months Pro access (save $5 vs monthly)",
     planKey: "pro",
     duration: "3mo",

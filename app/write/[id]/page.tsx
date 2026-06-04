@@ -276,7 +276,7 @@ export default function WritePage() {
       overallBand: overall,
     };
 
-    sessionStorage.setItem("passph_writing_result", JSON.stringify(result));
+    sessionStorage.setItem("scoravo_writing_result", JSON.stringify(result));
 
     // Save to Supabase (best-effort)
     try {

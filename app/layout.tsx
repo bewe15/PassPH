@@ -8,8 +8,8 @@ import { Analytics } from "@vercel/analytics/react";
 const inter = Inter({ subsets: ["latin"], display: "swap" });
 
 export const metadata: Metadata = {
-  title: "PassPH — Practice IELTS & PTE",
-  description: "Affordable, self-serve IELTS and PTE practice for Filipinos. AI-powered feedback, progress tracking, anytime access.",
+  title: "Scoravo — Practice IELTS & PTE",
+  description: "Affordable, self-serve IELTS and PTE practice platform. AI-powered feedback, progress tracking, anytime access.",
   icons: {
     icon: "/icon.svg",
     shortcut: "/icon.svg",

@@ -66,7 +66,7 @@ function SuccessContent() {
         {/* Heading */}
         <h1 className="text-2xl font-extrabold text-slate-900 mb-2">Payment Successful!</h1>
         <p className="text-slate-500 text-sm mb-6">
-          Welcome to <span className="text-cyan-500 font-bold">PassPH {info.name}</span>. Your account has been upgraded.
+          Welcome to <span className="text-cyan-500 font-bold">Scoravo {info.name}</span>. Your account has been upgraded.
         </p>
 
         {/* Plan badge */}
