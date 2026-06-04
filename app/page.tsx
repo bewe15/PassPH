@@ -246,7 +246,7 @@ export default function LandingPage() {
                 </thead>
                 <tbody>
                   {[
-                    ["Price",            "$5.99–$9.99/mo", "₱3,500–₱10,000", "$30–$50/mo"],
+                    ["Price",            "$5.99–$9.99/mo", "$65–$185/course", "$30–$50/mo"],
                     ["Schedule",         "Anytime",        "Fixed classes",   "Anytime"],
                     ["Exam-focused",      "✓",              "✓",               "Some"],
                     ["AI feedback",      "✓ Coming soon",  "✗",               "Some"],
