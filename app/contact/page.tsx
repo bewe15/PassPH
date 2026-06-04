@@ -82,7 +82,7 @@ export default function ContactPage() {
                 icon: Mail,
                 title: "Email Us",
                 desc: "Send us a message and we'll reply as soon as possible.",
-                detail: "mygraphicsworks@gmail.com",
+                detail: "support@scoravo.com",
               },
               {
                 icon: Clock,
