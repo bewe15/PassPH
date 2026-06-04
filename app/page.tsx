@@ -137,8 +137,8 @@ export default function LandingPage() {
 
             {/* Subtext */}
             <p style={{ fontSize: 17, color: "rgba(255,255,255,0.60)", lineHeight: 1.7, maxWidth: 560, margin: "0 auto 44px" }}>
-              Self-serve practice tests with AI feedback. Built for Filipino nurses, students,
-              and OFWs preparing to work abroad.
+              Self-serve practice tests with AI feedback. Built for IELTS and PTE candidates
+              who want to improve their band score on their own schedule.
             </p>
 
             {/* Buttons */}
@@ -183,7 +183,7 @@ export default function LandingPage() {
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-14">
               <h2 className="text-3xl font-extrabold mb-3 text-slate-900">Everything you need to pass</h2>
-              <p className="text-slate-500">Built specifically for Filipino IELTS and PTE takers</p>
+              <p className="text-slate-500">Everything you need to improve your band score</p>
             </div>
             <div className="grid md:grid-cols-3 gap-6">
               {[
@@ -231,7 +231,7 @@ export default function LandingPage() {
         <section className="py-20 px-6 bg-white">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-14">
-              <h2 className="text-3xl font-extrabold mb-3 text-slate-900">Why Filipinos choose Scoravo</h2>
+              <h2 className="text-3xl font-extrabold mb-3 text-slate-900">Why learners choose Scoravo</h2>
               <p className="text-slate-500">Compare us to the alternatives</p>
             </div>
             <div className="overflow-x-auto">
@@ -248,7 +248,7 @@ export default function LandingPage() {
                   {[
                     ["Price",            "$5.99–$9.99/mo", "₱3,500–₱10,000", "$30–$50/mo"],
                     ["Schedule",         "Anytime",        "Fixed classes",   "Anytime"],
-                    ["Filipino-focused", "✓",              "✓",               "✗"],
+                    ["Exam-focused",      "✓",              "✓",               "Some"],
                     ["AI feedback",      "✓ Coming soon",  "✗",               "Some"],
                     ["Progress tracking","✓",              "✗",               "Some"],
                   ].map(([feature, ...cols]) => (
@@ -314,7 +314,7 @@ export default function LandingPage() {
         <section className="py-20 px-6 bg-white">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-14">
-              <h2 className="text-3xl font-extrabold mb-3 text-slate-900">What Filipinos are saying</h2>
+              <h2 className="text-3xl font-extrabold mb-3 text-slate-900">What learners are saying</h2>
             </div>
             <div className="grid md:grid-cols-3 gap-6">
               {[
@@ -343,7 +343,7 @@ export default function LandingPage() {
               {[
                 { q:"Is Scoravo really free to start?",                     a:"Yes! You get 3 free practice tests every month with no credit card required. Upgrade anytime when you need more." },
                 { q:"How is Scoravo different from free websites?",          a:"Free sites give you questions but no feedback or tracking. Scoravo gives you band score estimates, detailed explanations, and tracks your improvement over time." },
-                { q:"Can I use PayMongo or GCash?",                         a:"Yes — Philippine users can pay via GCash, Maya, or credit/debit cards through PayMongo. Australian users pay in AUD via Stripe." },
+                { q:"What payment methods are accepted?",                    a:"We accept Visa, Mastercard, Amex, Google Pay, and Apple Pay — all processed securely through Stripe." },
                 { q:"Are the practice tests similar to the real exam?",     a:"Our tests follow the exact same format, question types, and difficulty levels — all original questions created to match official standards." },
                 { q:"Can I cancel anytime?",                                a:"Yes, cancel anytime from your account settings. No lock-in contracts." },
               ].map((item) => (

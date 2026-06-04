@@ -140,7 +140,7 @@ export default function PrivacyPage() {
               <li>Your account data is kept as long as your account is active</li>
               <li>Test results and writing responses are retained to power your history dashboard</li>
               <li>If you delete your account, all personal data is removed within 30 days</li>
-              <li>Payment records may be retained as required by Philippine tax regulations</li>
+              <li>Payment records may be retained as required by applicable tax regulations</li>
             </ul>
           </section>
 
