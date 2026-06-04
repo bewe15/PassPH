@@ -380,6 +380,9 @@ export default function LandingPage() {
               <Link href="/contact" className="hover:text-slate-900 transition">Contact</Link>
             </div>
           </div>
+          <p className="text-center text-xs text-slate-400 mt-4 max-w-3xl mx-auto">
+            PassPH is an independent practice platform not affiliated with, endorsed by, or connected to British Council, IDP Education, Cambridge Assessment English, or Pearson PLC. IELTS® and PTE Academic® are registered trademarks of their respective owners.
+          </p>
         </footer>
       </div>
     </>

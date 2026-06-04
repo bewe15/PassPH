@@ -232,6 +232,9 @@ export default function PricingPage() {
           <Link href="/terms" className="hover:text-slate-600 transition">Terms &amp; Conditions</Link>
           <Link href="/contact" className="hover:text-slate-600 transition">Contact</Link>
         </div>
+        <p className="text-xs text-slate-300 mt-3 max-w-2xl mx-auto">
+          PassPH is an independent practice platform not affiliated with, endorsed by, or connected to British Council, IDP Education, Cambridge Assessment English, or Pearson PLC. IELTS® and PTE Academic® are registered trademarks of their respective owners.
+        </p>
       </footer>
     </div>
   );
