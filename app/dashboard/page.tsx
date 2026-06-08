@@ -52,7 +52,12 @@ export default async function DashboardPage() {
   const testsLimit = plan === "free" ? 3 : Infinity;
   const writingUsed = profile?.writing_tests_used_this_month ?? 0;
   const writingLimit = plan === "pro" ? Infinity : 3; // basic=3/month, free=0 (locked in UI)
-  const firstName = (profile?.full_name ?? user.email ?? "there").split(" ")[0];
+  const firstName = (
+    profile?.full_name ??
+    (user.user_metadata?.full_name as string | undefined) ??
+    user.email?.split("@")[0] ??
+    "there"
+  ).split(" ")[0];
   const initials = firstName.slice(0, 2).toUpperCase();
 
   // Compute stats from real attempts
