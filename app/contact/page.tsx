@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Logo } from "@/components/Logo";
-import { ChevronLeft, Send, CheckCircle, AlertCircle, Mail, MessageSquare, Clock } from "lucide-react";
+import { Send, CheckCircle, AlertCircle, Mail, MessageSquare, Clock } from "lucide-react";
+import { PublicHeader } from "@/components/PublicHeader";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
@@ -50,22 +50,7 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      <header className="bg-white border-b border-slate-200 px-6 py-4">
-        <div className="max-w-5xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <Link href="/" className="text-slate-400 hover:text-slate-600 transition">
-              <ChevronLeft className="w-5 h-5" />
-            </Link>
-            <Logo className="h-8 w-auto" />
-          </div>
-          <div className="flex items-center gap-4 text-sm">
-            <Link href="/login" className="text-slate-500 hover:text-slate-900 transition">Log in</Link>
-            <Link href="/signup">
-              <Button size="sm">Sign up free</Button>
-            </Link>
-          </div>
-        </div>
-      </header>
+      <PublicHeader backHref="/" />
 
       <main className="max-w-5xl mx-auto px-6 py-16">
         {/* Hero */}

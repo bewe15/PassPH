@@ -4,6 +4,7 @@ import {
   CheckCircle, BookOpen, Headphones, PenLine,
   Star, ArrowRight, Zap, Target, Clock,
 } from "lucide-react";
+import { HomeHeader } from "@/components/HomeHeader";
 
 
 export default function LandingPage() {
@@ -54,15 +55,8 @@ export default function LandingPage() {
             ))}
           </div>
 
-          {/* CTA */}
-          <div style={{ display: "flex", alignItems: "center", gap: 16, flexShrink: 0 }}>
-            <Link href="/login" style={{ fontSize: 14, fontWeight: 500, color: "rgba(255,255,255,0.85)", textDecoration: "none" }}>
-              Log in
-            </Link>
-            <Link href="/signup">
-              <Button size="sm">Start Free</Button>
-            </Link>
-          </div>
+          {/* CTA — auth-aware (shows Dashboard if logged in) */}
+          <HomeHeader />
         </nav>
       </header>
 
