@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
-import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 
 const stripe         = new Stripe(process.env.STRIPE_SECRET_KEY!);
 const WEBHOOK_SECRET = process.env.STRIPE_WEBHOOK_SECRET ?? "";
@@ -41,7 +41,7 @@ export async function POST(req: NextRequest) {
         expiresAt.setMonth(expiresAt.getMonth() + 1);
       }
 
-      const supabase = await createClient();
+      const supabase = createAdminClient();
       const { error } = await supabase
         .from("profiles")
         .update({ plan: metadata.plan, plan_expires_at: expiresAt.toISOString() })
@@ -83,7 +83,7 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ received: true });
       }
 
-      const supabase = await createClient();
+      const supabase = createAdminClient();
       const { error } = await supabase
         .from("profiles")
         .update({ plan: "free", plan_expires_at: null })
