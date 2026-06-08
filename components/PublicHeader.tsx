@@ -8,31 +8,28 @@ import { createClient } from "@/lib/supabase/client";
 import { ChevronLeft, LayoutDashboard } from "lucide-react";
 
 interface PublicHeaderProps {
-  /** Show a back arrow — pass the href it should navigate to */
   backHref?: string;
 }
 
-/**
- * Auth-aware header for public pages (pricing, contact, privacy, terms).
- * - Shows "Go to Dashboard" when the user is logged in.
- * - Shows "Log in" + "Sign up free" when not logged in.
- * - Re-checks auth on bfcache restore to prevent stale session bugs.
- */
 export function PublicHeader({ backHref = "/" }: PublicHeaderProps) {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState<{ name: string; email: string } | null>(null);
   const [checked, setChecked] = useState(false);
 
   async function checkAuth() {
     const supabase = createClient();
     const { data: { user } } = await supabase.auth.getUser();
-    setIsLoggedIn(!!user);
+    if (user) {
+      const fullName = user.user_metadata?.full_name as string | undefined;
+      const firstName = fullName?.split(" ")[0] ?? user.email?.split("@")[0] ?? "User";
+      setUser({ name: firstName, email: user.email ?? "" });
+    } else {
+      setUser(null);
+    }
     setChecked(true);
   }
 
   useEffect(() => {
     checkAuth();
-
-    // Re-check when page is restored from bfcache (browser back/forward)
     function onPageShow(e: PageTransitionEvent) {
       if (e.persisted) checkAuth();
     }
@@ -52,17 +49,21 @@ export function PublicHeader({ backHref = "/" }: PublicHeaderProps) {
         </div>
 
         {/* Right: auth buttons */}
-        <div className="flex items-center gap-4 text-sm">
+        <div className="flex items-center gap-3 text-sm">
           {!checked ? (
-            // Invisible placeholder to prevent layout shift
-            <div className="w-28 h-8" />
-          ) : isLoggedIn ? (
-            <Link href="/dashboard">
-              <Button size="sm" className="gap-1.5">
-                <LayoutDashboard className="w-4 h-4" />
-                My Dashboard
-              </Button>
-            </Link>
+            <div className="w-32 h-8" />
+          ) : user ? (
+            <>
+              <span className="text-slate-500 hidden sm:block">
+                Hi, <span className="font-medium text-slate-700">{user.name}</span>
+              </span>
+              <Link href="/dashboard">
+                <Button size="sm" className="gap-1.5">
+                  <LayoutDashboard className="w-4 h-4" />
+                  My Dashboard
+                </Button>
+              </Link>
+            </>
           ) : (
             <>
               <Link href="/login" className="text-slate-500 hover:text-slate-900 transition">
