@@ -274,7 +274,31 @@ export default function HistoryPage() {
   }
 
   const result = attempt.result_json;
-  const isWriting = !!result?.tasks;
+  const isWriting   = !!result?.tasks;
+  const isListening = !isWriting && attempt.test_id?.includes("listening");
+
+  // Guard: result_json missing (old attempt saved before fix)
+  if (!result) {
+    return (
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center px-4">
+        <div className="bg-white rounded-2xl border border-slate-200 p-8 max-w-sm w-full text-center">
+          <p className="text-slate-900 font-bold mb-2">Result details not available</p>
+          <p className="text-sm text-slate-500 mb-6">This attempt was saved before detailed results were recorded. Your score is still tracked in your history.</p>
+          <div className="bg-slate-50 rounded-xl p-4 mb-6">
+            <p className="text-3xl font-extrabold text-cyan-500 mb-1">{attempt.band}</p>
+            <p className="text-sm text-slate-500">Band Score</p>
+            <p className="text-lg font-bold text-slate-900 mt-2">{attempt.score}/{attempt.total}</p>
+            <p className="text-sm text-slate-500">Questions correct</p>
+          </div>
+          <Link href="/dashboard">
+            <Button className="w-full">Back to Dashboard</Button>
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  const reviewLabel = isWriting ? "Writing Review" : isListening ? "Listening Review" : "Reading Review";
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -285,7 +309,7 @@ export default function HistoryPage() {
               <ChevronLeft className="w-5 h-5" />
             </Link>
             <div>
-              <p className="text-sm font-bold text-slate-900">{isWriting ? "Writing Review" : "Reading Review"}</p>
+              <p className="text-sm font-bold text-slate-900">{reviewLabel}</p>
               <p className="text-xs text-slate-500">{attempt.created_at ? new Date(attempt.created_at).toLocaleDateString("en-PH", { month: "long", day: "numeric", year: "numeric" }) : ""}</p>
             </div>
           </div>
