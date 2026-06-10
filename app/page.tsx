@@ -1,8 +1,18 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
+import { createClient } from "@/lib/supabase/client";
 
 export default function HomePage() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const supabase = createClient();
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      setIsLoggedIn(!!user);
+    });
+  }, []);
+
   useEffect(() => {
     // ── Body styles (landing-page specific) ──────────────────────────────────
     document.body.style.background = "#04060d";
@@ -461,8 +471,17 @@ export default function HomePage() {
               <a className="link" href="#pricing">Pricing</a>
               <a className="link" href="#faq">FAQ</a>
               <div className="nav-cta">
-                <Link className="btn btn-ghost" href="/login">Log in</Link>
-                <Link className="btn btn-primary" href="/signup">Start free</Link>
+                {isLoggedIn ? (
+                  <Link className="btn btn-primary" href="/dashboard">
+                    Go to Dashboard
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+                  </Link>
+                ) : (
+                  <>
+                    <Link className="btn btn-ghost" href="/login">Log in</Link>
+                    <Link className="btn btn-primary" href="/signup">Start free</Link>
+                  </>
+                )}
               </div>
             </div>
           </div>
