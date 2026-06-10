@@ -4,7 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { BookOpen, PenLine, Headphones, ChevronLeft, ChevronRight } from "lucide-react";
+import { BookOpen, PenLine, Headphones, ChevronLeft, ChevronRight, LayoutGrid, Crown, CheckCircle2, Clock, ArrowRight } from "lucide-react";
+import { MOCK_EXAMS } from "@/lib/tests/mock-registry";
 
 const PAGE_SIZE = 3;
 
@@ -178,10 +179,63 @@ function ListeningCard({
   );
 }
 
+function MockExamSection({ plan }: { plan: string }) {
+  const isPro = plan === "pro";
+  return (
+    <div className="mb-8">
+      <div className="flex items-center gap-2 mb-3">
+        <LayoutGrid className="w-4 h-4 text-slate-400" />
+        <span className="text-sm font-semibold text-slate-600 uppercase tracking-wide">Full Mock Exams</span>
+        {isPro ? (
+          <span className="text-xs text-cyan-500 font-medium">Unlimited ✓</span>
+        ) : (
+          <span className="text-xs text-amber-500 font-medium flex items-center gap-1">
+            <Crown className="w-3 h-3" />1 free · Pro for unlimited
+          </span>
+        )}
+      </div>
+      <div className="grid md:grid-cols-2 gap-4">
+        {MOCK_EXAMS.map((exam) => (
+          <Card key={exam.id} className="border-2 border-cyan-200 hover:border-cyan-400 transition">
+            <CardContent className="py-5">
+              <div className="flex items-start justify-between mb-3">
+                <div>
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-xs font-bold px-2 py-0.5 rounded bg-cyan-50 text-cyan-700">{exam.exam}</span>
+                    <span className="text-xs text-slate-500">{exam.type}</span>
+                  </div>
+                  <p className="text-sm font-bold text-slate-900">{exam.title}</p>
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-3 text-xs text-slate-500 mb-4">
+                <span className="flex items-center gap-1"><Clock className="w-3 h-3" />{exam.totalMinutes} min</span>
+                {exam.sections.map((s) => (
+                  <span key={s.key} className="flex items-center gap-1">
+                    <CheckCircle2 className="w-3 h-3 text-slate-300" />
+                    {s.label}
+                  </span>
+                ))}
+              </div>
+              <Link href={`/mock/${exam.id}`}>
+                <Button size="sm" className="w-full gap-1.5">
+                  View Exam <ArrowRight className="w-3.5 h-3.5" />
+                </Button>
+              </Link>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function TestGrid({ plan }: { plan: string }) {
   return (
     <div className="mb-8">
-      <h2 className="text-lg font-bold text-slate-900 mb-1">Start a Practice Test</h2>
+      {/* Mock Exams */}
+      <MockExamSection plan={plan} />
+
+      <h2 className="text-lg font-bold text-slate-900 mb-1">Practice Tests</h2>
       <p className="text-sm text-slate-500 mb-4">Reading, Listening &amp; Writing tests — unlimited and free.</p>
 
       {/* Listening */}
