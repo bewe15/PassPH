@@ -230,9 +230,7 @@ export default function HomePage() {
         .nav.scrolled { background: rgba(7,11,22,0.72); backdrop-filter: blur(14px); border-bottom-color: var(--card-border); }
         .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 70px; }
         .logo { display: inline-flex; align-items: center; gap: 9px; font-family: var(--font-display); font-weight: 700; font-size: 20px; letter-spacing: -0.01em; }
-        .logo .mark { width: 30px; height: 30px; border-radius: 8px; display: grid; place-items: center;
-          background: linear-gradient(150deg, var(--accent-1), var(--accent-2)); color: #04060d; font-size: 16px;
-          box-shadow: 0 4px 16px -4px rgba(34,211,238,0.6); font-family: var(--font-display); font-weight: 700; }
+        .logo .mark { width: 32px; height: 32px; display: block; filter: drop-shadow(0 4px 10px rgba(34,211,238,0.5)); }
         .nav-links { display: flex; align-items: center; gap: 30px; }
         .nav-links a.link { font-size: 14.5px; color: var(--muted); transition: color 0.25s; }
         .nav-links a.link:hover { color: var(--text); }
@@ -463,7 +461,7 @@ export default function HomePage() {
         <nav className="nav" id="nav">
           <div className="wrap nav-inner">
             <Link className="logo" href="/">
-              <span className="mark">S</span>Scoravo
+              <img src="/icon.svg" alt="Scoravo" className="mark" />Scoravo
             </Link>
             <div className="nav-links">
               <a className="link" href="#features">Features</a>
@@ -770,7 +768,7 @@ export default function HomePage() {
         <footer>
           <div className="wrap">
             <div className="foot-top">
-              <Link className="logo" href="/"><span className="mark">S</span>Scoravo</Link>
+              <Link className="logo" href="/"><img src="/icon.svg" alt="Scoravo" className="mark" />Scoravo</Link>
               <div className="foot-links">
                 <Link href="/privacy">Privacy</Link>
                 <Link href="/terms">Terms</Link>
