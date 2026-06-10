@@ -293,7 +293,7 @@ export default function WritePage() {
           time_taken: `${mm} min ${ss} sec`,
           result_json: result,
         });
-        await supabase.rpc("increment_writing_tests_used", { uid: user.id });
+        await supabase.rpc("increment_tests_used", { uid: user.id });
       }
     } catch { /* ignore */ }
 

@@ -147,7 +147,7 @@ Return ONLY the following JSON object — no markdown, no extra commentary:
 
     // ── Call Claude ───────────────────────────────────────────────────────────
     const message = await anthropic.messages.create({
-      model: "claude-3-5-haiku-20241022",
+      model: "claude-3-7-sonnet-20250219",
       max_tokens: 1200,
       system: systemPrompt,
       messages: [{ role: "user", content: userPrompt }],
