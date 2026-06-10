@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -997,6 +997,8 @@ function PTERunner({ test, onSubmit }: { test: PTETest; onSubmit: (answers: Answ
 export default function TestPage() {
   const params = useParams<{ id: string }>();
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const mockExamId = searchParams.get("mock");
   const test = getTest(params.id);
 
   const handleSubmit = useCallback(async (answers: AnswerMap, elapsed: number) => {
@@ -1018,14 +1020,15 @@ export default function TestPage() {
           band: result.band,
           time_taken: result.timeTaken,
           result_json: result,
+          ...(mockExamId ? { mock_exam_id: mockExamId } : {}),
         });
         // Increment tests_used_this_month
         await supabase.rpc("increment_tests_used", { uid: user.id });
       }
     } catch { /* ignore */ }
 
-    router.push("/results/1");
-  }, [test, router, params.id]);
+    router.push(mockExamId ? `/mock/${mockExamId}` : "/results/1");
+  }, [test, router, params.id, mockExamId]);
 
   if (!test) {
     return (

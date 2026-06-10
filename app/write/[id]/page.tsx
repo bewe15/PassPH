@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { ChevronLeft, Clock, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -223,6 +223,8 @@ function SubmitModal({
 export default function WritePage() {
   const params = useParams<{ id: string }>();
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const mockExamId = searchParams.get("mock");
   const test = getWritingTest(params.id);
 
   const [activeTaskIdx, setActiveTaskIdx] = useState(0);
@@ -292,13 +294,14 @@ export default function WritePage() {
           band: overall,
           time_taken: `${mm} min ${ss} sec`,
           result_json: result,
+          ...(mockExamId ? { mock_exam_id: mockExamId } : {}),
         });
         await supabase.rpc("increment_tests_used", { uid: user.id });
       }
     } catch { /* ignore */ }
 
-    router.push("/write/results");
-  }, [test, responses, router]);
+    router.push(mockExamId ? `/mock/${mockExamId}` : "/write/results");
+  }, [test, responses, router, mockExamId]);
 
   if (!test) {
     return (

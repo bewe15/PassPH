@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import {
   ChevronLeft, ChevronRight, Clock, Play, Pause,
@@ -10,6 +10,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { getListeningTest, buildListeningResult } from "@/lib/tests/listening-index";
 import { createClient } from "@/lib/supabase/client";
+import { getMockExam } from "@/lib/tests/mock-registry";
 import type { ListeningAnswerMap, ListeningQuestion } from "@/lib/tests/listening-types";
 
 function cn(...classes: (string | undefined | false)[]) {
@@ -279,14 +280,19 @@ function getBandColor(band: number) {
   return "text-red-400";
 }
 
-function ResultsView({ result }: { result: ReturnType<typeof buildListeningResult> }) {
+function ResultsView({ result, mockExamId }: { result: ReturnType<typeof buildListeningResult>; mockExamId?: string | null }) {
+  // If in mock mode, find the next section so we can direct them to it
+  const mockExam = mockExamId ? getMockExam(mockExamId) : null;
+  const listeningIdx = mockExam?.sections.findIndex((s) => s.key === "listening") ?? -1;
+  const nextSection = mockExam && listeningIdx >= 0 ? mockExam.sections[listeningIdx + 1] : null;
+
   return (
     <div className="min-h-screen bg-slate-50 py-10 px-4">
       <div className="max-w-3xl mx-auto">
         {/* Score card */}
         <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 mb-8 text-center">
           <p className="text-sm font-semibold text-slate-400 uppercase tracking-wide mb-2">
-            IELTS Listening Result
+            {mockExamId ? "Mock Exam — Listening Complete" : "IELTS Listening Result"}
           </p>
           <div className={`text-7xl font-extrabold mb-2 ${getBandColor(result.band)}`}>
             {result.band}
@@ -348,14 +354,34 @@ function ResultsView({ result }: { result: ReturnType<typeof buildListeningResul
           </div>
         </div>
 
-        <div className="flex gap-3">
-          <Link href="/dashboard" className="flex-1">
-            <Button className="w-full" variant="outline">Back to Dashboard</Button>
-          </Link>
-          <Link href="/listen/ielts-listening-1" className="flex-1">
-            <Button className="w-full">Try Again</Button>
-          </Link>
-        </div>
+        {mockExamId ? (
+          // Mock exam mode — show next section or return to exam page
+          <div className="space-y-3">
+            {nextSection ? (
+              <Link href={`${nextSection.route}?mock=${mockExamId}`} className="block">
+                <Button className="w-full gap-2">
+                  Continue to {nextSection.label} →
+                </Button>
+              </Link>
+            ) : (
+              <Link href={`/mock/${mockExamId}`} className="block">
+                <Button className="w-full">Back to Mock Exam</Button>
+              </Link>
+            )}
+            <Link href={`/mock/${mockExamId}`} className="block">
+              <Button className="w-full" variant="outline">Back to Mock Exam overview</Button>
+            </Link>
+          </div>
+        ) : (
+          <div className="flex gap-3">
+            <Link href="/dashboard" className="flex-1">
+              <Button className="w-full" variant="outline">Back to Dashboard</Button>
+            </Link>
+            <Link href="/listen/ielts-listening-1" className="flex-1">
+              <Button className="w-full">Try Again</Button>
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -364,9 +390,11 @@ function ResultsView({ result }: { result: ReturnType<typeof buildListeningResul
 // ── Main Page ─────────────────────────────────────────────────────────────────
 
 export default function ListenPage() {
-  const params  = useParams();
+  const params       = useParams();
   useRouter();
-  const id      = Array.isArray(params.id) ? params.id[0] : params.id;
+  const searchParams = useSearchParams();
+  const mockExamId   = searchParams.get("mock");
+  const id           = Array.isArray(params.id) ? params.id[0] : params.id;
 
   const test    = getListeningTest(id ?? "");
   const [currentPart, setCurrentPart] = useState(0);
@@ -389,7 +417,7 @@ export default function ListenPage() {
     );
   }
 
-  if (result) return <ResultsView result={result} />;
+  if (result) return <ResultsView result={result} mockExamId={mockExamId} />;
 
   const part = test.parts[currentPart];
   const totalQuestions = test.parts.reduce((s, p) => s + p.questions.length, 0);
@@ -414,6 +442,7 @@ export default function ListenPage() {
           band:        built.band,
           time_taken:  built.timeTaken,
           result_json: built,
+          ...(mockExamId ? { mock_exam_id: mockExamId } : {}),
         });
         await supabase.rpc("increment_tests_used", { uid: user.id });
       }
