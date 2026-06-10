@@ -3,11 +3,13 @@ import { SupabaseClient } from "@supabase/supabase-js";
 interface ProfileExpiry {
   plan: string;
   plan_expires_at?: string | null;
+  is_admin?: boolean | null;
 }
 
 /**
  * Checks whether the user's paid plan has expired.
- * If it has, downgrades the profile to "free" in the database and returns "free".
+ * Admin users always get Pro access regardless of plan or expiry.
+ * If expired, downgrades the profile to "free" in the database and returns "free".
  * If not expired (or already free), returns the current plan unchanged.
  */
 export async function enforcePlanExpiry(
@@ -15,7 +17,10 @@ export async function enforcePlanExpiry(
   userId: string,
   profile: ProfileExpiry
 ): Promise<string> {
-  const { plan, plan_expires_at } = profile;
+  const { plan, plan_expires_at, is_admin } = profile;
+
+  // Admin users always get Pro — never expires, never downgrades
+  if (is_admin) return "pro";
 
   // Free plan never expires — nothing to check
   if (plan === "free" || !plan_expires_at) return plan;

@@ -47,6 +47,7 @@ export default async function DashboardPage() {
   const plan = await enforcePlanExpiry(supabase, user.id, {
     plan: profile?.plan ?? "free",
     plan_expires_at: profile?.plan_expires_at,
+    is_admin: profile?.is_admin,
   });
   const testsUsed = profile?.tests_used_this_month ?? 0;
   const firstName = (
