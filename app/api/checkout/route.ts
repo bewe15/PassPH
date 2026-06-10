@@ -6,24 +6,17 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://scoravo.vercel.app";
 
 const PLANS = {
-  basic: {
-    amount: 599, // $5.99 in cents
-    name: "Scoravo Basic Plan",
-    description: "Unlimited Reading + 3 Writing tests/month",
-    planKey: "basic",
-    duration: "1mo",
-  },
   pro: {
-    amount: 999, // $9.99
+    amount: 1299, // $12.99
     name: "Scoravo Pro Plan",
-    description: "Unlimited Reading + Writing tests + PDF reports",
+    description: "Unlimited mock exams + AI Writing feedback + AI Speaking scoring",
     planKey: "pro",
     duration: "1mo",
   },
   pro3mo: {
-    amount: 2499, // $24.99
+    amount: 2999, // $29.99
     name: "Scoravo Pro — 3 Months",
-    description: "3 months Pro access (save $5 vs monthly)",
+    description: "3 months Pro access (save $9 vs monthly)",
     planKey: "pro",
     duration: "3mo",
   },

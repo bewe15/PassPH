@@ -3,9 +3,8 @@
 import { Suspense, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { CheckCircle, AlertCircle, Loader2 } from "lucide-react";
+import { CheckCircle, Loader2 } from "lucide-react";
 import { PublicHeader } from "@/components/PublicHeader";
 
 const plans = [
@@ -13,43 +12,28 @@ const plans = [
     name: "Free",
     price: "$0",
     period: "forever",
-    desc: "Try before you commit",
+    desc: "Practice as much as you want",
     features: [
-      "3 practice tests/month",
-      "Reading section only",
-      "Basic score report",
-      "Answer explanations",
+      "Unlimited Reading practice",
+      "Unlimited Writing practice",
+      "Auto-scoring + band estimate",
+      "1 free full mock exam",
+      "Progress tracking",
     ],
     cta: "Get started free",
     href: "/signup",
     highlight: false,
   },
   {
-    name: "Basic",
-    price: "$5.99",
-    period: "/month",
-    desc: "For regular practice",
-    features: [
-      "Unlimited Reading tests",
-      "3 Writing tests/month",
-      "Detailed score report",
-      "Progress tracking",
-      "Band score estimates",
-    ],
-    cta: "Start Basic",
-    href: "/signup",
-    highlight: false,
-  },
-  {
     name: "Pro",
-    price: "$9.99",
+    price: "$12.99",
     period: "/month",
     desc: "Everything you need to pass",
     features: [
-      "Everything in Basic",
-      "Unlimited Writing tests",
-      "AI Writing feedback",
-      "Band score estimates",
+      "Everything in Free",
+      "Unlimited full mock exams",
+      "AI Writing feedback (20/month)",
+      "AI Speaking scoring (10/month)",
       "Downloadable score reports",
       "Priority support",
     ],
@@ -60,25 +44,15 @@ const plans = [
 ];
 
 const faqs = [
-  { q: "Can I switch plans anytime?", a: "Yes, upgrade anytime from your account settings. Changes take effect immediately." },
+  { q: "Is the free plan really unlimited?", a: "Yes — free users get unlimited Reading and Writing practice tests with auto-scoring and band estimates. No credit card required." },
+  { q: "What do I get with Pro?", a: "Pro unlocks AI Writing feedback (20 evaluations/month), AI Speaking scoring (10 evaluations/month), unlimited mock exams, and downloadable score reports." },
   { q: "What payment methods are accepted?", a: "We accept Visa, Mastercard, Amex, Google Pay, and Apple Pay — all processed securely through Stripe." },
-  { q: "Is there a one-time payment option?", a: "Yes — $24.99 gives you 3 months of Pro access as a one-time payment. Great if you have a fixed exam date." },
-  { q: "Can I cancel anytime?", a: "Plans are one-time payments — there is nothing to cancel. You simply get access for the period you paid for (1 month or 3 months) and renew when ready." },
+  { q: "Is there a one-time payment option?", a: "Yes — $29.99 gives you 3 months of Pro access as a one-time payment. Perfect if you have a fixed exam date." },
+  { q: "Can I cancel anytime?", a: "Plans are one-time payments — there is nothing to cancel. You get access for the period you paid for (1 month or 3 months) and renew when ready." },
 ];
 
 function LimitBanner() {
-  const searchParams = useSearchParams();
-  const hitLimit = searchParams.get("reason") === "limit";
-  if (!hitLimit) return null;
-  return (
-    <div className="flex items-start gap-3 bg-red-50 border border-red-200 rounded-xl px-5 py-4 mb-10">
-      <AlertCircle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
-      <div>
-        <p className="text-sm font-semibold text-red-700">You&apos;ve used all 3 free tests this month</p>
-        <p className="text-xs text-red-500 mt-0.5">Upgrade to Pro for unlimited access — your limit resets on the 1st of next month.</p>
-      </div>
-    </div>
-  );
+  return null; // No more free test limits — all practice tests are free
 }
 
 export default function PricingPage() {
@@ -122,11 +96,11 @@ export default function PricingPage() {
         <div className="text-center mb-14">
           <h1 className="text-4xl font-extrabold text-slate-900 mb-3">Simple, affordable pricing</h1>
           <p className="text-slate-500 text-lg">Start free. Upgrade when you are ready. No hidden fees.</p>
-          <p className="text-sm text-slate-400 mt-2">Also available: $24.99 one-time for 3 months Pro</p>
+          <p className="text-sm text-slate-400 mt-2">Also available: $29.99 one-time for 3 months Pro</p>
         </div>
 
         {/* Plans */}
-        <div className="grid md:grid-cols-3 gap-6 mb-16">
+        <div className="grid md:grid-cols-2 gap-6 mb-16 max-w-3xl mx-auto">
           {plans.map((plan) => (
             <div
               key={plan.name}
@@ -165,11 +139,11 @@ export default function PricingPage() {
                 </Link>
               ) : (
                 <Button
-                  className={`w-full ${!plan.highlight ? "bg-transparent border border-slate-300 text-slate-700 hover:bg-slate-50" : ""}`}
-                  onClick={() => handleCheckout(plan.name === "Basic" ? "basic" : "pro")}
+                  className="w-full"
+                  onClick={() => handleCheckout("pro")}
                   disabled={loadingPlan !== null}
                 >
-                  {loadingPlan === (plan.name === "Basic" ? "basic" : "pro") ? (
+                  {loadingPlan === "pro" ? (
                     <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Processing…</>
                   ) : plan.cta}
                 </Button>
@@ -182,7 +156,7 @@ export default function PricingPage() {
         <div className="bg-white border border-slate-200 rounded-xl p-6 flex flex-col md:flex-row items-center justify-between gap-4 mb-16">
           <div>
             <h3 className="font-bold text-slate-900 mb-1">One-time payment option</h3>
-            <p className="text-sm text-slate-500">Pay $24.99 once and get 3 months of Pro access. Best for exam prep with a fixed date.</p>
+            <p className="text-sm text-slate-500">Pay $29.99 once and get 3 months of Pro access. Best for exam prep with a fixed date.</p>
           </div>
           <Button
             variant="outline"
@@ -192,7 +166,7 @@ export default function PricingPage() {
           >
             {loadingPlan === "pro3mo" ? (
               <><Loader2 className="w-4 h-4 mr-2 animate-spin" /> Processing…</>
-            ) : "Get 3 months for $24.99"}
+            ) : "Get 3 months for $29.99"}
           </Button>
         </div>
 

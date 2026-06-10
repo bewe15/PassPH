@@ -49,9 +49,6 @@ export default async function DashboardPage() {
     plan_expires_at: profile?.plan_expires_at,
   });
   const testsUsed = profile?.tests_used_this_month ?? 0;
-  const testsLimit = plan === "free" ? 3 : Infinity;
-  const writingUsed = profile?.writing_tests_used_this_month ?? 0;
-  const writingLimit = plan === "pro" ? Infinity : 3; // basic=3/month, free=0 (locked in UI)
   const firstName = (
     profile?.full_name ??
     (user.user_metadata?.full_name as string | undefined) ??
@@ -107,27 +104,16 @@ export default async function DashboardPage() {
           <p className="text-slate-500 text-sm mt-1">Keep practicing — consistency is the key to a higher band score.</p>
         </div>
 
-        {/* Free plan banner */}
+        {/* Free plan banner — promote AI feedback upgrade */}
         {plan === "free" && (
-          <div className={`border rounded-xl p-4 mb-8 flex items-center justify-between gap-4 ${
-            testsUsed >= testsLimit
-              ? "bg-red-50 border-red-200"
-              : "bg-gradient-to-r from-cyan-500/10 to-cyan-600/5 border-cyan-500/20"
-          }`}>
+          <div className="bg-gradient-to-r from-cyan-500/10 to-cyan-600/5 border border-cyan-500/20 rounded-xl p-4 mb-8 flex items-center justify-between gap-4">
             <div>
-              {testsUsed >= testsLimit ? (
-                <>
-                  <p className="font-semibold text-red-700 text-sm">You&apos;ve used all {testsLimit} free tests this month</p>
-                  <p className="text-xs text-red-500 mt-0.5">Upgrade to Pro to keep practicing — resets on the 1st of next month</p>
-                </>
-              ) : (
-                <>
-                  <p className="font-semibold text-slate-900 text-sm">
-                    You&apos;ve used {testsUsed} of {testsLimit} free tests this month
-                  </p>
-                  <p className="text-xs text-slate-500 mt-0.5">Upgrade to Pro for unlimited tests + AI feedback</p>
-                </>
-              )}
+              <p className="font-semibold text-slate-900 text-sm">
+                You have unlimited free practice tests 🎉
+              </p>
+              <p className="text-xs text-slate-500 mt-0.5">
+                Upgrade to Pro for AI Writing feedback, AI Speaking scoring &amp; unlimited mock exams
+              </p>
             </div>
             <Link href="/pricing" className="shrink-0">
               <Button size="sm">Upgrade to Pro</Button>
@@ -141,7 +127,7 @@ export default async function DashboardPage() {
             { label: "Tests Taken", value: String(totalTests), icon: BookOpen, color: "text-cyan-500" },
             { label: "Avg Band Score", value: avgBand != null ? String(avgBand) : "—", icon: TrendingUp, color: "text-green-500" },
             { label: "Avg Score", value: avgScore ?? "—", icon: TrendingUp, color: "text-blue-500" },
-            { label: "This Month", value: `${testsUsed}/${plan === "free" ? testsLimit : "∞"}`, icon: Clock, color: "text-orange-500" },
+            { label: "This Month", value: String(testsUsed), icon: Clock, color: "text-orange-500" },
           ].map((stat) => (
             <Card key={stat.label}>
               <CardContent className="py-5">
@@ -155,7 +141,7 @@ export default async function DashboardPage() {
           ))}
         </div>
 
-        <TestGrid plan={plan} testsUsed={testsUsed} testsLimit={testsLimit === Infinity ? 999 : testsLimit} writingUsed={writingUsed} writingLimit={writingLimit === Infinity ? 999 : writingLimit} />
+        <TestGrid plan={plan} />
 
         {/* Recent attempts */}
         <div>
