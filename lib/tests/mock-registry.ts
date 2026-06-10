@@ -5,111 +5,64 @@ export interface MockSection {
   label: string;
   testId: string;
   durationMinutes: number;
-  route: string;          // e.g. "/listen/ielts-listening-1"
+  route: string;
   questions: number;
   description: string;
 }
 
-export interface MockExam {
-  id: string;
-  title: string;
-  exam: "IELTS" | "PTE";
-  type: "Academic" | "General Training";
-  totalMinutes: number;
-  sections: MockSection[];
-  description: string;
-}
+// ── Available test pools ──────────────────────────────────────────────────────
 
-export const MOCK_EXAMS: MockExam[] = [
-  {
-    id: "ielts-mock-1",
-    title: "IELTS Academic Mock Exam 1",
-    exam: "IELTS",
-    type: "Academic",
-    totalMinutes: 150,
-    description: "Full-length IELTS Academic mock exam covering Listening, Reading, and Writing under timed conditions.",
-    sections: [
-      {
-        key: "listening",
-        label: "Listening",
-        testId: "ielts-listening-1",
-        durationMinutes: 30,
-        route: "/listen/ielts-listening-1",
-        questions: 40,
-        description: "4 parts, 40 questions. Audio transcript available while audio is in production.",
-      },
-      {
-        key: "reading",
-        label: "Reading",
-        testId: "ielts-reading-1",
-        durationMinutes: 60,
-        route: "/test/ielts-reading-1",
-        questions: 40,
-        description: "3 passages, 40 questions. Academic texts with multiple question types.",
-      },
-      {
-        key: "writing",
-        label: "Writing",
-        testId: "ielts-writing-1",
-        durationMinutes: 60,
-        route: "/write/ielts-writing-1",
-        questions: 2,
-        description: "Task 1 (graph/chart) and Task 2 (essay). Model answers and AI feedback (Pro) included.",
-      },
-    ],
-  },
-  {
-    id: "ielts-mock-2",
-    title: "IELTS Academic Mock Exam 2",
-    exam: "IELTS",
-    type: "Academic",
-    totalMinutes: 150,
-    description: "Second full-length IELTS Academic mock exam with new passages and writing prompts.",
-    sections: [
-      {
-        key: "listening",
-        label: "Listening",
-        testId: "ielts-listening-1",
-        durationMinutes: 30,
-        route: "/listen/ielts-listening-1",
-        questions: 40,
-        description: "4 parts, 40 questions.",
-      },
-      {
-        key: "reading",
-        label: "Reading",
-        testId: "ielts-reading-2",
-        durationMinutes: 60,
-        route: "/test/ielts-reading-2",
-        questions: 40,
-        description: "3 passages, 40 questions.",
-      },
-      {
-        key: "writing",
-        label: "Writing",
-        testId: "ielts-writing-2",
-        durationMinutes: 60,
-        route: "/write/ielts-writing-2",
-        questions: 2,
-        description: "Task 1 + Task 2.",
-      },
-    ],
-  },
-];
-
-export function getMockExam(id: string): MockExam | null {
-  return MOCK_EXAMS.find((m) => m.id === id) ?? null;
-}
-
-// Section icons (string keys for server components)
-export const SECTION_ICONS: Record<string, string> = {
-  listening: "headphones",
-  reading: "book",
-  writing: "pen",
+export const MOCK_POOLS = {
+  listening: ["ielts-listening-1"],
+  reading: Array.from({ length: 20 }, (_, i) => `ielts-reading-${i + 1}`),
+  writing: Array.from({ length: 20 }, (_, i) => `ielts-writing-${i + 1}`),
 };
 
-export const SECTION_COLORS: Record<string, string> = {
-  listening: "#8b5cf6",
-  reading: "#22d3ee",
-  writing: "#3b82f6",
-};
+export function pickRandomTests() {
+  function pick(pool: string[]) {
+    return pool[Math.floor(Math.random() * pool.length)];
+  }
+  return {
+    listening: pick(MOCK_POOLS.listening),
+    reading: pick(MOCK_POOLS.reading),
+    writing: pick(MOCK_POOLS.writing),
+  };
+}
+
+// ── Build section list from a DB session row ──────────────────────────────────
+
+export function buildSessionSections(session: {
+  assigned_listening: string;
+  assigned_reading: string;
+  assigned_writing: string;
+}): MockSection[] {
+  return [
+    {
+      key: "listening",
+      label: "Listening",
+      testId: session.assigned_listening,
+      durationMinutes: 30,
+      route: `/listen/${session.assigned_listening}`,
+      questions: 40,
+      description: "4 parts, 40 questions. Covers conversations, monologues, and lectures.",
+    },
+    {
+      key: "reading",
+      label: "Reading",
+      testId: session.assigned_reading,
+      durationMinutes: 60,
+      route: `/test/${session.assigned_reading}`,
+      questions: 40,
+      description: "3 passages, 40 questions. Academic texts with multiple question types.",
+    },
+    {
+      key: "writing",
+      label: "Writing",
+      testId: session.assigned_writing,
+      durationMinutes: 60,
+      route: `/write/${session.assigned_writing}`,
+      questions: 2,
+      description: "Task 1 (graph/chart description) + Task 2 (academic essay). AI feedback on Pro.",
+    },
+  ];
+}

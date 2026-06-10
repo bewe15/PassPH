@@ -10,7 +10,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { getListeningTest, buildListeningResult } from "@/lib/tests/listening-index";
 import { createClient } from "@/lib/supabase/client";
-import { getMockExam } from "@/lib/tests/mock-registry";
 import type { ListeningAnswerMap, ListeningQuestion } from "@/lib/tests/listening-types";
 
 function cn(...classes: (string | undefined | false)[]) {
@@ -281,11 +280,6 @@ function getBandColor(band: number) {
 }
 
 function ResultsView({ result, mockExamId }: { result: ReturnType<typeof buildListeningResult>; mockExamId?: string | null }) {
-  // If in mock mode, find the next section so we can direct them to it
-  const mockExam = mockExamId ? getMockExam(mockExamId) : null;
-  const listeningIdx = mockExam?.sections.findIndex((s) => s.key === "listening") ?? -1;
-  const nextSection = mockExam && listeningIdx >= 0 ? mockExam.sections[listeningIdx + 1] : null;
-
   return (
     <div className="min-h-screen bg-slate-50 py-10 px-4">
       <div className="max-w-3xl mx-auto">
@@ -355,23 +349,9 @@ function ResultsView({ result, mockExamId }: { result: ReturnType<typeof buildLi
         </div>
 
         {mockExamId ? (
-          // Mock exam mode — show next section or return to exam page
-          <div className="space-y-3">
-            {nextSection ? (
-              <Link href={`${nextSection.route}?mock=${mockExamId}`} className="block">
-                <Button className="w-full gap-2">
-                  Continue to {nextSection.label} →
-                </Button>
-              </Link>
-            ) : (
-              <Link href={`/mock/${mockExamId}`} className="block">
-                <Button className="w-full">Back to Mock Exam</Button>
-              </Link>
-            )}
-            <Link href={`/mock/${mockExamId}`} className="block">
-              <Button className="w-full" variant="outline">Back to Mock Exam overview</Button>
-            </Link>
-          </div>
+          <Link href={`/mock/${mockExamId}`} className="block">
+            <Button className="w-full gap-2">Continue Mock Exam →</Button>
+          </Link>
         ) : (
           <div className="flex gap-3">
             <Link href="/dashboard" className="flex-1">
