@@ -158,7 +158,12 @@ Return ONLY the following JSON object — no markdown, no extra commentary:
 
     let feedback: AIFeedback;
     try {
-      feedback = JSON.parse(rawText);
+      // Strip markdown code fences if present (```json ... ``` or ``` ... ```)
+      const cleaned = rawText
+        .replace(/^```(?:json)?\s*/i, "")
+        .replace(/\s*```\s*$/, "")
+        .trim();
+      feedback = JSON.parse(cleaned);
     } catch {
       console.error("Claude returned non-JSON:", rawText);
       return NextResponse.json(
