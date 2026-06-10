@@ -406,12 +406,14 @@ export default function ListenPage() {
       const { data: { user } } = await supabase.auth.getUser();
       if (user) {
         await supabase.from("test_attempts").insert({
-          user_id:  user.id,
-          test_id:  test!.id,
-          exam:     test!.exam,
-          score:    built.score,
-          total:    built.total,
-          band:     built.band,
+          user_id:     user.id,
+          test_id:     test!.id,
+          exam:        test!.exam,
+          score:       built.score,
+          total:       built.total,
+          band:        built.band,
+          time_taken:  built.timeTaken,
+          result_json: built,
         });
         await supabase.rpc("increment_tests_used", { uid: user.id });
       }
