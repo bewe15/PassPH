@@ -160,7 +160,7 @@ export default function LandingPage() {
           <div className="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
               { value: "500+", label: "Active Learners" },
-              { value: "$9.99", label: "Pro / month" },
+              { value: "$12.99", label: "Pro / month" },
               { value: "20+", label: "Practice Tests" },
               { value: "4.9★", label: "User Rating" },
             ].map((s) => (
@@ -240,7 +240,7 @@ export default function LandingPage() {
                 </thead>
                 <tbody>
                   {[
-                    ["Price",            "$5.99–$9.99/mo", "$65–$185/course", "$30–$50/mo"],
+                    ["Price",            "Free–$12.99/mo", "$65–$185/course", "$30–$50/mo"],
                     ["Schedule",         "Anytime",        "Fixed classes",   "Anytime"],
                     ["Exam-focused",      "✓",              "✓",               "Some"],
                     ["AI feedback",      "✓ Coming soon",  "✗",               "Some"],
@@ -266,11 +266,10 @@ export default function LandingPage() {
               <h2 className="text-3xl font-extrabold mb-3 text-slate-900">Simple, affordable pricing</h2>
               <p className="text-slate-500">Start free. Upgrade when you are ready.</p>
             </div>
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
               {[
-                { name:"Free",  price:"$0",     period:"forever",  desc:"Try before you commit",        features:["3 practice tests/month","Reading section only","Basic score report"],                                    cta:"Get started free", highlight:false },
-                { name:"Basic", price:"$5.99", period:"/month",   desc:"For regular practice",         features:["Unlimited Reading tests","3 Writing tests/month","Detailed score report","Progress tracking","Band score estimates"],       cta:"Start Basic",      highlight:false },
-                { name:"Pro",   price:"$9.99", period:"/month",   desc:"Everything you need to pass",  features:["Everything in Basic","Unlimited Writing tests","AI Writing feedback","Downloadable score reports","Priority support"], cta:"Start Pro",        highlight:true  },
+                { name:"Free",  price:"$0",      period:"forever", desc:"Practice as much as you want",   features:["Unlimited Reading practice","Unlimited Writing practice","Auto-scoring + band estimate","1 free full mock exam","Progress tracking"],                                        cta:"Get started free", highlight:false },
+                { name:"Pro",   price:"$12.99",  period:"/month",  desc:"Everything you need to pass",    features:["Everything in Free","Unlimited full mock exams","AI Writing feedback (20/month)","AI Speaking scoring (10/month)","Downloadable score reports","Priority support"], cta:"Start Pro",        highlight:true  },
               ].map((plan) => (
                 <div
                   key={plan.name}
@@ -299,7 +298,7 @@ export default function LandingPage() {
               ))}
             </div>
             <p className="text-center text-sm text-slate-400 mt-6">
-              Also available: $24.99 one-time for 3 months Pro
+              Also available: $29.99 one-time for 3 months Pro
             </p>
           </div>
         </section>
@@ -335,7 +334,7 @@ export default function LandingPage() {
             <h2 className="text-3xl font-extrabold text-center mb-14 text-slate-900">Frequently asked questions</h2>
             <div className="space-y-6">
               {[
-                { q:"Is Scoravo really free to start?",                     a:"Yes! You get 3 free practice tests every month with no credit card required. Upgrade anytime when you need more." },
+                { q:"Is Scoravo really free to start?",                     a:"Yes! Free users get unlimited Reading and Writing practice with auto-scoring and band estimates — no credit card required. Upgrade to Pro for AI feedback and mock exams." },
                 { q:"How is Scoravo different from free websites?",          a:"Free sites give you questions but no feedback or tracking. Scoravo gives you band score estimates, detailed explanations, and tracks your improvement over time." },
                 { q:"What payment methods are accepted?",                    a:"We accept Visa, Mastercard, Amex, Google Pay, and Apple Pay — all processed securely through Stripe." },
                 { q:"Are the practice tests similar to the real exam?",     a:"Our tests follow the exact same format, question types, and difficulty levels — all original questions created to match official standards." },
@@ -354,7 +353,7 @@ export default function LandingPage() {
         <section className="py-20 px-6 text-center bg-white">
           <div className="max-w-2xl mx-auto">
             <h2 className="text-3xl font-extrabold mb-4 text-slate-900">Ready to pass your exam?</h2>
-            <p className="text-slate-500 mb-8">Start with 3 free tests. No credit card needed.</p>
+            <p className="text-slate-500 mb-8">Unlimited free practice. No credit card needed.</p>
             <Link href="/signup">
               <Button size="lg" className="px-10">
                 Start Free Now <ArrowRight className="w-4 h-4 ml-2" />
