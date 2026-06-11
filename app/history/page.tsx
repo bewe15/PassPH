@@ -2,7 +2,7 @@ import { redirect } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { Card, CardContent } from "@/components/ui/card";
-import { BookOpen, PenLine, ChevronRight, ChevronLeft, Trophy } from "lucide-react";
+import { BookOpen, PenLine, Mic, ChevronRight, ChevronLeft, Trophy } from "lucide-react";
 
 function getBandColor(band: number) {
   if (band >= 7.5) return "text-green-500";
@@ -25,42 +25,67 @@ function formatTestId(testId: string) {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function AttemptRow({ attempt }: { attempt: any }) {
-  const isWriting = attempt.result_json?.tasks != null;
+  const isSpeaking = attempt._type === "speaking";
+  const isWriting = !isSpeaking && attempt.result_json?.tasks != null;
+
+  const href = isSpeaking
+    ? `/speak/results/${attempt.id}`
+    : `/history/${attempt.id}`;
+
+  const icon = isSpeaking ? (
+    <Mic className="w-5 h-5 text-emerald-500" />
+  ) : isWriting ? (
+    <PenLine className="w-5 h-5 text-purple-500" />
+  ) : (
+    <BookOpen className="w-5 h-5 text-cyan-500" />
+  );
+
+  const iconBg = isSpeaking ? "bg-emerald-50" : isWriting ? "bg-purple-50" : "bg-cyan-50";
+  const labelBg = isSpeaking ? "bg-emerald-50 text-emerald-600" : isWriting ? "bg-purple-50 text-purple-600" : "bg-cyan-50 text-cyan-600";
+  const label = isSpeaking ? "Speaking" : isWriting ? "Writing" : "Reading";
 
   return (
     <Link
-      href={`/history/${attempt.id}`}
+      href={href}
       className="flex items-center justify-between px-6 py-4 hover:bg-slate-50 transition cursor-pointer"
     >
       <div className="flex items-center gap-4">
-        <div className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 ${isWriting ? "bg-purple-50" : "bg-cyan-50"}`}>
-          {isWriting
-            ? <PenLine className="w-5 h-5 text-purple-500" />
-            : <BookOpen className="w-5 h-5 text-cyan-500" />}
+        <div className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 ${iconBg}`}>
+          {icon}
         </div>
         <div>
           <p className="text-sm font-semibold text-slate-900">
             {attempt.exam} — {formatTestId(attempt.test_id)}
           </p>
           <div className="flex items-center gap-2 mt-0.5">
-            <span className={`text-xs px-1.5 py-0.5 rounded font-medium ${isWriting ? "bg-purple-50 text-purple-600" : "bg-cyan-50 text-cyan-600"}`}>
-              {isWriting ? "Writing" : "Reading"}
+            <span className={`text-xs px-1.5 py-0.5 rounded font-medium ${labelBg}`}>
+              {label}
             </span>
             <span className="text-xs text-slate-400">{formatDate(attempt.created_at)}</span>
+            {isSpeaking && attempt.ai_scored && (
+              <span className="text-xs text-cyan-500 font-medium">AI scored</span>
+            )}
           </div>
         </div>
       </div>
       <div className="flex items-center gap-6">
-        {!isWriting && (
+        {!isWriting && !isSpeaking && (
           <div className="text-right hidden sm:block">
             <p className="text-sm font-bold text-slate-900">{attempt.score}/{attempt.total}</p>
             <p className="text-xs text-slate-400">Score</p>
           </div>
         )}
-        <div className="text-right">
-          <p className={`text-sm font-bold ${getBandColor(attempt.band)}`}>Band {attempt.band}</p>
-          <p className="text-xs text-slate-400">Estimate</p>
-        </div>
+        {attempt.band ? (
+          <div className="text-right">
+            <p className={`text-sm font-bold ${getBandColor(attempt.band)}`}>Band {attempt.band}</p>
+            <p className="text-xs text-slate-400">{isSpeaking && !attempt.ai_scored ? "Self-assessed" : "Estimate"}</p>
+          </div>
+        ) : (
+          <div className="text-right">
+            <p className="text-sm text-slate-400">—</p>
+            <p className="text-xs text-slate-400">No score yet</p>
+          </div>
+        )}
         <ChevronRight className="w-4 h-4 text-slate-300" />
       </div>
     </Link>
@@ -81,32 +106,43 @@ export default async function HistoryPage({
   const page = Math.max(0, parseInt(params.page ?? "0", 10));
   const PAGE_SIZE = 20;
 
-  let query = supabase
-    .from("test_attempts")
-    .select("*", { count: "exact" })
-    .eq("user_id", user.id)
-    .order("created_at", { ascending: false })
-    .range(page * PAGE_SIZE, page * PAGE_SIZE + PAGE_SIZE - 1);
+  // Fetch test_attempts and speaking_attempts in parallel
+  const [testRes, speakRes] = await Promise.all([
+    supabase
+      .from("test_attempts")
+      .select("*")
+      .eq("user_id", user.id)
+      .order("created_at", { ascending: false }),
+    supabase
+      .from("speaking_attempts")
+      .select("id, test_id, exam, band, ai_scored, created_at")
+      .eq("user_id", user.id)
+      .order("created_at", { ascending: false }),
+  ]);
 
-  // Filter by exam
-  if (filter === "ielts") query = query.ilike("exam", "IELTS%");
-  if (filter === "pte")   query = query.ilike("exam", "PTE%");
+  // Tag and merge
+  const testAttempts = (testRes.data ?? []).map((a) => ({ ...a, _type: "test" }));
+  const speakAttempts = (speakRes.data ?? []).map((a) => ({ ...a, _type: "speaking" }));
 
-  const { data: attempts, count } = await query;
-  const total = count ?? 0;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let merged: any[] = [...testAttempts, ...speakAttempts].sort(
+    (a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()
+  );
+
+  // Apply filter
+  if (filter === "ielts") merged = merged.filter((a) => a.exam?.toUpperCase().startsWith("IELTS"));
+  if (filter === "pte")   merged = merged.filter((a) => a.exam?.toUpperCase().startsWith("PTE"));
+
+  const total = merged.length;
   const totalPages = Math.ceil(total / PAGE_SIZE);
+  const attempts = merged.slice(page * PAGE_SIZE, page * PAGE_SIZE + PAGE_SIZE);
 
   // Stats
-  const allRes = await supabase
-    .from("test_attempts")
-    .select("band, result_json")
-    .eq("user_id", user.id);
-
-  const all = allRes.data ?? [];
-  const readingAttempts = all.filter((a) => !a.result_json?.tasks);
-  const writingAttempts = all.filter((a) =>  a.result_json?.tasks);
-  const avgBand = all.length
-    ? Math.round((all.reduce((s, a) => s + (a.band ?? 0), 0) / all.length) * 10) / 10
+  const readingAttempts = testAttempts.filter((a) => !a.result_json?.tasks);
+  const writingAttempts  = testAttempts.filter((a) =>  a.result_json?.tasks);
+  const allBands = merged.filter((a) => a.band != null);
+  const avgBand = allBands.length
+    ? Math.round((allBands.reduce((s: number, a: { band: number }) => s + a.band, 0) / allBands.length) * 10) / 10
     : null;
 
   const FILTERS = [
@@ -125,7 +161,7 @@ export default async function HistoryPage({
             </Link>
             <div>
               <p className="text-sm font-bold text-slate-900">Test History</p>
-              <p className="text-xs text-slate-500">{total} attempt{total !== 1 ? "s" : ""} total</p>
+              <p className="text-xs text-slate-500">{merged.length} attempt{merged.length !== 1 ? "s" : ""} total</p>
             </div>
           </div>
           <Link href="/dashboard" className="text-sm text-cyan-500 hover:text-cyan-600 transition font-medium">
@@ -139,10 +175,10 @@ export default async function HistoryPage({
         {/* Stats row */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
           {[
-            { label: "Total Tests", value: String(all.length), color: "text-slate-900" },
+            { label: "Total Tests", value: String(merged.length), color: "text-slate-900" },
             { label: "Reading", value: String(readingAttempts.length), color: "text-cyan-500" },
             { label: "Writing", value: String(writingAttempts.length), color: "text-purple-500" },
-            { label: "Avg Band", value: avgBand != null ? String(avgBand) : "—", color: getBandColor(avgBand ?? 0) },
+            { label: "Speaking", value: String(speakAttempts.length), color: "text-emerald-500" },
           ].map((s) => (
             <Card key={s.label}>
               <CardContent className="py-4 text-center">
