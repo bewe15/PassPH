@@ -387,10 +387,11 @@ export default function SpeakPage() {
 
   if (currentScreen?.kind === "speak-p2") {
     const { taskCard, bullets, speakSec } = currentScreen;
-    const key = "2-0";
-    const rec = recordings.get(key);
+    const rkey = "2-0";
+    const rec = recordings.get(rkey);
     return (
       <SpeakingScreen
+        key="speak-p2"
         partLabel="Part 2 — Long Turn"
         accentColor="violet"
         questionNumber={null}
@@ -412,8 +413,8 @@ export default function SpeakPage() {
     const { qIdx, question, speakSec } = currentScreen;
     const tip = currentScreen.kind === "speak-p1" ? currentScreen.tip : undefined;
     const part = currentScreen.kind === "speak-p1" ? 1 : 3;
-    const key = recordingKey(currentScreen);
-    const rec = recordings.get(key);
+    const rkey = recordingKey(currentScreen);
+    const rec = recordings.get(rkey);
     const partQuestions = test.parts[part === 1 ? 0 : 2];
     const totalQ = "questions" in partQuestions ? partQuestions.questions.length : 0;
     const isLastInPart = qIdx === totalQ - 1;
@@ -422,6 +423,7 @@ export default function SpeakPage() {
 
     return (
       <SpeakingScreen
+        key={rkey}
         partLabel={`Part ${part} — Question ${qIdx + 1} of ${totalQ}`}
         accentColor={part === 1 ? "cyan" : "emerald"}
         questionNumber={qIdx + 1}

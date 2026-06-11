@@ -111,6 +111,11 @@ export function AudioRecorder({
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
       streamRef.current?.getTracks().forEach((t) => t.stop());
+      // Stop any in-progress playback so audio doesn't bleed into the next question
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.src = "";
+      }
     };
   }, []);
 
