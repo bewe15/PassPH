@@ -33,7 +33,7 @@ export function GenerateMockButton({ className }: { className?: string }) {
       <div className="flex flex-col items-center gap-3 py-2">
         <div className="flex items-center gap-2 text-sm text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-4 py-3">
           <Lock className="w-4 h-4 shrink-0" />
-          <span>Free plan is limited to 1 mock exam. Upgrade to Pro for unlimited exams.</span>
+          <span>You&apos;ve used your 1 free mock exam this month. Upgrade to Pro for unlimited exams.</span>
         </div>
         <Link href="/pricing">
           <Button size="sm">Upgrade to Pro →</Button>

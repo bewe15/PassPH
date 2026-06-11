@@ -269,6 +269,11 @@ export default function TestGrid({ plan }: { plan: string }) {
                   <p className="text-xs text-slate-500 mt-1">
                     Random passages every time · Listening → Reading → Writing · ~2.5 hrs
                   </p>
+                  {plan !== "pro" && (
+                    <p className="text-xs text-amber-600 font-medium mt-1.5">
+                      Free: 1 mock exam per month · <span className="underline">Upgrade for unlimited</span>
+                    </p>
+                  )}
                 </div>
                 <div className="shrink-0 flex items-center gap-1.5 text-cyan-500">
                   <Shuffle className="w-4 h-4" />

@@ -22,14 +22,19 @@ export async function POST() {
   }
 
   if (!isPro) {
+    const startOfMonth = new Date();
+    startOfMonth.setDate(1);
+    startOfMonth.setHours(0, 0, 0, 0);
+
     const { count } = await supabase
       .from("mock_exam_sessions")
       .select("id", { count: "exact", head: true })
-      .eq("user_id", user.id);
+      .eq("user_id", user.id)
+      .gte("created_at", startOfMonth.toISOString());
 
     if ((count ?? 0) >= 1) {
       return NextResponse.json(
-        { error: "Free plan is limited to 1 mock exam. Upgrade to Pro for unlimited mock exams." },
+        { error: "Free plan is limited to 1 mock exam per month. Upgrade to Pro for unlimited mock exams." },
         { status: 403 }
       );
     }
