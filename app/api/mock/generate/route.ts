@@ -7,6 +7,34 @@ export async function POST() {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
+  // Check plan — free users limited to 1 mock exam
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("plan, plan_expires_at, is_admin")
+    .eq("id", user.id)
+    .single();
+
+  const isAdmin = Boolean(profile?.is_admin);
+  const isPaid = profile?.plan === "pro" || profile?.plan === "basic";
+  let isPro = isAdmin || isPaid;
+  if (isPaid && !isAdmin && profile?.plan_expires_at) {
+    if (new Date(profile.plan_expires_at) < new Date()) isPro = false;
+  }
+
+  if (!isPro) {
+    const { count } = await supabase
+      .from("mock_exam_sessions")
+      .select("id", { count: "exact", head: true })
+      .eq("user_id", user.id);
+
+    if ((count ?? 0) >= 1) {
+      return NextResponse.json(
+        { error: "Free plan is limited to 1 mock exam. Upgrade to Pro for unlimited mock exams." },
+        { status: 403 }
+      );
+    }
+  }
+
   const tests = pickRandomTests();
 
   const { data, error } = await supabase
