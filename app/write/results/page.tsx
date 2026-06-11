@@ -285,11 +285,12 @@ function AIFeedbackSection({
             ? existing.ai_feedback
             : [];
           current[taskIndex] = data.feedback;
-          await supabase
+          const { error: saveErr } = await supabase
             .from("test_attempts")
             .update({ ai_feedback: current })
             .eq("id", attemptId);
-        } catch { /* best-effort */ }
+          if (saveErr) console.error("Failed to save AI feedback:", saveErr.message);
+        } catch (e) { console.error("AI feedback save error:", e); }
       }
     } catch {
       setErrorMsg("Network error. Please try again.");
