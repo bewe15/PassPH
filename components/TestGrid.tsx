@@ -7,7 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { BookOpen, PenLine, Headphones, Mic, ChevronLeft, ChevronRight, LayoutGrid, Shuffle } from "lucide-react";
 
 const ALL_SPEAKING_TESTS = {
-  ielts: Array.from({ length: 5 }, (_, i) => ({
+  ielts: Array.from({ length: 20 }, (_, i) => ({
     label: `Speaking Test ${i + 1}`,
     sub: "Parts 1–3 · ~14 min",
     id: `ielts-speaking-${i + 1}`,
