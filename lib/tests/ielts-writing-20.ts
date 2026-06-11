@@ -30,6 +30,27 @@ Period         | Approximate anomaly range / trend
 2020 value     | +1.1°C
 
 Key features: slight early cooling, long gradual rise from 1910, clear acceleration post-1980, reaching +1.1°C by 2020.`,
+      chartData: {
+        type: "line",
+        title: "Global Average Temperature Anomaly (°C above pre-industrial levels) — 1880–2020",
+        xAxisLabel: "Year",
+        yAxisLabel: "Temperature anomaly (°C)",
+        unit: "°C",
+        series: [
+          { key: "anomaly", label: "Temperature Anomaly (°C)", color: "#f43f5e" },
+        ],
+        data: [
+          { label: "1880", anomaly: -0.2 },
+          { label: "1910", anomaly: -0.2 },
+          { label: "1940", anomaly: 0.1 },
+          { label: "1970", anomaly: 0.15 },
+          { label: "1980", anomaly: 0.3 },
+          { label: "1990", anomaly: 0.45 },
+          { label: "2000", anomaly: 0.6 },
+          { label: "2010", anomaly: 0.8 },
+          { label: "2020", anomaly: 1.1 },
+        ],
+      },
       modelAnswer: `The line graph illustrates changes in the global average temperature anomaly relative to pre-industrial levels from 1880 to 2020, measured in degrees Celsius.
 
 Overall, global temperatures have increased substantially over the 140-year period, with the rate of warming accelerating markedly from the 1980s onwards. By 2020, the anomaly had reached +1.1°C, its highest recorded level.

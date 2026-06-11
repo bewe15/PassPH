@@ -61,6 +61,26 @@ Key observations:
 - Mexico shows the steepest decline, dropping from 44 in 1970 to 15 in 2020.
 - Japan declines steadily from 18 to 7, the lowest overall by 2020.
 - Sweden remains relatively stable, fluctuating between 11 and 14 throughout the period.`,
+      chartData: {
+        type: "line",
+        title: "Birth Rates (per 1,000 Population) — Japan, Sweden, Nigeria & Mexico, 1970–2020",
+        xAxisLabel: "Year",
+        yAxisLabel: "Birth rate (per 1,000 population)",
+        series: [
+          { key: "japan", label: "Japan", color: "#22d3ee" },
+          { key: "sweden", label: "Sweden", color: "#f59e0b" },
+          { key: "nigeria", label: "Nigeria", color: "#10b981" },
+          { key: "mexico", label: "Mexico", color: "#f43f5e" },
+        ],
+        data: [
+          { label: "1970", japan: 18, sweden: 14, nigeria: 50, mexico: 44 },
+          { label: "1980", japan: 14, sweden: 12, nigeria: 49, mexico: 35 },
+          { label: "1990", japan: 10, sweden: 14, nigeria: 46, mexico: 28 },
+          { label: "2000", japan: 9, sweden: 11, nigeria: 43, mexico: 22 },
+          { label: "2010", japan: 8, sweden: 12, nigeria: 40, mexico: 18 },
+          { label: "2020", japan: 7, sweden: 11, nigeria: 37, mexico: 15 },
+        ],
+      },
       modelAnswer: `The line graph illustrates birth rates per 1,000 population across four countries — Japan, Sweden, Nigeria, and Mexico — over a 50-year period from 1970 to 2020.
 
 Overall, birth rates declined in all four countries over the period, though the extent and pace of decline varied considerably. Nigeria maintained the highest rates throughout, while Japan recorded the lowest by 2020.

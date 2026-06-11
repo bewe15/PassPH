@@ -1,5 +1,40 @@
 export type WritingTaskType = "ielts_task1" | "ielts_task2" | "pte_swt" | "pte_essay";
 
+// ── Chart data types ──────────────────────────────────────────────────────────
+
+export type ChartType = "line" | "bar" | "pie" | "table" | "process";
+
+export interface ChartSeries {
+  key: string;
+  label: string;
+  color?: string;
+}
+
+export interface ChartDataPoint {
+  label: string;
+  [key: string]: string | number;
+}
+
+export interface PieSlice {
+  name: string;
+  value: number;
+  color?: string;
+}
+
+export interface ChartData {
+  type: ChartType;
+  title: string;
+  xAxisLabel?: string;
+  yAxisLabel?: string;
+  unit?: string;
+  series?: ChartSeries[];
+  data?: ChartDataPoint[];
+  pieData?: PieSlice[];
+  tableHeaders?: string[];
+  tableRows?: (string | number)[][];
+  processText?: string;
+}
+
 export interface BandDescriptor {
   criterion: string;
   band7: string;
@@ -15,7 +50,8 @@ export interface WritingTask {
   minWords: number;
   maxWords?: number;
   prompt: string;
-  chartDescription?: string; // for IELTS Task 1 — describes the visual data in text
+  chartDescription?: string;
+  chartData?: ChartData;     // structured data for rendering actual chart
   passage?: string;          // for PTE SWT
   modelAnswer: string;
   bandDescriptors: BandDescriptor[];
@@ -36,6 +72,7 @@ export interface WritingTaskResult {
   type: WritingTaskType;
   prompt: string;
   chartDescription?: string;
+  chartData?: ChartData;
   passage?: string;
   userResponse: string;
   wordCount: number;

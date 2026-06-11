@@ -28,6 +28,18 @@ Nairobi    |  48,000   |  72,000   |   115,000
 
 All cities show consistent price increases across the three periods.
 Sydney and London recorded the largest absolute increases; Nairobi had the smallest absolute increase but strong relative growth.`,
+      chartData: {
+        type: "table",
+        title: "Average House Prices (USD) — Selected Cities, 2010–2022",
+        tableHeaders: ["City", "2010", "2016", "2022"],
+        tableRows: [
+          ["Sydney", "$480,000", "$720,000", "$1,050,000"],
+          ["London", "$510,000", "$680,000", "$920,000"],
+          ["New York", "$430,000", "$590,000", "$780,000"],
+          ["Manila", "$65,000", "$110,000", "$195,000"],
+          ["Nairobi", "$48,000", "$72,000", "$115,000"],
+        ],
+      },
       modelAnswer: `The table illustrates average residential property prices in five cities at three points in time — 2010, 2016, and 2022 — measured in US dollars.
 
 Overall, house prices rose in all five cities across the entire period, though the magnitude of the increases varied considerably. Western cities consistently commanded far higher prices than those in Asia and Africa, yet some of the smaller markets showed impressive relative growth.

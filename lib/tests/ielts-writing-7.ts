@@ -60,6 +60,28 @@ Key observations:
 • Brazil grew substantially from 18% to 63%.
 • Nigeria started lowest at 4% but grew most rapidly, reaching 58% by 2022 — an increase of 54 percentage points, the largest absolute gain.
 • By 2022, the gap between all four countries had narrowed considerably compared to 2010.`,
+      chartData: {
+        type: "line",
+        title: "Online Purchases (% of Internet Users) — UK, Japan, Brazil & Nigeria, 2010–2022",
+        xAxisLabel: "Year",
+        yAxisLabel: "Percentage (%)",
+        unit: "%",
+        series: [
+          { key: "uk", label: "UK", color: "#22d3ee" },
+          { key: "japan", label: "Japan", color: "#f59e0b" },
+          { key: "brazil", label: "Brazil", color: "#10b981" },
+          { key: "nigeria", label: "Nigeria", color: "#f43f5e" },
+        ],
+        data: [
+          { label: "2010", uk: 62, japan: 45, brazil: 18, nigeria: 4 },
+          { label: "2012", uk: 68, japan: 51, brazil: 24, nigeria: 7 },
+          { label: "2014", uk: 73, japan: 57, brazil: 31, nigeria: 12 },
+          { label: "2016", uk: 78, japan: 62, brazil: 38, nigeria: 20 },
+          { label: "2018", uk: 82, japan: 66, brazil: 46, nigeria: 31 },
+          { label: "2020", uk: 87, japan: 70, brazil: 55, nigeria: 44 },
+          { label: "2022", uk: 90, japan: 74, brazil: 63, nigeria: 58 },
+        ],
+      },
       modelAnswer: `The line graph illustrates the proportion of people in four countries — the UK, Japan, Brazil, and Nigeria — who used the internet for online shopping between 2010 and 2022.
 
 Overall, all four countries recorded significant growth over the period. The UK consistently led, while Nigeria, which began at the lowest level, experienced the fastest rate of increase, resulting in a considerable narrowing of the gap between the countries by 2022.

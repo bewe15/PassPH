@@ -40,6 +40,18 @@ Key changes between 2000 and 2020:
 • Oil fell marginally from 7% to 5%.
 
 Overall: The charts reveal a major shift away from fossil fuels and nuclear energy toward renewable sources over the two-decade period.`,
+      chartData: {
+        type: "table",
+        title: "Household Energy Consumption by Source — Germany, 2000 vs 2020",
+        tableHeaders: ["Energy Source", "2000 (%)", "2020 (%)"],
+        tableRows: [
+          ["Coal", "35%", "20%"],
+          ["Gas", "28%", "25%"],
+          ["Nuclear", "20%", "12%"],
+          ["Renewables", "10%", "38%"],
+          ["Oil", "7%", "5%"],
+        ],
+      },
       modelAnswer: `The two pie charts illustrate how the sources of household energy consumption in Germany changed between 2000 and 2020.
 
 Overall, the most striking development over this period was the dramatic rise of renewables and the significant decline of coal, which effectively reversed their positions as the dominant and minor energy sources respectively.

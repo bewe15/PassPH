@@ -42,6 +42,30 @@ Key observations:
 - The steepest increase occurred between 2012 and 2020, rising from 11% to 40%.
 - By 2022, renewables accounted for 42% of UK electricity — 14 times the 2000 figure.
 - The rate of growth slowed slightly between 2020 (40%) and 2022 (42%).`,
+      chartData: {
+        type: "line",
+        title: "UK Renewable Electricity Generation (% of Total) — 2000–2022",
+        xAxisLabel: "Year",
+        yAxisLabel: "Percentage (%)",
+        unit: "%",
+        series: [
+          { key: "renewables", label: "Renewables", color: "#10b981" },
+        ],
+        data: [
+          { label: "2000", renewables: 3 },
+          { label: "2002", renewables: 4 },
+          { label: "2004", renewables: 5 },
+          { label: "2006", renewables: 5 },
+          { label: "2008", renewables: 6 },
+          { label: "2010", renewables: 7 },
+          { label: "2012", renewables: 11 },
+          { label: "2014", renewables: 19 },
+          { label: "2016", renewables: 25 },
+          { label: "2018", renewables: 33 },
+          { label: "2020", renewables: 40 },
+          { label: "2022", renewables: 42 },
+        ],
+      },
       modelAnswer: `The line graph illustrates the proportion of UK electricity produced from renewable sources over a 22-year period from 2000 to 2022.
 
 Overall, the share of renewable electricity generation rose dramatically over the period, increasing from just 3% in 2000 to 42% by 2022 — a fourteenfold increase. The growth was notably slow in the first decade but accelerated significantly from 2010 onwards.

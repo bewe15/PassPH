@@ -23,6 +23,24 @@ USA:       2000 → 12.4%, 2023 → 17.0%
 Brazil:    2000 →  5.5%, 2023 →  9.8%
 Nigeria:   2000 →  2.9%, 2023 →  3.4%
 Note: Japan is the highest in both years; Nigeria is the lowest in both years.`,
+      chartData: {
+        type: "bar",
+        title: "Population Aged 65 and Over (%) — 5 Countries, 2000 & 2023",
+        xAxisLabel: "Country",
+        yAxisLabel: "Percentage (%)",
+        unit: "%",
+        series: [
+          { key: "year2000", label: "2000", color: "#22d3ee" },
+          { key: "year2023", label: "2023", color: "#f43f5e" },
+        ],
+        data: [
+          { label: "Australia", year2000: 12.4, year2023: 16.8 },
+          { label: "Japan", year2000: 17.3, year2023: 29.1 },
+          { label: "USA", year2000: 12.4, year2023: 17.0 },
+          { label: "Brazil", year2000: 5.5, year2023: 9.8 },
+          { label: "Nigeria", year2000: 2.9, year2023: 3.4 },
+        ],
+      },
       modelAnswer: `The bar chart compares the proportion of people aged 65 and over in five countries' populations for the years 2000 and 2023.
 
 Overall, all five countries recorded an increase in their elderly populations over the period. Japan consistently had the highest share of older residents, while Nigeria remained the lowest across both years.

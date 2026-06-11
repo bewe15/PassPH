@@ -61,6 +61,25 @@ Key observations:
 - Computer use peaks in the 18–30 age group (3.5 hrs) and the 31–50 age group (3.0 hrs).
 - Children (6–12) have the lowest smartphone usage (1.5 hrs).
 - The 51+ age group relies most heavily on TV relative to other devices.`,
+      chartData: {
+        type: "bar",
+        title: "Average Daily Screen Time (Hours) by Age Group and Device — 2023",
+        xAxisLabel: "Age Group",
+        yAxisLabel: "Hours per day",
+        unit: "hrs",
+        series: [
+          { key: "smartphone", label: "Smartphone", color: "#22d3ee" },
+          { key: "computer", label: "Computer", color: "#f59e0b" },
+          { key: "tv", label: "TV", color: "#8b5cf6" },
+        ],
+        data: [
+          { label: "6–12", smartphone: 1.5, computer: 1.0, tv: 2.5 },
+          { label: "13–17", smartphone: 4.5, computer: 2.0, tv: 1.5 },
+          { label: "18–30", smartphone: 4.0, computer: 3.5, tv: 1.0 },
+          { label: "31–50", smartphone: 2.5, computer: 3.0, tv: 2.0 },
+          { label: "51+", smartphone: 1.0, computer: 1.5, tv: 3.5 },
+        ],
+      },
       modelAnswer: `The bar chart presents daily screen time in hours across five age groups — children (6–12), teenagers (13–17), young adults (18–30), middle-aged adults (31–50), and older adults (51+) — categorised by device type (smartphone, computer, and TV) in 2023.
 
 Overall, screen time was highest among teenagers and young adults, and device preferences shifted markedly with age. Younger groups favoured smartphones, while older groups relied more heavily on television.

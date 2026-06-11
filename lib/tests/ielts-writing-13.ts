@@ -36,6 +36,17 @@ Key observations:
 - Administration has the smallest allocation at 10% ($5 million).
 - The gap between the largest (Education, 30%) and smallest (Administration, 10%) departments is 20 percentage points.
 - The three smaller departments (Infrastructure, Social Services, Administration) together account for 45% ($22.5 million).`,
+      chartData: {
+        type: "pie",
+        title: "City Council Budget Distribution — $50 Million, 2023",
+        pieData: [
+          { name: "Education", value: 30, color: "#22d3ee" },
+          { name: "Healthcare", value: 25, color: "#f59e0b" },
+          { name: "Infrastructure", value: 20, color: "#10b981" },
+          { name: "Social Services", value: 15, color: "#8b5cf6" },
+          { name: "Administration", value: 10, color: "#f43f5e" },
+        ],
+      },
       modelAnswer: `The pie chart illustrates the distribution of a $50 million city council budget across five departments — Education, Healthcare, Infrastructure, Social Services, and Administration — in 2023.
 
 Overall, spending was concentrated in Education and Healthcare, which together accounted for more than half the total budget, while Administration received the smallest allocation of all.

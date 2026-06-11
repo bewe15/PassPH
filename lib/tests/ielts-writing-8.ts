@@ -49,6 +49,25 @@ Key observations:
 • India and Brazil remained among the lowest emitters in both years.
 • Brazil's emissions were broadly stable, while India showed a slight rise.
 • By 2020, Australia still emitted more than double what China emitted per capita.`,
+      chartData: {
+        type: "bar",
+        title: "CO₂ Emissions Per Capita (tonnes) — 6 Countries, 2010 & 2020",
+        xAxisLabel: "Country",
+        yAxisLabel: "Tonnes per capita",
+        unit: "t",
+        series: [
+          { key: "year2010", label: "2010", color: "#22d3ee" },
+          { key: "year2020", label: "2020", color: "#f43f5e" },
+        ],
+        data: [
+          { label: "Australia", year2010: 17.2, year2020: 15.1 },
+          { label: "Canada", year2010: 16.0, year2020: 14.2 },
+          { label: "UK", year2010: 8.5, year2020: 5.8 },
+          { label: "China", year2010: 6.2, year2020: 7.4 },
+          { label: "India", year2010: 1.6, year2020: 1.9 },
+          { label: "Brazil", year2010: 2.3, year2020: 2.1 },
+        ],
+      },
       modelAnswer: `The bar chart compares per capita carbon dioxide emissions in six countries — Australia, Canada, the UK, China, India, and Brazil — in 2010 and 2020.
 
 Overall, Australia and Canada recorded the highest emissions in both years, although both countries experienced a decline over the decade. The UK achieved the most significant reduction, while China was notable for being the only country to record a meaningful increase.

@@ -33,6 +33,17 @@ Key observations:
 - In Germany, nurses ($4,200) earn slightly less than teachers ($4,500), unlike in other countries.
 - South Africa occupies a middle-lower position, well above the Philippines but far below USA and Germany.
 - Engineers in the USA ($7,500) earn more than software developers in South Africa ($3,500).`,
+      chartData: {
+        type: "table",
+        title: "Average Monthly Salaries (USD) by Profession and Country — 2023",
+        tableHeaders: ["Country", "Teacher", "Nurse", "Engineer", "Software Developer"],
+        tableRows: [
+          ["USA", "$4,200", "$5,800", "$7,500", "$9,800"],
+          ["Philippines", "$500", "$620", "$1,100", "$1,800"],
+          ["Germany", "$4,500", "$4,200", "$6,800", "$8,200"],
+          ["South Africa", "$1,200", "$1,400", "$2,800", "$3,500"],
+        ],
+      },
       modelAnswer: `The table presents average monthly salaries in US dollars for four professions — teacher, nurse, engineer, and software developer — across the USA, Philippines, Germany, and South Africa in 2023.
 
 Overall, salaries for all professions were substantially higher in the USA and Germany than in the Philippines and South Africa. Across all four countries, software developers consistently earned the most, while teachers and nurses generally received the lowest remuneration.

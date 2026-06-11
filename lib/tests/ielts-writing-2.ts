@@ -37,6 +37,24 @@ Key observations:
 - The United States had the lowest share in both years (10% → 22%), though it still doubled.
 - China grew from 19% to 31%, a 12-point increase.
 - Spain was second highest in 2010 (32%) but was overtaken by Germany (46%) by 2022.`,
+      chartData: {
+        type: "bar",
+        title: "Renewable Electricity Generation (% of Total) — 5 Countries, 2010 & 2022",
+        xAxisLabel: "Country",
+        yAxisLabel: "Percentage (%)",
+        unit: "%",
+        series: [
+          { key: "year2010", label: "2010", color: "#22d3ee" },
+          { key: "year2022", label: "2022", color: "#f59e0b" },
+        ],
+        data: [
+          { label: "Denmark", year2010: 36, year2022: 61 },
+          { label: "Germany", year2010: 17, year2022: 46 },
+          { label: "Spain", year2010: 32, year2022: 43 },
+          { label: "United States", year2010: 10, year2022: 22 },
+          { label: "China", year2010: 19, year2022: 31 },
+        ],
+      },
       modelAnswer: `The bar chart compares the proportion of electricity generated from renewable sources across five countries — Denmark, Germany, Spain, the United States, and China — at two points in time: 2010 and 2022.
 
 Overall, all five countries increased their share of renewable electricity generation over the twelve-year period. Denmark maintained its position as the leading country throughout, while the United States consistently recorded the lowest proportion, despite doubling its renewable share.

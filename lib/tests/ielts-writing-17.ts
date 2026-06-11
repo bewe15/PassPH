@@ -35,6 +35,19 @@ Key observations:
 - Mumbai has the longest average commute (63 minutes), compared to Tokyo (48 min) and New York (42 min).
 - Cost of living is highest in New York (index 100), followed by Tokyo (82) and Mumbai (28).
 - Tokyo has the best air quality and a relatively high GDP despite lower green space.`,
+      chartData: {
+        type: "table",
+        title: "Urban Indicators — New York, Tokyo & Mumbai",
+        tableHeaders: ["Indicator", "New York", "Tokyo", "Mumbai"],
+        tableRows: [
+          ["Population (millions)", 8.3, 13.9, 20.7],
+          ["GDP per capita (USD)", "$85,000", "$42,000", "$8,500"],
+          ["Average commute time (minutes)", 42, 48, 63],
+          ["Air quality index (lower = better)", 45, 38, 154],
+          ["Green space per capita (m²)", 29, 6, 2],
+          ["Cost of living index (NYC = 100)", 100, 82, 28],
+        ],
+      },
       modelAnswer: `The table compares three major global cities — New York, Tokyo, and Mumbai — across six urban indicators: population, GDP per capita, average commute time, air quality, green space per capita, and cost of living.
 
 Overall, the three cities present markedly different profiles. New York stands out for its high wealth and green space but also its high cost of living, while Mumbai has the largest population but lags on most quality-of-life indicators. Tokyo occupies a balanced middle position across several measures.

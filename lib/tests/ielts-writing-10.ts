@@ -31,6 +31,17 @@ Key observations:
 • Technology employment was highest in South Korea (8.8%) and lowest in India (2.6%).
 • Germany had the smallest agricultural sector of any country shown.
 • Brazil and Germany had the most similar overall employment distributions.`,
+      chartData: {
+        type: "table",
+        title: "Employment Rates (%) by Sector — Germany, India, Brazil & South Korea, 2020",
+        tableHeaders: ["Country", "Agriculture", "Manufacturing", "Services", "Technology"],
+        tableRows: [
+          ["Germany", "1.4%", "24.2%", "68.1%", "6.3%"],
+          ["India", "43.5%", "24.8%", "29.1%", "2.6%"],
+          ["Brazil", "10.2%", "20.3%", "65.4%", "4.1%"],
+          ["South Korea", "5.3%", "25.1%", "60.8%", "8.8%"],
+        ],
+      },
       modelAnswer: `The table shows the distribution of employment across four sectors — agriculture, manufacturing, services, and technology — in Germany, India, Brazil, and South Korea in 2020.
 
 Overall, the services sector dominated employment in three of the four countries, while India stood out for its uniquely large agricultural workforce. Manufacturing was the most consistent sector across all nations, with comparatively little variation.

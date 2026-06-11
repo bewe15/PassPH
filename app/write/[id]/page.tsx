@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { getWritingTest } from "@/lib/tests/writing-index";
 import { createClient } from "@/lib/supabase/client";
 import { scoreTask, overallBand } from "@/lib/writing-scorer";
+import { ChartDisplay } from "@/components/ChartDisplay";
 import type { WritingTask, WritingResult } from "@/lib/tests/writing-types";
 
 function cn(...classes: (string | undefined | false)[]) {
@@ -109,10 +110,16 @@ function WritingTaskPanel({
         <div className="bg-slate-50 border border-slate-200 rounded-xl p-5 mb-4">
           <p className="text-sm font-semibold text-slate-900 mb-3 leading-relaxed">{task.prompt}</p>
 
-          {/* IELTS Task 1 chart description */}
-          {task.chartDescription && (
+          {/* IELTS Task 1 — actual chart */}
+          {task.chartData && (
+            <div className="mt-3">
+              <ChartDisplay chart={task.chartData} />
+            </div>
+          )}
+          {/* Fallback text description if no chartData yet */}
+          {!task.chartData && task.chartDescription && (
             <div className="mt-3 border-t border-slate-200 pt-3">
-              <p className="text-xs font-bold text-slate-500 uppercase tracking-wide mb-2">Chart / Table Data</p>
+              <p className="text-xs font-bold text-slate-500 uppercase tracking-wide mb-2">Chart Data</p>
               <pre className="text-xs text-slate-700 whitespace-pre-wrap leading-relaxed font-sans">{task.chartDescription}</pre>
             </div>
           )}
@@ -256,6 +263,7 @@ export default function WritePage() {
         type: t.type,
         prompt: t.prompt,
         chartDescription: t.chartDescription,
+        chartData: t.chartData,
         passage: t.passage,
         userResponse: response,
         wordCount: countWords(response),

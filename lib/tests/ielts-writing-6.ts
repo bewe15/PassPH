@@ -32,6 +32,18 @@ Key observations:
 • China experienced the sharpest decline in both arrivals (from 56.9m to 18.0m) and revenue (from USD 114.1bn to USD 37.5bn).
 • Italy remained relatively stable in arrivals while revenue grew modestly.
 • Revenue per arrival was highest in the USA in both years.`,
+      chartData: {
+        type: "table",
+        title: "International Tourist Arrivals (millions) and Revenue (USD bn) — 2015 & 2022",
+        tableHeaders: ["Country", "Arrivals 2015 (m)", "Arrivals 2022 (m)", "Revenue 2015 (USD bn)", "Revenue 2022 (USD bn)"],
+        tableRows: [
+          ["France", 84.5, 79.4, 45.9, 55.3],
+          ["Spain", 68.2, 71.7, 56.5, 73.9],
+          ["USA", 77.5, 50.9, 205.4, 190.8],
+          ["China", 56.9, 18.0, 114.1, 37.5],
+          ["Italy", 50.7, 49.6, 39.4, 49.8],
+        ],
+      },
       modelAnswer: `The table presents data on international tourist arrivals and corresponding revenue for five countries — France, Spain, the USA, China, and Italy — in 2015 and 2022.
 
 Overall, the USA consistently generated the highest tourism revenue despite a considerable fall in visitor numbers, while China experienced the most dramatic declines across both measures. Spain was the only country to record growth in both arrivals and revenue over the period.

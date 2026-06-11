@@ -58,6 +58,26 @@ Key observations:
 - Arts shows the narrowest gap between countries (18–65% vs. 18–75% in Maths).
 - Finland and Singapore are the top two performers overall.
 - Kenya scores highest in Arts (35%) relative to its other subjects.`,
+      chartData: {
+        type: "bar",
+        title: "Students Achieving Top Grades (%) by Subject and Country — 2021",
+        xAxisLabel: "Country",
+        yAxisLabel: "Percentage (%)",
+        unit: "%",
+        series: [
+          { key: "mathematics", label: "Mathematics", color: "#22d3ee" },
+          { key: "science", label: "Science", color: "#f59e0b" },
+          { key: "reading", label: "Reading", color: "#10b981" },
+          { key: "arts", label: "Arts", color: "#8b5cf6" },
+        ],
+        data: [
+          { label: "Finland", mathematics: 58, science: 62, reading: 70, arts: 65 },
+          { label: "Singapore", mathematics: 75, science: 70, reading: 65, arts: 50 },
+          { label: "Australia", mathematics: 45, science: 48, reading: 52, arts: 55 },
+          { label: "Brazil", mathematics: 22, science: 25, reading: 30, arts: 40 },
+          { label: "Kenya", mathematics: 18, science: 20, reading: 28, arts: 35 },
+        ],
+      },
       modelAnswer: `The bar chart compares the proportion of students earning top grades in four subjects — Mathematics, Science, Reading, and Arts — across Finland, Singapore, Australia, Brazil, and Kenya in 2021.
 
 Overall, Singapore and Finland dominated academic performance, while Brazil and Kenya consistently recorded the lowest achievement rates. Arts displayed the narrowest gap between the highest and lowest-performing nations.

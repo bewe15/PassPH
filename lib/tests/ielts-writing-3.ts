@@ -29,6 +29,18 @@ Key observations:
 - Transport is proportionally higher in Canada (24%) and Germany (20%) than in India (11%).
 - Agriculture is most significant in Australia (16%) and India (18%) relative to other sectors.
 - Germany has a notably high "Other" category (20%), reflecting its high-efficiency built environment efforts and remaining building stock inefficiency.`,
+      chartData: {
+        type: "table",
+        title: "Greenhouse Gas Emissions by Sector (% of National Total) — 4 Countries, 2021",
+        tableHeaders: ["Sector", "Australia", "India", "Germany", "Canada"],
+        tableRows: [
+          ["Energy (electricity & heat)", "33%", "49%", "29%", "12%"],
+          ["Transport", "19%", "11%", "20%", "24%"],
+          ["Agriculture", "16%", "18%", "8%", "10%"],
+          ["Industry", "21%", "18%", "23%", "37%"],
+          ["Other (buildings, waste, etc.)", "11%", "4%", "20%", "17%"],
+        ],
+      },
       modelAnswer: `The table presents the distribution of greenhouse gas emissions across five sectors — energy, transport, agriculture, industry, and other — for Australia, India, Germany, and Canada in 2021. The figures reveal notable differences in the primary sources of emissions across the four countries.
 
 Energy production (electricity and heat generation) was the dominant emission source in both Australia and India, accounting for 33% and 49% of national totals respectively. By contrast, energy represented a much smaller proportion of emissions in Canada (12%) and Germany (29%), suggesting that these countries rely more heavily on lower-carbon energy mixes.

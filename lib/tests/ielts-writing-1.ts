@@ -23,6 +23,25 @@ export const ieltsWriting1: WritingTest = {
 • Brazil: Started significantly lower at 5% in 2000, grew slowly to 13% by 2005, accelerated to 40% by 2010, and then rose sharply to 67% by 2015 and 74% by 2020.
 
 Overall: All three countries showed upward trends. South Korea consistently led, reaching near-saturation by 2010. Australia followed a steady growth path. Brazil started lowest but showed the most dramatic rate of increase in the second decade.`,
+      chartData: {
+        type: "line",
+        title: "Households with Internet Access (%) — South Korea, Australia & Brazil, 2000–2020",
+        xAxisLabel: "Year",
+        yAxisLabel: "Percentage of households (%)",
+        unit: "%",
+        series: [
+          { key: "southKorea", label: "South Korea", color: "#22d3ee" },
+          { key: "australia", label: "Australia", color: "#f59e0b" },
+          { key: "brazil", label: "Brazil", color: "#10b981" },
+        ],
+        data: [
+          { label: "2000", southKorea: 49, australia: 33, brazil: 5 },
+          { label: "2005", southKorea: 75, australia: 55, brazil: 13 },
+          { label: "2010", southKorea: 93, australia: 78, brazil: 40 },
+          { label: "2015", southKorea: 96, australia: 87, brazil: 67 },
+          { label: "2020", southKorea: 96, australia: 90, brazil: 74 },
+        ],
+      },
       modelAnswer: `The line graph illustrates the proportion of households with internet access in South Korea, Australia, and Brazil over a twenty-year period from 2000 to 2020.
 
 Overall, all three countries experienced significant growth in internet access throughout the period. South Korea consistently recorded the highest rates, while Brazil began at a much lower level but underwent the most dramatic expansion, particularly after 2005.

@@ -47,6 +47,25 @@ Key observations:
 • Exercising and socialising both decline with age; youngest group exercises most (9 hrs) and socialises most (11 hrs).
 • Reading increases with age, with the 60+ group reading three times as much as 18–25-year-olds.
 • Overall, the 60+ group spends the most total leisure hours, dominated by TV viewing.`,
+      chartData: {
+        type: "bar",
+        title: "Average Weekly Leisure Hours by Age Group and Activity — UK, 2022",
+        xAxisLabel: "Age Group",
+        yAxisLabel: "Hours per week",
+        unit: "hrs",
+        series: [
+          { key: "watchingTV", label: "Watching TV", color: "#22d3ee" },
+          { key: "exercising", label: "Exercising", color: "#f59e0b" },
+          { key: "socialising", label: "Socialising", color: "#10b981" },
+          { key: "reading", label: "Reading", color: "#f43f5e" },
+        ],
+        data: [
+          { label: "18–25", watchingTV: 12, exercising: 9, socialising: 11, reading: 3 },
+          { label: "26–40", watchingTV: 15, exercising: 6, socialising: 8, reading: 4 },
+          { label: "41–60", watchingTV: 20, exercising: 5, socialising: 6, reading: 6 },
+          { label: "60+", watchingTV: 28, exercising: 4, socialising: 5, reading: 9 },
+        ],
+      },
       modelAnswer: `The bar chart compares the average number of hours per week that four age groups in the UK spent on four leisure activities — watching TV, exercising, socialising, and reading — in 2022.
 
 Overall, TV watching was the most time-consuming leisure activity across all age groups and increased markedly with age, while exercising and socialising followed the opposite trend. Reading also rose with age, though from a relatively low base.

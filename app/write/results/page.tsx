@@ -18,6 +18,7 @@ import {
 import { Button } from "@/components/ui/button";
 import type { WritingResult, WritingTaskResult } from "@/lib/tests/writing-types";
 import { createClient } from "@/lib/supabase/client";
+import { ChartDisplay } from "@/components/ChartDisplay";
 import type { AIFeedback } from "@/app/api/ai-feedback/route";
 
 function cn(...classes: (string | undefined | false)[]) {
@@ -400,16 +401,22 @@ function TaskReview({
 
       <div className="p-6 space-y-6">
         {/* Chart/passage reference if applicable */}
-        {(task.chartDescription || task.passage) && (
+        {task.chartData && (
+          <ChartDisplay chart={task.chartData} />
+        )}
+        {!task.chartData && task.chartDescription && (
           <details className="border border-slate-200 rounded-lg">
-            <summary className="px-4 py-3 text-sm font-medium text-slate-700 cursor-pointer hover:bg-slate-50 rounded-lg">
-              {task.chartDescription ? "View chart data" : "View reading passage"}
-            </summary>
+            <summary className="px-4 py-3 text-sm font-medium text-slate-700 cursor-pointer hover:bg-slate-50 rounded-lg">View chart data</summary>
             <div className="px-4 pb-4 text-sm text-slate-600 leading-relaxed">
-              {task.chartDescription
-                ? <pre className="whitespace-pre-wrap font-sans text-xs mt-2">{task.chartDescription}</pre>
-                : <p className="mt-2">{task.passage}</p>
-              }
+              <pre className="whitespace-pre-wrap font-sans text-xs mt-2">{task.chartDescription}</pre>
+            </div>
+          </details>
+        )}
+        {task.passage && (
+          <details className="border border-slate-200 rounded-lg">
+            <summary className="px-4 py-3 text-sm font-medium text-slate-700 cursor-pointer hover:bg-slate-50 rounded-lg">View reading passage</summary>
+            <div className="px-4 pb-4 text-sm text-slate-600 leading-relaxed">
+              <p className="mt-2">{task.passage}</p>
             </div>
           </details>
         )}
