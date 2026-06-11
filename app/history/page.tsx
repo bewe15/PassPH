@@ -140,10 +140,6 @@ export default async function HistoryPage({
   // Stats
   const readingAttempts = testAttempts.filter((a) => !a.result_json?.tasks);
   const writingAttempts  = testAttempts.filter((a) =>  a.result_json?.tasks);
-  const allBands = merged.filter((a) => a.band != null);
-  const avgBand = allBands.length
-    ? Math.round((allBands.reduce((s: number, a: { band: number }) => s + a.band, 0) / allBands.length) * 10) / 10
-    : null;
 
   const FILTERS = [
     { key: "all",   label: "All Tests" },
