@@ -4,7 +4,16 @@ import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { BookOpen, PenLine, Headphones, ChevronLeft, ChevronRight, LayoutGrid, Shuffle } from "lucide-react";
+import { BookOpen, PenLine, Headphones, Mic, ChevronLeft, ChevronRight, LayoutGrid, Shuffle } from "lucide-react";
+
+const ALL_SPEAKING_TESTS = {
+  ielts: Array.from({ length: 5 }, (_, i) => ({
+    label: `Speaking Test ${i + 1}`,
+    sub: "Parts 1–3 · ~14 min",
+    id: `ielts-speaking-${i + 1}`,
+    route: "speak",
+  })),
+};
 
 const PAGE_SIZE = 3;
 
@@ -178,6 +187,65 @@ function ListeningCard({
   );
 }
 
+function SpeakingCard({
+  tests,
+  accent,
+  color,
+  plan,
+}: {
+  tests: typeof ALL_SPEAKING_TESTS.ielts;
+  accent: string;
+  color: string;
+  plan: string;
+}) {
+  const totalPages = Math.ceil(tests.length / PAGE_SIZE);
+  const [page, setPage] = useState(0);
+  const paged = tests.slice(page * PAGE_SIZE, page * PAGE_SIZE + PAGE_SIZE);
+
+  return (
+    <Card className={`border-2 transition ${color}`}>
+      <CardContent className="py-5">
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-2">
+            <span className={`text-xs font-bold px-2 py-0.5 rounded ${accent}`}>IELTS</span>
+            <span className="text-slate-900 font-bold">Speaking</span>
+          </div>
+          {totalPages > 1 && (
+            <div className="flex items-center gap-1">
+              <button onClick={() => setPage((p) => Math.max(0, p - 1))} disabled={page === 0} className="w-6 h-6 flex items-center justify-center rounded hover:bg-slate-100 disabled:opacity-30">
+                <ChevronLeft className="w-3.5 h-3.5" />
+              </button>
+              <span className="text-xs text-slate-400">{page + 1}/{totalPages}</span>
+              <button onClick={() => setPage((p) => Math.min(totalPages - 1, p + 1))} disabled={page === totalPages - 1} className="w-6 h-6 flex items-center justify-center rounded hover:bg-slate-100 disabled:opacity-30">
+                <ChevronRight className="w-3.5 h-3.5" />
+              </button>
+            </div>
+          )}
+        </div>
+        <div className="space-y-2 min-h-[108px]">
+          {paged.map((test) => (
+            <div key={test.id} className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-slate-900">{test.label}</p>
+                <p className="text-xs text-slate-500">{test.sub}</p>
+              </div>
+              <Link href={`/${test.route}/${test.id}`}>
+                <Button size="sm">Start</Button>
+              </Link>
+            </div>
+          ))}
+        </div>
+        {plan !== "pro" && (
+          <p className="text-xs text-slate-400 mt-3 text-center">(AI scoring available on Pro)</p>
+        )}
+        {plan === "pro" && (
+          <p className="text-xs text-cyan-600 font-medium mt-3 text-center">AI Scoring enabled ✓</p>
+        )}
+      </CardContent>
+    </Card>
+  );
+}
+
 export default function TestGrid({ plan }: { plan: string }) {
   return (
     <div className="mb-8">
@@ -238,6 +306,25 @@ export default function TestGrid({ plan }: { plan: string }) {
       <div className="grid md:grid-cols-2 gap-4 mb-6">
         <TestCard exam="IELTS" type="reading" tests={ALL_TESTS.reading.ielts} accent="bg-blue-50 text-blue-700"   color="border-blue-200 hover:border-blue-400" />
         <TestCard exam="PTE"   type="reading" tests={ALL_TESTS.reading.pte}   accent="bg-purple-50 text-purple-700" color="border-purple-200 hover:border-purple-400" />
+      </div>
+
+      {/* Speaking */}
+      <div className="flex items-center gap-2 mb-3">
+        <Mic className="w-4 h-4 text-slate-400" />
+        <span className="text-sm font-semibold text-slate-600 uppercase tracking-wide">Speaking</span>
+        <span className="text-xs text-green-500 font-medium">Unlimited ✓</span>
+        {plan !== "pro" && (
+          <span className="text-xs text-slate-400 ml-1">(AI scoring available on Pro)</span>
+        )}
+        {plan === "pro" && (
+          <span className="text-xs text-cyan-500 font-medium ml-1">AI Scoring enabled ✓</span>
+        )}
+      </div>
+      <div className="grid md:grid-cols-2 gap-4 mb-6">
+        <SpeakingCard tests={ALL_SPEAKING_TESTS.ielts} accent="bg-blue-50 text-blue-700" color="border-blue-200 hover:border-blue-400" plan={plan} />
+        <div className="rounded-xl border-2 border-dashed border-slate-200 flex items-center justify-center p-6">
+          <p className="text-sm text-slate-400 text-center">PTE Speaking<br /><span className="text-xs">Coming soon</span></p>
+        </div>
       </div>
 
       {/* Writing */}
