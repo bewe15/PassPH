@@ -285,17 +285,24 @@ export default function WritePage() {
       const supabase = createClient();
       const { data: { user } } = await supabase.auth.getUser();
       if (user) {
-        await supabase.from("test_attempts").insert({
-          user_id: user.id,
-          exam: test.exam,
-          test_id: test.id,
-          score: Math.round(overall * 10),
-          total: 90,
-          band: overall,
-          time_taken: `${mm} min ${ss} sec`,
-          result_json: result,
-          ...(mockExamId ? { mock_exam_id: mockExamId } : {}),
-        });
+        const { data: inserted } = await supabase
+          .from("test_attempts")
+          .insert({
+            user_id: user.id,
+            exam: test.exam,
+            test_id: test.id,
+            score: Math.round(overall * 10),
+            total: 90,
+            band: overall,
+            time_taken: `${mm} min ${ss} sec`,
+            result_json: result,
+            ...(mockExamId ? { mock_exam_id: mockExamId } : {}),
+          })
+          .select("id")
+          .single();
+        if (inserted?.id) {
+          sessionStorage.setItem("scoravo_writing_attempt_id", inserted.id);
+        }
         await supabase.rpc("increment_tests_used", { uid: user.id });
       }
     } catch { /* ignore */ }

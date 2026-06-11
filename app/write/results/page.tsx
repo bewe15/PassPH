@@ -228,12 +228,20 @@ function AIFeedbackDisplay({ feedback }: { feedback: AIFeedback }) {
 function AIFeedbackSection({
   task,
   isPro,
+  attemptId,
+  taskIndex,
+  initialFeedback,
 }: {
   task: WritingTaskResult;
   isPro: boolean;
+  attemptId: string | null;
+  taskIndex: number;
+  initialFeedback?: AIFeedback | null;
 }) {
-  const [status, setStatus] = useState<"idle" | "loading" | "done" | "error">("idle");
-  const [feedback, setFeedback] = useState<AIFeedback | null>(null);
+  const [status, setStatus] = useState<"idle" | "loading" | "done" | "error">(
+    initialFeedback ? "done" : "idle"
+  );
+  const [feedback, setFeedback] = useState<AIFeedback | null>(initialFeedback ?? null);
   const [errorMsg, setErrorMsg] = useState("");
 
   async function handleGetFeedback() {
@@ -263,6 +271,26 @@ function AIFeedbackSection({
       }
       setFeedback(data.feedback);
       setStatus("done");
+
+      // Save feedback to DB so it persists in history
+      if (attemptId) {
+        try {
+          const supabase = createClient();
+          const { data: existing } = await supabase
+            .from("test_attempts")
+            .select("ai_feedback")
+            .eq("id", attemptId)
+            .single();
+          const current: (AIFeedback | null)[] = Array.isArray(existing?.ai_feedback)
+            ? existing.ai_feedback
+            : [];
+          current[taskIndex] = data.feedback;
+          await supabase
+            .from("test_attempts")
+            .update({ ai_feedback: current })
+            .eq("id", attemptId);
+        } catch { /* best-effort */ }
+      }
     } catch {
       setErrorMsg("Network error. Please try again.");
       setStatus("error");
@@ -345,9 +373,15 @@ function AIFeedbackSection({
 function TaskReview({
   task,
   isPro,
+  attemptId,
+  taskIndex,
+  savedFeedback,
 }: {
   task: WritingTaskResult;
   isPro: boolean;
+  attemptId: string | null;
+  taskIndex: number;
+  savedFeedback?: AIFeedback | null;
 }) {
   const [showModel, setShowModel] = useState(false);
   const hasResponse = task.userResponse.trim().length > 0;
@@ -401,7 +435,13 @@ function TaskReview({
         {/* ── AI Feedback ──────────────────────────────────────────────────────── */}
         <div>
           <p className="text-xs font-bold text-slate-500 uppercase tracking-wide mb-3">AI Examiner Feedback</p>
-          <AIFeedbackSection task={task} isPro={isPro} />
+          <AIFeedbackSection
+            task={task}
+            isPro={isPro}
+            attemptId={attemptId}
+            taskIndex={taskIndex}
+            initialFeedback={savedFeedback}
+          />
         </div>
 
         {/* Model answer toggle */}
@@ -449,12 +489,29 @@ export default function WriteResultsPage() {
   const router = useRouter();
   const [result, setResult] = useState<WritingResult | null>(null);
   const [isPro, setIsPro] = useState(false);
+  const [attemptId, setAttemptId] = useState<string | null>(null);
+  const [savedFeedback, setSavedFeedback] = useState<(AIFeedback | null)[]>([]);
 
-  // Load writing result from sessionStorage
+  // Load writing result + attempt ID from sessionStorage, then load saved feedback
   useEffect(() => {
     const raw = sessionStorage.getItem("scoravo_writing_result");
     if (!raw) { router.push("/dashboard"); return; }
-    try { setResult(JSON.parse(raw)); } catch { router.push("/dashboard"); }
+    try { setResult(JSON.parse(raw)); } catch { router.push("/dashboard"); return; }
+
+    const id = sessionStorage.getItem("scoravo_writing_attempt_id");
+    if (id) {
+      setAttemptId(id);
+      // Restore any previously saved AI feedback
+      const supabase = createClient();
+      supabase
+        .from("test_attempts")
+        .select("ai_feedback")
+        .eq("id", id)
+        .single()
+        .then(({ data }) => {
+          if (Array.isArray(data?.ai_feedback)) setSavedFeedback(data.ai_feedback);
+        });
+    }
   }, [router]);
 
   // Check if user is Pro via Supabase browser client
@@ -575,8 +632,15 @@ export default function WriteResultsPage() {
         </div>
 
         {/* Task reviews */}
-        {result.tasks.map((task) => (
-          <TaskReview key={task.taskId} task={task} isPro={isPro} />
+        {result.tasks.map((task, idx) => (
+          <TaskReview
+            key={task.taskId}
+            task={task}
+            isPro={isPro}
+            attemptId={attemptId}
+            taskIndex={idx}
+            savedFeedback={savedFeedback[idx] ?? null}
+          />
         ))}
 
         {/* Bottom CTA */}

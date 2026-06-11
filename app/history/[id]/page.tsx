@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
-import { ChevronLeft, Trophy, TrendingUp, RotateCcw, CheckCircle, XCircle, BookOpen, Download } from "lucide-react";
+import { ChevronLeft, Trophy, TrendingUp, RotateCcw, CheckCircle, XCircle, BookOpen, Download, Sparkles } from "lucide-react";
+import type { AIFeedback } from "@/app/api/ai-feedback/route";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { createClient } from "@/lib/supabase/client";
@@ -114,7 +115,7 @@ function ReadingResult({ result }: { result: any }) {
 // ── Writing Result View ───────────────────────────────────────────────────────
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-function WritingResult({ result }: { result: any }) {
+function WritingResult({ result, aiFeedback }: { result: any; aiFeedback?: (AIFeedback | null)[] | null }) {
   const [revealedTasks, setRevealedTasks] = useState<Set<number>>(new Set());
 
   function toggleReveal(id: number) {
@@ -159,8 +160,9 @@ function WritingResult({ result }: { result: any }) {
       </div>
 
       {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
-      {result.tasks.map((task: any) => {
+      {result.tasks.map((task: any, idx: number) => {
         const shown = revealedTasks.has(task.taskId);
+        const taskFeedback = aiFeedback?.[idx] ?? null;
         return (
           <div key={task.taskId} className="bg-white rounded-2xl border border-slate-200 overflow-hidden mb-6">
             <div className="px-6 py-4 border-b border-slate-100 bg-slate-50">
@@ -228,6 +230,51 @@ function WritingResult({ result }: { result: any }) {
                   </table>
                 </div>
               </div>
+
+              {/* Saved AI feedback */}
+              {taskFeedback && (
+                <div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <Sparkles className="w-4 h-4 text-cyan-500" />
+                    <p className="text-xs font-bold text-slate-500 uppercase tracking-wide">AI Examiner Feedback</p>
+                    <span className={`text-sm font-bold ml-auto ${getBandColor(taskFeedback.overallBand)}`}>
+                      Band {taskFeedback.overallBand}
+                    </span>
+                  </div>
+                  <p className="text-sm text-slate-700 leading-relaxed mb-4">{taskFeedback.summary}</p>
+                  <div className="grid md:grid-cols-2 gap-3 mb-4">
+                    {taskFeedback.criteria.map((c) => (
+                      <div key={c.name} className="bg-slate-50 border border-slate-200 rounded-xl p-3">
+                        <div className="flex items-center justify-between mb-1">
+                          <p className="text-xs font-bold text-slate-700">{c.name}</p>
+                          <span className={`text-sm font-bold ${getBandColor(c.band)}`}>Band {c.band}</span>
+                        </div>
+                        <p className="text-xs text-slate-600 leading-relaxed">{c.feedback}</p>
+                      </div>
+                    ))}
+                  </div>
+                  {taskFeedback.strengths.length > 0 && (
+                    <div className="bg-green-50 border border-green-200 rounded-xl p-3 mb-2">
+                      <p className="text-xs font-bold text-green-700 mb-1.5">Strengths</p>
+                      <ul className="space-y-1">
+                        {taskFeedback.strengths.map((s, i) => (
+                          <li key={i} className="text-xs text-green-800 flex gap-1.5"><span className="text-green-500 shrink-0">✓</span>{s}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  {taskFeedback.improvements.length > 0 && (
+                    <div className="bg-amber-50 border border-amber-200 rounded-xl p-3">
+                      <p className="text-xs font-bold text-amber-700 mb-1.5">Key Improvements</p>
+                      <ul className="space-y-1">
+                        {taskFeedback.improvements.map((s, i) => (
+                          <li key={i} className="text-xs text-amber-800 flex gap-1.5"><span className="text-amber-500 shrink-0">↑</span>{s}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         );
@@ -329,7 +376,9 @@ export default function HistoryPage() {
       </header>
 
       <main className="max-w-4xl mx-auto px-6 py-8">
-        {isWriting ? <WritingResult result={result} /> : <ReadingResult result={result} />}
+        {isWriting
+          ? <WritingResult result={result} aiFeedback={Array.isArray(attempt.ai_feedback) ? attempt.ai_feedback : null} />
+          : <ReadingResult result={result} />}
 
         <div className="text-center pt-6">
           <Link href="/dashboard">
