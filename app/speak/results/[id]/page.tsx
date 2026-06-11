@@ -150,10 +150,14 @@ function AIScoreSection({
   attemptId,
   isPro,
   existingScore,
+  alreadyScored,
+  existingBand,
 }: {
   attemptId: string;
   isPro: boolean;
   existingScore: AIBandBreakdown | null;
+  alreadyScored: boolean;
+  existingBand: number | null;
 }) {
   const [scoring, setScoring] = useState(false);
   const [score, setScore] = useState<AIBandBreakdown | null>(existingScore);
@@ -177,6 +181,28 @@ function AIScoreSection({
       setScoring(false);
     }
   };
+
+  // Already scored — show band summary only, no button
+  if (alreadyScored && !score && existingBand) {
+    return (
+      <div className="bg-white border border-slate-200 rounded-xl p-5">
+        <div className="flex items-center gap-2 mb-4">
+          <Sparkles className="w-4 h-4 text-cyan-500" />
+          <p className="text-sm font-bold text-slate-800">AI Score</p>
+          <span className="text-xs text-cyan-600 bg-cyan-50 px-2 py-0.5 rounded-full font-medium">Pro</span>
+        </div>
+        <div className="flex items-center justify-center">
+          <div className="text-center">
+            <BandCircle band={existingBand} />
+            <p className="text-xs text-slate-500 mt-1">Overall Band</p>
+          </div>
+        </div>
+        <p className="text-xs text-slate-400 text-center mt-4">
+          Detailed breakdown is shown when scoring is completed in the same session.
+        </p>
+      </div>
+    );
+  }
 
   if (!isPro) {
     return (
@@ -463,6 +489,8 @@ export default function SpeakResultsPage() {
           attemptId={attempt.id}
           isPro={isPro}
           existingScore={null}
+          alreadyScored={attempt.ai_scored}
+          existingBand={attempt.band}
         />
 
         {/* Actions */}
