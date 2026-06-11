@@ -376,7 +376,7 @@ export default function HomePage() {
         .compare thead .ours { font-family: var(--font-display); }
         .compare thead .ours .b { background: linear-gradient(110deg, var(--accent-1), var(--accent-2)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
         .compare tbody tr:last-child td { border-bottom: none; }
-        .yes { color: var(--accent-1); }
+        .yes { color: var(--accent-1); display: flex; justify-content: center; align-items: center; }
         .yes svg { width: 18px; height: 18px; }
         .no { color: var(--muted-2); }
         .small { color: var(--muted); font-size: 13px; }
