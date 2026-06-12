@@ -407,6 +407,7 @@ export default function PTESpeakPage() {
   const [taskIndex, setTaskIndex] = useState(0);
   const [recordings, setRecordings] = useState<Record<string, Blob>>({});
   const [saving, setSaving] = useState(false);
+  const [saveError, setSaveError] = useState<string | null>(null);
   const [taskKey, setTaskKey] = useState(0);
   const attemptIdRef = useRef<string | null>(null);
 
@@ -451,25 +452,36 @@ export default function PTESpeakPage() {
 
   async function finishExam() {
     setSaving(true);
+    setSaveError(null);
     try {
       const supabase = createClient();
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) { router.push("/login"); return; }
 
-      const { data: attempt } = await supabase.from("speaking_attempts").insert({
+      const { data: attempt, error: insertErr } = await supabase.from("speaking_attempts").insert({
         user_id: user.id,
         test_id: test!.id,
         responses: {},
       }).select("id").single();
 
-      if (!attempt) { setSaving(false); return; }
+      if (insertErr || !attempt) {
+        setSaveError(`Failed to save attempt: ${insertErr?.message ?? "unknown error"}`);
+        setSaving(false);
+        return;
+      }
       attemptIdRef.current = attempt.id;
 
       const responsePaths: Record<string, string> = {};
       for (const [taskId, blob] of Object.entries(recordings)) {
         const path = `${user.id}/${attempt.id}/${taskId}.webm`;
-        await supabase.storage.from("speaking-recordings").upload(path, blob, { contentType: "audio/webm", upsert: true });
-        responsePaths[taskId] = path;
+        const { error: uploadErr } = await supabase.storage
+          .from("speaking-recordings")
+          .upload(path, blob, { contentType: "audio/webm", upsert: true });
+        if (uploadErr) {
+          console.warn(`Upload failed for ${taskId}:`, uploadErr.message);
+        } else {
+          responsePaths[taskId] = path;
+        }
       }
 
       await supabase.from("speaking_attempts").update({ responses: responsePaths }).eq("id", attempt.id);
@@ -477,6 +489,7 @@ export default function PTESpeakPage() {
       router.push(`/pte-speak/results/${attempt.id}`);
     } catch (e) {
       console.error(e);
+      setSaveError("Something went wrong. Please try again.");
       setSaving(false);
     }
   }
@@ -547,8 +560,13 @@ export default function PTESpeakPage() {
         </div>
 
         {/* Next button */}
+        {saveError && (
+          <div className="mb-3 text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-4 py-2">
+            {saveError}
+          </div>
+        )}
         <div className="flex justify-end">
-          <Button onClick={handleNext} disabled={!hasRecording || saving} className="gap-2">
+          <Button onClick={handleNext} disabled={(!hasRecording && !isLast) || saving} className="gap-2">
             <RefreshCw className={cn("w-4 h-4", saving && "animate-spin")} />
             {saving ? "Saving…" : isLast ? "Finish & Submit" : "Next Task →"}
           </Button>
