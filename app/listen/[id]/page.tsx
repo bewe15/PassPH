@@ -56,7 +56,8 @@ function AudioPlayer({ audioUrl, transcript }: { audioUrl: string; transcript?: 
   const [progress, setProgress] = useState(0);
   const [duration, setDuration] = useState(0);
   const [showTranscript, setShowTranscript] = useState(false);
-  const hasAudio = !!audioUrl;
+  const [audioError, setAudioError] = useState(false);
+  const hasAudio = !!audioUrl && !audioError;
 
   function togglePlay() {
     if (!audioRef.current) return;
@@ -92,6 +93,7 @@ function AudioPlayer({ audioUrl, transcript }: { audioUrl: string; transcript?: 
             onTimeUpdate={() => setProgress(audioRef.current?.currentTime ?? 0)}
             onLoadedMetadata={() => setDuration(audioRef.current?.duration ?? 0)}
             onEnded={() => setPlaying(false)}
+            onError={() => setAudioError(true)}
           />
           <div className="flex items-center gap-3">
             <button
@@ -400,6 +402,10 @@ export default function ListenPage() {
   if (result) return <ResultsView result={result} mockExamId={mockExamId} />;
 
   const part = test.parts[currentPart];
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL ?? "";
+  const partAudioUrl =
+    part.audioUrl ||
+    `${supabaseUrl}/storage/v1/object/public/listening-audio/${test.id}/part-${part.part}.mp3`;
   const totalQuestions = test.parts.reduce((s, p) => s + p.questions.length, 0);
   const answeredCount  = Object.keys(answers).length;
   const isLastPart     = currentPart === test.parts.length - 1;
@@ -500,7 +506,7 @@ export default function ListenPage() {
         </div>
 
         {/* Audio player */}
-        <AudioPlayer audioUrl={part.audioUrl} transcript={part.transcript} />
+        <AudioPlayer audioUrl={partAudioUrl} transcript={part.transcript} />
 
         {/* Questions */}
         <div className="bg-white rounded-xl border border-slate-200 overflow-hidden">
