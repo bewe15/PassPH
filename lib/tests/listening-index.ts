@@ -4,12 +4,50 @@ import type {
   ListeningQuestionResult,
   ListeningResult,
 } from "./listening-types";
-import { ieltsListening1 } from "./ielts-listening-1";
+import { ieltsListening1 }  from "./ielts-listening-1";
+import { ieltsListening2 }  from "./ielts-listening-2";
+import { ieltsListening3 }  from "./ielts-listening-3";
+import { ieltsListening4 }  from "./ielts-listening-4";
+import { ieltsListening5 }  from "./ielts-listening-5";
+import { ieltsListening6 }  from "./ielts-listening-6";
+import { ieltsListening7 }  from "./ielts-listening-7";
+import { ieltsListening8 }  from "./ielts-listening-8";
+import { ieltsListening9 }  from "./ielts-listening-9";
+import { ieltsListening10 } from "./ielts-listening-10";
+import { ieltsListening11 } from "./ielts-listening-11";
+import { ieltsListening12 } from "./ielts-listening-12";
+import { ieltsListening13 } from "./ielts-listening-13";
+import { ieltsListening14 } from "./ielts-listening-14";
+import { ieltsListening15 } from "./ielts-listening-15";
+import { ieltsListening16 } from "./ielts-listening-16";
+import { ieltsListening17 } from "./ielts-listening-17";
+import { ieltsListening18 } from "./ielts-listening-18";
+import { ieltsListening19 } from "./ielts-listening-19";
+import { ieltsListening20 } from "./ielts-listening-20";
 
 // ── Registry ──────────────────────────────────────────────────────────────────
 
 export const LISTENING_REGISTRY: Record<string, IELTSListeningTest> = {
-  "ielts-listening-1": ieltsListening1,
+  "ielts-listening-1":  ieltsListening1,
+  "ielts-listening-2":  ieltsListening2,
+  "ielts-listening-3":  ieltsListening3,
+  "ielts-listening-4":  ieltsListening4,
+  "ielts-listening-5":  ieltsListening5,
+  "ielts-listening-6":  ieltsListening6,
+  "ielts-listening-7":  ieltsListening7,
+  "ielts-listening-8":  ieltsListening8,
+  "ielts-listening-9":  ieltsListening9,
+  "ielts-listening-10": ieltsListening10,
+  "ielts-listening-11": ieltsListening11,
+  "ielts-listening-12": ieltsListening12,
+  "ielts-listening-13": ieltsListening13,
+  "ielts-listening-14": ieltsListening14,
+  "ielts-listening-15": ieltsListening15,
+  "ielts-listening-16": ieltsListening16,
+  "ielts-listening-17": ieltsListening17,
+  "ielts-listening-18": ieltsListening18,
+  "ielts-listening-19": ieltsListening19,
+  "ielts-listening-20": ieltsListening20,
 };
 
 export function getListeningTest(id: string): IELTSListeningTest | null {

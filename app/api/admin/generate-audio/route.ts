@@ -21,14 +21,71 @@ const SPEAKER_PITCH: Record<string, number> = {
 };
 
 // Known speakers → voice assignment
+// Female 1 (Wavenet-A): receptionists, guides, presenters
+// Female 2 (Wavenet-C): students, junior staff
+// Male 1 (Wavenet-B): students, assistants, customers
+// Male 2 (Wavenet-D): tutors, lecturers, senior staff
 const SPEAKER_VOICE: Record<string, string> = {
-  David:           MALE_VOICE_1,
-  Claire:          FEMALE_VOICE_1,
-  Helen:           FEMALE_VOICE_1,
-  Emma:            FEMALE_VOICE_2,
-  Jack:            MALE_VOICE_1,
-  "Dr Mills":      MALE_VOICE_2,
-  "Emma and Jack": MALE_VOICE_1,
+  // Test 1
+  David: MALE_VOICE_1, Claire: FEMALE_VOICE_1, Helen: FEMALE_VOICE_1,
+  Emma: FEMALE_VOICE_2, Jack: MALE_VOICE_1, "Dr Mills": MALE_VOICE_2, "Emma and Jack": MALE_VOICE_1,
+  // Test 2
+  Ryan: MALE_VOICE_1, Sophie: FEMALE_VOICE_1, Oliver: MALE_VOICE_1,
+  Maria: FEMALE_VOICE_2, "Dr Chen": FEMALE_VOICE_2,
+  // Test 3
+  James: MALE_VOICE_1, "Mrs Watson": FEMALE_VOICE_1, Rachel: FEMALE_VOICE_1,
+  Tom: MALE_VOICE_1, Laura: FEMALE_VOICE_2, "Professor Singh": MALE_VOICE_2,
+  // Test 4
+  Mike: MALE_VOICE_1, Anna: FEMALE_VOICE_1, Ben: MALE_VOICE_1,
+  Sarah: FEMALE_VOICE_2, "Dr Evans": MALE_VOICE_2,
+  // Test 5
+  Lucy: FEMALE_VOICE_1, Carlos: MALE_VOICE_1, Zoe: FEMALE_VOICE_2,
+  Nathan: MALE_VOICE_1, "Dr Harris": MALE_VOICE_2,
+  // Test 6
+  Lisa: FEMALE_VOICE_1, "Mr Johnson": MALE_VOICE_1, Amy: FEMALE_VOICE_2,
+  "Dr Patel": MALE_VOICE_2,
+  // Test 7
+  Carol: FEMALE_VOICE_1, Greg: MALE_VOICE_1, Mia: FEMALE_VOICE_2,
+  Daniel: MALE_VOICE_1, "Professor Taylor": FEMALE_VOICE_2,
+  // Test 8
+  Peter: MALE_VOICE_1, "Mrs Clarke": FEMALE_VOICE_1, Rebecca: FEMALE_VOICE_2,
+  Chris: MALE_VOICE_1, "Dr White": MALE_VOICE_2,
+  // Test 9
+  Alice: FEMALE_VOICE_1, "Mr Brown": MALE_VOICE_1, Mark: MALE_VOICE_1,
+  "Dr Green": MALE_VOICE_2,
+  // Test 10
+  Karen: FEMALE_VOICE_1, Paul: MALE_VOICE_1, Simon: MALE_VOICE_1,
+  "Dr Murray": MALE_VOICE_2,
+  // Test 11
+  Susan: FEMALE_VOICE_1, Tim: MALE_VOICE_1, Hannah: FEMALE_VOICE_2,
+  Leo: MALE_VOICE_1, "Professor Adams": MALE_VOICE_2,
+  // Test 12
+  Grace: FEMALE_VOICE_1, Robert: MALE_VOICE_1, Lily: FEMALE_VOICE_2,
+  Patrick: MALE_VOICE_1, "Dr Sharma": FEMALE_VOICE_2,
+  // Test 13
+  Janet: FEMALE_VOICE_1, Steven: MALE_VOICE_1,
+  "Dr Robinson": MALE_VOICE_2,
+  // Test 14
+  Martin: MALE_VOICE_1, Emily: FEMALE_VOICE_1, Alex: MALE_VOICE_1,
+  Jessica: FEMALE_VOICE_2, "Dr Foster": FEMALE_VOICE_2,
+  // Test 15
+  Sandra: FEMALE_VOICE_1, Tony: MALE_VOICE_1, Chloe: FEMALE_VOICE_2,
+  "Professor Wright": MALE_VOICE_2,
+  // Test 16
+  Kate: FEMALE_VOICE_1, Thomas: MALE_VOICE_1, George: MALE_VOICE_1,
+  Nina: FEMALE_VOICE_2, "Dr Cooper": MALE_VOICE_2,
+  // Test 17
+  Diana: FEMALE_VOICE_1, Kevin: MALE_VOICE_1, Olivia: FEMALE_VOICE_2,
+  Sam: MALE_VOICE_1, "Professor Lee": MALE_VOICE_2,
+  // Test 18
+  Frank: MALE_VOICE_1, Sophia: FEMALE_VOICE_2, Charlie: MALE_VOICE_1,
+  "Dr Johnson": FEMALE_VOICE_2,
+  // Test 19
+  Marcus: MALE_VOICE_1, Tara: FEMALE_VOICE_2, Drew: MALE_VOICE_1,
+  "Professor King": MALE_VOICE_2,
+  // Test 20
+  Rosa: FEMALE_VOICE_1, Ian: MALE_VOICE_1, Jade: FEMALE_VOICE_2,
+  Victor: MALE_VOICE_1, "Dr Morgan": FEMALE_VOICE_2,
 };
 
 // Monologue voice per part (used when transcript has no speaker labels)

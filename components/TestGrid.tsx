@@ -22,7 +22,7 @@ const ALL_LISTENING_TESTS = {
     label: `Listening Test ${i + 1}`,
     sub: "40 questions • 30 min",
     id: `ielts-listening-${i + 1}`,
-    available: i < 1, // Only Test 1 available for now
+    available: true,
     route: "listen",
   })),
 };
@@ -293,7 +293,6 @@ export default function TestGrid({ plan }: { plan: string }) {
         <Headphones className="w-4 h-4 text-slate-400" />
         <span className="text-sm font-semibold text-slate-600 uppercase tracking-wide">Listening</span>
         <span className="text-xs text-green-500 font-medium">Unlimited ✓</span>
-        <span className="text-xs text-amber-500 font-medium ml-1">1 test available — more coming soon</span>
       </div>
       <div className="grid md:grid-cols-2 gap-4 mb-6">
         <ListeningCard tests={ALL_LISTENING_TESTS.ielts} accent="bg-blue-50 text-blue-700" color="border-blue-200 hover:border-blue-400" />

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 
-const TESTS = Array.from({ length: 1 }, (_, i) => `ielts-listening-${i + 1}`);
+const TESTS = Array.from({ length: 20 }, (_, i) => `ielts-listening-${i + 1}`);
 
 export default function AdminListeningPage() {
   const [results, setResults] = useState<Record<string, unknown> | null>(null);
