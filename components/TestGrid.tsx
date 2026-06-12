@@ -31,6 +31,13 @@ const ALL_LISTENING_TESTS = {
     available: true,
     route: "listen",
   })),
+  pte: Array.from({ length: 1 }, (_, i) => ({
+    label: `Listening Test ${i + 1}`,
+    sub: "8 task types • 45 min",
+    id: `pte-listening-${i + 1}`,
+    available: true,
+    route: "pte-listen",
+  })),
 };
 
 const ALL_TESTS = {
@@ -141,8 +148,9 @@ function TestCard({
 }
 
 function ListeningCard({
-  tests, accent, color,
+  exam, tests, accent, color,
 }: {
+  exam: string;
   tests: typeof ALL_LISTENING_TESTS.ielts;
   accent: string;
   color: string;
@@ -156,7 +164,7 @@ function ListeningCard({
       <CardContent className="py-5">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
-            <span className={`text-xs font-bold px-2 py-0.5 rounded ${accent}`}>IELTS</span>
+            <span className={`text-xs font-bold px-2 py-0.5 rounded ${accent}`}>{exam}</span>
             <span className="text-slate-900 font-bold">Listening</span>
           </div>
           {totalPages > 1 && (
@@ -303,10 +311,8 @@ export default function TestGrid({ plan }: { plan: string }) {
         <span className="text-xs text-green-500 font-medium">Unlimited ✓</span>
       </div>
       <div className="grid md:grid-cols-2 gap-4 mb-6">
-        <ListeningCard tests={ALL_LISTENING_TESTS.ielts} accent="bg-blue-50 text-blue-700" color="border-blue-200 hover:border-blue-400" />
-        <div className="rounded-xl border-2 border-dashed border-slate-200 flex items-center justify-center p-6">
-          <p className="text-sm text-slate-400 text-center">PTE Listening<br /><span className="text-xs">Coming soon</span></p>
-        </div>
+        <ListeningCard exam="IELTS" tests={ALL_LISTENING_TESTS.ielts} accent="bg-blue-50 text-blue-700" color="border-blue-200 hover:border-blue-400" />
+        <ListeningCard exam="PTE" tests={ALL_LISTENING_TESTS.pte} accent="bg-purple-50 text-purple-700" color="border-purple-200 hover:border-purple-400" />
       </div>
 
       {/* Reading */}
