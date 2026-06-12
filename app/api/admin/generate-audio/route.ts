@@ -35,7 +35,7 @@ function isProperName(s: string): boolean {
   return /^[A-Z][a-zA-Z ]+$/.test(s) && !s.includes("'");
 }
 
-function guessVoice(name: string, partNum: number): string {
+function guessVoice(name: string): string {
   if (SPEAKER_VOICE[name]) return SPEAKER_VOICE[name];
   // Simple heuristic: names ending in a/e/i tend female, others male
   const lower = name.toLowerCase();
@@ -72,7 +72,7 @@ function parseTranscript(transcript: string, partNum: number): Segment[] {
   const merged: Segment[] = [];
   for (const seg of raw) {
     const voice = seg.speaker
-      ? guessVoice(seg.speaker, partNum)
+      ? guessVoice(seg.speaker)
       : PART_VOICE[partNum] ?? MALE_VOICE_1;
     if (merged.length > 0 && merged[merged.length - 1].voice === voice) {
       merged[merged.length - 1].text += " " + seg.text;
