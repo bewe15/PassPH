@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { getListeningTest } from "@/lib/tests/listening-index";
 
 function prepareTranscript(transcript: string): string {
@@ -39,6 +40,8 @@ export async function POST(req: Request) {
   const apiKey = process.env.GOOGLE_TTS_API_KEY;
   if (!apiKey) return NextResponse.json({ error: "GOOGLE_TTS_API_KEY not set" }, { status: 500 });
 
+  // Use service role client to bypass RLS on storage
+  const adminSupabase = createAdminClient();
   const results = [];
 
   for (const part of test.parts) {
@@ -68,14 +71,14 @@ export async function POST(req: Request) {
     const buffer = Buffer.from(audioContent, "base64");
 
     const filePath = `${testId}/part-${part.part}.mp3`;
-    const { error: uploadError } = await supabase.storage
+    const { error: uploadError } = await adminSupabase.storage
       .from("listening-audio")
       .upload(filePath, buffer, { contentType: "audio/mpeg", upsert: true });
 
     if (uploadError) {
       results.push({ part: part.part, error: uploadError.message });
     } else {
-      const { data: { publicUrl } } = supabase.storage
+      const { data: { publicUrl } } = adminSupabase.storage
         .from("listening-audio")
         .getPublicUrl(filePath);
       results.push({ part: part.part, url: publicUrl });
