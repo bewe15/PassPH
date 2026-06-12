@@ -3,11 +3,11 @@ import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { getListeningTest } from "@/lib/tests/listening-index";
 
-// Neural2 voices — highest quality, most distinct (en-GB)
-const FEMALE_VOICE_1 = "en-GB-Neural2-A"; // Claire, Helen
-const FEMALE_VOICE_2 = "en-GB-Neural2-C"; // Emma
-const MALE_VOICE_1   = "en-GB-Neural2-B"; // David, Jack
-const MALE_VOICE_2   = "en-GB-Neural2-D"; // Dr Mills (deeper, mature)
+// Wavenet voices — high quality, confirmed genders (en-GB)
+const FEMALE_VOICE_1 = "en-GB-Wavenet-A"; // Claire, Helen
+const FEMALE_VOICE_2 = "en-GB-Wavenet-C"; // Emma
+const MALE_VOICE_1   = "en-GB-Wavenet-B"; // David, Jack
+const MALE_VOICE_2   = "en-GB-Wavenet-D"; // Dr Mills (deeper, mature)
 
 // Pitch offset per speaker to further differentiate same-gender voices
 const SPEAKER_PITCH: Record<string, number> = {
@@ -162,7 +162,11 @@ export async function POST(req: Request) {
         const { data: { publicUrl } } = adminSupabase.storage
           .from("listening-audio")
           .getPublicUrl(filePath);
-        results.push({ part: part.part, url: publicUrl, segments: segments.length });
+        results.push({
+          part: part.part,
+          url: publicUrl,
+          segments: segments.map((s) => ({ voice: s.voice, pitch: s.pitch, chars: s.text.length })),
+        });
       }
     } catch (e) {
       results.push({ part: part.part, error: String(e) });
