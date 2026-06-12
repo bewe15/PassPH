@@ -13,6 +13,12 @@ const ALL_SPEAKING_TESTS = {
     id: `ielts-speaking-${i + 1}`,
     route: "speak",
   })),
+  pte: Array.from({ length: 1 }, (_, i) => ({
+    label: `Speaking Test ${i + 1}`,
+    sub: "5 tasks · ~30 min",
+    id: `pte-speaking-${i + 1}`,
+    route: "pte-speak",
+  })),
 };
 
 const PAGE_SIZE = 3;
@@ -188,11 +194,13 @@ function ListeningCard({
 }
 
 function SpeakingCard({
+  exam,
   tests,
   accent,
   color,
   plan,
 }: {
+  exam: string;
   tests: typeof ALL_SPEAKING_TESTS.ielts;
   accent: string;
   color: string;
@@ -207,7 +215,7 @@ function SpeakingCard({
       <CardContent className="py-5">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-2">
-            <span className={`text-xs font-bold px-2 py-0.5 rounded ${accent}`}>IELTS</span>
+            <span className={`text-xs font-bold px-2 py-0.5 rounded ${accent}`}>{exam}</span>
             <span className="text-slate-900 font-bold">Speaking</span>
           </div>
           {totalPages > 1 && (
@@ -325,10 +333,8 @@ export default function TestGrid({ plan }: { plan: string }) {
         )}
       </div>
       <div className="grid md:grid-cols-2 gap-4 mb-6">
-        <SpeakingCard tests={ALL_SPEAKING_TESTS.ielts} accent="bg-blue-50 text-blue-700" color="border-blue-200 hover:border-blue-400" plan={plan} />
-        <div className="rounded-xl border-2 border-dashed border-slate-200 flex items-center justify-center p-6">
-          <p className="text-sm text-slate-400 text-center">PTE Speaking<br /><span className="text-xs">Coming soon</span></p>
-        </div>
+        <SpeakingCard exam="IELTS" tests={ALL_SPEAKING_TESTS.ielts} accent="bg-blue-50 text-blue-700" color="border-blue-200 hover:border-blue-400" plan={plan} />
+        <SpeakingCard exam="PTE" tests={ALL_SPEAKING_TESTS.pte} accent="bg-purple-50 text-purple-700" color="border-purple-200 hover:border-purple-400" plan={plan} />
       </div>
 
       {/* Writing */}
