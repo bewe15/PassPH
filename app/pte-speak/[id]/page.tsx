@@ -421,7 +421,18 @@ export default function PTESpeakPage() {
     );
   }
 
-  const tasks = buildTaskList(test);
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL ?? "";
+  function pteAudioUrl(taskId: string, testId: string) {
+    return `${supabaseUrl}/storage/v1/object/public/listening-audio/pte-audio/${testId}/${taskId}.mp3`;
+  }
+
+  const rawTasks = buildTaskList(test);
+  const tasks = rawTasks.map((t) => {
+    if ((t.type === "repeat_sentence" || t.type === "retell_lecture" || t.type === "answer_short") && !t.audioUrl) {
+      return { ...t, audioUrl: pteAudioUrl(t.id, test.id) };
+    }
+    return t;
+  });
   const task = tasks[taskIndex];
   const isLast = taskIndex === tasks.length - 1;
 
