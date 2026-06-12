@@ -13,7 +13,7 @@ const ALL_SPEAKING_TESTS = {
     id: `ielts-speaking-${i + 1}`,
     route: "speak",
   })),
-  pte: Array.from({ length: 1 }, (_, i) => ({
+  pte: Array.from({ length: 20 }, (_, i) => ({
     label: `Speaking Test ${i + 1}`,
     sub: "5 tasks · ~30 min",
     id: `pte-speaking-${i + 1}`,
