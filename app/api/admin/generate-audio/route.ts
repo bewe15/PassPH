@@ -3,20 +3,31 @@ import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { getListeningTest } from "@/lib/tests/listening-index";
 
-// British English voices: A/C = female, B/D = male
-const FEMALE_VOICE_1 = "en-GB-Standard-A";
-const FEMALE_VOICE_2 = "en-GB-Standard-C";
-const MALE_VOICE_1   = "en-GB-Standard-B";
-const MALE_VOICE_2   = "en-GB-Standard-D";
+// Neural2 voices — highest quality, most distinct (en-GB)
+const FEMALE_VOICE_1 = "en-GB-Neural2-A"; // Claire, Helen
+const FEMALE_VOICE_2 = "en-GB-Neural2-C"; // Emma
+const MALE_VOICE_1   = "en-GB-Neural2-B"; // David, Jack
+const MALE_VOICE_2   = "en-GB-Neural2-D"; // Dr Mills (deeper, mature)
+
+// Pitch offset per speaker to further differentiate same-gender voices
+const SPEAKER_PITCH: Record<string, number> = {
+  David:       0,
+  Claire:      1,
+  Helen:       0,
+  Emma:        2,    // slightly brighter
+  Jack:        1,    // slightly higher than Dr Mills
+  "Dr Mills": -3,    // lower, authoritative
+  "Emma and Jack": 1,
+};
 
 // Known speakers → voice assignment
 const SPEAKER_VOICE: Record<string, string> = {
-  David:       MALE_VOICE_1,
-  Claire:      FEMALE_VOICE_1,
-  Helen:       FEMALE_VOICE_1,
-  Emma:        FEMALE_VOICE_2,
-  Jack:        MALE_VOICE_1,
-  "Dr Mills":  MALE_VOICE_2,
+  David:           MALE_VOICE_1,
+  Claire:          FEMALE_VOICE_1,
+  Helen:           FEMALE_VOICE_1,
+  Emma:            FEMALE_VOICE_2,
+  Jack:            MALE_VOICE_1,
+  "Dr Mills":      MALE_VOICE_2,
   "Emma and Jack": MALE_VOICE_1,
 };
 
@@ -28,7 +39,7 @@ const PART_VOICE: Record<number, string> = {
   4: MALE_VOICE_2,
 };
 
-interface Segment { voice: string; text: string }
+interface Segment { voice: string; text: string; pitch: number }
 
 function isProperName(s: string): boolean {
   // Matches "David", "Dr Mills", "Emma and Jack" but not "Caller's surname"
@@ -68,23 +79,25 @@ function parseTranscript(transcript: string, partNum: number): Segment[] {
     }
   }
 
-  // Merge consecutive same-speaker lines, then map to voice
+  // Merge consecutive same-speaker lines, then map to voice + pitch
   const merged: Segment[] = [];
   for (const seg of raw) {
     const voice = seg.speaker
       ? guessVoice(seg.speaker)
       : PART_VOICE[partNum] ?? MALE_VOICE_1;
-    if (merged.length > 0 && merged[merged.length - 1].voice === voice) {
-      merged[merged.length - 1].text += " " + seg.text;
+    const pitch = seg.speaker ? (SPEAKER_PITCH[seg.speaker] ?? 0) : 0;
+    const last = merged[merged.length - 1];
+    if (last && last.voice === voice && last.pitch === pitch) {
+      last.text += " " + seg.text;
     } else {
-      merged.push({ voice, text: seg.text });
+      merged.push({ voice, text: seg.text, pitch });
     }
   }
 
   return merged;
 }
 
-async function synthesize(text: string, voice: string, apiKey: string): Promise<Buffer> {
+async function synthesize(text: string, voice: string, pitch: number, apiKey: string): Promise<Buffer> {
   const res = await fetch(
     `https://texttospeech.googleapis.com/v1/text:synthesize?key=${apiKey}`,
     {
@@ -93,7 +106,7 @@ async function synthesize(text: string, voice: string, apiKey: string): Promise<
       body: JSON.stringify({
         input: { text },
         voice: { languageCode: "en-GB", name: voice },
-        audioConfig: { audioEncoding: "MP3", speakingRate: 0.85, pitch: 0 },
+        audioConfig: { audioEncoding: "MP3", speakingRate: 0.85, pitch },
       }),
     }
   );
@@ -133,7 +146,7 @@ export async function POST(req: Request) {
       // Generate each segment and concatenate buffers
       const buffers: Buffer[] = [];
       for (const seg of segments) {
-        const buf = await synthesize(seg.text, seg.voice, apiKey);
+        const buf = await synthesize(seg.text, seg.voice, seg.pitch, apiKey);
         buffers.push(buf);
       }
       const combined = Buffer.concat(buffers);
