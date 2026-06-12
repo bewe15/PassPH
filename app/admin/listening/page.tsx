@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 
 const IELTS_TESTS = Array.from({ length: 20 }, (_, i) => `ielts-listening-${i + 1}`);
-const PTE_TESTS = ["pte-speaking-1"];
+const PTE_TESTS = Array.from({ length: 20 }, (_, i) => `pte-speaking-${i + 1}`);
 
 export default function AdminListeningPage() {
   const [ieltsTest, setIeltsTest] = useState(IELTS_TESTS[0]);
