@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ChevronLeft, Volume2, CheckSquare, Type, AlignLeft, List, MousePointer, PenLine } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getPTEListeningTest } from "@/lib/tests/pte-listening-index";
+import { createClient } from "@/lib/supabase/client";
 import type {
   PTEListeningTask,
   PTEListeningTest,
@@ -355,8 +356,24 @@ export default function PTEListenPage() {
   async function handleNext() {
     if (isLast) {
       setSaving(true);
-      // Store results in URL params for results page (no DB needed for listening)
       const score = calculateScore();
+      try {
+        const supabase = createClient();
+        const { data: { user } } = await supabase.auth.getUser();
+        if (user) {
+          await supabase.from("test_attempts").insert({
+            user_id: user.id,
+            test_id: test!.id,
+            exam: "PTE",
+            score,
+            total: totalTasks,
+            band: null,
+            result_json: { score, total: totalTasks },
+          });
+        }
+      } catch {
+        // non-fatal — still navigate to results
+      }
       router.push(`/pte-listen/results/${test!.id}?score=${score}&total=${totalTasks}`);
     } else {
       setTaskIndex(i => i + 1);
