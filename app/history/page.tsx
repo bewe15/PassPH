@@ -25,8 +25,9 @@ function formatTestId(testId: string) {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function AttemptRow({ attempt }: { attempt: any }) {
-  const isSpeaking = attempt._type === "speaking";
-  const isWriting = !isSpeaking && attempt.result_json?.tasks != null;
+  const isSpeaking   = attempt._type === "speaking";
+  const isWriting    = !isSpeaking && attempt.result_json?.tasks != null;
+  const isListening  = !isSpeaking && !isWriting && attempt.test_id?.includes("listening");
 
   const href = isSpeaking
     ? `/speak/results/${attempt.id}`
@@ -36,13 +37,15 @@ function AttemptRow({ attempt }: { attempt: any }) {
     <Mic className="w-5 h-5 text-emerald-500" />
   ) : isWriting ? (
     <PenLine className="w-5 h-5 text-purple-500" />
+  ) : isListening ? (
+    <BookOpen className="w-5 h-5 text-blue-500" />
   ) : (
     <BookOpen className="w-5 h-5 text-cyan-500" />
   );
 
-  const iconBg = isSpeaking ? "bg-emerald-50" : isWriting ? "bg-purple-50" : "bg-cyan-50";
-  const labelBg = isSpeaking ? "bg-emerald-50 text-emerald-600" : isWriting ? "bg-purple-50 text-purple-600" : "bg-cyan-50 text-cyan-600";
-  const label = isSpeaking ? "Speaking" : isWriting ? "Writing" : "Reading";
+  const iconBg  = isSpeaking ? "bg-emerald-50" : isWriting ? "bg-purple-50" : isListening ? "bg-blue-50" : "bg-cyan-50";
+  const labelBg = isSpeaking ? "bg-emerald-50 text-emerald-600" : isWriting ? "bg-purple-50 text-purple-600" : isListening ? "bg-blue-50 text-blue-600" : "bg-cyan-50 text-cyan-600";
+  const label   = isSpeaking ? "Speaking" : isWriting ? "Writing" : isListening ? "Listening" : "Reading";
 
   return (
     <Link
@@ -79,6 +82,11 @@ function AttemptRow({ attempt }: { attempt: any }) {
           <div className="text-right">
             <p className={`text-sm font-bold ${getBandColor(attempt.band)}`}>Band {attempt.band}</p>
             <p className="text-xs text-slate-400">{isSpeaking && !attempt.ai_scored ? "Self-assessed" : "Estimate"}</p>
+          </div>
+        ) : isListening && attempt.score != null && attempt.total ? (
+          <div className="text-right">
+            <p className="text-sm font-bold text-cyan-500">{Math.round((attempt.score / attempt.total) * 100)}%</p>
+            <p className="text-xs text-slate-400">{attempt.score}/{attempt.total} tasks</p>
           </div>
         ) : (
           <div className="text-right">
