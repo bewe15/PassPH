@@ -112,6 +112,99 @@ function ReadingResult({ result }: { result: any }) {
   );
 }
 
+// ── PTE Listening Result View ─────────────────────────────────────────────────
+
+const PTE_TASK_ROWS = [
+  { key: "summarise_spoken_text", label: "Summarise Spoken Text" },
+  { key: "mc_multi",              label: "Multiple Choice (Multiple)" },
+  { key: "fill_blanks",           label: "Fill in the Blanks" },
+  { key: "highlight_summary",     label: "Highlight Correct Summary" },
+  { key: "mc_single",             label: "Multiple Choice (Single)" },
+  { key: "select_missing_word",   label: "Select Missing Word" },
+  { key: "highlight_incorrect",   label: "Highlight Incorrect Words" },
+  { key: "write_dictation",       label: "Write from Dictation" },
+];
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function PTEListeningResult({ result, attempt }: { result: any; attempt: any }) {
+  const pct = Math.round((result.score / result.total) * 100);
+  const byType: Record<string, { score: number; max: number }> = result.byType ?? {};
+
+  function band() {
+    if (pct >= 85) return { label: "Expert",       color: "text-green-500" };
+    if (pct >= 70) return { label: "Proficient",   color: "text-cyan-500" };
+    if (pct >= 55) return { label: "Intermediate", color: "text-yellow-500" };
+    return             { label: "Developing",   color: "text-red-400" };
+  }
+  const b = band();
+
+  return (
+    <>
+      <Card className="mb-6 overflow-hidden">
+        <div className="bg-gradient-to-br from-[#0a0e27] to-[#0f1535] p-8 text-white text-center">
+          <div className="flex items-center justify-center gap-2 mb-2">
+            <Trophy className="w-5 h-5 text-cyan-400" />
+            <p className="text-sm font-semibold text-cyan-400 uppercase tracking-widest">PTE Listening Result</p>
+          </div>
+          <h1 className="text-lg font-bold mb-6">{attempt.test_id?.replace(/-/g, " ").replace(/\b\w/g, (c: string) => c.toUpperCase())}</h1>
+          <div className="flex items-center justify-center gap-16 flex-wrap">
+            <div>
+              <p className="text-5xl font-extrabold">{result.score}<span className="text-2xl text-slate-400">/{result.total}</span></p>
+              <p className="text-sm text-slate-400 mt-1">Tasks Correct</p>
+            </div>
+            <div>
+              <p className={`text-5xl font-extrabold ${b.color}`}>{pct}%</p>
+              <p className="text-sm text-slate-400 mt-1">Accuracy</p>
+            </div>
+          </div>
+          <div className="mt-6 inline-flex items-center gap-2 bg-white/10 rounded-full px-4 py-1.5 text-sm">
+            <TrendingUp className="w-4 h-4 text-cyan-400" />
+            <span className={`font-semibold ${b.color}`}>{b.label}</span>
+          </div>
+        </div>
+        <CardContent className="py-4">
+          <div className="mt-2">
+            <div className="flex justify-between text-xs text-slate-500 mb-1"><span>Overall score</span><span>{pct}%</span></div>
+            <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
+              <div className="h-full bg-cyan-500 rounded-full" style={{ width: `${pct}%` }} />
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      <h2 className="text-lg font-bold text-slate-900 mb-4">Score Breakdown</h2>
+      <Card className="mb-6">
+        <CardContent className="py-4 space-y-4">
+          {PTE_TASK_ROWS.map((row) => {
+            const t = byType[row.key];
+            const s = t?.score ?? 0;
+            const m = t?.max ?? 0;
+            const rowPct = m > 0 ? Math.round((s / m) * 100) : 0;
+            return (
+              <div key={row.key}>
+                <div className="flex items-center justify-between text-sm mb-1">
+                  <span className="text-slate-600">{row.label}</span>
+                  <span className={`text-xs font-semibold ${s === m && m > 0 ? "text-green-600" : s === 0 && m > 0 ? "text-red-400" : "text-slate-500"}`}>
+                    {m > 0 ? `${s} / ${m}` : "—"}
+                  </span>
+                </div>
+                {m > 0 && (
+                  <div className="h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                    <div
+                      className={`h-full rounded-full ${rowPct === 100 ? "bg-green-400" : rowPct >= 50 ? "bg-cyan-400" : "bg-red-300"}`}
+                      style={{ width: `${rowPct}%` }}
+                    />
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </CardContent>
+      </Card>
+    </>
+  );
+}
+
 // ── Writing Result View ───────────────────────────────────────────────────────
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -321,8 +414,9 @@ export default function HistoryPage() {
   }
 
   const result = attempt.result_json;
-  const isWriting   = !!result?.tasks;
-  const isListening = !isWriting && attempt.test_id?.includes("listening");
+  const isWriting      = !!result?.tasks;
+  const isPTEListening = !isWriting && attempt.test_id?.includes("pte-listening");
+  const isListening    = !isWriting && !isPTEListening && attempt.test_id?.includes("listening");
 
   // Guard: result_json missing (old attempt saved before fix)
   if (!result) {
@@ -345,7 +439,7 @@ export default function HistoryPage() {
     );
   }
 
-  const reviewLabel = isWriting ? "Writing Review" : isListening ? "Listening Review" : "Reading Review";
+  const reviewLabel = isWriting ? "Writing Review" : isPTEListening ? "PTE Listening Review" : isListening ? "Listening Review" : "Reading Review";
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -378,6 +472,8 @@ export default function HistoryPage() {
       <main className="max-w-4xl mx-auto px-6 py-8">
         {isWriting
           ? <WritingResult result={result} aiFeedback={Array.isArray(attempt.ai_feedback) ? attempt.ai_feedback : null} />
+          : isPTEListening
+          ? <PTEListeningResult result={result} attempt={attempt} />
           : <ReadingResult result={result} />}
 
         <div className="text-center pt-6">
