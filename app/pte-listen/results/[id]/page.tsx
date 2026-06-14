@@ -5,6 +5,17 @@ import Link from "next/link";
 import { CheckCircle, BarChart2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+const TASK_ROWS = [
+  { key: "summarise_spoken_text", label: "Summarise Spoken Text" },
+  { key: "mc_multi",              label: "Multiple Choice (Multiple)" },
+  { key: "fill_blanks",           label: "Fill in the Blanks" },
+  { key: "highlight_summary",     label: "Highlight Correct Summary" },
+  { key: "mc_single",             label: "Multiple Choice (Single)" },
+  { key: "select_missing_word",   label: "Select Missing Word" },
+  { key: "highlight_incorrect",   label: "Highlight Incorrect Words" },
+  { key: "write_dictation",       label: "Write from Dictation" },
+];
+
 export default function PTEListenResultsPage() {
   const params = useParams();
   const searchParams = useSearchParams();
@@ -13,11 +24,16 @@ export default function PTEListenResultsPage() {
   const total = parseInt(searchParams.get("total") ?? "1");
   const pct = Math.round((score / total) * 100);
 
+  const byType: Record<string, { score: number; max: number }> = (() => {
+    try { return JSON.parse(decodeURIComponent(searchParams.get("b") ?? "{}")); }
+    catch { return {}; }
+  })();
+
   function band() {
-    if (pct >= 85) return { label: "Expert", color: "text-green-600", bg: "bg-green-50", border: "border-green-200" };
-    if (pct >= 70) return { label: "Proficient", color: "text-cyan-600", bg: "bg-cyan-50", border: "border-cyan-200" };
-    if (pct >= 55) return { label: "Intermediate", color: "text-amber-600", bg: "bg-amber-50", border: "border-amber-200" };
-    return { label: "Developing", color: "text-slate-600", bg: "bg-slate-50", border: "border-slate-200" };
+    if (pct >= 85) return { label: "Expert",       color: "text-green-600",  bg: "bg-green-50",  border: "border-green-200" };
+    if (pct >= 70) return { label: "Proficient",   color: "text-cyan-600",   bg: "bg-cyan-50",   border: "border-cyan-200" };
+    if (pct >= 55) return { label: "Intermediate", color: "text-amber-600",  bg: "bg-amber-50",  border: "border-amber-200" };
+    return             { label: "Developing",   color: "text-slate-600",  bg: "bg-slate-50",  border: "border-slate-200" };
   }
 
   const b = band();
@@ -55,21 +71,30 @@ export default function PTEListenResultsPage() {
             <h2 className="font-bold text-slate-900">Score Breakdown</h2>
           </div>
           <div className="space-y-3">
-            {[
-              { label: "Summarise Spoken Text", max: 1 },
-              { label: "Multiple Choice (Multiple)", max: 2 },
-              { label: "Fill in the Blanks", max: 2 },
-              { label: "Highlight Correct Summary", max: 2 },
-              { label: "Multiple Choice (Single)", max: 2 },
-              { label: "Select Missing Word", max: 2 },
-              { label: "Highlight Incorrect Words", max: 2 },
-              { label: "Write from Dictation", max: 3 },
-            ].map((row) => (
-              <div key={row.label} className="flex items-center justify-between text-sm">
-                <span className="text-slate-600">{row.label}</span>
-                <span className="text-xs text-slate-400">/ {row.max} tasks</span>
-              </div>
-            ))}
+            {TASK_ROWS.map((row) => {
+              const t = byType[row.key];
+              const s = t?.score ?? 0;
+              const m = t?.max ?? 0;
+              const pctRow = m > 0 ? Math.round((s / m) * 100) : 0;
+              return (
+                <div key={row.key}>
+                  <div className="flex items-center justify-between text-sm mb-1">
+                    <span className="text-slate-600">{row.label}</span>
+                    <span className={`text-xs font-semibold ${s === m && m > 0 ? "text-green-600" : s === 0 && m > 0 ? "text-red-400" : "text-slate-500"}`}>
+                      {m > 0 ? `${s} / ${m}` : "—"}
+                    </span>
+                  </div>
+                  {m > 0 && (
+                    <div className="h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                      <div
+                        className={`h-full rounded-full ${pctRow === 100 ? "bg-green-400" : pctRow >= 50 ? "bg-cyan-400" : "bg-red-300"}`}
+                        style={{ width: `${pctRow}%` }}
+                      />
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
 

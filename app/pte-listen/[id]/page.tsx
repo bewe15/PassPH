@@ -356,7 +356,7 @@ export default function PTEListenPage() {
   async function handleNext() {
     if (isLast) {
       setSaving(true);
-      const score = calculateScore();
+      const { total: score, byType } = calculateScores();
       try {
         const supabase = createClient();
         const { data: { user } } = await supabase.auth.getUser();
@@ -368,51 +368,63 @@ export default function PTEListenPage() {
             score,
             total: totalTasks,
             band: null,
-            result_json: { score, total: totalTasks },
+            result_json: { score, total: totalTasks, byType },
           });
         }
       } catch {
         // non-fatal — still navigate to results
       }
-      router.push(`/pte-listen/results/${test!.id}?score=${score}&total=${totalTasks}`);
+      const b = encodeURIComponent(JSON.stringify(byType));
+      router.push(`/pte-listen/results/${test!.id}?score=${score}&total=${totalTasks}&b=${b}`);
     } else {
       setTaskIndex(i => i + 1);
       setTaskKey(k => k + 1);
     }
   }
 
-  function calculateScore(): number {
-    let correct = 0;
+  function calculateScores(): { total: number; byType: Record<string, { score: number; max: number }> } {
+    const byType: Record<string, { score: number; max: number }> = {
+      summarise_spoken_text: { score: 0, max: 0 },
+      mc_multi:              { score: 0, max: 0 },
+      fill_blanks:           { score: 0, max: 0 },
+      highlight_summary:     { score: 0, max: 0 },
+      mc_single:             { score: 0, max: 0 },
+      select_missing_word:   { score: 0, max: 0 },
+      highlight_incorrect:   { score: 0, max: 0 },
+      write_dictation:       { score: 0, max: 0 },
+    };
+    let total = 0;
     for (const t of tasks) {
       const ans = answers[t.id] ?? "";
+      byType[t.type].max++;
+      let correct = false;
       if (t.type === "mc_single" || t.type === "highlight_summary") {
-        if (parseInt(ans) === (t as MultipleChoiceSingleTask).correctIndex) correct++;
+        correct = parseInt(ans) === (t as MultipleChoiceSingleTask).correctIndex;
       } else if (t.type === "mc_multi") {
         const task_ = t as MultipleChoiceMultiTask;
         const selected = ans.split(",").map(Number).filter(n => !isNaN(n)).sort();
         const expected = [...task_.correctIndexes].sort();
-        if (JSON.stringify(selected) === JSON.stringify(expected)) correct++;
+        correct = JSON.stringify(selected) === JSON.stringify(expected);
       } else if (t.type === "select_missing_word") {
-        if (parseInt(ans) === (t as SelectMissingWordTask).correctIndex) correct++;
+        correct = parseInt(ans) === (t as SelectMissingWordTask).correctIndex;
       } else if (t.type === "fill_blanks") {
         const task_ = t as FillBlanksListeningTask;
         const typed = ans.split("|").map(s => s.trim().toLowerCase());
-        const allCorrect = task_.answers.every((a, i) => typed[i] === a.toLowerCase());
-        if (allCorrect) correct++;
+        correct = task_.answers.every((a, i) => typed[i] === a.toLowerCase());
       } else if (t.type === "write_dictation") {
-        const expected = (t as WriteFromDictationTask).sentence.toLowerCase().replace(/[.,!?]/g, "");
-        const typed = ans.toLowerCase().replace(/[.,!?]/g, "").trim();
-        if (typed === expected.trim()) correct++;
+        const expected = (t as WriteFromDictationTask).sentence.toLowerCase().replace(/[.,!?]/g, "").trim();
+        correct = ans.toLowerCase().replace(/[.,!?]/g, "").trim() === expected;
       } else if (t.type === "highlight_incorrect") {
         const task_ = t as HighlightIncorrectWordsTask;
         const selected = ans.split(",").map(Number).filter(n => !isNaN(n)).sort();
         const expected = [...task_.incorrectIndexes].sort();
-        if (JSON.stringify(selected) === JSON.stringify(expected)) correct++;
+        correct = JSON.stringify(selected) === JSON.stringify(expected);
       } else if (t.type === "summarise_spoken_text") {
-        if (ans.trim().split(/\s+/).length >= 50) correct++;
+        correct = ans.trim().split(/\s+/).length >= 50;
       }
+      if (correct) { byType[t.type].score++; total++; }
     }
-    return correct;
+    return { total, byType };
   }
 
   const sectionTasks = tasks.filter(t => t.type === task.type);
