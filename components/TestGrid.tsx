@@ -31,7 +31,7 @@ const ALL_LISTENING_TESTS = {
     available: true,
     route: "listen",
   })),
-  pte: Array.from({ length: 1 }, (_, i) => ({
+  pte: Array.from({ length: 20 }, (_, i) => ({
     label: `Listening Test ${i + 1}`,
     sub: "8 task types • 45 min",
     id: `pte-listening-${i + 1}`,
