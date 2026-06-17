@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { ChevronLeft, Mic, Volume2, BookOpen, Image as ImageIcon, RefreshCw, Play, Pause } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -401,6 +401,8 @@ function AnswerShortScreen({ task, onDone }: { task: AnswerShortTask; onDone: (b
 export default function PTESpeakPage() {
   const params = useParams();
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const mockExamId = searchParams.get("mock");
   const id = Array.isArray(params.id) ? params.id[0] : params.id;
   const test = getPTESpeakingTest(id ?? "");
 
@@ -486,7 +488,11 @@ export default function PTESpeakPage() {
 
       await supabase.from("speaking_attempts").update({ responses: responsePaths }).eq("id", attempt.id);
 
-      router.push(`/pte-speak/results/${attempt.id}`);
+      if (mockExamId) {
+        router.push(`/pte-mock/${mockExamId}`);
+      } else {
+        router.push(`/pte-speak/results/${attempt.id}`);
+      }
     } catch (e) {
       console.error(e);
       setSaveError("Something went wrong. Please try again.");

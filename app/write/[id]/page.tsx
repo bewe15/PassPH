@@ -315,7 +315,8 @@ export default function WritePage() {
       }
     } catch { /* ignore */ }
 
-    router.push(mockExamId ? `/mock/${mockExamId}` : "/write/results");
+    const mockRoute = test.id.startsWith("pte-") ? `/pte-mock/${mockExamId}` : `/mock/${mockExamId}`;
+    router.push(mockExamId ? mockRoute : "/write/results");
   }, [test, responses, router, mockExamId]);
 
   if (!test) {

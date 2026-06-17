@@ -1027,7 +1027,8 @@ export default function TestPage() {
       }
     } catch { /* ignore */ }
 
-    router.push(mockExamId ? `/mock/${mockExamId}` : "/results/1");
+    const mockRoute = params.id.startsWith("pte-") ? `/pte-mock/${mockExamId}` : `/mock/${mockExamId}`;
+    router.push(mockExamId ? mockRoute : "/results/1");
   }, [test, router, params.id, mockExamId]);
 
   if (!test) {

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { ChevronLeft, Volume2, CheckSquare, Type, AlignLeft, List, MousePointer, PenLine } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -317,6 +317,8 @@ function WriteDictationScreen({ task, onAnswer }: { task: WriteFromDictationTask
 export default function PTEListenPage() {
   const params = useParams();
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const mockExamId = searchParams.get("mock");
   const id = Array.isArray(params.id) ? params.id[0] : params.id;
   const test = getPTEListeningTest(id ?? "");
 
@@ -369,10 +371,15 @@ export default function PTEListenPage() {
             total: totalTasks,
             band: null,
             result_json: { score, total: totalTasks, byType, taskResults },
+            ...(mockExamId ? { mock_exam_id: mockExamId } : {}),
           });
         }
       } catch {
         // non-fatal — still navigate to results
+      }
+      if (mockExamId) {
+        router.push(`/pte-mock/${mockExamId}`);
+        return;
       }
       const b = encodeURIComponent(JSON.stringify(byType));
       const tr = encodeURIComponent(JSON.stringify(taskResults));
