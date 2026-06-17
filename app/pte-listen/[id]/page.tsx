@@ -356,7 +356,7 @@ export default function PTEListenPage() {
   async function handleNext() {
     if (isLast) {
       setSaving(true);
-      const { total: score, byType } = calculateScores();
+      const { total: score, byType, taskResults } = calculateScores();
       try {
         const supabase = createClient();
         const { data: { user } } = await supabase.auth.getUser();
@@ -368,21 +368,26 @@ export default function PTEListenPage() {
             score,
             total: totalTasks,
             band: null,
-            result_json: { score, total: totalTasks, byType },
+            result_json: { score, total: totalTasks, byType, taskResults },
           });
         }
       } catch {
         // non-fatal — still navigate to results
       }
       const b = encodeURIComponent(JSON.stringify(byType));
-      router.push(`/pte-listen/results/${test!.id}?score=${score}&total=${totalTasks}&b=${b}`);
+      const tr = encodeURIComponent(JSON.stringify(taskResults));
+      router.push(`/pte-listen/results/${test!.id}?score=${score}&total=${totalTasks}&b=${b}&tr=${tr}`);
     } else {
       setTaskIndex(i => i + 1);
       setTaskKey(k => k + 1);
     }
   }
 
-  function calculateScores(): { total: number; byType: Record<string, { score: number; max: number }> } {
+  function calculateScores(): {
+    total: number;
+    byType: Record<string, { score: number; max: number }>;
+    taskResults: { id: string; type: string; isCorrect: boolean; userAnswer: string; correctAnswer: string }[];
+  } {
     const byType: Record<string, { score: number; max: number }> = {
       summarise_spoken_text: { score: 0, max: 0 },
       mc_multi:              { score: 0, max: 0 },
@@ -393,38 +398,56 @@ export default function PTEListenPage() {
       highlight_incorrect:   { score: 0, max: 0 },
       write_dictation:       { score: 0, max: 0 },
     };
+    const taskResults: { id: string; type: string; isCorrect: boolean; userAnswer: string; correctAnswer: string }[] = [];
     let total = 0;
     for (const t of tasks) {
       const ans = answers[t.id] ?? "";
       byType[t.type].max++;
       let correct = false;
+      let correctAnswer = "";
+      let userAnswer = ans;
       if (t.type === "mc_single" || t.type === "highlight_summary") {
-        correct = parseInt(ans) === (t as MultipleChoiceSingleTask).correctIndex;
+        const task_ = t as MultipleChoiceSingleTask;
+        correct = parseInt(ans) === task_.correctIndex;
+        correctAnswer = String(task_.correctIndex);
+        userAnswer = ans;
       } else if (t.type === "mc_multi") {
         const task_ = t as MultipleChoiceMultiTask;
         const selected = ans.split(",").map(Number).filter(n => !isNaN(n)).sort();
         const expected = [...task_.correctIndexes].sort();
         correct = JSON.stringify(selected) === JSON.stringify(expected);
+        correctAnswer = expected.join(",");
       } else if (t.type === "select_missing_word") {
-        correct = parseInt(ans) === (t as SelectMissingWordTask).correctIndex;
+        const task_ = t as SelectMissingWordTask;
+        correct = parseInt(ans) === task_.correctIndex;
+        correctAnswer = String(task_.correctIndex);
       } else if (t.type === "fill_blanks") {
         const task_ = t as FillBlanksListeningTask;
         const typed = ans.split("|").map(s => s.trim().toLowerCase());
         correct = task_.answers.every((a, i) => typed[i] === a.toLowerCase());
+        correctAnswer = task_.answers.join(" | ");
+        userAnswer = ans.split("|").map(s => s.trim()).join(" | ");
       } else if (t.type === "write_dictation") {
-        const expected = (t as WriteFromDictationTask).sentence.toLowerCase().replace(/[.,!?]/g, "").trim();
+        const task_ = t as WriteFromDictationTask;
+        const expected = task_.sentence.toLowerCase().replace(/[.,!?]/g, "").trim();
         correct = ans.toLowerCase().replace(/[.,!?]/g, "").trim() === expected;
+        correctAnswer = task_.sentence;
       } else if (t.type === "highlight_incorrect") {
         const task_ = t as HighlightIncorrectWordsTask;
         const selected = ans.split(",").map(Number).filter(n => !isNaN(n)).sort();
         const expected = [...task_.incorrectIndexes].sort();
         correct = JSON.stringify(selected) === JSON.stringify(expected);
+        correctAnswer = expected.join(",");
       } else if (t.type === "summarise_spoken_text") {
-        correct = ans.trim().split(/\s+/).length >= 50;
+        const wordCount = ans.trim().split(/\s+/).filter(Boolean).length;
+        correct = wordCount >= 30;
+        correctAnswer = "Written response (30+ words)";
+        userAnswer = ans.trim() ? `${wordCount} words written` : "No response";
       }
       if (correct) { byType[t.type].score++; total++; }
+      taskResults.push({ id: t.id, type: t.type, isCorrect: correct, userAnswer, correctAnswer });
     }
-    return { total, byType };
+    return { total, byType, taskResults };
   }
 
   const sectionTasks = tasks.filter(t => t.type === task.type);

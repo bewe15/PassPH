@@ -2,7 +2,7 @@
 
 import { useParams, useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { CheckCircle, BarChart2 } from "lucide-react";
+import { CheckCircle, BarChart2, CheckCircle2, XCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const TASK_ROWS = [
@@ -16,6 +16,59 @@ const TASK_ROWS = [
   { key: "write_dictation",       label: "Write from Dictation" },
 ];
 
+const TYPE_LABELS: Record<string, string> = {
+  summarise_spoken_text: "Summarise Spoken Text",
+  mc_multi:              "Multiple Choice (Multiple)",
+  fill_blanks:           "Fill in the Blanks",
+  highlight_summary:     "Highlight Correct Summary",
+  mc_single:             "Multiple Choice (Single)",
+  select_missing_word:   "Select Missing Word",
+  highlight_incorrect:   "Highlight Incorrect Words",
+  write_dictation:       "Write from Dictation",
+};
+
+type TaskResult = { id: string; type: string; isCorrect: boolean; userAnswer: string; correctAnswer: string };
+
+function TaskReview({ taskResults }: { taskResults: TaskResult[] }) {
+  return (
+    <div className="bg-white rounded-2xl border border-slate-200 p-6 mb-6">
+      <h2 className="font-bold text-slate-900 mb-4">Answer Review</h2>
+      <div className="space-y-3">
+        {taskResults.map((tr, i) => (
+          <div key={tr.id} className={`rounded-xl border p-4 ${tr.isCorrect ? "border-green-200 bg-green-50" : "border-red-200 bg-red-50"}`}>
+            <div className="flex items-start gap-3">
+              <div className="mt-0.5 shrink-0">
+                {tr.isCorrect
+                  ? <CheckCircle2 className="w-5 h-5 text-green-500" />
+                  : <XCircle className="w-5 h-5 text-red-400" />}
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2 mb-1 flex-wrap">
+                  <span className="text-xs font-bold text-slate-400">Task {i + 1}</span>
+                  <span className="text-xs font-medium text-slate-500">{TYPE_LABELS[tr.type] ?? tr.type}</span>
+                  <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${tr.isCorrect ? "bg-green-100 text-green-700" : "bg-red-100 text-red-600"}`}>
+                    {tr.isCorrect ? "Correct" : "Incorrect"}
+                  </span>
+                </div>
+                {tr.type === "summarise_spoken_text" ? (
+                  <p className="text-sm text-slate-600">{tr.userAnswer}</p>
+                ) : (
+                  <div className="space-y-1 text-sm">
+                    {!tr.isCorrect && (
+                      <p className="text-red-500">Your answer: <span className="font-medium">{tr.userAnswer || "—"}</span></p>
+                    )}
+                    <p className="text-green-700">Correct answer: <span className="font-medium">{tr.correctAnswer}</span></p>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function PTEListenResultsPage() {
   const params = useParams();
   const searchParams = useSearchParams();
@@ -27,6 +80,11 @@ export default function PTEListenResultsPage() {
   const byType: Record<string, { score: number; max: number }> = (() => {
     try { return JSON.parse(decodeURIComponent(searchParams.get("b") ?? "{}")); }
     catch { return {}; }
+  })();
+
+  const taskResults: TaskResult[] = (() => {
+    try { return JSON.parse(decodeURIComponent(searchParams.get("tr") ?? "[]")); }
+    catch { return []; }
   })();
 
   function band() {
@@ -97,6 +155,9 @@ export default function PTEListenResultsPage() {
             })}
           </div>
         </div>
+
+        {/* Answer review */}
+        {taskResults.length > 0 && <TaskReview taskResults={taskResults} />}
 
         <div className="flex gap-3">
           <Link href="/dashboard" className="flex-1">

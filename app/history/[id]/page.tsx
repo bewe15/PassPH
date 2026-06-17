@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
-import { ChevronLeft, Trophy, TrendingUp, RotateCcw, CheckCircle, XCircle, BookOpen, Download, Sparkles } from "lucide-react";
+import { ChevronLeft, Trophy, TrendingUp, RotateCcw, CheckCircle, XCircle, BookOpen, Download, Sparkles, CheckCircle2 } from "lucide-react";
 import type { AIFeedback } from "@/app/api/ai-feedback/route";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -125,10 +125,23 @@ const PTE_TASK_ROWS = [
   { key: "write_dictation",       label: "Write from Dictation" },
 ];
 
+const PTE_TYPE_LABELS: Record<string, string> = {
+  summarise_spoken_text: "Summarise Spoken Text",
+  mc_multi:              "Multiple Choice (Multiple)",
+  fill_blanks:           "Fill in the Blanks",
+  highlight_summary:     "Highlight Correct Summary",
+  mc_single:             "Multiple Choice (Single)",
+  select_missing_word:   "Select Missing Word",
+  highlight_incorrect:   "Highlight Incorrect Words",
+  write_dictation:       "Write from Dictation",
+};
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function PTEListeningResult({ result, attempt }: { result: any; attempt: any }) {
   const pct = Math.round((result.score / result.total) * 100);
   const byType: Record<string, { score: number; max: number }> = result.byType ?? {};
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const taskResults: any[] = result.taskResults ?? [];
 
   function band() {
     if (pct >= 85) return { label: "Expert",       color: "text-green-500" };
@@ -201,6 +214,47 @@ function PTEListeningResult({ result, attempt }: { result: any; attempt: any }) 
           })}
         </CardContent>
       </Card>
+
+      {taskResults.length > 0 && (
+        <>
+          <h2 className="text-lg font-bold text-slate-900 mb-4">Answer Review</h2>
+          <div className="space-y-3 mb-6">
+            {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+            {taskResults.map((tr: any, i: number) => (
+              <Card key={tr.id} className={`border-2 ${tr.isCorrect ? "border-green-200" : "border-red-200"}`}>
+                <CardContent className={`py-4 ${tr.isCorrect ? "bg-green-50" : "bg-red-50"}`}>
+                  <div className="flex items-start gap-3">
+                    <div className="mt-0.5 shrink-0">
+                      {tr.isCorrect
+                        ? <CheckCircle2 className="w-5 h-5 text-green-500" />
+                        : <XCircle className="w-5 h-5 text-red-400" />}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-1 flex-wrap">
+                        <span className="text-xs font-bold text-slate-400">Task {i + 1}</span>
+                        <span className="text-xs text-slate-500">{PTE_TYPE_LABELS[tr.type] ?? tr.type}</span>
+                        <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${tr.isCorrect ? "bg-green-100 text-green-700" : "bg-red-100 text-red-600"}`}>
+                          {tr.isCorrect ? "Correct" : "Incorrect"}
+                        </span>
+                      </div>
+                      {tr.type === "summarise_spoken_text" ? (
+                        <p className="text-sm text-slate-600">{tr.userAnswer}</p>
+                      ) : (
+                        <div className="space-y-1 text-sm">
+                          {!tr.isCorrect && (
+                            <p className="text-red-500">Your answer: <span className="font-medium">{tr.userAnswer || "—"}</span></p>
+                          )}
+                          <p className="text-green-700">Correct answer: <span className="font-medium">{tr.correctAnswer}</span></p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </>
+      )}
     </>
   );
 }
