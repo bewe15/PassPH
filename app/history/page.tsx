@@ -29,8 +29,9 @@ function AttemptRow({ attempt }: { attempt: any }) {
   const isWriting    = !isSpeaking && attempt.result_json?.tasks != null;
   const isListening  = !isSpeaking && !isWriting && attempt.test_id?.includes("listening");
 
+  const isPTESpeaking = isSpeaking && attempt.test_id?.includes("pte-speaking");
   const href = isSpeaking
-    ? `/speak/results/${attempt.id}`
+    ? isPTESpeaking ? `/pte-speak/results/${attempt.id}` : `/speak/results/${attempt.id}`
     : `/history/${attempt.id}`;
 
   const icon = isSpeaking ? (
