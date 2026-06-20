@@ -53,7 +53,10 @@ export async function POST() {
     .select("id")
     .single();
 
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  if (error) {
+    console.error("[mock/generate] insert error:", JSON.stringify(error));
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
 
   return NextResponse.json({ sessionId: data.id });
 }
