@@ -149,7 +149,7 @@ export default function HomePage() {
   return (
     <>
       {/* ── Global styles for landing page ───────────────────────────────────── */}
-      <style>{`
+      <style dangerouslySetInnerHTML={{__html: `
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
         :root {
@@ -448,7 +448,7 @@ export default function HomePage() {
           .aurora, .dash, .eyebrow .dot, .live .ld, .ln.typing, .wave span { animation: none !important; }
           .card, .step { opacity: 1 !important; transform: none !important; }
         }
-      `}</style>
+      `}} />
 
       {/* Fixed background */}
       <div className="bg-fx" />
