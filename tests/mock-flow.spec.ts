@@ -55,6 +55,7 @@ test.describe("IELTS Mock - reading section through mock flow", () => {
 
 test.describe("PTE Mock - writing and reading sections through mock flow", () => {
   test("complete writing + reading via mock → sections show Done on session page", async ({ page }) => {
+    test.setTimeout(90_000);
     // 1. Generate PTE mock session
     await page.goto("/pte-mock");
     await page.getByRole("button", { name: /Generate PTE Mock Exam/i }).click();
@@ -66,17 +67,35 @@ test.describe("PTE Mock - writing and reading sections through mock flow", () =>
     expect(session.assigned_writing).toBeTruthy();
     expect(session.assigned_reading).toBeTruthy();
 
-    // 3. Complete writing section (type minimal essays and submit)
+    // 3. Complete writing section — tasks shown one at a time, navigate between them
     await page.goto(`/write/${session.assigned_writing}?mock=${sessionId}`);
     await page.waitForSelector("textarea", { timeout: 15_000 });
-    const textareas = page.locator("textarea");
-    const taCount = await textareas.count();
-    for (let i = 0; i < taCount; i++) {
-      await textareas.nth(i).fill("This is a test response for automated Playwright testing purposes only.");
+
+    const shortText = Array(15).fill("This is a test sentence for automated Playwright testing.").join(" ");
+    const essayText = Array(60).fill("This is a test sentence for automated Playwright testing.").join(" ");
+
+    // Fill Task 1 (Summarise Written Text)
+    await page.locator("textarea").fill(shortText);
+
+    // Go to Task 2 if "Next task" button exists
+    const nextBtn = page.getByRole("button", { name: /Next task/i });
+    if (await nextBtn.isVisible()) {
+      await nextBtn.click();
+      await page.waitForTimeout(500);
+      await page.locator("textarea").fill(essayText);
     }
-    await page.getByRole("button", { name: /Submit/i }).first().click();
-    // Wait for scoring and redirect back to mock
-    await page.waitForURL(`**/pte-mock/${sessionId}`, { timeout: 30_000 });
+
+    // Open confirm modal (header Submit or bottom Finish & review)
+    await page.getByRole("button", { name: /Submit|Finish/i }).first().click();
+
+    // Confirm in modal
+    const confirmBtn = page.getByRole("button", { name: "Submit & review" });
+    if (await confirmBtn.isVisible({ timeout: 5_000 })) {
+      await confirmBtn.click();
+    }
+
+    // Wait for AI scoring and redirect back to mock (can take up to 60s)
+    await page.waitForURL(`**/pte-mock/${sessionId}`, { timeout: 60_000 });
 
     // 4. Complete reading section
     await page.goto(`/test/${session.assigned_reading}?mock=${sessionId}`);
