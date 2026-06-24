@@ -1,53 +1,37 @@
 import type { MDXComponents } from "mdx/types";
 
-const EXAM_STYLES = {
-  ielts: {
-    header: "bg-cyan-600 text-white",
-    badge: "bg-cyan-50 text-cyan-700 border border-cyan-200",
-    border: "border-cyan-300",
-    stripe: "bg-cyan-50/40",
-  },
-  pte: {
-    header: "bg-violet-600 text-white",
-    badge: "bg-violet-50 text-violet-700 border border-violet-200",
-    border: "border-violet-300",
-    stripe: "bg-violet-50/40",
-  },
-} as const;
-
-interface ExamTableProps {
-  exam: "ielts" | "pte";
+function ExamTableShell({
+  title,
+  headerClass,
+  borderClass,
+  stripeClass,
+  rows,
+}: {
   title: string;
+  headerClass: string;
+  borderClass: string;
+  stripeClass: string;
   rows: string[][];
-}
-
-export function ExamTable({ exam, title, rows }: ExamTableProps) {
-  const s = EXAM_STYLES[exam];
-  const headers = ["Section", "Time", "Format"];
-
+}) {
   return (
-    <div className={`rounded-xl border-2 ${s.border} overflow-hidden my-6 shadow-sm`}>
-      <div className={`${s.header} px-5 py-3 flex items-center gap-2`}>
-        <span className="font-bold text-base tracking-tight">{title}</span>
+    <div className={`rounded-xl border-2 ${borderClass} overflow-hidden my-6 shadow-sm`}>
+      <div className={`${headerClass} px-5 py-3`}>
+        <span className="font-bold text-base tracking-tight text-white">{title}</span>
       </div>
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
             <tr className="bg-slate-800 text-white">
-              {headers.map((h) => (
-                <th key={h} className="px-4 py-2.5 text-left font-semibold text-xs uppercase tracking-wider">
-                  {h}
-                </th>
+              {["Section", "Time", "Format"].map((h) => (
+                <th key={h} className="px-4 py-2.5 text-left font-semibold text-xs uppercase tracking-wider">{h}</th>
               ))}
             </tr>
           </thead>
           <tbody>
             {rows.map((row, i) => (
-              <tr key={i} className={`border-t border-slate-100 ${i % 2 === 1 ? s.stripe : "bg-white"}`}>
+              <tr key={i} className={`border-t border-slate-100 ${i % 2 === 1 ? stripeClass : "bg-white"}`}>
                 {row.map((cell, j) => (
-                  <td key={j} className={`px-4 py-3 text-slate-700 ${j === 0 ? "font-semibold text-slate-800" : ""}`}>
-                    {cell}
-                  </td>
+                  <td key={j} className={`px-4 py-3 text-slate-700 ${j === 0 ? "font-semibold text-slate-800" : ""}`}>{cell}</td>
                 ))}
               </tr>
             ))}
@@ -58,13 +42,50 @@ export function ExamTable({ exam, title, rows }: ExamTableProps) {
   );
 }
 
-interface CompareRowProps {
-  feature: string;
-  ielts: string;
-  pte: string;
+export function IELTSAcademicTable() {
+  return (
+    <ExamTableShell
+      title="IELTS Academic"
+      headerClass="bg-cyan-600"
+      borderClass="border-cyan-300"
+      stripeClass="bg-cyan-50/40"
+      rows={[
+        ["Listening", "30 min", "Audio recordings, 40 questions"],
+        ["Reading", "60 min", "3 passages, 40 questions"],
+        ["Writing", "60 min", "Task 1 (graph/chart) + Task 2 (essay)"],
+        ["Speaking", "11–14 min", "Face-to-face with examiner"],
+      ]}
+    />
+  );
 }
 
-export function CompareTable({ rows }: { rows: CompareRowProps[] }) {
+export function PTEAcademicTable() {
+  return (
+    <ExamTableShell
+      title="PTE Academic"
+      headerClass="bg-violet-600"
+      borderClass="border-violet-300"
+      stripeClass="bg-violet-50/40"
+      rows={[
+        ["Speaking & Writing", "77–93 min", "Read aloud, essays, summarize text"],
+        ["Reading", "32–41 min", "Fill blanks, multiple choice"],
+        ["Listening", "45–57 min", "Summarize, highlight, dictation"],
+      ]}
+    />
+  );
+}
+
+export function IELTSPTECompareTable() {
+  const rows = [
+    { feature: "Grading", ielts: "Human examiner", pte: "AI (fully automated)" },
+    { feature: "Results turnaround", ielts: "3–13 days", pte: "Within 48 hours" },
+    { feature: "Speaking format", ielts: "Face-to-face interview", pte: "Speak into microphone" },
+    { feature: "Writing format", ielts: "Handwritten or typed", pte: "Always typed" },
+    { feature: "Exam duration", ielts: "~2 hrs 45 min", pte: "~2 hrs 15 min" },
+    { feature: "Cost (Philippines)", ielts: "₱14,000–₱16,000", pte: "₱10,000–₱13,000" },
+    { feature: "Score validity", ielts: "2 years", pte: "2 years" },
+    { feature: "Retakes", ielts: "Anytime (full fee)", pte: "Anytime (no limit)" },
+  ];
   return (
     <div className="rounded-xl border border-slate-200 overflow-hidden my-6 shadow-sm">
       <div className="overflow-x-auto">
@@ -91,11 +112,14 @@ export function CompareTable({ rows }: { rows: CompareRowProps[] }) {
   );
 }
 
-interface BandTableProps {
-  rows: { band: string; score: string }[];
-}
-
-export function BandTable({ rows }: BandTableProps) {
+export function IELTSBandTable() {
+  const rows = [
+    { band: "9.0", score: "39–40" },
+    { band: "8.0", score: "35–36" },
+    { band: "7.0", score: "30" },
+    { band: "6.0", score: "23" },
+    { band: "5.0", score: "15" },
+  ];
   return (
     <div className="rounded-xl border border-slate-200 overflow-hidden my-6 shadow-sm max-w-sm">
       <table className="w-full text-sm">
@@ -120,9 +144,10 @@ export function BandTable({ rows }: BandTableProps) {
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export const mdxComponents: MDXComponents = {
-  ExamTable: ExamTable as any,
-  CompareTable: CompareTable as any,
-  BandTable: BandTable as any,
+  IELTSAcademicTable: IELTSAcademicTable as any,
+  PTEAcademicTable: PTEAcademicTable as any,
+  IELTSPTECompareTable: IELTSPTECompareTable as any,
+  IELTSBandTable: IELTSBandTable as any,
   table: ({ children, ...props }) => (
     <div className="overflow-x-auto my-6 rounded-xl border border-slate-200 shadow-sm">
       <table className="w-full text-sm" {...props}>{children}</table>
