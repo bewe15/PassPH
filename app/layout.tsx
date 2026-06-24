@@ -23,11 +23,20 @@ export const metadata: Metadata = {
     url: "https://www.scoravo.com",
     siteName: "Scoravo",
     type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Scoravo — AI-Powered IELTS & PTE Exam Prep",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Scoravo — Practice IELTS & PTE",
     description: "Affordable, self-serve IELTS and PTE practice platform. AI-powered feedback, progress tracking, anytime access.",
+    images: ["/og-image.png"],
   },
 };
 
