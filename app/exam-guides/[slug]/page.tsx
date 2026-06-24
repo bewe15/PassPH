@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getAllArticles, getArticleBySlug } from "@/lib/articles";
+import { mdxComponents } from "@/components/mdx-components";
 import type { Metadata } from "next";
 
 interface Props {
@@ -90,7 +91,7 @@ export default async function ArticlePage({ params }: Props) {
           prose-pre:bg-slate-900 prose-pre:text-slate-100
           prose-blockquote:border-l-4 prose-blockquote:border-cyan-400 prose-blockquote:bg-cyan-50 prose-blockquote:rounded-r-lg prose-blockquote:py-2
           prose-hr:border-slate-200">
-          <MDXRemote source={article.content} />
+          <MDXRemote source={article.content} components={mdxComponents} />
         </div>
 
         {/* Footer CTA */}
