@@ -2,9 +2,24 @@ import Link from "next/link";
 import { getAllArticles } from "@/lib/articles";
 import type { Metadata } from "next";
 
+const BASE_URL = "https://www.scoravo.com";
+
 export const metadata: Metadata = {
   title: "Exam Guides — IELTS & PTE Tips | Scoravo",
   description: "Free IELTS and PTE Academic guides, tips, and strategies to help you hit your target band score.",
+  alternates: { canonical: `${BASE_URL}/exam-guides` },
+  openGraph: {
+    title: "Exam Guides — IELTS & PTE Tips | Scoravo",
+    description: "Free IELTS and PTE Academic guides, tips, and strategies to help you hit your target band score.",
+    url: `${BASE_URL}/exam-guides`,
+    siteName: "Scoravo",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Exam Guides — IELTS & PTE Tips | Scoravo",
+    description: "Free IELTS and PTE Academic guides, tips, and strategies to help you hit your target band score.",
+  },
 };
 
 const CATEGORY_COLORS: Record<string, string> = {

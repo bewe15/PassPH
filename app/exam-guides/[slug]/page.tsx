@@ -13,13 +13,31 @@ export async function generateStaticParams() {
   return getAllArticles().map((a) => ({ slug: a.slug }));
 }
 
+const BASE_URL = "https://www.scoravo.com";
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const article = getArticleBySlug(slug);
   if (!article) return {};
+  const url = `${BASE_URL}/exam-guides/${slug}`;
   return {
     title: `${article.title} | Scoravo`,
     description: article.description,
+    alternates: { canonical: url },
+    openGraph: {
+      title: article.title,
+      description: article.description,
+      url,
+      siteName: "Scoravo",
+      type: "article",
+      publishedTime: article.date,
+      authors: ["Scoravo"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: article.title,
+      description: article.description,
+    },
   };
 }
 
@@ -40,8 +58,26 @@ export default async function ArticlePage({ params }: Props) {
     day: "numeric",
   });
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: article.title,
+    description: article.description,
+    datePublished: article.date,
+    dateModified: article.date,
+    author: { "@type": "Organization", name: "Scoravo", url: BASE_URL },
+    publisher: {
+      "@type": "Organization",
+      name: "Scoravo",
+      url: BASE_URL,
+      logo: { "@type": "ImageObject", url: `${BASE_URL}/icon.svg` },
+    },
+    mainEntityOfPage: { "@type": "WebPage", "@id": `${BASE_URL}/exam-guides/${article.slug}` },
+  };
+
   return (
     <div className="min-h-screen bg-white">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       {/* Top nav */}
       <div className="border-b border-slate-200 bg-white sticky top-0 z-10">
         <div className="max-w-3xl mx-auto px-6 py-4 flex items-center justify-between">
