@@ -39,6 +39,16 @@ import { pteWriting17 } from "./pte-writing-17";
 import { pteWriting18 } from "./pte-writing-18";
 import { pteWriting19 } from "./pte-writing-19";
 import { pteWriting20 } from "./pte-writing-20";
+import { ieltsWriting21 } from "./ielts-writing-21";
+import { ieltsWriting22 } from "./ielts-writing-22";
+import { ieltsWriting23 } from "./ielts-writing-23";
+import { ieltsWriting24 } from "./ielts-writing-24";
+import { ieltsWriting25 } from "./ielts-writing-25";
+import { pteWriting21 } from "./pte-writing-21";
+import { pteWriting22 } from "./pte-writing-22";
+import { pteWriting23 } from "./pte-writing-23";
+import { pteWriting24 } from "./pte-writing-24";
+import { pteWriting25 } from "./pte-writing-25";
 
 export const WRITING_REGISTRY: Record<string, WritingTest> = {
   "ielts-writing-1": ieltsWriting1,
@@ -81,6 +91,16 @@ export const WRITING_REGISTRY: Record<string, WritingTest> = {
   "pte-writing-18": pteWriting18,
   "pte-writing-19": pteWriting19,
   "pte-writing-20": pteWriting20,
+  "ielts-writing-21": ieltsWriting21,
+  "ielts-writing-22": ieltsWriting22,
+  "ielts-writing-23": ieltsWriting23,
+  "ielts-writing-24": ieltsWriting24,
+  "ielts-writing-25": ieltsWriting25,
+  "pte-writing-21": pteWriting21,
+  "pte-writing-22": pteWriting22,
+  "pte-writing-23": pteWriting23,
+  "pte-writing-24": pteWriting24,
+  "pte-writing-25": pteWriting25,
 };
 
 export function getWritingTest(id: string): WritingTest | null {
