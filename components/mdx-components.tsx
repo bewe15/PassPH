@@ -118,6 +118,7 @@ export function BandTable({ rows }: BandTableProps) {
   );
 }
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export const mdxComponents: MDXComponents = {
   ExamTable: ExamTable as any,
   CompareTable: CompareTable as any,
