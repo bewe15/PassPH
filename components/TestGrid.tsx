@@ -42,34 +42,34 @@ const ALL_LISTENING_TESTS = {
 
 const ALL_TESTS = {
   reading: {
-    ielts: Array.from({ length: 20 }, (_, i) => ({
+    ielts: Array.from({ length: 25 }, (_, i) => ({
       label: `Reading Test ${i + 1}`,
       sub: "40 questions • 60 min",
       id: `ielts-reading-${i + 1}`,
-      free: true, // Unlimited for all users
+      free: true,
       route: "test",
     })),
-    pte: Array.from({ length: 20 }, (_, i) => ({
+    pte: Array.from({ length: 25 }, (_, i) => ({
       label: `Reading Test ${i + 1}`,
       sub: "5 tasks • 30 min",
       id: `pte-reading-${i + 1}`,
-      free: true, // Unlimited for all users
+      free: true,
       route: "test",
     })),
   },
   writing: {
-    ielts: Array.from({ length: 20 }, (_, i) => ({
+    ielts: Array.from({ length: 25 }, (_, i) => ({
       label: `Writing Test ${i + 1}`,
       sub: "Task 1 + Task 2 • 60 min",
       id: `ielts-writing-${i + 1}`,
-      free: true, // Unlimited practice for all users (AI feedback requires Pro)
+      free: true,
       route: "write",
     })),
-    pte: Array.from({ length: 20 }, (_, i) => ({
+    pte: Array.from({ length: 25 }, (_, i) => ({
       label: `Writing Test ${i + 1}`,
       sub: "SWT + Essay • 30 min",
       id: `pte-writing-${i + 1}`,
-      free: true, // Unlimited practice for all users (AI feedback requires Pro)
+      free: true,
       route: "write",
     })),
   },

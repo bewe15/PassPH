@@ -39,6 +39,16 @@ import { pteReading17 } from "./pte-reading-17";
 import { pteReading18 } from "./pte-reading-18";
 import { pteReading19 } from "./pte-reading-19";
 import { pteReading20 } from "./pte-reading-20";
+import { ieltsReading21 } from "./ielts-reading-21";
+import { ieltsReading22 } from "./ielts-reading-22";
+import { ieltsReading23 } from "./ielts-reading-23";
+import { ieltsReading24 } from "./ielts-reading-24";
+import { ieltsReading25 } from "./ielts-reading-25";
+import { pteReading21 } from "./pte-reading-21";
+import { pteReading22 } from "./pte-reading-22";
+import { pteReading23 } from "./pte-reading-23";
+import { pteReading24 } from "./pte-reading-24";
+import { pteReading25 } from "./pte-reading-25";
 
 export const TEST_REGISTRY: Record<string, AnyTest> = {
   "ielts-reading-1": ieltsReading1,
@@ -81,6 +91,16 @@ export const TEST_REGISTRY: Record<string, AnyTest> = {
   "pte-reading-18": pteReading18,
   "pte-reading-19": pteReading19,
   "pte-reading-20": pteReading20,
+  "ielts-reading-21": ieltsReading21,
+  "ielts-reading-22": ieltsReading22,
+  "ielts-reading-23": ieltsReading23,
+  "ielts-reading-24": ieltsReading24,
+  "ielts-reading-25": ieltsReading25,
+  "pte-reading-21": pteReading21,
+  "pte-reading-22": pteReading22,
+  "pte-reading-23": pteReading23,
+  "pte-reading-24": pteReading24,
+  "pte-reading-25": pteReading25,
 };
 
 export function getTest(id: string): AnyTest | null {
