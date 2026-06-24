@@ -467,6 +467,7 @@ export default function HomePage() {
               <a className="link" href="#features">Features</a>
               <a className="link" href="#how">How it works</a>
               <a className="link" href="#pricing">Pricing</a>
+              <Link className="link" href="/exam-guides">Exam Guides</Link>
               <a className="link" href="#faq">FAQ</a>
               <div className="nav-cta">
                 {isLoggedIn ? (
