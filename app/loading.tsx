@@ -1,67 +1,31 @@
+"use client";
+
 export default function GlobalLoading() {
   return (
-    <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#0a0e27]">
-      <div className="relative flex items-center justify-center">
-        <div
-          className="absolute w-24 h-24 rounded-full"
-          style={{
-            background: "conic-gradient(from 0deg, #22d3ee, #3b82f6, #0a0e27, #0a0e27)",
-            animation: "spin 1.2s linear infinite",
-          }}
-        />
-        <div className="absolute w-20 h-20 rounded-full bg-[#0a0e27]" />
-        <div className="relative z-10 w-14 h-14 flex items-center justify-center">
-          <svg viewBox="0 0 116 120" className="w-12 h-12 drop-shadow-lg">
+    <div style={{ position: "fixed", inset: 0, zIndex: 9999, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", backgroundColor: "#0a0e27", minHeight: "100vh", width: "100vw" }}>
+      <div className="relative flex items-center justify-center w-24 h-24">
+        <div className="absolute inset-0 rounded-full animate-spin"
+          style={{ background: "conic-gradient(from 0deg, #22d3ee 0%, #3b82f6 40%, transparent 70%)" }} />
+        <div className="absolute inset-[5px] rounded-full bg-[#0a0e27]" />
+        <div className="relative z-10">
+          <svg viewBox="0 0 116 120" className="w-11 h-11">
             <polygon points="58,8 15,33 15,87 58,112" fill="#0e7490" />
             <polygon points="58,8 101,33 101,87 58,112" fill="#06b6d4" />
-            <text
-              x="58"
-              y="80"
-              fontFamily="Arial, Helvetica, sans-serif"
-              fontWeight="800"
-              fontSize="58"
-              fill="white"
-              textAnchor="middle"
-            >
-              S
-            </text>
-            <polyline
-              points="43,90 49,99 72,79"
-              fill="none"
-              stroke="#0e7490"
-              strokeWidth="4"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
+            <text x="58" y="80" fontFamily="Arial, Helvetica, sans-serif"
+              fontWeight="800" fontSize="58" fill="white" textAnchor="middle">S</text>
+            <polyline points="43,90 49,99 72,79" fill="none" stroke="#0e7490"
+              strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </div>
       </div>
 
-      <p className="mt-6 text-white font-bold text-lg tracking-wide">Scoravo</p>
+      <p className="mt-5 text-white font-bold text-base tracking-widest uppercase">Scoravo</p>
 
-      <div className="flex gap-1.5 mt-3">
-        {[0, 1, 2].map((i) => (
-          <div
-            key={i}
-            className="w-1.5 h-1.5 rounded-full bg-cyan-400"
-            style={{
-              animation: "bounce 1s ease-in-out infinite",
-              animationDelay: `${i * 0.2}s`,
-            }}
-          />
-        ))}
+      <div className="flex gap-2 mt-3">
+        <div className="w-2 h-2 rounded-full bg-cyan-400 animate-bounce" style={{ animationDelay: "0ms" }} />
+        <div className="w-2 h-2 rounded-full bg-cyan-400 animate-bounce" style={{ animationDelay: "150ms" }} />
+        <div className="w-2 h-2 rounded-full bg-cyan-400 animate-bounce" style={{ animationDelay: "300ms" }} />
       </div>
-
-      <style>{`
-        @keyframes spin {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        @keyframes bounce {
-          0%, 100% { transform: translateY(0); opacity: 0.4; }
-          50% { transform: translateY(-5px); opacity: 1; }
-        }
-      `}</style>
     </div>
   );
 }
