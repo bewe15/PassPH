@@ -366,11 +366,13 @@ export default function HomePage() {
         .step p { color: var(--muted); font-size: 14.5px; line-height: 1.6; max-width: 280px; margin: 0 auto; }
 
         /* COMPARISON */
-        .compare { max-width: 920px; margin: 0 auto; border-radius: 20px; overflow: hidden; border: 1px solid var(--card-border); background: var(--card-bg); backdrop-filter: blur(14px); }
-        .compare table { width: 100%; border-collapse: collapse; }
+        .compare-wrap { max-width: 920px; margin: 0 auto; border-radius: 20px; overflow-x: auto; -webkit-overflow-scrolling: touch; border: 1px solid var(--card-border); background: var(--card-bg); backdrop-filter: blur(14px); }
+        .compare { width: 100%; }
+        .compare table { width: 100%; border-collapse: collapse; min-width: 520px; }
         .compare th, .compare td { padding: 16px 18px; text-align: center; font-size: 14.5px; border-bottom: 1px solid var(--card-border); }
-        .compare th:first-child, .compare td:first-child { text-align: left; color: var(--muted); font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; }
+        .compare th:first-child, .compare td:first-child { text-align: left; color: var(--muted); font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; min-width: 110px; }
         .compare thead th { font-family: var(--font-display); font-weight: 600; font-size: 15px; padding-top: 22px; padding-bottom: 22px; }
+        @media(max-width:640px) { .compare th, .compare td { padding: 12px 12px; font-size: 13px; } .compare thead th { font-size: 13px; } }
         .compare .ours { position: relative; color: var(--text); background: linear-gradient(180deg, rgba(34,211,238,0.10), rgba(59,130,246,0.04));
           border-left: 1px solid rgba(34,211,238,0.3); border-right: 1px solid rgba(34,211,238,0.3); }
         .compare thead .ours { font-family: var(--font-display); }
@@ -647,8 +649,8 @@ export default function HomePage() {
         <section>
           <div className="wrap">
             <div className="section-head"><h2>Why learners choose <span className="grad">Scoravo</span></h2><p>Compare us to the alternatives.</p></div>
-            <div className="compare">
-              <table>
+            <div className="compare-wrap">
+              <div className="compare"><table>
                 <thead><tr><th></th><th className="ours"><span className="b">Scoravo</span></th><th>Review centers</th><th>Global platforms</th></tr></thead>
                 <tbody>
                   <tr><td>Price</td><td className="ours value">Free–$12.99/mo</td><td className="value">$65–$185/course</td><td className="value">$30–$50/mo</td></tr>
@@ -667,7 +669,7 @@ export default function HomePage() {
                     <td className="no">✕</td><td className="small">Some</td>
                   </tr>
                 </tbody>
-              </table>
+              </table></div>
             </div>
           </div>
         </section>
