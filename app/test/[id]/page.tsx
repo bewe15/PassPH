@@ -211,16 +211,16 @@ function MatchHeadingsRenderer({
           ))}
         </ul>
       </div>
-      <div className="space-y-4">
+      <div className="space-y-3">
         {section.questions.map((q) => {
           const val = answers[q.id] ?? "";
           return (
-            <div key={q.id} className="flex items-center gap-3">
-              <span className="text-sm font-bold text-slate-700 w-28 shrink-0">Q{q.id} — Para {q.paragraph}</span>
+            <div key={q.id} className="flex flex-col gap-1.5 sm:flex-row sm:items-center sm:gap-3">
+              <span className="text-sm font-bold text-slate-700 sm:w-28 sm:shrink-0">Q{q.id} — Para {q.paragraph}</span>
               <select
                 value={val}
                 onChange={(e) => setAnswer(q.id, e.target.value)}
-                className="flex-1 px-3 py-2 text-sm border border-slate-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="w-full min-w-0 px-3 py-2 text-sm border border-slate-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
               >
                 <option value="">Select heading…</option>
                 {headings.map((h) => (
