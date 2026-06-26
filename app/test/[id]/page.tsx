@@ -679,6 +679,7 @@ function SectionBlock({
 
 function IELTSRunner({ test, onSubmit }: { test: IELTSTest; onSubmit: (answers: AnswerMap, elapsed: number) => void }) {
   const [activePassage, setActivePassage] = useState<0 | 1 | 2>(0);
+  const [mobileTab, setMobileTab] = useState<"passage" | "questions">("passage");
   const [answers, setAnswers] = useState<AnswerMap>({});
   const [currentQId, setCurrentQId] = useState(1);
   const [showConfirm, setShowConfirm] = useState(false);
@@ -768,12 +769,30 @@ function IELTSRunner({ test, onSubmit }: { test: IELTSTest; onSubmit: (answers: 
         )}
       </div>
 
+      {/* Mobile tab toggle */}
+      <div className="md:hidden flex border-b border-slate-200 bg-white sticky top-0 z-10">
+        <button
+          onClick={() => setMobileTab("passage")}
+          className={cn("flex-1 py-2.5 text-sm font-semibold border-b-2 transition",
+            mobileTab === "passage" ? "border-cyan-500 text-cyan-600" : "border-transparent text-slate-400")}
+        >Passage</button>
+        <button
+          onClick={() => setMobileTab("questions")}
+          className={cn("flex-1 py-2.5 text-sm font-semibold border-b-2 transition",
+            mobileTab === "questions" ? "border-cyan-500 text-cyan-600" : "border-transparent text-slate-400")}
+        >Questions</button>
+      </div>
+
       {/* Split layout */}
       <div className="flex flex-1 min-h-0">
         {/* Passage panel */}
-        <div className="w-1/2 overflow-y-auto p-6 border-r border-slate-200">
+        <div className={cn(
+          "overflow-y-auto p-5 border-r border-slate-200",
+          "md:block md:w-1/2",
+          mobileTab === "passage" ? "block w-full" : "hidden"
+        )}>
           <h2 className="text-base font-bold text-slate-900 mb-1">{passage.title}</h2>
-          <p className="text-xs text-slate-400 mb-4">Passage {activePassage + 1} — Read carefully and answer the questions on the right.</p>
+          <p className="text-xs text-slate-400 mb-4">Passage {activePassage + 1} — Read carefully then tap Questions to answer.</p>
           <div className="space-y-4">
             {passage.paragraphs.map((para) => (
               <p key={para.letter} className="text-sm text-slate-700 leading-relaxed">
@@ -781,10 +800,19 @@ function IELTSRunner({ test, onSubmit }: { test: IELTSTest; onSubmit: (answers: 
               </p>
             ))}
           </div>
+          {/* Mobile helper */}
+          <button
+            onClick={() => setMobileTab("questions")}
+            className="md:hidden mt-6 w-full py-3 rounded-xl bg-cyan-500 text-white text-sm font-bold"
+          >Answer Questions →</button>
         </div>
 
         {/* Questions panel */}
-        <div ref={questionsRef} className="w-1/2 overflow-y-auto p-5">
+        <div ref={questionsRef} className={cn(
+          "overflow-y-auto p-5",
+          "md:block md:w-1/2",
+          mobileTab === "questions" ? "block w-full" : "hidden"
+        )}>
           {passage.sections.map((section) => (
             <SectionBlock
               key={section.questionRange}
