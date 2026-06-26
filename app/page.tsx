@@ -5,11 +5,13 @@ import { createClient } from "@/lib/supabase/client";
 
 export default function HomePage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [authReady, setAuthReady] = useState(false);
 
   useEffect(() => {
     const supabase = createClient();
     supabase.auth.getUser().then(({ data: { user } }) => {
       setIsLoggedIn(!!user);
+      setAuthReady(true);
     });
   }, []);
 
@@ -472,7 +474,9 @@ export default function HomePage() {
               <Link className="link" href="/exam-guides">Exam Guides</Link>
               <a className="link" href="#faq">FAQ</a>
               <div className="nav-cta">
-                {isLoggedIn ? (
+                {!authReady ? (
+                  <div style={{ width: 120, height: 36 }} />
+                ) : isLoggedIn ? (
                   <Link className="btn btn-primary" href="/dashboard">
                     Go to Dashboard
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
